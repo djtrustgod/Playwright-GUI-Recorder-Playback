@@ -1,6 +1,6 @@
 # Playwright GUI Recorder/Playback
 
-> ⚠️ **Work in Progress** - This project is currently under active development.
+> ⚠️ **Work in Progress** - This project is currently under development.
 
 ## Overview
 
