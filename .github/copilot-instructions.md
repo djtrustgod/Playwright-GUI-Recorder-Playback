@@ -66,6 +66,13 @@ When adding new functionality:
 3. If it's a new command, register it in `src/extension.ts` and add to `package.json` contributes.commands
 4. If it adds a VS Code setting, add to `package.json` contributes.configuration and the Configuration Reference in `Implementation.md`
 
+## Git Commit Rules
+
+- **Always use single-line commit messages** — never use multi-line strings in `git commit -m`. Multi-line messages break the PowerShell terminal when quotes span multiple lines.
+- Good: `git commit -m "feat: add recording panel with step list UI"`
+- Bad: `git commit -m "feat: add recording\n\n- detail 1\n- detail 2"`
+- If more detail is needed, put it in the PR description, not the commit message.
+
 ## When Fixing Bugs or Resolving Limitations
 
 1. If a Known Limitation in `Implementation.md` is resolved, remove or update it
