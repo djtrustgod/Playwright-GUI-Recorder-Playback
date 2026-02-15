@@ -1,0 +1,282 @@
+{
+  "name": "playwright-rpa",
+  "displayName": "Playwright RPA",
+  "description": "A light-duty RPA tool powered by Playwright with AI self-healing selectors, recording, playback, and orchestration.",
+  "version": "0.1.0",
+  "publisher": "djtrustgod",
+  "license": "MIT",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Testing",
+    "Other"
+  ],
+  "keywords": [
+    "playwright",
+    "rpa",
+    "automation",
+    "recording",
+    "self-healing"
+  ],
+  "activationEvents": [
+    "onView:playwrightRpa.library"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "playwrightRpa.startRecording",
+        "title": "Start Recording",
+        "icon": "$(record)",
+        "category": "Playwright RPA"
+      },
+      {
+        "command": "playwrightRpa.stopRecording",
+        "title": "Stop Recording",
+        "icon": "$(debug-stop)",
+        "category": "Playwright RPA"
+      },
+      {
+        "command": "playwrightRpa.playRecording",
+        "title": "Play Recording",
+        "icon": "$(play)",
+        "category": "Playwright RPA"
+      },
+      {
+        "command": "playwrightRpa.openRecordingPanel",
+        "title": "Open Recording Panel",
+        "icon": "$(add)",
+        "category": "Playwright RPA"
+      },
+      {
+        "command": "playwrightRpa.openPlaybackPanel",
+        "title": "Open Playback Panel",
+        "icon": "$(play-circle)",
+        "category": "Playwright RPA"
+      },
+      {
+        "command": "playwrightRpa.openMonitoringPanel",
+        "title": "Open Monitoring Panel",
+        "icon": "$(graph)",
+        "category": "Playwright RPA"
+      },
+      {
+        "command": "playwrightRpa.deleteRecording",
+        "title": "Delete Recording",
+        "icon": "$(trash)",
+        "category": "Playwright RPA"
+      },
+      {
+        "command": "playwrightRpa.exportRecording",
+        "title": "Export Recording",
+        "icon": "$(export)",
+        "category": "Playwright RPA"
+      },
+      {
+        "command": "playwrightRpa.refreshLibrary",
+        "title": "Refresh Library",
+        "icon": "$(refresh)",
+        "category": "Playwright RPA"
+      },
+      {
+        "command": "playwrightRpa.installBrowsers",
+        "title": "Install Playwright Browsers",
+        "icon": "$(cloud-download)",
+        "category": "Playwright RPA"
+      }
+    ],
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "playwrightRpa",
+          "title": "Playwright RPA",
+          "icon": "$(browser)"
+        }
+      ]
+    },
+    "views": {
+      "playwrightRpa": [
+        {
+          "id": "playwrightRpa.library",
+          "name": "Recording Library"
+        },
+        {
+          "id": "playwrightRpa.executions",
+          "name": "Recent Executions"
+        },
+        {
+          "id": "playwrightRpa.schedules",
+          "name": "Schedules"
+        }
+      ]
+    },
+    "menus": {
+      "view/title": [
+        {
+          "command": "playwrightRpa.openRecordingPanel",
+          "when": "view == playwrightRpa.library",
+          "group": "navigation"
+        },
+        {
+          "command": "playwrightRpa.refreshLibrary",
+          "when": "view == playwrightRpa.library",
+          "group": "navigation"
+        },
+        {
+          "command": "playwrightRpa.openMonitoringPanel",
+          "when": "view == playwrightRpa.executions",
+          "group": "navigation"
+        }
+      ],
+      "view/item/context": [
+        {
+          "command": "playwrightRpa.playRecording",
+          "when": "view == playwrightRpa.library && viewItem == recording",
+          "group": "inline"
+        },
+        {
+          "command": "playwrightRpa.deleteRecording",
+          "when": "view == playwrightRpa.library && viewItem == recording"
+        },
+        {
+          "command": "playwrightRpa.exportRecording",
+          "when": "view == playwrightRpa.library && viewItem == recording"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "Playwright RPA",
+      "properties": {
+        "playwrightRpa.defaultBrowser": {
+          "type": "string",
+          "default": "chromium",
+          "enum": [
+            "chromium",
+            "firefox",
+            "webkit"
+          ],
+          "description": "Default browser for recording and playback."
+        },
+        "playwrightRpa.headless": {
+          "type": "boolean",
+          "default": false,
+          "description": "Run playback in headless mode."
+        },
+        "playwrightRpa.slowMo": {
+          "type": "number",
+          "default": 0,
+          "description": "Slow down playback by this many milliseconds per action."
+        },
+        "playwrightRpa.selfHealing.enabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable self-healing selector resolution."
+        },
+        "playwrightRpa.selfHealing.embeddingThreshold": {
+          "type": "number",
+          "default": 0.85,
+          "description": "Cosine similarity threshold for embedding-based element matching (0-1)."
+        },
+        "playwrightRpa.selfHealing.llmEnabled": {
+          "type": "boolean",
+          "default": false,
+          "description": "Enable LLM-based selector repair as a last resort."
+        },
+        "playwrightRpa.ai.provider": {
+          "type": "string",
+          "default": "openai",
+          "enum": [
+            "openai",
+            "anthropic",
+            "ollama"
+          ],
+          "description": "LLM provider for selector repair."
+        },
+        "playwrightRpa.ai.model": {
+          "type": "string",
+          "default": "gpt-4o-mini",
+          "description": "LLM model name for selector repair."
+        },
+        "playwrightRpa.ai.apiKey": {
+          "type": "string",
+          "default": "",
+          "description": "API key for the configured LLM provider."
+        },
+        "playwrightRpa.ai.ollamaUrl": {
+          "type": "string",
+          "default": "http://localhost:11434",
+          "description": "Ollama server URL for local LLM inference."
+        },
+        "playwrightRpa.orchestration.maxRetries": {
+          "type": "number",
+          "default": 3,
+          "description": "Maximum retry attempts for failed playback jobs."
+        },
+        "playwrightRpa.orchestration.concurrency": {
+          "type": "number",
+          "default": 1,
+          "description": "Maximum number of concurrent playback jobs."
+        },
+        "playwrightRpa.overlayDismissals": {
+          "type": "array",
+          "default": [],
+          "items": {
+            "type": "object",
+            "properties": {
+              "detector": {
+                "type": "string",
+                "description": "Locator string to detect the overlay (e.g. text=Accept Cookies)"
+              },
+              "action": {
+                "type": "string",
+                "description": "Locator string to click to dismiss the overlay"
+              }
+            }
+          },
+          "description": "List of overlay/popup auto-dismissal rules."
+        },
+        "playwrightRpa.webhookUrl": {
+          "type": "string",
+          "default": "",
+          "description": "Webhook URL for failure notifications (Slack, Discord, Teams, etc.)."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "node esbuild.js --production",
+    "build": "node esbuild.js",
+    "watch": "node esbuild.js --watch",
+    "lint": "eslint src --ext ts,tsx",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "package": "vsce package"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "@types/react": "^18.2.48",
+    "@types/react-dom": "^18.2.18",
+    "@types/uuid": "^10.0.0",
+    "@types/vscode": "^1.85.0",
+    "@typescript-eslint/eslint-plugin": "^6.19.0",
+    "@typescript-eslint/parser": "^6.19.0",
+    "@vscode/test-electron": "^2.3.8",
+    "esbuild": "^0.19.12",
+    "eslint": "^8.56.0",
+    "typescript": "^5.3.3",
+    "vitest": "^1.2.0"
+  },
+  "dependencies": {
+    "@xenova/transformers": "^2.17.1",
+    "node-cron": "^3.0.3",
+    "pixelmatch": "^5.3.0",
+    "playwright": "^1.41.0",
+    "pngjs": "^7.0.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "sql.js": "^1.10.0",
+    "uuid": "^9.0.0",
+    "zod": "^3.22.4"
+  }
+}
