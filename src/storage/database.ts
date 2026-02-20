@@ -106,6 +106,11 @@ export class Database {
   private db!: SqlJsDatabase;
   private dbPath: string;
   private ready: Promise<void>;
+  private persistTimer: ReturnType<typeof setTimeout> | null = null;
+  private dirty = false;
+
+  /** Debounce interval for batching rapid writes (ms) */
+  private static readonly PERSIST_DEBOUNCE_MS = 500;
 
   constructor(storagePath: string) {
     // Ensure the storage directory exists
@@ -128,7 +133,7 @@ export class Database {
     }
 
     this.createTables();
-    this.persist();
+    this.persistNow();
   }
 
   /** Wait for async init to complete — call before first DB access */
@@ -136,9 +141,30 @@ export class Database {
     await this.ready;
   }
 
-  private persist(): void {
+  /** Flush the database to disk immediately */
+  persistNow(): void {
+    if (this.persistTimer) {
+      clearTimeout(this.persistTimer);
+      this.persistTimer = null;
+    }
     const data = this.db.export();
     fs.writeFileSync(this.dbPath, Buffer.from(data));
+    this.dirty = false;
+  }
+
+  /**
+   * Schedule a debounced persist. Rapid calls within PERSIST_DEBOUNCE_MS
+   * are batched into a single disk write. Use persistNow() for critical writes.
+   */
+  private persist(): void {
+    this.dirty = true;
+    if (this.persistTimer) return;
+    this.persistTimer = setTimeout(() => {
+      this.persistTimer = null;
+      if (this.dirty) {
+        this.persistNow();
+      }
+    }, Database.PERSIST_DEBOUNCE_MS);
   }
 
   private createTables(): void {
@@ -417,7 +443,7 @@ export class Database {
   // --- Lifecycle ---
 
   close(): void {
-    this.persist();
+    this.persistNow();
     this.db.close();
   }
 }

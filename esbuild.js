@@ -13,7 +13,7 @@ const extensionConfig = {
   external: [
     'vscode',
     'playwright',
-    '@xenova/transformers',
+    '@huggingface/transformers',
   ],
   format: 'cjs',
   platform: 'node',

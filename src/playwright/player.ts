@@ -4,6 +4,10 @@ import { Database, ActionRecord } from '../storage/database';
 import { FileManager } from '../storage/fileManager';
 import { SelfHealingResolver, LocatorStrategies } from './selfHealing';
 
+export interface PlayerDependencies {
+  secrets?: vscode.SecretStorage;
+}
+
 export interface PlaybackOptions {
   headless?: boolean;
   slowMo?: number;
@@ -33,7 +37,8 @@ export class Player {
 
   constructor(
     private readonly db: Database,
-    private readonly fileManager: FileManager
+    private readonly fileManager: FileManager,
+    private readonly deps: PlayerDependencies = {}
   ) {}
 
   async play(
@@ -68,7 +73,7 @@ export class Player {
       enabled: config.get<boolean>('selfHealing.enabled', true),
       embeddingThreshold: config.get<number>('selfHealing.embeddingThreshold', 0.85),
       llmEnabled: config.get<boolean>('selfHealing.llmEnabled', false),
-    });
+    }, this.deps.secrets);
 
     // Launch browser
     const engines = { chromium, firefox, webkit };

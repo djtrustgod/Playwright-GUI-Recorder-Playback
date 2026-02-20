@@ -1,4 +1,5 @@
 import { Page, Locator } from 'playwright';
+import * as vscode from 'vscode';
 import { RecordedAction } from './recorder';
 import { Database } from '../storage/database';
 import { LlmRepair } from '../ai/llmRepair';
@@ -94,7 +95,8 @@ export class SelfHealingResolver {
       enabled: boolean;
       embeddingThreshold: number;
       llmEnabled: boolean;
-    }
+    },
+    private readonly secrets?: vscode.SecretStorage
   ) {}
 
   async resolve(
@@ -247,7 +249,7 @@ export class SelfHealingResolver {
   ): Promise<LocatorResolution | null> {
     try {
       if (!this.llmRepair) {
-        this.llmRepair = new LlmRepair();
+        this.llmRepair = new LlmRepair(this.secrets);
       }
 
       const repairedSelector = await this.llmRepair.repairSelector(page, locators);

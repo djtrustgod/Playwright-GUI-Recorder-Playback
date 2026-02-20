@@ -7,7 +7,7 @@ interface EmbeddingMatch {
 }
 
 /**
- * Uses @xenova/transformers to generate element embeddings locally
+ * Uses @huggingface/transformers to generate element embeddings locally
  * and find the most similar element on the page via cosine similarity.
  *
  * The MiniLM model (~50MB) is downloaded on first use.
@@ -21,7 +21,7 @@ export class LocatorEmbeddings {
 
     try {
       // Dynamic import to avoid loading the model unless needed
-      const { pipeline } = await import('@xenova/transformers');
+      const { pipeline } = await import('@huggingface/transformers');
       this.pipeline = await pipeline('feature-extraction', 'Xenova/all-MiniLM-L6-v2', {
         // Cache models in extension storage
         cache_dir: undefined, // Will use default cache
@@ -30,7 +30,7 @@ export class LocatorEmbeddings {
     } catch (err) {
       console.error('Failed to initialize embedding model:', err);
       throw new Error(
-        'Embedding model initialization failed. Install @xenova/transformers or disable embedding-based self-healing.'
+        'Embedding model initialization failed. Install @huggingface/transformers or disable embedding-based self-healing.'
       );
     }
   }

@@ -84,6 +84,12 @@
         "title": "Install Playwright Browsers",
         "icon": "$(cloud-download)",
         "category": "Playwright RPA"
+      },
+      {
+        "command": "playwrightRpa.setApiKey",
+        "title": "Set AI Provider API Key",
+        "icon": "$(key)",
+        "category": "Playwright RPA"
       }
     ],
     "viewsContainers": {
@@ -198,11 +204,6 @@
           "default": "gpt-4o-mini",
           "description": "LLM model name for selector repair."
         },
-        "playwrightRpa.ai.apiKey": {
-          "type": "string",
-          "default": "",
-          "description": "API key for the configured LLM provider."
-        },
         "playwrightRpa.ai.ollamaUrl": {
           "type": "string",
           "default": "http://localhost:11434",
@@ -268,7 +269,7 @@
     "vitest": "^1.2.0"
   },
   "dependencies": {
-    "@xenova/transformers": "^2.17.1",
+    "@huggingface/transformers": "^3.3.0",
     "node-cron": "^3.0.3",
     "pixelmatch": "^5.3.0",
     "playwright": "^1.41.0",

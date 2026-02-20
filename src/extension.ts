@@ -33,7 +33,7 @@ export async function activate(context: vscode.ExtensionContext): Promise<void> 
 
   // Initialize Playwright services
   recorder = new Recorder(database, fileManager);
-  player = new Player(database, fileManager);
+  player = new Player(database, fileManager, { secrets: context.secrets });
   const exporter = new Exporter(database, fileManager);
 
   // Initialize orchestration
@@ -127,6 +127,26 @@ export async function activate(context: vscode.ExtensionContext): Promise<void> 
       const terminal = vscode.window.createTerminal('Playwright Install');
       terminal.show();
       terminal.sendText('npx playwright install');
+    }],
+    ['playwrightRpa.setApiKey', async () => {
+      const provider = await vscode.window.showQuickPick(
+        ['openai', 'anthropic'],
+        { placeHolder: 'Select the AI provider to set the API key for' }
+      );
+      if (!provider) { return; }
+      const apiKey = await vscode.window.showInputBox({
+        prompt: `Enter your ${provider} API key`,
+        password: true,
+        placeHolder: 'sk-...',
+      });
+      if (apiKey === undefined) { return; }
+      if (apiKey === '') {
+        await context.secrets.delete(`playwrightRpa.apiKey.${provider}`);
+        vscode.window.showInformationMessage(`${provider} API key removed.`);
+      } else {
+        await context.secrets.store(`playwrightRpa.apiKey.${provider}`, apiKey);
+        vscode.window.showInformationMessage(`${provider} API key saved securely.`);
+      }
     }],
   ];
 

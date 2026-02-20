@@ -8,9 +8,12 @@ import { DomSimplifier } from './domSimplifier';
  * and the element description to an LLM to get a corrected selector.
  *
  * Supported providers: OpenAI, Anthropic, Ollama (local).
+ * API keys are stored securely via VS Code SecretStorage.
  */
 export class LlmRepair {
   private domSimplifier = new DomSimplifier();
+
+  constructor(private readonly secrets?: vscode.SecretStorage) {}
 
   /**
    * Ask the LLM to repair a broken selector.
@@ -20,10 +23,10 @@ export class LlmRepair {
     const config = vscode.workspace.getConfiguration('playwrightRpa');
     const provider = config.get<string>('ai.provider', 'openai');
     const model = config.get<string>('ai.model', 'gpt-4o-mini');
-    const apiKey = config.get<string>('ai.apiKey', '');
+    const apiKey = await this.secrets?.get(`playwrightRpa.apiKey.${provider}`) ?? '';
 
     if (!apiKey && provider !== 'ollama') {
-      console.warn('LLM repair: No API key configured.');
+      console.warn('LLM repair: No API key configured. Use "Playwright RPA: Set AI Provider API Key" command.');
       return null;
     }
 

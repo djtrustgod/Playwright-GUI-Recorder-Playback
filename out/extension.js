@@ -3734,10 +3734,14 @@ function queryOne(db, sql, params) {
   const rows = queryAll(db, sql, params);
   return rows.length > 0 ? rows[0] : null;
 }
-var Database = class {
+var Database = class _Database {
   db;
   dbPath;
   ready;
+  persistTimer = null;
+  dirty = false;
+  /** Debounce interval for batching rapid writes (ms) */
+  static PERSIST_DEBOUNCE_MS = 500;
   constructor(storagePath) {
     if (!fs.existsSync(storagePath)) {
       fs.mkdirSync(storagePath, { recursive: true });
@@ -3754,15 +3758,36 @@ var Database = class {
       this.db = new SQL.Database();
     }
     this.createTables();
-    this.persist();
+    this.persistNow();
   }
   /** Wait for async init to complete — call before first DB access */
   async waitReady() {
     await this.ready;
   }
-  persist() {
+  /** Flush the database to disk immediately */
+  persistNow() {
+    if (this.persistTimer) {
+      clearTimeout(this.persistTimer);
+      this.persistTimer = null;
+    }
     const data = this.db.export();
     fs.writeFileSync(this.dbPath, Buffer.from(data));
+    this.dirty = false;
+  }
+  /**
+   * Schedule a debounced persist. Rapid calls within PERSIST_DEBOUNCE_MS
+   * are batched into a single disk write. Use persistNow() for critical writes.
+   */
+  persist() {
+    this.dirty = true;
+    if (this.persistTimer)
+      return;
+    this.persistTimer = setTimeout(() => {
+      this.persistTimer = null;
+      if (this.dirty) {
+        this.persistNow();
+      }
+    }, _Database.PERSIST_DEBOUNCE_MS);
   }
   createTables() {
     this.db.run(`
@@ -4025,7 +4050,7 @@ var Database = class {
   }
   // --- Lifecycle ---
   close() {
-    this.persist();
+    this.persistNow();
     this.db.close();
   }
 };
@@ -4318,6 +4343,9 @@ var DomSimplifier = class {
 
 // src/ai/llmRepair.ts
 var LlmRepair = class {
+  constructor(secrets) {
+    this.secrets = secrets;
+  }
   domSimplifier = new DomSimplifier();
   /**
    * Ask the LLM to repair a broken selector.
@@ -4327,9 +4355,9 @@ var LlmRepair = class {
     const config = vscode7.workspace.getConfiguration("playwrightRpa");
     const provider = config.get("ai.provider", "openai");
     const model = config.get("ai.model", "gpt-4o-mini");
-    const apiKey = config.get("ai.apiKey", "");
+    const apiKey = await this.secrets?.get(`playwrightRpa.apiKey.${provider}`) ?? "";
     if (!apiKey && provider !== "ollama") {
-      console.warn("LLM repair: No API key configured.");
+      console.warn('LLM repair: No API key configured. Use "Playwright RPA: Set AI Provider API Key" command.');
       return null;
     }
     const simplifiedDom = await this.domSimplifier.simplify(page);
@@ -4517,7 +4545,7 @@ var LocatorEmbeddings = class {
     if (this.initialized)
       return;
     try {
-      const { pipeline } = await import("@xenova/transformers");
+      const { pipeline } = await import("@huggingface/transformers");
       this.pipeline = await pipeline("feature-extraction", "Xenova/all-MiniLM-L6-v2", {
         // Cache models in extension storage
         cache_dir: void 0
@@ -4527,7 +4555,7 @@ var LocatorEmbeddings = class {
     } catch (err) {
       console.error("Failed to initialize embedding model:", err);
       throw new Error(
-        "Embedding model initialization failed. Install @xenova/transformers or disable embedding-based self-healing."
+        "Embedding model initialization failed. Install @huggingface/transformers or disable embedding-based self-healing."
       );
     }
   }
@@ -4686,9 +4714,10 @@ function generateLocators(action) {
   };
 }
 var SelfHealingResolver = class {
-  constructor(db, config) {
+  constructor(db, config, secrets) {
     this.db = db;
     this.config = config;
+    this.secrets = secrets;
   }
   embeddings = null;
   llmRepair = null;
@@ -4805,7 +4834,7 @@ var SelfHealingResolver = class {
   async tryLlmRepair(page, locators) {
     try {
       if (!this.llmRepair) {
-        this.llmRepair = new LlmRepair();
+        this.llmRepair = new LlmRepair(this.secrets);
       }
       const repairedSelector = await this.llmRepair.repairSelector(page, locators);
       if (repairedSelector) {
@@ -5101,9 +5130,10 @@ var Recorder = class {
 var import_playwright2 = require("playwright");
 var vscode8 = __toESM(require("vscode"));
 var Player = class {
-  constructor(db, fileManager2) {
+  constructor(db, fileManager2, deps = {}) {
     this.db = db;
     this.fileManager = fileManager2;
+    this.deps = deps;
   }
   browser = null;
   context = null;
@@ -5132,7 +5162,7 @@ var Player = class {
       enabled: config.get("selfHealing.enabled", true),
       embeddingThreshold: config.get("selfHealing.embeddingThreshold", 0.85),
       llmEnabled: config.get("selfHealing.llmEnabled", false)
-    });
+    }, this.deps.secrets);
     const engines = { chromium: import_playwright2.chromium, firefox: import_playwright2.firefox, webkit: import_playwright2.webkit };
     const engine = engines[browserType] || import_playwright2.chromium;
     this.browser = await engine.launch({ headless, slowMo });
@@ -5927,7 +5957,7 @@ async function activate(context) {
   fileManager = new FileManager(context.globalStoragePath);
   await fileManager.ensureDirectories();
   recorder = new Recorder(database, fileManager);
-  player = new Player(database, fileManager);
+  player = new Player(database, fileManager, { secrets: context.secrets });
   const exporter = new Exporter(database, fileManager);
   jobQueue = new JobQueue(database);
   executor = new Executor(jobQueue, player);
@@ -6015,6 +6045,30 @@ async function activate(context) {
       const terminal = vscode12.window.createTerminal("Playwright Install");
       terminal.show();
       terminal.sendText("npx playwright install");
+    }],
+    ["playwrightRpa.setApiKey", async () => {
+      const provider = await vscode12.window.showQuickPick(
+        ["openai", "anthropic"],
+        { placeHolder: "Select the AI provider to set the API key for" }
+      );
+      if (!provider) {
+        return;
+      }
+      const apiKey = await vscode12.window.showInputBox({
+        prompt: `Enter your ${provider} API key`,
+        password: true,
+        placeHolder: "sk-..."
+      });
+      if (apiKey === void 0) {
+        return;
+      }
+      if (apiKey === "") {
+        await context.secrets.delete(`playwrightRpa.apiKey.${provider}`);
+        vscode12.window.showInformationMessage(`${provider} API key removed.`);
+      } else {
+        await context.secrets.store(`playwrightRpa.apiKey.${provider}`, apiKey);
+        vscode12.window.showInformationMessage(`${provider} API key saved securely.`);
+      }
     }]
   ];
   for (const [id, handler] of commands3) {
