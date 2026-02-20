@@ -1,6 +1,7 @@
 // @ts-check
 const esbuild = require('esbuild');
 const path = require('path');
+const fs = require('fs');
 
 const production = process.argv.includes('--production');
 const watch = process.argv.includes('--watch');
@@ -39,17 +40,26 @@ const webviewConfig = {
   },
 };
 
+function copyWasm() {
+  const src = path.join(__dirname, 'node_modules', 'sql.js', 'dist', 'sql-wasm.wasm');
+  const dest = path.join(__dirname, 'out', 'sql-wasm.wasm');
+  fs.mkdirSync(path.dirname(dest), { recursive: true });
+  fs.copyFileSync(src, dest);
+}
+
 async function main() {
   if (watch) {
     const extCtx = await esbuild.context(extensionConfig);
     const webCtx = await esbuild.context(webviewConfig);
     await Promise.all([extCtx.watch(), webCtx.watch()]);
+    copyWasm();
     console.log('[watch] Build started — watching for changes...');
   } else {
     await Promise.all([
       esbuild.build(extensionConfig),
       esbuild.build(webviewConfig),
     ]);
+    copyWasm();
     console.log('Build complete.');
   }
 }

@@ -58,8 +58,24 @@ export async function activate(context: vscode.ExtensionContext): Promise<void> 
     treeDataProvider: schedulesProvider,
   });
 
+  // Status bar item — visible only while recording
+  const recordingStatusBar = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Left, 100);
+  recordingStatusBar.text = '$(debug-stop) Stop Recording';
+  recordingStatusBar.tooltip = 'Click to stop and save the current recording';
+  recordingStatusBar.command = 'playwrightRpa.stopRecording';
+  recordingStatusBar.backgroundColor = new vscode.ThemeColor('statusBarItem.errorBackground');
+  context.subscriptions.push(recordingStatusBar);
+
+  const showRecordingStatus = () => recordingStatusBar.show();
+  const hideRecordingStatus = () => recordingStatusBar.hide();
+
   // Initialize webview panel managers
-  const recordingPanelManager = new RecordingPanelManager(context, recorder);
+  const recordingPanelManager = new RecordingPanelManager(
+    context,
+    recorder,
+    () => { libraryProvider.refresh(); hideRecordingStatus(); },
+    () => { showRecordingStatus(); }
+  );
   const playbackPanelManager = new PlaybackPanelManager(context, player);
   const monitoringPanelManager = new MonitoringPanelManager(context, database);
 
@@ -71,6 +87,7 @@ export async function activate(context: vscode.ExtensionContext): Promise<void> 
     ['playwrightRpa.stopRecording', async () => {
       await recorder.stop();
       libraryProvider.refresh();
+      hideRecordingStatus();
     }],
     ['playwrightRpa.playRecording', async (...args: any[]) => {
       const item = args[0] as { recordingId?: string } | undefined;

@@ -123,7 +123,22 @@ export class Database {
   }
 
   private async initialize(): Promise<void> {
-    const SQL = await initSqlJs();
+    const SQL = await initSqlJs({
+      locateFile: (file: string) => {
+        // Production (compiled): WASM is copied to out/ alongside extension.js
+        const local = path.join(__dirname, file);
+        if (fs.existsSync(local)) {
+          return local;
+        }
+        // Test environment (Vitest): __dirname is src/storage/, resolve from node_modules
+        try {
+          const sqlJsDir = path.dirname(require.resolve('sql.js/dist/sql-wasm.js'));
+          return path.join(sqlJsDir, file);
+        } catch {
+          return local;
+        }
+      },
+    });
 
     if (fs.existsSync(this.dbPath)) {
       const buffer = fs.readFileSync(this.dbPath);

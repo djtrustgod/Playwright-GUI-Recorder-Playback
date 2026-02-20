@@ -6,7 +6,9 @@ export class RecordingPanelManager {
 
   constructor(
     private readonly context: vscode.ExtensionContext,
-    private readonly recorder: Recorder
+    private readonly recorder: Recorder,
+    private readonly onRecordingSaved?: () => void,
+    private readonly onRecordingStarted?: () => void
   ) {}
 
   async show(): Promise<void> {
@@ -23,7 +25,7 @@ export class RecordingPanelManager {
         enableScripts: true,
         retainContextWhenHidden: true,
         localResourceRoots: [
-          vscode.Uri.joinPath(this.context.extensionUri, 'out', 'webview'),
+          vscode.Uri.joinPath(this.context.extensionUri, 'out'),
         ],
       }
     );
@@ -36,6 +38,7 @@ export class RecordingPanelManager {
         case 'startRecording': {
           const { url, browser, saveAuth } = message.payload;
           await this.recorder.start(url, browser, saveAuth);
+          this.onRecordingStarted?.();
 
           // Forward recording events to the webview
           this.recorder.onAction((action) => {
@@ -52,6 +55,7 @@ export class RecordingPanelManager {
             type: 'recordingStopped',
             payload: recording,
           });
+          this.onRecordingSaved?.();
           break;
         }
       }
@@ -64,7 +68,7 @@ export class RecordingPanelManager {
 
   private getHtml(webview: vscode.Webview): string {
     const scriptUri = webview.asWebviewUri(
-      vscode.Uri.joinPath(this.context.extensionUri, 'out', 'webview', 'webview.js')
+      vscode.Uri.joinPath(this.context.extensionUri, 'out', 'webview.js')
     );
 
     const nonce = getNonce();

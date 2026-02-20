@@ -3423,9 +3423,11 @@ Last run: ${sched.last_run || "Never"}`;
 // src/views/recordingPanel.ts
 var vscode4 = __toESM(require("vscode"));
 var RecordingPanelManager = class {
-  constructor(context, recorder2) {
+  constructor(context, recorder2, onRecordingSaved, onRecordingStarted) {
     this.context = context;
     this.recorder = recorder2;
+    this.onRecordingSaved = onRecordingSaved;
+    this.onRecordingStarted = onRecordingStarted;
   }
   panel;
   async show() {
@@ -3441,7 +3443,7 @@ var RecordingPanelManager = class {
         enableScripts: true,
         retainContextWhenHidden: true,
         localResourceRoots: [
-          vscode4.Uri.joinPath(this.context.extensionUri, "out", "webview")
+          vscode4.Uri.joinPath(this.context.extensionUri, "out")
         ]
       }
     );
@@ -3451,6 +3453,7 @@ var RecordingPanelManager = class {
         case "startRecording": {
           const { url, browser, saveAuth } = message.payload;
           await this.recorder.start(url, browser, saveAuth);
+          this.onRecordingStarted?.();
           this.recorder.onAction((action) => {
             this.panel?.webview.postMessage({
               type: "recordedAction",
@@ -3465,6 +3468,7 @@ var RecordingPanelManager = class {
             type: "recordingStopped",
             payload: recording
           });
+          this.onRecordingSaved?.();
           break;
         }
       }
@@ -3475,7 +3479,7 @@ var RecordingPanelManager = class {
   }
   getHtml(webview) {
     const scriptUri = webview.asWebviewUri(
-      vscode4.Uri.joinPath(this.context.extensionUri, "out", "webview", "webview.js")
+      vscode4.Uri.joinPath(this.context.extensionUri, "out", "webview.js")
     );
     const nonce = getNonce();
     return (
@@ -3532,7 +3536,7 @@ var PlaybackPanelManager = class {
         enableScripts: true,
         retainContextWhenHidden: true,
         localResourceRoots: [
-          vscode5.Uri.joinPath(this.context.extensionUri, "out", "webview")
+          vscode5.Uri.joinPath(this.context.extensionUri, "out")
         ]
       }
     );
@@ -3577,7 +3581,7 @@ var PlaybackPanelManager = class {
   }
   getHtml(webview) {
     const scriptUri = webview.asWebviewUri(
-      vscode5.Uri.joinPath(this.context.extensionUri, "out", "webview", "webview.js")
+      vscode5.Uri.joinPath(this.context.extensionUri, "out", "webview.js")
     );
     const nonce = getNonce2();
     return (
@@ -3628,7 +3632,7 @@ var MonitoringPanelManager = class {
         enableScripts: true,
         retainContextWhenHidden: true,
         localResourceRoots: [
-          vscode6.Uri.joinPath(this.context.extensionUri, "out", "webview")
+          vscode6.Uri.joinPath(this.context.extensionUri, "out")
         ]
       }
     );
@@ -3678,7 +3682,7 @@ var MonitoringPanelManager = class {
   }
   getHtml(webview) {
     const scriptUri = webview.asWebviewUri(
-      vscode6.Uri.joinPath(this.context.extensionUri, "out", "webview", "webview.js")
+      vscode6.Uri.joinPath(this.context.extensionUri, "out", "webview.js")
     );
     const nonce = getNonce3();
     return (
@@ -3750,7 +3754,20 @@ var Database = class _Database {
     this.ready = this.initialize();
   }
   async initialize() {
-    const SQL = await (0, import_sql.default)();
+    const SQL = await (0, import_sql.default)({
+      locateFile: (file) => {
+        const local = path.join(__dirname, file);
+        if (fs.existsSync(local)) {
+          return local;
+        }
+        try {
+          const sqlJsDir = path.dirname(require.resolve("sql.js/dist/sql-wasm.js"));
+          return path.join(sqlJsDir, file);
+        } catch {
+          return local;
+        }
+      }
+    });
     if (fs.existsSync(this.dbPath)) {
       const buffer = fs.readFileSync(this.dbPath);
       this.db = new SQL.Database(buffer);
@@ -5975,7 +5992,25 @@ async function activate(context) {
   const schedulesView = vscode12.window.createTreeView("playwrightRpa.schedules", {
     treeDataProvider: schedulesProvider
   });
-  const recordingPanelManager = new RecordingPanelManager(context, recorder);
+  const recordingStatusBar = vscode12.window.createStatusBarItem(vscode12.StatusBarAlignment.Left, 100);
+  recordingStatusBar.text = "$(debug-stop) Stop Recording";
+  recordingStatusBar.tooltip = "Click to stop and save the current recording";
+  recordingStatusBar.command = "playwrightRpa.stopRecording";
+  recordingStatusBar.backgroundColor = new vscode12.ThemeColor("statusBarItem.errorBackground");
+  context.subscriptions.push(recordingStatusBar);
+  const showRecordingStatus = () => recordingStatusBar.show();
+  const hideRecordingStatus = () => recordingStatusBar.hide();
+  const recordingPanelManager = new RecordingPanelManager(
+    context,
+    recorder,
+    () => {
+      libraryProvider.refresh();
+      hideRecordingStatus();
+    },
+    () => {
+      showRecordingStatus();
+    }
+  );
   const playbackPanelManager = new PlaybackPanelManager(context, player);
   const monitoringPanelManager = new MonitoringPanelManager(context, database);
   const commands3 = [
@@ -5985,6 +6020,7 @@ async function activate(context) {
     ["playwrightRpa.stopRecording", async () => {
       await recorder.stop();
       libraryProvider.refresh();
+      hideRecordingStatus();
     }],
     ["playwrightRpa.playRecording", async (...args) => {
       const item = args[0];

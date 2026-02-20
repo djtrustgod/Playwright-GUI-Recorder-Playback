@@ -29,7 +29,7 @@ export class PlaybackPanelManager {
         enableScripts: true,
         retainContextWhenHidden: true,
         localResourceRoots: [
-          vscode.Uri.joinPath(this.context.extensionUri, 'out', 'webview'),
+          vscode.Uri.joinPath(this.context.extensionUri, 'out'),
         ],
       }
     );
@@ -80,7 +80,7 @@ export class PlaybackPanelManager {
 
   private getHtml(webview: vscode.Webview): string {
     const scriptUri = webview.asWebviewUri(
-      vscode.Uri.joinPath(this.context.extensionUri, 'out', 'webview', 'webview.js')
+      vscode.Uri.joinPath(this.context.extensionUri, 'out', 'webview.js')
     );
     const nonce = getNonce();
 
