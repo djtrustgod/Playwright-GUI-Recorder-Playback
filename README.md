@@ -24,7 +24,9 @@
 - **VS Code** ≥ 1.85
 - **Node.js** ≥ 18
 
-### Install & Run
+### Install (Sideload)
+
+This extension is not yet published on the VS Code Marketplace. Install it locally by packaging a `.vsix` file:
 
 ```bash
 git clone https://github.com/djtrustgod/Playwright-GUI-Recorder-Playback.git
@@ -34,12 +36,34 @@ npx playwright install
 npm run build
 ```
 
-Then press **F5** in VS Code to launch the Extension Development Host.
+Then package and install the extension:
+
+```bash
+npx @vscode/vsce package        # Creates playwright-vcr-0.5.0.vsix
+code --install-extension playwright-vcr-0.5.0.vsix
+```
+
+Alternatively, install from the VS Code UI:
+
+1. Open VS Code.
+2. Go to the **Extensions** view (`Ctrl+Shift+X`).
+3. Click the **`···`** menu (top-right of the Extensions sidebar) → **Install from VSIX…**
+4. Select the generated `.vsix` file.
+5. Reload VS Code when prompted.
+
+> **Tip:** To update after pulling new changes, run `npm run build` and `npx @vscode/vsce package` again, then reinstall the `.vsix`.
 
 ### Development
 
+To run the extension in development mode without packaging:
+
 ```bash
 npm run watch    # Rebuild on save
+```
+
+Then press **F5** in VS Code to launch the Extension Development Host.
+
+```bash
 npm test         # Run tests
 npm run lint     # Lint
 ```
