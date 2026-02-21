@@ -3731,10 +3731,17 @@ var SettingsPanelManager = class {
       vscode7.ViewColumn.One,
       {
         enableScripts: true,
-        retainContextWhenHidden: true
+        retainContextWhenHidden: true,
+        localResourceRoots: [
+          vscode7.Uri.joinPath(this.context.extensionUri, "assets")
+        ]
       }
     );
-    this.panel.webview.html = this.getHtml();
+    const logoUri = this.panel.webview.asWebviewUri(
+      vscode7.Uri.joinPath(this.context.extensionUri, "assets", "logo", "Logo128.png")
+    );
+    const pkg = this.context.extension.packageJSON;
+    this.panel.webview.html = this.getHtml(logoUri, pkg.version ?? "0.0.0", pkg.description ?? "");
     this.panel.webview.onDidReceiveMessage(async (message) => {
       await this.handleMessage(message);
     });
@@ -3792,6 +3799,11 @@ var SettingsPanelManager = class {
         const { provider } = message.payload;
         const result = await this.testProviderConnection(provider);
         this.panel?.webview.postMessage({ type: "connectionTestResult", payload: result });
+        break;
+      }
+      case "openRepo": {
+        const repoUrl = vscode7.Uri.parse("https://github.com/djtrustgod/Playwright-GUI-Recorder-Playback");
+        await vscode7.env.openExternal(repoUrl);
         break;
       }
       case "openAnthropicConsole": {
@@ -3878,7 +3890,7 @@ var SettingsPanelManager = class {
       return { ok: false, message: `Connection failed: ${err.message}` };
     }
   }
-  getHtml() {
+  getHtml(logoUri, version2, description) {
     const nonce = getNonce4();
     return (
       /* html */
@@ -3949,6 +3961,15 @@ var SettingsPanelManager = class {
     .row { display: flex; gap: 12px; }
     .row > * { flex: 1; }
     .provider-note { color: var(--muted); font-size: 0.8em; font-style: italic; margin-top: 4px; }
+    .about { text-align: center; padding: 24px 16px; }
+    .about img { width: 80px; height: 80px; margin-bottom: 12px; }
+    .about .name { font-size: 1.2em; font-weight: 600; }
+    .about .version { color: var(--muted); font-size: 0.85em; margin-top: 2px; }
+    .about .desc { color: var(--muted); font-size: 0.85em; margin-top: 8px; }
+    .about .links { margin-top: 12px; display: flex; justify-content: center; gap: 16px; }
+    .about .links a { color: var(--btn-bg); text-decoration: none; font-size: 0.85em; cursor: pointer; }
+    .about .links a:hover { text-decoration: underline; }
+    .about .license { color: var(--muted); font-size: 0.8em; margin-top: 10px; }
   </style>
 </head>
 <body>
@@ -4050,6 +4071,18 @@ var SettingsPanelManager = class {
       <button class="btn btn-secondary" id="testConnection">Test Connection</button>
       <div class="test-result hidden" id="testResult"></div>
     </div>
+  </div>
+
+  <!-- About Section -->
+  <div class="section about">
+    <img src="${logoUri}" alt="PlaywrightVCR Logo" />
+    <div class="name">PlaywrightVCR</div>
+    <div class="version">v${version2}</div>
+    <div class="desc">${description}</div>
+    <div class="links">
+      <a id="openRepo">GitHub Repository</a>
+    </div>
+    <div class="license">MIT License</div>
   </div>
 
   <script nonce="${nonce}">
@@ -4212,6 +4245,11 @@ var SettingsPanelManager = class {
           break;
         }
       }
+    });
+
+    // About \u2014 open repo link
+    document.getElementById('openRepo').addEventListener('click', () => {
+      vscode.postMessage({ type: 'openRepo' });
     });
 
     // Request settings on load

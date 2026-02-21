@@ -42,6 +42,7 @@ export const window = {
           return { dispose: () => {} };
         },
         postMessage: async (msg: unknown) => { _postedMessages.push(msg); return true; },
+        asWebviewUri: (uri: unknown) => uri,
         /** Test helper: simulate a message from the webview */
         _simulateMessage: (msg: unknown) => { _messageHandlers.forEach(h => h(msg)); },
         /** Test helper: read posted messages */
@@ -130,12 +131,14 @@ export function createMockExtensionContext(overrides?: {
   secrets: ReturnType<typeof createMockSecretStorage>;
   globalStoragePath: string;
   extensionUri: { fsPath: string; scheme: string };
+  extension: { packageJSON: Record<string, unknown> };
   subscriptions: { dispose: () => void }[];
 } {
   return {
     secrets: overrides?.secrets ?? createMockSecretStorage(),
     globalStoragePath: overrides?.globalStoragePath ?? '/tmp/test-storage',
     extensionUri: { fsPath: '/tmp/test-ext', scheme: 'file' },
+    extension: { packageJSON: { version: '0.0.0-test', description: 'Test description' } },
     subscriptions: [],
   };
 }

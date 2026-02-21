@@ -41,8 +41,8 @@ npm run build
 Then package and install the extension:
 
 ```bash
-npx @vscode/vsce package        # Creates playwright-vcr-0.5.0.vsix
-code --install-extension playwright-vcr-0.5.0.vsix
+npx @vscode/vsce package        # Creates playwright-vcr-0.5.1.vsix
+code --install-extension playwright-vcr-0.5.1.vsix
 ```
 
 Alternatively, install from the VS Code UI:
