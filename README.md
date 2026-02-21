@@ -4,7 +4,7 @@
 
 # PlaywrightVCR — VS Code Extension
 
-**Lightweight Playwright browser record, playback, and recording file export within VSCode.**
+**Lightweight [Playwright](https://github.com/microsoft/playwright) browser record, playback, and recording file export within VSCode.**
 
 ## Features
 
@@ -26,7 +26,9 @@
 
 ### Install (Sideload)
 
-This extension is not yet published on the VS Code Marketplace. Install it locally by packaging a `.vsix` file:
+Precompiled `.vsix` files are available on the [Releases](https://github.com/djtrustgod/Playwright-GUI-Recorder-Playback/releases) page — download the latest and skip straight to the install step below.
+
+To build from source instead:
 
 ```bash
 git clone https://github.com/djtrustgod/Playwright-GUI-Recorder-Playback.git
