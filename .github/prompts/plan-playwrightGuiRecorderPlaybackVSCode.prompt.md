@@ -1,4 +1,4 @@
-## Plan: Playwright RPA — VS Code Extension
+## Plan: PlaywrightVCR — VS Code Extension
 
 > **Status Legend**: ✅ Complete | 🔧 Scaffolded (needs refinement/testing) | ⬜ Not started
 
@@ -166,6 +166,6 @@ Communication between Webview and extension host via `vscode.postMessage` / `onD
 
 3. **Authentication handling** — Support `context.storageState()` to persist cookies/localStorage for authenticated recordings, allowing users to record behind login walls. Store auth states per-recording in the database.
 
-4. **VS Code closed limitation** — Scheduling only works while VS Code is running. For always-on needs, provide a CLI companion (`npx playwright-rpa run --schedule`) or export systemd/Task Scheduler configs.
+4. **VS Code closed limitation** — Scheduling only works while VS Code is running. For always-on needs, provide a CLI companion (`npx playwright-vcr run --schedule`) or export systemd/Task Scheduler configs.
 
 5. **Model download for embeddings** — The `@xenova/transformers` `all-MiniLM-L6-v2` model is ~50MB. Download on first use of self-healing with a progress indicator. Cache in `globalStoragePath/models/`.

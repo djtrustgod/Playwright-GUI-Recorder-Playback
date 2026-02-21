@@ -1,10 +1,15 @@
 {
-  "name": "playwright-rpa",
-  "displayName": "Playwright RPA",
-  "description": "A light-duty RPA tool powered by Playwright with AI self-healing selectors, recording, playback, and orchestration.",
-  "version": "0.1.0",
+  "name": "playwright-vcr",
+  "displayName": "PlaywrightVCR",
+  "description": "Lightweight Playwright browser record, playback, and recording file export within VSCode. Use AI self healing for resilient test automation.",
+  "version": "0.5.0",
   "publisher": "djtrustgod",
   "license": "MIT",
+  "icon": "assets/logo/Logo128.png",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/djtrustgod/Playwright-GUI-Recorder-Playback.git"
+  },
   "engines": {
     "vscode": "^1.85.0"
   },
@@ -20,99 +25,105 @@
     "self-healing"
   ],
   "activationEvents": [
-    "onView:playwrightRpa.library"
+    "onView:playwrightVcr.library"
   ],
   "main": "./out/extension.js",
   "contributes": {
     "commands": [
       {
-        "command": "playwrightRpa.startRecording",
+        "command": "playwrightVcr.startRecording",
         "title": "Start Recording",
         "icon": "$(record)",
-        "category": "Playwright RPA"
+        "category": "PlaywrightVCR"
       },
       {
-        "command": "playwrightRpa.stopRecording",
+        "command": "playwrightVcr.stopRecording",
         "title": "Stop Recording",
         "icon": "$(debug-stop)",
-        "category": "Playwright RPA"
+        "category": "PlaywrightVCR"
       },
       {
-        "command": "playwrightRpa.playRecording",
+        "command": "playwrightVcr.playRecording",
         "title": "Play Recording",
         "icon": "$(play)",
-        "category": "Playwright RPA"
+        "category": "PlaywrightVCR"
       },
       {
-        "command": "playwrightRpa.openRecordingPanel",
+        "command": "playwrightVcr.openRecordingPanel",
         "title": "Open Recording Panel",
         "icon": "$(add)",
-        "category": "Playwright RPA"
+        "category": "PlaywrightVCR"
       },
       {
-        "command": "playwrightRpa.openPlaybackPanel",
+        "command": "playwrightVcr.openPlaybackPanel",
         "title": "Open Playback Panel",
         "icon": "$(play-circle)",
-        "category": "Playwright RPA"
+        "category": "PlaywrightVCR"
       },
       {
-        "command": "playwrightRpa.openMonitoringPanel",
+        "command": "playwrightVcr.openMonitoringPanel",
         "title": "Open Monitoring Panel",
         "icon": "$(graph)",
-        "category": "Playwright RPA"
+        "category": "PlaywrightVCR"
       },
       {
-        "command": "playwrightRpa.deleteRecording",
+        "command": "playwrightVcr.deleteRecording",
         "title": "Delete Recording",
         "icon": "$(trash)",
-        "category": "Playwright RPA"
+        "category": "PlaywrightVCR"
       },
       {
-        "command": "playwrightRpa.exportRecording",
+        "command": "playwrightVcr.exportRecording",
         "title": "Export Recording",
         "icon": "$(export)",
-        "category": "Playwright RPA"
+        "category": "PlaywrightVCR"
       },
       {
-        "command": "playwrightRpa.refreshLibrary",
+        "command": "playwrightVcr.refreshLibrary",
         "title": "Refresh Library",
         "icon": "$(refresh)",
-        "category": "Playwright RPA"
+        "category": "PlaywrightVCR"
       },
       {
-        "command": "playwrightRpa.installBrowsers",
+        "command": "playwrightVcr.installBrowsers",
         "title": "Install Playwright Browsers",
         "icon": "$(cloud-download)",
-        "category": "Playwright RPA"
+        "category": "PlaywrightVCR"
       },
       {
-        "command": "playwrightRpa.setApiKey",
+        "command": "playwrightVcr.openSettings",
+        "title": "Open AI Settings",
+        "icon": "$(gear)",
+        "category": "PlaywrightVCR"
+      },
+      {
+        "command": "playwrightVcr.setApiKey",
         "title": "Set AI Provider API Key",
         "icon": "$(key)",
-        "category": "Playwright RPA"
+        "category": "PlaywrightVCR"
       }
     ],
     "viewsContainers": {
       "activitybar": [
         {
-          "id": "playwrightRpa",
-          "title": "Playwright RPA",
-          "icon": "$(browser)"
+          "id": "playwrightVcr",
+          "title": "PlaywrightVCR",
+          "icon": "assets/logo/Logo128.png"
         }
       ]
     },
     "views": {
-      "playwrightRpa": [
+      "playwrightVcr": [
         {
-          "id": "playwrightRpa.library",
+          "id": "playwrightVcr.library",
           "name": "Recording Library"
         },
         {
-          "id": "playwrightRpa.executions",
+          "id": "playwrightVcr.executions",
           "name": "Recent Executions"
         },
         {
-          "id": "playwrightRpa.schedules",
+          "id": "playwrightVcr.schedules",
           "name": "Schedules"
         }
       ]
@@ -120,41 +131,46 @@
     "menus": {
       "view/title": [
         {
-          "command": "playwrightRpa.openRecordingPanel",
-          "when": "view == playwrightRpa.library",
+          "command": "playwrightVcr.openRecordingPanel",
+          "when": "view == playwrightVcr.library",
           "group": "navigation"
         },
         {
-          "command": "playwrightRpa.refreshLibrary",
-          "when": "view == playwrightRpa.library",
+          "command": "playwrightVcr.refreshLibrary",
+          "when": "view == playwrightVcr.library",
           "group": "navigation"
         },
         {
-          "command": "playwrightRpa.openMonitoringPanel",
-          "when": "view == playwrightRpa.executions",
+          "command": "playwrightVcr.openSettings",
+          "when": "view == playwrightVcr.library",
+          "group": "navigation"
+        },
+        {
+          "command": "playwrightVcr.openMonitoringPanel",
+          "when": "view == playwrightVcr.executions",
           "group": "navigation"
         }
       ],
       "view/item/context": [
         {
-          "command": "playwrightRpa.playRecording",
-          "when": "view == playwrightRpa.library && viewItem == recording",
+          "command": "playwrightVcr.playRecording",
+          "when": "view == playwrightVcr.library && viewItem == recording",
           "group": "inline"
         },
         {
-          "command": "playwrightRpa.deleteRecording",
-          "when": "view == playwrightRpa.library && viewItem == recording"
+          "command": "playwrightVcr.deleteRecording",
+          "when": "view == playwrightVcr.library && viewItem == recording"
         },
         {
-          "command": "playwrightRpa.exportRecording",
-          "when": "view == playwrightRpa.library && viewItem == recording"
+          "command": "playwrightVcr.exportRecording",
+          "when": "view == playwrightVcr.library && viewItem == recording"
         }
       ]
     },
     "configuration": {
-      "title": "Playwright RPA",
+      "title": "PlaywrightVCR",
       "properties": {
-        "playwrightRpa.defaultBrowser": {
+        "playwrightVcr.defaultBrowser": {
           "type": "string",
           "default": "chromium",
           "enum": [
@@ -164,32 +180,32 @@
           ],
           "description": "Default browser for recording and playback."
         },
-        "playwrightRpa.headless": {
+        "playwrightVcr.headless": {
           "type": "boolean",
           "default": false,
           "description": "Run playback in headless mode."
         },
-        "playwrightRpa.slowMo": {
+        "playwrightVcr.slowMo": {
           "type": "number",
           "default": 0,
           "description": "Slow down playback by this many milliseconds per action."
         },
-        "playwrightRpa.selfHealing.enabled": {
+        "playwrightVcr.selfHealing.enabled": {
           "type": "boolean",
           "default": true,
           "description": "Enable self-healing selector resolution."
         },
-        "playwrightRpa.selfHealing.embeddingThreshold": {
+        "playwrightVcr.selfHealing.embeddingThreshold": {
           "type": "number",
           "default": 0.85,
           "description": "Cosine similarity threshold for embedding-based element matching (0-1)."
         },
-        "playwrightRpa.selfHealing.llmEnabled": {
+        "playwrightVcr.selfHealing.llmEnabled": {
           "type": "boolean",
           "default": false,
           "description": "Enable LLM-based selector repair as a last resort."
         },
-        "playwrightRpa.ai.provider": {
+        "playwrightVcr.ai.provider": {
           "type": "string",
           "default": "openai",
           "enum": [
@@ -199,27 +215,27 @@
           ],
           "description": "LLM provider for selector repair."
         },
-        "playwrightRpa.ai.model": {
+        "playwrightVcr.ai.model": {
           "type": "string",
           "default": "gpt-4o-mini",
           "description": "LLM model name for selector repair."
         },
-        "playwrightRpa.ai.ollamaUrl": {
+        "playwrightVcr.ai.ollamaUrl": {
           "type": "string",
           "default": "http://localhost:11434",
           "description": "Ollama server URL for local LLM inference."
         },
-        "playwrightRpa.orchestration.maxRetries": {
+        "playwrightVcr.orchestration.maxRetries": {
           "type": "number",
           "default": 3,
           "description": "Maximum retry attempts for failed playback jobs."
         },
-        "playwrightRpa.orchestration.concurrency": {
+        "playwrightVcr.orchestration.concurrency": {
           "type": "number",
           "default": 1,
           "description": "Maximum number of concurrent playback jobs."
         },
-        "playwrightRpa.overlayDismissals": {
+        "playwrightVcr.overlayDismissals": {
           "type": "array",
           "default": [],
           "items": {
@@ -237,7 +253,7 @@
           },
           "description": "List of overlay/popup auto-dismissal rules."
         },
-        "playwrightRpa.webhookUrl": {
+        "playwrightVcr.webhookUrl": {
           "type": "string",
           "default": "",
           "description": "Webhook URL for failure notifications (Slack, Discord, Teams, etc.)."

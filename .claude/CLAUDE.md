@@ -1,4 +1,4 @@
-# Playwright RPA VS Code Extension - Project Memory
+# PlaywrightVCR VS Code Extension - Project Memory
 
 ## Project Overview
 VS Code extension (TypeScript) wrapping Playwright for RPA. TreeView sidebar + React webview panels. SQLite via sql.js (WASM).
@@ -9,6 +9,10 @@ VS Code extension (TypeScript) wrapping Playwright for RPA. TreeView sidebar + R
 - **Storage**: sql.js with debounced persistence (500ms) in `globalStoragePath`
 - **AI keys**: Stored in `vscode.SecretStorage`, NOT in settings
 - **Self-healing**: 3 tiers: direct locator → embedding similarity → LLM repair
+
+## Documentation
+- **Always update README.md and Implementation.md** when making significant changes (new features, changed behavior, new settings, new commands). Keep docs in sync with code.
+- Update the Project Status table in README.md when milestones change.
 
 ## Git Conventions
 - Single-line commit messages only (multi-line breaks PowerShell)

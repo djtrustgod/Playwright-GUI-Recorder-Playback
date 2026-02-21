@@ -118,7 +118,7 @@ export class Database {
       fs.mkdirSync(storagePath, { recursive: true });
     }
 
-    this.dbPath = path.join(storagePath, 'playwright-rpa.db');
+    this.dbPath = path.join(storagePath, 'playwright-vcr.db');
     this.ready = this.initialize();
   }
 

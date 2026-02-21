@@ -1,6 +1,6 @@
 # Implementation Guide
 
-Detailed technical reference for the Playwright RPA VS Code Extension. For a high-level overview, see [README.md](README.md).
+Detailed technical reference for the PlaywrightVCR VS Code Extension. For a high-level overview, see [README.md](README.md).
 
 ---
 
@@ -303,7 +303,7 @@ Manages files in `globalStoragePath/`:
 - Returns best match above confidence threshold via cosine similarity
 
 ### LLM Repair (`src/ai/llmRepair.ts`)
-- Reads provider config from VS Code settings (`playwrightRpa.ai.*`)
+- Reads provider config from VS Code settings (`playwrightVcr.ai.*`)
 - Supports three providers:
   - **OpenAI**: `POST https://api.openai.com/v1/chat/completions`
   - **Anthropic**: `POST https://api.anthropic.com/v1/messages`
@@ -367,23 +367,23 @@ Generates test scripts from recorded actions using semantic locators in preferen
 
 ## Configuration Reference
 
-All settings are under the `playwrightRpa` namespace in VS Code settings.
+All settings are under the `playwrightVcr` namespace in VS Code settings.
 
 | Setting | Type | Default | Description |
 |---|---|---|---|
-| `playwrightRpa.defaultBrowser` | enum | `chromium` | Browser engine: `chromium`, `firefox`, `webkit` |
-| `playwrightRpa.headless` | boolean | `false` | Run playback in headless mode |
-| `playwrightRpa.slowMo` | number | `0` | Delay between actions in ms |
-| `playwrightRpa.selfHealing.enabled` | boolean | `true` | Enable self-healing selector resolution |
-| `playwrightRpa.selfHealing.confidenceThreshold` | number | `0.7` | Minimum cosine similarity for Tier 2 matches |
-| `playwrightRpa.ai.provider` | enum | `openai` | LLM provider: `openai`, `anthropic`, `ollama` |
-| `playwrightRpa.ai.model` | string | `gpt-4o-mini` | Model identifier for Tier 3 repair |
-| `playwrightRpa.ai.apiKey` | string | `""` | API key for OpenAI or Anthropic |
-| `playwrightRpa.ai.ollamaUrl` | string | `http://localhost:11434` | Ollama server URL |
-| `playwrightRpa.orchestration.maxRetries` | number | `3` | Maximum retry attempts for failed jobs |
-| `playwrightRpa.orchestration.concurrency` | number | `2` | Maximum parallel job executions |
-| `playwrightRpa.overlayDismissals` | array | `[]` | CSS selectors for auto-dismissing overlays (cookie banners, chat widgets) |
-| `playwrightRpa.webhookUrl` | string | `""` | Webhook URL for execution-complete notifications |
+| `playwrightVcr.defaultBrowser` | enum | `chromium` | Browser engine: `chromium`, `firefox`, `webkit` |
+| `playwrightVcr.headless` | boolean | `false` | Run playback in headless mode |
+| `playwrightVcr.slowMo` | number | `0` | Delay between actions in ms |
+| `playwrightVcr.selfHealing.enabled` | boolean | `true` | Enable self-healing selector resolution |
+| `playwrightVcr.selfHealing.confidenceThreshold` | number | `0.7` | Minimum cosine similarity for Tier 2 matches |
+| `playwrightVcr.ai.provider` | enum | `openai` | LLM provider: `openai`, `anthropic`, `ollama` |
+| `playwrightVcr.ai.model` | string | `gpt-4o-mini` | Model identifier for Tier 3 repair |
+| `playwrightVcr.ai.apiKey` | string | `""` | API key for OpenAI or Anthropic |
+| `playwrightVcr.ai.ollamaUrl` | string | `http://localhost:11434` | Ollama server URL |
+| `playwrightVcr.orchestration.maxRetries` | number | `3` | Maximum retry attempts for failed jobs |
+| `playwrightVcr.orchestration.concurrency` | number | `2` | Maximum parallel job executions |
+| `playwrightVcr.overlayDismissals` | array | `[]` | CSS selectors for auto-dismissing overlays (cookie banners, chat widgets) |
+| `playwrightVcr.webhookUrl` | string | `""` | Webhook URL for execution-complete notifications |
 
 ## Key Design Decisions
 

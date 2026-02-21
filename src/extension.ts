@@ -5,6 +5,7 @@ import { SchedulesProvider } from './views/schedulesProvider';
 import { RecordingPanelManager } from './views/recordingPanel';
 import { PlaybackPanelManager } from './views/playbackPanel';
 import { MonitoringPanelManager } from './views/monitoringPanel';
+import { SettingsPanelManager } from './views/settingsPanel';
 import { Database } from './storage/database';
 import { FileManager } from './storage/fileManager';
 import { Recorder } from './playwright/recorder';
@@ -23,7 +24,7 @@ let jobQueue: JobQueue;
 let executor: Executor;
 
 export async function activate(context: vscode.ExtensionContext): Promise<void> {
-  console.log('Playwright RPA extension activating...');
+  console.log('PlaywrightVCR extension activating...');
 
   // Initialize storage
   database = new Database(context.globalStoragePath);
@@ -47,14 +48,14 @@ export async function activate(context: vscode.ExtensionContext): Promise<void> 
   const schedulesProvider = new SchedulesProvider(database);
 
   // Register tree views
-  const libraryView = vscode.window.createTreeView('playwrightRpa.library', {
+  const libraryView = vscode.window.createTreeView('playwrightVcr.library', {
     treeDataProvider: libraryProvider,
     showCollapseAll: true,
   });
-  const executionsView = vscode.window.createTreeView('playwrightRpa.executions', {
+  const executionsView = vscode.window.createTreeView('playwrightVcr.executions', {
     treeDataProvider: executionsProvider,
   });
-  const schedulesView = vscode.window.createTreeView('playwrightRpa.schedules', {
+  const schedulesView = vscode.window.createTreeView('playwrightVcr.schedules', {
     treeDataProvider: schedulesProvider,
   });
 
@@ -62,7 +63,7 @@ export async function activate(context: vscode.ExtensionContext): Promise<void> 
   const recordingStatusBar = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Left, 100);
   recordingStatusBar.text = '$(debug-stop) Stop Recording';
   recordingStatusBar.tooltip = 'Click to stop and save the current recording';
-  recordingStatusBar.command = 'playwrightRpa.stopRecording';
+  recordingStatusBar.command = 'playwrightVcr.stopRecording';
   recordingStatusBar.backgroundColor = new vscode.ThemeColor('statusBarItem.errorBackground');
   context.subscriptions.push(recordingStatusBar);
 
@@ -78,18 +79,19 @@ export async function activate(context: vscode.ExtensionContext): Promise<void> 
   );
   const playbackPanelManager = new PlaybackPanelManager(context, player);
   const monitoringPanelManager = new MonitoringPanelManager(context, database);
+  const settingsPanelManager = new SettingsPanelManager(context);
 
   // Register commands
   const commands: Array<[string, (...args: unknown[]) => unknown]> = [
-    ['playwrightRpa.startRecording', async () => {
+    ['playwrightVcr.startRecording', async () => {
       await recordingPanelManager.show();
     }],
-    ['playwrightRpa.stopRecording', async () => {
+    ['playwrightVcr.stopRecording', async () => {
       await recorder.stop();
       libraryProvider.refresh();
       hideRecordingStatus();
     }],
-    ['playwrightRpa.playRecording', async (...args: any[]) => {
+    ['playwrightVcr.playRecording', async (...args: any[]) => {
       const item = args[0] as { recordingId?: string } | undefined;
       const recordingId = item?.recordingId;
       if (!recordingId) {
@@ -98,16 +100,16 @@ export async function activate(context: vscode.ExtensionContext): Promise<void> 
       }
       await playbackPanelManager.show(recordingId);
     }],
-    ['playwrightRpa.openRecordingPanel', async () => {
+    ['playwrightVcr.openRecordingPanel', async () => {
       await recordingPanelManager.show();
     }],
-    ['playwrightRpa.openPlaybackPanel', async () => {
+    ['playwrightVcr.openPlaybackPanel', async () => {
       await playbackPanelManager.show();
     }],
-    ['playwrightRpa.openMonitoringPanel', async () => {
+    ['playwrightVcr.openMonitoringPanel', async () => {
       await monitoringPanelManager.show();
     }],
-    ['playwrightRpa.deleteRecording', async (...args: any[]) => {
+    ['playwrightVcr.deleteRecording', async (...args: any[]) => {
       const item = args[0] as { recordingId?: string } | undefined;
       const recordingId = item?.recordingId;
       if (!recordingId) { return; }
@@ -123,7 +125,7 @@ export async function activate(context: vscode.ExtensionContext): Promise<void> 
         vscode.window.showInformationMessage('Recording deleted.');
       }
     }],
-    ['playwrightRpa.exportRecording', async (...args: any[]) => {
+    ['playwrightVcr.exportRecording', async (...args: any[]) => {
       const item = args[0] as { recordingId?: string } | undefined;
       const recordingId = item?.recordingId;
       if (!recordingId) { return; }
@@ -135,17 +137,20 @@ export async function activate(context: vscode.ExtensionContext): Promise<void> 
         await exporter.export(recordingId, format);
       }
     }],
-    ['playwrightRpa.refreshLibrary', () => {
+    ['playwrightVcr.refreshLibrary', () => {
       libraryProvider.refresh();
       executionsProvider.refresh();
       schedulesProvider.refresh();
     }],
-    ['playwrightRpa.installBrowsers', async () => {
+    ['playwrightVcr.installBrowsers', async () => {
       const terminal = vscode.window.createTerminal('Playwright Install');
       terminal.show();
       terminal.sendText('npx playwright install');
     }],
-    ['playwrightRpa.setApiKey', async () => {
+    ['playwrightVcr.openSettings', async () => {
+      await settingsPanelManager.show();
+    }],
+    ['playwrightVcr.setApiKey', async () => {
       const provider = await vscode.window.showQuickPick(
         ['openai', 'anthropic'],
         { placeHolder: 'Select the AI provider to set the API key for' }
@@ -158,10 +163,10 @@ export async function activate(context: vscode.ExtensionContext): Promise<void> 
       });
       if (apiKey === undefined) { return; }
       if (apiKey === '') {
-        await context.secrets.delete(`playwrightRpa.apiKey.${provider}`);
+        await context.secrets.delete(`playwrightVcr.apiKey.${provider}`);
         vscode.window.showInformationMessage(`${provider} API key removed.`);
       } else {
-        await context.secrets.store(`playwrightRpa.apiKey.${provider}`, apiKey);
+        await context.secrets.store(`playwrightVcr.apiKey.${provider}`, apiKey);
         vscode.window.showInformationMessage(`${provider} API key saved securely.`);
       }
     }],
@@ -189,7 +194,7 @@ export async function activate(context: vscode.ExtensionContext): Promise<void> 
     { dispose: () => database.close() },
   );
 
-  console.log('Playwright RPA extension activated.');
+  console.log('PlaywrightVCR extension activated.');
 }
 
 export function deactivate(): void {

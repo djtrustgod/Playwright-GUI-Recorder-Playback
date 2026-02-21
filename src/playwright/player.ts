@@ -63,7 +63,7 @@ export class Player {
     this.isPlaying = true;
     this.shouldStop = false;
 
-    const config = vscode.workspace.getConfiguration('playwrightRpa');
+    const config = vscode.workspace.getConfiguration('playwrightVcr');
     const headless = options.headless ?? config.get<boolean>('headless', false);
     const slowMo = options.slowMo ?? config.get<number>('slowMo', 0);
     const browserType = options.browser ?? config.get<string>('defaultBrowser', 'chromium');
@@ -281,7 +281,7 @@ export class Player {
 
   /** Register overlay dismissal handlers from extension settings */
   private async registerOverlayHandlers(page: Page): Promise<void> {
-    const config = vscode.workspace.getConfiguration('playwrightRpa');
+    const config = vscode.workspace.getConfiguration('playwrightVcr');
     const dismissals = config.get<Array<{ detector: string; action: string }>>('overlayDismissals', []);
 
     for (const rule of dismissals) {

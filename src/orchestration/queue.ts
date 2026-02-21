@@ -10,7 +10,7 @@ export class JobQueue {
 
   /** Add a recording playback to the queue */
   enqueue(recordingId: string, maxAttempts?: number): string {
-    const config = vscode.workspace.getConfiguration('playwrightRpa');
+    const config = vscode.workspace.getConfiguration('playwrightVcr');
     const retries = maxAttempts ?? config.get<number>('orchestration.maxRetries', 3);
     return this.db.createJob(recordingId, retries);
   }

@@ -18,8 +18,8 @@ export class RecordingPanelManager {
     }
 
     this.panel = vscode.window.createWebviewPanel(
-      'playwrightRpa.recording',
-      'Playwright RPA — Record',
+      'playwrightVcr.recording',
+      'PlaywrightVCR — Record',
       vscode.ViewColumn.One,
       {
         enableScripts: true,
@@ -79,7 +79,7 @@ export class RecordingPanelManager {
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'nonce-${nonce}'; style-src ${webview.cspSource} 'unsafe-inline';">
-  <title>Playwright RPA — Record</title>
+  <title>PlaywrightVCR — Record</title>
 </head>
 <body>
   <div id="root" data-panel="recording"></div>

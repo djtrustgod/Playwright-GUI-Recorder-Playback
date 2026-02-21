@@ -20,13 +20,13 @@ export class LlmRepair {
    * Returns a Playwright-compatible locator string, or null if repair fails.
    */
   async repairSelector(page: Page, locators: LocatorStrategies): Promise<string | null> {
-    const config = vscode.workspace.getConfiguration('playwrightRpa');
+    const config = vscode.workspace.getConfiguration('playwrightVcr');
     const provider = config.get<string>('ai.provider', 'openai');
     const model = config.get<string>('ai.model', 'gpt-4o-mini');
-    const apiKey = await this.secrets?.get(`playwrightRpa.apiKey.${provider}`) ?? '';
+    const apiKey = await this.secrets?.get(`playwrightVcr.apiKey.${provider}`) ?? '';
 
     if (!apiKey && provider !== 'ollama') {
-      console.warn('LLM repair: No API key configured. Use "Playwright RPA: Set AI Provider API Key" command.');
+      console.warn('LLM repair: No API key configured. Use "PlaywrightVCR: Set AI Provider API Key" command.');
       return null;
     }
 
@@ -170,7 +170,7 @@ If you cannot find a matching element, respond with: NONE`;
 
   /** Call local Ollama API */
   private async callOllama(model: string, prompt: string): Promise<string | null> {
-    const config = vscode.workspace.getConfiguration('playwrightRpa');
+    const config = vscode.workspace.getConfiguration('playwrightVcr');
     const ollamaUrl = config.get<string>('ai.ollamaUrl', 'http://localhost:11434');
 
     try {

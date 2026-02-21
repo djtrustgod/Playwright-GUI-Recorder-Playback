@@ -1,4 +1,4 @@
-# Copilot Instructions — Playwright RPA VS Code Extension
+# Copilot Instructions — PlaywrightVCR VS Code Extension
 
 ## Project Context
 

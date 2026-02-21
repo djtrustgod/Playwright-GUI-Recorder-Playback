@@ -40,7 +40,7 @@ export class Executor {
 
   /** Process the next job in the queue */
   private async tick(): Promise<void> {
-    const config = vscode.workspace.getConfiguration('playwrightRpa');
+    const config = vscode.workspace.getConfiguration('playwrightVcr');
     const maxConcurrency = config.get<number>('orchestration.concurrency', 1);
 
     // Respect concurrency limit
@@ -82,7 +82,7 @@ export class Executor {
       });
 
       vscode.window.showInformationMessage(
-        `Playwright RPA: Job completed for recording "${job.recording_id}".`
+        `PlaywrightVCR: Job completed for recording "${job.recording_id}".`
       );
     } catch (err) {
       const errorMsg = (err as Error).message;
@@ -93,12 +93,12 @@ export class Executor {
       } else {
         // All retries exhausted — notify user
         const action = await vscode.window.showErrorMessage(
-          `Playwright RPA: Job failed after ${attempts} attempts — ${errorMsg}`,
+          `PlaywrightVCR: Job failed after ${attempts} attempts — ${errorMsg}`,
           'View Details'
         );
 
         if (action === 'View Details') {
-          vscode.commands.executeCommand('playwrightRpa.openMonitoringPanel');
+          vscode.commands.executeCommand('playwrightVcr.openMonitoringPanel');
         }
 
         // Send webhook notification if configured
@@ -109,7 +109,7 @@ export class Executor {
 
   /** Send a failure notification to the configured webhook */
   private async sendWebhookNotification(job: Job, error: string): Promise<void> {
-    const config = vscode.workspace.getConfiguration('playwrightRpa');
+    const config = vscode.workspace.getConfiguration('playwrightVcr');
     const webhookUrl = config.get<string>('webhookUrl', '');
 
     if (!webhookUrl) return;
@@ -119,7 +119,7 @@ export class Executor {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          text: `🔴 Playwright RPA job failed`,
+          text: `🔴 PlaywrightVCR job failed`,
           recording_id: job.recording_id,
           job_id: job.id,
           attempts: job.attempts + 1,

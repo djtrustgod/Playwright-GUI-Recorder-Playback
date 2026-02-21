@@ -213,7 +213,7 @@ export class Exporter {
   }
 
   private generateGitHubActions(recording: Recording): string {
-    return `name: Playwright RPA - ${this.escapeString(recording.name)}
+    return `name: PlaywrightVCR - ${this.escapeString(recording.name)}
 
 on:
   schedule:

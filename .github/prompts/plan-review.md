@@ -1,4 +1,4 @@
-## Plan Review: Playwright RPA VS Code Extension
+## Plan Review: PlaywrightVCR VS Code Extension
 
 > Reviewed by Claude Code on 2026-02-19
 
@@ -16,7 +16,7 @@ The package was renamed to `@huggingface/transformers` in late 2024. The plan an
 
 **2. API keys stored insecurely**
 
-The plan stores LLM API keys in VS Code settings (`playwrightRpa.ai.apiKey`), which are plain-text JSON files synced to disk. VS Code provides `SecretStorage` specifically for credentials. This should be used instead.
+The plan stores LLM API keys in VS Code settings (`playwrightVcr.ai.apiKey`), which are plain-text JSON files synced to disk. VS Code provides `SecretStorage` specifically for credentials. This should be used instead.
 
 **3. Custom recording engine vs. Playwright's built-in `codegen`**
 

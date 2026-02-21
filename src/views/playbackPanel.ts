@@ -22,8 +22,8 @@ export class PlaybackPanelManager {
     }
 
     this.panel = vscode.window.createWebviewPanel(
-      'playwrightRpa.playback',
-      'Playwright RPA — Playback',
+      'playwrightVcr.playback',
+      'PlaywrightVCR — Playback',
       vscode.ViewColumn.One,
       {
         enableScripts: true,
@@ -90,7 +90,7 @@ export class PlaybackPanelManager {
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'nonce-${nonce}'; style-src ${webview.cspSource} 'unsafe-inline';">
-  <title>Playwright RPA — Playback</title>
+  <title>PlaywrightVCR — Playback</title>
 </head>
 <body>
   <div id="root" data-panel="playback"></div>

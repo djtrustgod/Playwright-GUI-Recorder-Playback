@@ -1,8 +1,10 @@
-# Playwright RPA — VS Code Extension
+<p align="center">
+  <img src="assets/logo/Logo128.png" alt="PlaywrightVCR Logo" width="128" />
+</p>
 
-> **🚧 Work In Progress** — This project is under active development. Core scaffolding is complete and the project builds, but features are not yet integration-tested or production-ready. Contributions and feedback welcome!
+# PlaywrightVCR — VS Code Extension
 
-A **light-duty RPA tool** built as a VS Code extension that uses [Playwright](https://playwright.dev) to **record**, **play back**, and **schedule** browser automation workflows — with AI-powered **self-healing selectors**.
+**Lightweight Playwright browser record, playback, and recording file export within VSCode.**
 
 ## Features
 
@@ -44,7 +46,7 @@ npm run lint     # Lint
 
 ## Commands
 
-Open the Command Palette (`Ctrl+Shift+P`) and type **"Playwright RPA"**:
+Open the Command Palette (`Ctrl+Shift+P`) and type **"PlaywrightVCR"**:
 
 | Command | Description |
 |---|---|
@@ -63,16 +65,46 @@ Open the Command Palette (`Ctrl+Shift+P`) and type **"Playwright RPA"**:
 
 Healed selectors are cached and reused on subsequent runs.
 
+## AI Settings & API Key Setup
+
+Open the **AI Settings** panel from the Recording Library toolbar or via `Ctrl+Shift+P` → **"PlaywrightVCR: Open Settings"**.
+
+### Connecting to Anthropic (Claude)
+
+1. Select **Anthropic** as the LLM provider.
+2. Click **Get API Key →** — this opens the [Anthropic Console](https://console.anthropic.com/settings/keys) in your browser.
+3. Create or copy your API key from the Console.
+4. Switch back to VS Code — the key input is auto-focused for pasting.
+5. Click **Save**, then **Test Connection** to verify.
+
+> **Note:** Anthropic does not support OAuth login for third-party apps. An API key from the Anthropic Console is required (usage-based billing applies).
+
+### Connecting to OpenAI
+
+1. Select **OpenAI** as the provider.
+2. Enter your API key (from [platform.openai.com](https://platform.openai.com/api-keys)) and click **Save**.
+3. Click **Test Connection** to verify.
+
+### Using Ollama (Local / Free)
+
+1. Select **Ollama (local)** as the provider.
+2. Ensure Ollama is running locally (default: `http://localhost:11434`).
+3. No API key needed — click **Test Connection** to verify.
+
 ## Configuration
 
-Settings live under `playwrightRpa.*` in VS Code settings. Key options:
+Settings live under `playwrightVcr.*` in VS Code settings. Key options:
 
 | Setting | Default | Description |
 |---|---|---|
 | `defaultBrowser` | `chromium` | Browser engine (chromium/firefox/webkit). |
 | `headless` | `false` | Run playback headlessly. |
 | `selfHealing.enabled` | `true` | Enable self-healing selectors. |
-| `ai.provider` | `openai` | LLM provider for Tier 3 repair. |
+| `selfHealing.embeddingThreshold` | `0.85` | Similarity threshold for Tier 2 embedding matching. |
+| `selfHealing.llmEnabled` | `false` | Enable Tier 3 LLM-based repair. |
+| `ai.provider` | `openai` | LLM provider for Tier 3 repair (openai/anthropic/ollama). |
+| `ai.model` | `gpt-4o-mini` | Model name sent to the provider's API. |
+| `ai.ollamaUrl` | `http://localhost:11434` | Local Ollama server URL. |
 
 See [Implementation.md](Implementation.md) for the full settings reference and technical details.
 
@@ -87,9 +119,9 @@ See [Implementation.md](Implementation.md) for the full settings reference and t
 | Webview UI (React) | 🔧 Scaffolded — needs visual polish |
 | Export (multi-language) | 🔧 Scaffolded — HAR export pending |
 | Orchestration (scheduling) | 🔧 Scaffolded — needs load testing |
-| AI layer (embeddings + LLM) | 🔧 Scaffolded — needs real-world testing |
-| Test suite | ⬜ Not started |
-| Documentation | ⬜ In progress |
+| AI layer (embeddings + LLM) | 🔧 Scaffolded — API key setup + validation complete |
+| Test suite | 🔧 In progress — 87 tests passing (unit + integration) |
+| Documentation | 🔧 In progress |
 
 ## Documentation
 
