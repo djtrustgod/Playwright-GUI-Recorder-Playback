@@ -138,16 +138,17 @@ See [Implementation.md](Implementation.md) for the full settings reference and t
 
 | Area | Status |
 |---|---|
-| Project scaffold & build | ✅ Complete |
-| Recording engine | 🔧 Scaffolded — needs integration testing |
-| Playback + self-healing | 🔧 Scaffolded — needs integration testing |
-| Storage (SQLite via sql.js) | 🔧 Scaffolded — needs unit tests |
-| Webview UI (React) | 🔧 Scaffolded — needs visual polish |
-| Export (multi-language) | 🔧 Scaffolded — HAR export pending |
-| Orchestration (scheduling) | 🔧 Scaffolded — needs load testing |
-| AI layer (embeddings + LLM) | 🔧 Scaffolded — API key setup + validation complete |
-| Test suite | 🔧 In progress — 87 tests passing (unit + integration) |
-| Documentation | 🔧 In progress |
+| Project scaffold & build | ✅ Complete — esbuild dual-target, `.vsix` packaged |
+| Recording engine | 🔧 In progress — fully implemented, needs reliability fixes |
+| Playback + self-healing | 🔧 In progress — all 3 tiers built, needs debugging |
+| Storage (SQLite via sql.js) | ✅ Complete — full CRUD, 7 tables, 19 tests passing |
+| Webview UI (React) | ⚠️ Scaffolded — all panels wired up, needs visual polish |
+| Export (multi-language) | 🔧 In progress — 7/8 formats complete, HAR export pending |
+| Orchestration (scheduling) | ⚠️ Scaffolded — cron + queue + executor work, needs load testing |
+| AI layer (embeddings + LLM) | ⚠️ Scaffolded — all integrations built, needs end-to-end testing |
+| Test suite | 🔧 In progress — 87 tests passing, missing AI & orchestration coverage |
+| Documentation | 🔧 In progress — comprehensive, kept in sync with code |
+| VS Code Marketplace | ⚠️ Pre-release — v0.5.0 `.vsix` on [GitHub Releases](https://github.com/djtrustgod/Playwright-GUI-Recorder-Playback/releases), not yet on marketplace |
 
 ## Documentation
 

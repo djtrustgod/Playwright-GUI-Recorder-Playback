@@ -12,7 +12,7 @@ VS Code extension (TypeScript) wrapping Playwright for RPA. TreeView sidebar + R
 
 ## Documentation
 - **Always update README.md and Implementation.md** when making significant changes (new features, changed behavior, new settings, new commands). Keep docs in sync with code.
-- Update the Project Status table in README.md when milestones change.
+- **Always update the Project Status table** in README.md when any work changes the status of an area (e.g., fixing playback reliability, adding tests, completing a feature). Use ✅ for complete, 🔧 for in progress, ⚠️ for scaffolded/needs work. Include a short note after the emoji (e.g., "✅ Complete — full CRUD, 19 tests passing").
 
 ## Git Conventions
 - Single-line commit messages only (multi-line breaks PowerShell)
