@@ -1,4 +1,4 @@
-import { Page } from 'playwright';
+import type { Page } from 'playwright';
 
 /**
  * Simplifies the DOM of a page for LLM consumption.

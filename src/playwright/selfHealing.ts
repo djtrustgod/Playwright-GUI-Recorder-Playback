@@ -1,4 +1,4 @@
-import { Page, Locator } from 'playwright';
+import type { Page, Locator } from 'playwright';
 import * as vscode from 'vscode';
 import { RecordedAction } from './recorder';
 import { Database } from '../storage/database';

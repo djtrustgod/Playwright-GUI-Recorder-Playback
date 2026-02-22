@@ -1,44 +1,3900 @@
-"use strict";var Os=Object.create;var Tt=Object.defineProperty;var Us=Object.getOwnPropertyDescriptor;var Fs=Object.getOwnPropertyNames;var qs=Object.getPrototypeOf,js=Object.prototype.hasOwnProperty;var ee=(c,t)=>()=>(c&&(t=c(c=0)),t);var te=(c,t)=>()=>(t||c((t={exports:{}}).exports,t),t.exports),Un=(c,t)=>{for(var i in t)Tt(c,i,{get:t[i],enumerable:!0})},Fn=(c,t,i,s)=>{if(t&&typeof t=="object"||typeof t=="function")for(let l of Fs(t))!js.call(c,l)&&l!==i&&Tt(c,l,{get:()=>t[l],enumerable:!(s=Us(t,l))||s.enumerable});return c};var M=(c,t,i)=>(i=c!=null?Os(qs(c)):{},Fn(t||!c||!c.__esModule?Tt(i,"default",{value:c,enumerable:!0}):i,c)),St=c=>Fn(Tt({},"__esModule",{value:!0}),c);var qn=te((Mt,Me)=>{var Dt=void 0,$t=function(c){return Dt||(Dt=new Promise(function(t,i){var s=typeof c<"u"?c:{},l=s.onAbort;s.onAbort=function(e){i(new Error(e)),l&&l(e)},s.postRun=s.postRun||[],s.postRun.push(function(){t(s)}),Me=void 0;var o;o||=typeof s<"u"?s:{};var p=!!globalThis.window,f=!!globalThis.WorkerGlobalScope,b=globalThis.process?.versions?.node&&globalThis.process?.type!="renderer";o.onRuntimeInitialized=function(){function e(d,m){switch(typeof m){case"boolean":Ms(d,m?1:0);break;case"number":Ns(d,m);break;case"string":Ds(d,m,-1,-1);break;case"object":if(m===null)$n(d);else if(m.length!=null){var v=vt(m.length);K.set(m,v),$s(d,v,m.length,-1),rt(v)}else _t(d,"Wrong API use : tried to return a value of an unknown type ("+m+").",-1);break;default:$n(d)}}function r(d,m){for(var v=[],w=0;w<d;w+=1){var A=me(m+4*w,"i32"),D=Rs(A);if(D===1||D===2)A=Ls(A);else if(D===3)A=Is(A);else if(D===4){D=A,A=As(D),D=Ps(D);for(var ce=new Uint8Array(A),oe=0;oe<A;oe+=1)ce[oe]=K[D+oe];A=ce}else A=null;v.push(A)}return v}function n(d,m){this.Qa=d,this.db=m,this.Oa=1,this.lb=[]}function a(d,m){if(this.db=m,this.eb=bt(d),this.eb===null)throw Error("Unable to allocate memory for the SQL string");this.kb=this.eb,this.Za=this.qb=null}function u(d){if(this.filename="dbfile_"+(4294967295*Math.random()>>>0),d!=null){var m=this.filename,v="/",w=m;if(v&&(v=typeof v=="string"?v:mr(v),w=m?pr(v+"/"+m):v),m=sn(!0,!0),w=rs(w,m),d){if(typeof d=="string"){v=Array(d.length);for(var A=0,D=d.length;A<D;++A)v[A]=d.charCodeAt(A);d=v}gt(w,m|146),v=Ve(w,577),xn(v,d,0,d.length,0),Er(v),gt(w,m)}}this.handleError(_(this.filename,h)),this.db=me(h,"i32"),Cn(this.db),this.fb={},this.Sa={}}var h=De(4),g=o.cwrap,_=g("sqlite3_open","number",["string","number"]),N=g("sqlite3_close_v2","number",["number"]),k=g("sqlite3_exec","number",["number","string","number","number","number"]),q=g("sqlite3_changes","number",["number"]),X=g("sqlite3_prepare_v2","number",["number","string","number","number","number"]),In=g("sqlite3_sql","string",["number"]),us=g("sqlite3_normalized_sql","string",["number"]),Pn=g("sqlite3_prepare_v2","number",["number","number","number","number","number"]),ds=g("sqlite3_bind_text","number",["number","number","number","number","number"]),Ln=g("sqlite3_bind_blob","number",["number","number","number","number","number"]),ps=g("sqlite3_bind_double","number",["number","number","number"]),hs=g("sqlite3_bind_int","number",["number","number","number"]),gs=g("sqlite3_bind_parameter_index","number",["number","string"]),ms=g("sqlite3_step","number",["number"]),fs=g("sqlite3_errmsg","string",["number"]),ys=g("sqlite3_column_count","number",["number"]),bs=g("sqlite3_data_count","number",["number"]),vs=g("sqlite3_column_double","number",["number","number"]),Nn=g("sqlite3_column_text","string",["number","number"]),ws=g("sqlite3_column_blob","number",["number","number"]),Es=g("sqlite3_column_bytes","number",["number","number"]),xs=g("sqlite3_column_type","number",["number","number"]),_s=g("sqlite3_column_name","string",["number","number"]),Ts=g("sqlite3_reset","number",["number"]),Ss=g("sqlite3_clear_bindings","number",["number"]),ks=g("sqlite3_finalize","number",["number"]),Dn=g("sqlite3_create_function_v2","number","number string number number number number number number number".split(" ")),Rs=g("sqlite3_value_type","number",["number"]),As=g("sqlite3_value_bytes","number",["number"]),Is=g("sqlite3_value_text","string",["number"]),Ps=g("sqlite3_value_blob","number",["number"]),Ls=g("sqlite3_value_double","number",["number"]),Ns=g("sqlite3_result_double","",["number","number"]),$n=g("sqlite3_result_null","",["number"]),Ds=g("sqlite3_result_text","",["number","string","number","number"]),$s=g("sqlite3_result_blob","",["number","number","number","number"]),Ms=g("sqlite3_result_int","",["number","number"]),_t=g("sqlite3_result_error","",["number","string","number"]),Mn=g("sqlite3_aggregate_context","number",["number","number"]),Cn=g("RegisterExtensionFunctions","number",["number"]),On=g("sqlite3_update_hook","number",["number","number","number"]);n.prototype.bind=function(d){if(!this.Qa)throw"Statement closed";return this.reset(),Array.isArray(d)?this.Cb(d):d!=null&&typeof d=="object"?this.Db(d):!0},n.prototype.step=function(){if(!this.Qa)throw"Statement closed";this.Oa=1;var d=ms(this.Qa);switch(d){case 100:return!0;case 101:return!1;default:throw this.db.handleError(d)}},n.prototype.wb=function(d){return d==null&&(d=this.Oa,this.Oa+=1),vs(this.Qa,d)},n.prototype.Gb=function(d){if(d==null&&(d=this.Oa,this.Oa+=1),d=Nn(this.Qa,d),typeof BigInt!="function")throw Error("BigInt is not supported");return BigInt(d)},n.prototype.Hb=function(d){return d==null&&(d=this.Oa,this.Oa+=1),Nn(this.Qa,d)},n.prototype.getBlob=function(d){d==null&&(d=this.Oa,this.Oa+=1);var m=Es(this.Qa,d);d=ws(this.Qa,d);for(var v=new Uint8Array(m),w=0;w<m;w+=1)v[w]=K[d+w];return v},n.prototype.get=function(d,m){m=m||{},d!=null&&this.bind(d)&&this.step(),d=[];for(var v=bs(this.Qa),w=0;w<v;w+=1)switch(xs(this.Qa,w)){case 1:var A=m.useBigInt?this.Gb(w):this.wb(w);d.push(A);break;case 2:d.push(this.wb(w));break;case 3:d.push(this.Hb(w));break;case 4:d.push(this.getBlob(w));break;default:d.push(null)}return d},n.prototype.getColumnNames=function(){for(var d=[],m=ys(this.Qa),v=0;v<m;v+=1)d.push(_s(this.Qa,v));return d},n.prototype.getAsObject=function(d,m){d=this.get(d,m),m=this.getColumnNames();for(var v={},w=0;w<m.length;w+=1)v[m[w]]=d[w];return v},n.prototype.getSQL=function(){return In(this.Qa)},n.prototype.getNormalizedSQL=function(){return us(this.Qa)},n.prototype.run=function(d){return d!=null&&this.bind(d),this.step(),this.reset()},n.prototype.tb=function(d,m){m==null&&(m=this.Oa,this.Oa+=1),d=bt(d),this.lb.push(d),this.db.handleError(ds(this.Qa,m,d,-1,0))},n.prototype.Bb=function(d,m){m==null&&(m=this.Oa,this.Oa+=1);var v=vt(d.length);K.set(d,v),this.lb.push(v),this.db.handleError(Ln(this.Qa,m,v,d.length,0))},n.prototype.sb=function(d,m){m==null&&(m=this.Oa,this.Oa+=1),this.db.handleError((d===(d|0)?hs:ps)(this.Qa,m,d))},n.prototype.Eb=function(d){d==null&&(d=this.Oa,this.Oa+=1),Ln(this.Qa,d,0,0,0)},n.prototype.ub=function(d,m){switch(m==null&&(m=this.Oa,this.Oa+=1),typeof d){case"string":this.tb(d,m);return;case"number":this.sb(d,m);return;case"bigint":this.tb(d.toString(),m);return;case"boolean":this.sb(d+0,m);return;case"object":if(d===null){this.Eb(m);return}if(d.length!=null){this.Bb(d,m);return}}throw"Wrong API use : tried to bind a value of an unknown type ("+d+")."},n.prototype.Db=function(d){var m=this;return Object.keys(d).forEach(function(v){var w=gs(m.Qa,v);w!==0&&m.ub(d[v],w)}),!0},n.prototype.Cb=function(d){for(var m=0;m<d.length;m+=1)this.ub(d[m],m+1);return!0},n.prototype.reset=function(){return this.freemem(),Ss(this.Qa)===0&&Ts(this.Qa)===0},n.prototype.freemem=function(){for(var d;(d=this.lb.pop())!==void 0;)rt(d)},n.prototype.free=function(){this.freemem();var d=ks(this.Qa)===0;return delete this.db.fb[this.Qa],this.Qa=0,d},a.prototype.next=function(){if(this.eb===null)return{done:!0};if(this.Za!==null&&(this.Za.free(),this.Za=null),!this.db.db)throw this.nb(),Error("Database closed");var d=Et(),m=De(4);Ge(h),Ge(m);try{this.db.handleError(Pn(this.db.db,this.kb,-1,h,m)),this.kb=me(m,"i32");var v=me(h,"i32");return v===0?(this.nb(),{done:!0}):(this.Za=new n(v,this.db),this.db.fb[v]=this.Za,{value:this.Za,done:!1})}catch(w){throw this.qb=V(this.kb),this.nb(),w}finally{wt(d)}},a.prototype.nb=function(){rt(this.eb),this.eb=null},a.prototype.getRemainingSQL=function(){return this.qb!==null?this.qb:V(this.kb)},typeof Symbol=="function"&&typeof Symbol.iterator=="symbol"&&(a.prototype[Symbol.iterator]=function(){return this}),u.prototype.run=function(d,m){if(!this.db)throw"Database closed";if(m){d=this.prepare(d,m);try{d.step()}finally{d.free()}}else this.handleError(k(this.db,d,0,0,h));return this},u.prototype.exec=function(d,m,v){if(!this.db)throw"Database closed";var w=null,A=null,D=null;try{D=A=bt(d);var ce=De(4);for(d=[];me(D,"i8")!==0;){Ge(h),Ge(ce),this.handleError(Pn(this.db,D,-1,h,ce));var oe=me(h,"i32");if(D=me(ce,"i32"),oe!==0){var ie=null;for(w=new n(oe,this),m!=null&&w.bind(m);w.step();)ie===null&&(ie={columns:w.getColumnNames(),values:[]},d.push(ie)),ie.values.push(w.get(null,v));w.free()}}return d}catch(ue){throw w&&w.free(),ue}finally{A&&rt(A)}},u.prototype.each=function(d,m,v,w,A){typeof m=="function"&&(w=v,v=m,m=void 0),d=this.prepare(d,m);try{for(;d.step();)v(d.getAsObject(null,A))}finally{d.free()}if(typeof w=="function")return w()},u.prototype.prepare=function(d,m){if(Ge(h),this.handleError(X(this.db,d,-1,h,0)),d=me(h,"i32"),d===0)throw"Nothing to prepare";var v=new n(d,this);return m!=null&&v.bind(m),this.fb[d]=v},u.prototype.iterateStatements=function(d){return new a(d,this)},u.prototype.export=function(){Object.values(this.fb).forEach(function(m){m.free()}),Object.values(this.Sa).forEach(Ee),this.Sa={},this.handleError(N(this.db));var d=ns(this.filename);return this.handleError(_(this.filename,h)),this.db=me(h,"i32"),Cn(this.db),d},u.prototype.close=function(){this.db!==null&&(Object.values(this.fb).forEach(function(d){d.free()}),Object.values(this.Sa).forEach(Ee),this.Sa={},this.Ya&&(Ee(this.Ya),this.Ya=void 0),this.handleError(N(this.db)),yn("/"+this.filename),this.db=null)},u.prototype.handleError=function(d){if(d===0)return null;throw d=fs(this.db),Error(d)},u.prototype.getRowsModified=function(){return q(this.db)},u.prototype.create_function=function(d,m){Object.prototype.hasOwnProperty.call(this.Sa,d)&&(Ee(this.Sa[d]),delete this.Sa[d]);var v=tt(function(w,A,D){A=r(A,D);try{var ce=m.apply(null,A)}catch(oe){_t(w,oe,-1);return}e(w,ce)},"viii");return this.Sa[d]=v,this.handleError(Dn(this.db,d,m.length,1,0,v,0,0,0)),this},u.prototype.create_aggregate=function(d,m){var v=m.init||function(){return null},w=m.finalize||function(ie){return ie},A=m.step;if(!A)throw"An aggregate function must have a step function in "+d;var D={};Object.hasOwnProperty.call(this.Sa,d)&&(Ee(this.Sa[d]),delete this.Sa[d]),m=d+"__finalize",Object.hasOwnProperty.call(this.Sa,m)&&(Ee(this.Sa[m]),delete this.Sa[m]);var ce=tt(function(ie,ue,Ar){var $e=Mn(ie,1);Object.hasOwnProperty.call(D,$e)||(D[$e]=v()),ue=r(ue,Ar),ue=[D[$e]].concat(ue);try{D[$e]=A.apply(null,ue)}catch(Cs){delete D[$e],_t(ie,Cs,-1)}},"viii"),oe=tt(function(ie){var ue=Mn(ie,1);try{var Ar=w(D[ue])}catch($e){delete D[ue],_t(ie,$e,-1);return}e(ie,Ar),delete D[ue]},"vi");return this.Sa[d]=ce,this.Sa[m]=oe,this.handleError(Dn(this.db,d,A.length-1,1,0,0,ce,oe,0)),this},u.prototype.updateHook=function(d){return this.Ya&&(On(this.db,0,0),Ee(this.Ya),this.Ya=void 0),d?(this.Ya=tt(function(m,v,w,A,D){switch(v){case 18:m="insert";break;case 23:m="update";break;case 9:m="delete";break;default:throw"unknown operationCode in updateHook callback: "+v}if(w=V(w),A=V(A),D>Number.MAX_SAFE_INTEGER)throw"rowId too big to fit inside a Number";d(m,w,A,Number(D))},"viiiij"),On(this.db,this.Ya,0),this):this},o.Database=u};var S="./this.program",R=(e,r)=>{throw r},C=globalThis.document?.currentScript?.src;typeof __filename<"u"?C=__filename:f&&(C=self.location.href);var P="",J,$;if(b){var E=require("node:fs");P=__dirname+"/",$=e=>(e=Ue(e)?new URL(e):e,E.readFileSync(e)),J=async e=>(e=Ue(e)?new URL(e):e,E.readFileSync(e,void 0)),1<process.argv.length&&(S=process.argv[1].replace(/\\/g,"/")),process.argv.slice(2),typeof Me<"u"&&(Me.exports=o),R=(e,r)=>{throw process.exitCode=e,r}}else if(p||f){try{P=new URL(".",C).href}catch{}f&&($=e=>{var r=new XMLHttpRequest;return r.open("GET",e,!1),r.responseType="arraybuffer",r.send(null),new Uint8Array(r.response)}),J=async e=>{if(Ue(e))return new Promise((n,a)=>{var u=new XMLHttpRequest;u.open("GET",e,!0),u.responseType="arraybuffer",u.onload=()=>{u.status==200||u.status==0&&u.response?n(u.response):a(u.status)},u.onerror=a,u.send(null)});var r=await fetch(e,{credentials:"same-origin"});if(r.ok)return r.arrayBuffer();throw Error(r.status+" : "+r.url)}}var x=console.log.bind(console),I=console.error.bind(console),L,O=!1,Y,Ue=e=>e.startsWith("file://"),K,Q,ze,j,U,lr,cr,le;function Xr(){var e=xt.buffer;K=new Int8Array(e),ze=new Int16Array(e),Q=new Uint8Array(e),new Uint16Array(e),j=new Int32Array(e),U=new Uint32Array(e),lr=new Float32Array(e),cr=new Float64Array(e),le=new BigInt64Array(e),new BigUint64Array(e)}function Fe(e){throw o.onAbort?.(e),e="Aborted("+e+")",I(e),O=!0,new WebAssembly.RuntimeError(e+". Build with -sASSERTIONS for more info.")}var ur;async function Bi(e){if(!L)try{var r=await J(e);return new Uint8Array(r)}catch{}if(e==ur&&L)e=new Uint8Array(L);else if($)e=$(e);else throw"both async and sync fetching of the wasm failed";return e}async function Vi(e,r){try{var n=await Bi(e);return await WebAssembly.instantiate(n,r)}catch(a){I(`failed to asynchronously prepare wasm: ${a}`),Fe(a)}}async function Hi(e){var r=ur;if(!L&&!Ue(r)&&!b)try{var n=fetch(r,{credentials:"same-origin"});return await WebAssembly.instantiateStreaming(n,e)}catch(a){I(`wasm streaming compile failed: ${a}`),I("falling back to ArrayBuffer instantiation")}return Vi(r,e)}class dr{name="ExitStatus";constructor(r){this.message=`Program terminated with exit(${r})`,this.status=r}}var Wr=e=>{for(;0<e.length;)e.shift()(o)},zr=[],Yr=[],Ki=()=>{var e=o.preRun.shift();Yr.push(e)},Ie=0,Ye=null;function me(e,r="i8"){switch(r.endsWith("*")&&(r="*"),r){case"i1":return K[e];case"i8":return K[e];case"i16":return ze[e>>1];case"i32":return j[e>>2];case"i64":return le[e>>3];case"float":return lr[e>>2];case"double":return cr[e>>3];case"*":return U[e>>2];default:Fe(`invalid type for getValue: ${r}`)}}var ct=!0;function Ge(e){var r="i32";switch(r.endsWith("*")&&(r="*"),r){case"i1":K[e]=0;break;case"i8":K[e]=0;break;case"i16":ze[e>>1]=0;break;case"i32":j[e>>2]=0;break;case"i64":le[e>>3]=BigInt(0);break;case"float":lr[e>>2]=0;break;case"double":cr[e>>3]=0;break;case"*":U[e>>2]=0;break;default:Fe(`invalid type for setValue: ${r}`)}}var Gr=new TextDecoder,Qr=(e,r,n,a)=>{if(n=r+n,a)return n;for(;e[r]&&!(r>=n);)++r;return r},V=(e,r,n)=>e?Gr.decode(Q.subarray(e,Qr(Q,e,r,n))):"",Zr=(e,r)=>{for(var n=0,a=e.length-1;0<=a;a--){var u=e[a];u==="."?e.splice(a,1):u===".."?(e.splice(a,1),n++):n&&(e.splice(a,1),n--)}if(r)for(;n;n--)e.unshift("..");return e},pr=e=>{var r=e.charAt(0)==="/",n=e.slice(-1)==="/";return(e=Zr(e.split("/").filter(a=>!!a),!r).join("/"))||r||(e="."),e&&n&&(e+="/"),(r?"/":"")+e},en=e=>{var r=/^(\/?|)([\s\S]*?)((?:\.{1,2}|[^\/]+?|)(\.[^.\/]*|))(?:[\/]*)$/.exec(e).slice(1);return e=r[0],r=r[1],!e&&!r?".":(r&&=r.slice(0,-1),e+r)},ut=e=>e&&e.match(/([^\/]+|\/)\/*$/)[1],Ji=()=>{if(b){var e=require("node:crypto");return r=>e.randomFillSync(r)}return r=>crypto.getRandomValues(r)},tn=e=>{(tn=Ji())(e)},Xi=(...e)=>{for(var r="",n=!1,a=e.length-1;-1<=a&&!n;a--){if(n=0<=a?e[a]:"/",typeof n!="string")throw new TypeError("Arguments to path.resolve must be strings");if(!n)return"";r=n+"/"+r,n=n.charAt(0)==="/"}return r=Zr(r.split("/").filter(u=>!!u),!n).join("/"),(n?"/":"")+r||"."},Qe=e=>{var r=Qr(e,0);return Gr.decode(e.buffer?e.subarray(0,r):new Uint8Array(e.slice(0,r)))},hr=[],qe=e=>{for(var r=0,n=0;n<e.length;++n){var a=e.charCodeAt(n);127>=a?r++:2047>=a?r+=2:55296<=a&&57343>=a?(r+=4,++n):r+=3}return r},pe=(e,r,n,a)=>{if(!(0<a))return 0;var u=n;a=n+a-1;for(var h=0;h<e.length;++h){var g=e.codePointAt(h);if(127>=g){if(n>=a)break;r[n++]=g}else if(2047>=g){if(n+1>=a)break;r[n++]=192|g>>6,r[n++]=128|g&63}else if(65535>=g){if(n+2>=a)break;r[n++]=224|g>>12,r[n++]=128|g>>6&63,r[n++]=128|g&63}else{if(n+3>=a)break;r[n++]=240|g>>18,r[n++]=128|g>>12&63,r[n++]=128|g>>6&63,r[n++]=128|g&63,h++}}return r[n]=0,n-u},rn=[];function nn(e,r){rn[e]={input:[],output:[],cb:r},vr(e,Wi)}var Wi={open(e){var r=rn[e.node.rdev];if(!r)throw new y(43);e.tty=r,e.seekable=!1},close(e){e.tty.cb.fsync(e.tty)},fsync(e){e.tty.cb.fsync(e.tty)},read(e,r,n,a){if(!e.tty||!e.tty.cb.xb)throw new y(60);for(var u=0,h=0;h<a;h++){try{var g=e.tty.cb.xb(e.tty)}catch{throw new y(29)}if(g===void 0&&u===0)throw new y(6);if(g==null)break;u++,r[n+h]=g}return u&&(e.node.atime=Date.now()),u},write(e,r,n,a){if(!e.tty||!e.tty.cb.rb)throw new y(60);try{for(var u=0;u<a;u++)e.tty.cb.rb(e.tty,r[n+u])}catch{throw new y(29)}return a&&(e.node.mtime=e.node.ctime=Date.now()),u}},zi={xb(){e:{if(!hr.length){var e=null;if(b){var r=Buffer.alloc(256),n=0,a=process.stdin.fd;try{n=E.readSync(a,r,0,256)}catch(u){if(u.toString().includes("EOF"))n=0;else throw u}0<n&&(e=r.slice(0,n).toString("utf-8"))}else globalThis.window?.prompt&&(e=window.prompt("Input: "),e!==null&&(e+=`
-`));if(!e){e=null;break e}r=Array(qe(e)+1),e=pe(e,r,0,r.length),r.length=e,hr=r}e=hr.shift()}return e},rb(e,r){r===null||r===10?(x(Qe(e.output)),e.output=[]):r!=0&&e.output.push(r)},fsync(e){0<e.output?.length&&(x(Qe(e.output)),e.output=[])},Tb(){return{Ob:25856,Qb:5,Nb:191,Pb:35387,Mb:[3,28,127,21,4,0,1,0,17,19,26,0,18,15,23,22,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]}},Ub(){return 0},Vb(){return[24,80]}},Yi={rb(e,r){r===null||r===10?(I(Qe(e.output)),e.output=[]):r!=0&&e.output.push(r)},fsync(e){0<e.output?.length&&(I(Qe(e.output)),e.output=[])}},T={Wa:null,Xa(){return T.createNode(null,"/",16895,0)},createNode(e,r,n,a){if((n&61440)===24576||(n&61440)===4096)throw new y(63);return T.Wa||(T.Wa={dir:{node:{Ta:T.La.Ta,Ua:T.La.Ua,lookup:T.La.lookup,hb:T.La.hb,rename:T.La.rename,unlink:T.La.unlink,rmdir:T.La.rmdir,readdir:T.La.readdir,symlink:T.La.symlink},stream:{Va:T.Ma.Va}},file:{node:{Ta:T.La.Ta,Ua:T.La.Ua},stream:{Va:T.Ma.Va,read:T.Ma.read,write:T.Ma.write,ib:T.Ma.ib,jb:T.Ma.jb}},link:{node:{Ta:T.La.Ta,Ua:T.La.Ua,readlink:T.La.readlink},stream:{}},vb:{node:{Ta:T.La.Ta,Ua:T.La.Ua},stream:ts}}),n=un(e,r,n,a),re(n.mode)?(n.La=T.Wa.dir.node,n.Ma=T.Wa.dir.stream,n.Na={}):(n.mode&61440)===32768?(n.La=T.Wa.file.node,n.Ma=T.Wa.file.stream,n.Ra=0,n.Na=null):(n.mode&61440)===40960?(n.La=T.Wa.link.node,n.Ma=T.Wa.link.stream):(n.mode&61440)===8192&&(n.La=T.Wa.vb.node,n.Ma=T.Wa.vb.stream),n.atime=n.mtime=n.ctime=Date.now(),e&&(e.Na[r]=n,e.atime=e.mtime=e.ctime=n.atime),n},Sb(e){return e.Na?e.Na.subarray?e.Na.subarray(0,e.Ra):new Uint8Array(e.Na):new Uint8Array(0)},La:{Ta(e){var r={};return r.dev=(e.mode&61440)===8192?e.id:1,r.ino=e.id,r.mode=e.mode,r.nlink=1,r.uid=0,r.gid=0,r.rdev=e.rdev,re(e.mode)?r.size=4096:(e.mode&61440)===32768?r.size=e.Ra:(e.mode&61440)===40960?r.size=e.link.length:r.size=0,r.atime=new Date(e.atime),r.mtime=new Date(e.mtime),r.ctime=new Date(e.ctime),r.blksize=4096,r.blocks=Math.ceil(r.size/r.blksize),r},Ua(e,r){for(var n of["mode","atime","mtime","ctime"])r[n]!=null&&(e[n]=r[n]);r.size!==void 0&&(r=r.size,e.Ra!=r&&(r==0?(e.Na=null,e.Ra=0):(n=e.Na,e.Na=new Uint8Array(r),n&&e.Na.set(n.subarray(0,Math.min(r,e.Ra))),e.Ra=r)))},lookup(){throw T.mb||(T.mb=new y(44),T.mb.stack="<generic error, no stack>"),T.mb},hb(e,r,n,a){return T.createNode(e,r,n,a)},rename(e,r,n){try{var a=Pe(r,n)}catch{}if(a){if(re(e.mode))for(var u in a.Na)throw new y(55);yr(a)}delete e.parent.Na[e.name],r.Na[n]=e,e.name=n,r.ctime=r.mtime=e.parent.ctime=e.parent.mtime=Date.now()},unlink(e,r){delete e.Na[r],e.ctime=e.mtime=Date.now()},rmdir(e,r){var n=Pe(e,r),a;for(a in n.Na)throw new y(55);delete e.Na[r],e.ctime=e.mtime=Date.now()},readdir(e){return[".","..",...Object.keys(e.Na)]},symlink(e,r,n){return e=T.createNode(e,r,41471,0),e.link=n,e},readlink(e){if((e.mode&61440)!==40960)throw new y(28);return e.link}},Ma:{read(e,r,n,a,u){var h=e.node.Na;if(u>=e.node.Ra)return 0;if(e=Math.min(e.node.Ra-u,a),8<e&&h.subarray)r.set(h.subarray(u,u+e),n);else for(a=0;a<e;a++)r[n+a]=h[u+a];return e},write(e,r,n,a,u,h){if(r.buffer===K.buffer&&(h=!1),!a)return 0;if(e=e.node,e.mtime=e.ctime=Date.now(),r.subarray&&(!e.Na||e.Na.subarray)){if(h)return e.Na=r.subarray(n,n+a),e.Ra=a;if(e.Ra===0&&u===0)return e.Na=r.slice(n,n+a),e.Ra=a;if(u+a<=e.Ra)return e.Na.set(r.subarray(n,n+a),u),a}h=u+a;var g=e.Na?e.Na.length:0;if(g>=h||(h=Math.max(h,g*(1048576>g?2:1.125)>>>0),g!=0&&(h=Math.max(h,256)),g=e.Na,e.Na=new Uint8Array(h),0<e.Ra&&e.Na.set(g.subarray(0,e.Ra),0)),e.Na.subarray&&r.subarray)e.Na.set(r.subarray(n,n+a),u);else for(h=0;h<a;h++)e.Na[u+h]=r[n+h];return e.Ra=Math.max(e.Ra,u+a),a},Va(e,r,n){if(n===1?r+=e.position:n===2&&(e.node.mode&61440)===32768&&(r+=e.node.Ra),0>r)throw new y(28);return r},ib(e,r,n,a,u){if((e.node.mode&61440)!==32768)throw new y(43);if(e=e.node.Na,u&2||!e||e.buffer!==K.buffer){u=!0,a=65536*Math.ceil(r/65536);var h=Rn(65536,a);if(h&&Q.fill(0,h,h+a),a=h,!a)throw new y(48);e&&((0<n||n+r<e.length)&&(e.subarray?e=e.subarray(n,n+r):e=Array.prototype.slice.call(e,n,n+r)),K.set(e,a))}else u=!1,a=e.byteOffset;return{Kb:a,Ab:u}},jb(e,r,n,a){return T.Ma.write(e,r,0,a,n,!1),0}}},sn=(e,r)=>{var n=0;return e&&(n|=365),r&&(n|=146),n},gr=null,on={},je=[],Gi=1,ve=null,an=!1,ln=!0,cn={},y=class{name="ErrnoError";constructor(e){this.Pa=e}},Qi=class{gb={};node=null;get flags(){return this.gb.flags}set flags(e){this.gb.flags=e}get position(){return this.gb.position}set position(e){this.gb.position=e}},Zi=class{La={};Ma={};ab=null;constructor(e,r,n,a){e||=this,this.parent=e,this.Xa=e.Xa,this.id=Gi++,this.name=r,this.mode=n,this.rdev=a,this.atime=this.mtime=this.ctime=Date.now()}get read(){return(this.mode&365)===365}set read(e){e?this.mode|=365:this.mode&=-366}get write(){return(this.mode&146)===146}set write(e){e?this.mode|=146:this.mode&=-147}};function se(e,r={}){if(!e)throw new y(44);r.ob??(r.ob=!0),e.charAt(0)==="/"||(e="//"+e);var n=0;e:for(;40>n;n++){e=e.split("/").filter(_=>!!_);for(var a=gr,u="/",h=0;h<e.length;h++){var g=h===e.length-1;if(g&&r.parent)break;if(e[h]!==".")if(e[h]==="..")if(u=en(u),a===a.parent){e=u+"/"+e.slice(h+1).join("/"),n--;continue e}else a=a.parent;else{u=pr(u+"/"+e[h]);try{a=Pe(a,e[h])}catch(_){if(_?.Pa===44&&g&&r.Jb)return{path:u};throw _}if(!a.ab||g&&!r.ob||(a=a.ab.root),(a.mode&61440)===40960&&(!g||r.$a)){if(!a.La.readlink)throw new y(52);a=a.La.readlink(a),a.charAt(0)==="/"||(a=en(u)+"/"+a),e=a+"/"+e.slice(h+1).join("/");continue e}}}return{path:u,node:a}}throw new y(32)}function mr(e){for(var r;;){if(e===e.parent)return e=e.Xa.zb,r?e[e.length-1]!=="/"?`${e}/${r}`:e+r:e;r=r?`${e.name}/${r}`:e.name,e=e.parent}}function fr(e,r){for(var n=0,a=0;a<r.length;a++)n=(n<<5)-n+r.charCodeAt(a)|0;return(e+n>>>0)%ve.length}function yr(e){var r=fr(e.parent.id,e.name);if(ve[r]===e)ve[r]=e.bb;else for(r=ve[r];r;){if(r.bb===e){r.bb=e.bb;break}r=r.bb}}function Pe(e,r){var n=re(e.mode)?(n=Be(e,"x"))?n:e.La.lookup?0:2:54;if(n)throw new y(n);for(n=ve[fr(e.id,r)];n;n=n.bb){var a=n.name;if(n.parent.id===e.id&&a===r)return n}return e.La.lookup(e,r)}function un(e,r,n,a){return e=new Zi(e,r,n,a),r=fr(e.parent.id,e.name),e.bb=ve[r],ve[r]=e}function re(e){return(e&61440)===16384}function dn(e){var r=["r","w","rw"][e&3];return e&512&&(r+="w"),r}function Be(e,r){if(ln)return 0;if(!r.includes("r")||e.mode&292){if(r.includes("w")&&!(e.mode&146)||r.includes("x")&&!(e.mode&73))return 2}else return 2;return 0}function pn(e,r){if(!re(e.mode))return 54;try{return Pe(e,r),20}catch{}return Be(e,"wx")}function hn(e,r,n){try{var a=Pe(e,r)}catch(u){return u.Pa}if(e=Be(e,"wx"))return e;if(n){if(!re(a.mode))return 54;if(a===a.parent||mr(a)==="/")return 10}else if(re(a.mode))return 31;return 0}function dt(e){if(!e)throw new y(63);return e}function Z(e){if(e=je[e],!e)throw new y(8);return e}function gn(e,r=-1){if(e=Object.assign(new Qi,e),r==-1)e:{for(r=0;4096>=r;r++)if(!je[r])break e;throw new y(33)}return e.fd=r,je[r]=e}function es(e,r=-1){return e=gn(e,r),e.Ma?.Rb?.(e),e}function br(e,r,n){var a=e?.Ma.Ua;e=a?e:r,a??=r.La.Ua,dt(a),a(e,n)}var ts={open(e){e.Ma=on[e.node.rdev].Ma,e.Ma.open?.(e)},Va(){throw new y(70)}};function vr(e,r){on[e]={Ma:r}}function mn(e,r){var n=r==="/";if(n&&gr)throw new y(10);if(!n&&r){var a=se(r,{ob:!1});if(r=a.path,a=a.node,a.ab)throw new y(10);if(!re(a.mode))throw new y(54)}r={type:e,Wb:{},zb:r,Ib:[]},e=e.Xa(r),e.Xa=r,r.root=e,n?gr=e:a&&(a.ab=r,a.Xa&&a.Xa.Ib.push(r))}function pt(e,r,n){var a=se(e,{parent:!0}).node;if(e=ut(e),!e)throw new y(28);if(e==="."||e==="..")throw new y(20);var u=pn(a,e);if(u)throw new y(u);if(!a.La.hb)throw new y(63);return a.La.hb(a,e,r,n)}function rs(e,r=438){return pt(e,r&4095|32768,0)}function he(e,r=511){return pt(e,r&1023|16384,0)}function ht(e,r,n){typeof n>"u"&&(n=r,r=438),pt(e,r|8192,n)}function wr(e,r){if(!Xi(e))throw new y(44);var n=se(r,{parent:!0}).node;if(!n)throw new y(44);r=ut(r);var a=pn(n,r);if(a)throw new y(a);if(!n.La.symlink)throw new y(63);n.La.symlink(n,r,e)}function fn(e){var r=se(e,{parent:!0}).node;e=ut(e);var n=Pe(r,e),a=hn(r,e,!0);if(a)throw new y(a);if(!r.La.rmdir)throw new y(63);if(n.ab)throw new y(10);r.La.rmdir(r,e),yr(n)}function yn(e){var r=se(e,{parent:!0}).node;if(!r)throw new y(44);e=ut(e);var n=Pe(r,e),a=hn(r,e,!1);if(a)throw new y(a);if(!r.La.unlink)throw new y(63);if(n.ab)throw new y(10);r.La.unlink(r,e),yr(n)}function Ze(e,r){return e=se(e,{$a:!r}).node,dt(e.La.Ta)(e)}function bn(e,r,n,a){br(e,r,{mode:n&4095|r.mode&-4096,ctime:Date.now(),Fb:a})}function gt(e,r){e=typeof e=="string"?se(e,{$a:!0}).node:e,bn(null,e,r)}function vn(e,r,n){if(re(r.mode))throw new y(31);if((r.mode&61440)!==32768)throw new y(28);var a=Be(r,"w");if(a)throw new y(a);br(e,r,{size:n,timestamp:Date.now()})}function Ve(e,r,n=438){if(e==="")throw new y(44);if(typeof r=="string"){var a={r:0,"r+":2,w:577,"w+":578,a:1089,"a+":1090}[r];if(typeof a>"u")throw Error(`Unknown file open mode: ${r}`);r=a}if(n=r&64?n&4095|32768:0,typeof e=="object")a=e;else{var u=e.endsWith("/");e=se(e,{$a:!(r&131072),Jb:!0}),a=e.node,e=e.path}var h=!1;if(r&64)if(a){if(r&128)throw new y(20)}else{if(u)throw new y(31);a=pt(e,n|511,0),h=!0}if(!a)throw new y(44);if((a.mode&61440)===8192&&(r&=-513),r&65536&&!re(a.mode))throw new y(54);if(!h&&(u=a?(a.mode&61440)===40960?32:re(a.mode)&&(dn(r)!=="r"||r&576)?31:Be(a,dn(r)):44))throw new y(u);return r&512&&!h&&(u=a,u=typeof u=="string"?se(u,{$a:!0}).node:u,vn(null,u,0)),r&=-131713,u=gn({node:a,path:mr(a),flags:r,seekable:!0,position:0,Ma:a.Ma,Lb:[],error:!1}),u.Ma.open&&u.Ma.open(u),h&&gt(a,n&511),!o.logReadFiles||r&1||e in cn||(cn[e]=1),u}function Er(e){if(e.fd===null)throw new y(8);e.pb&&(e.pb=null);try{e.Ma.close&&e.Ma.close(e)}catch(r){throw r}finally{je[e.fd]=null}e.fd=null}function wn(e,r,n){if(e.fd===null)throw new y(8);if(!e.seekable||!e.Ma.Va)throw new y(70);if(n!=0&&n!=1&&n!=2)throw new y(28);e.position=e.Ma.Va(e,r,n),e.Lb=[]}function En(e,r,n,a,u){if(0>a||0>u)throw new y(28);if(e.fd===null)throw new y(8);if((e.flags&2097155)===1)throw new y(8);if(re(e.node.mode))throw new y(31);if(!e.Ma.read)throw new y(28);var h=typeof u<"u";if(!h)u=e.position;else if(!e.seekable)throw new y(70);return r=e.Ma.read(e,r,n,a,u),h||(e.position+=r),r}function xn(e,r,n,a,u){if(0>a||0>u)throw new y(28);if(e.fd===null)throw new y(8);if(!(e.flags&2097155))throw new y(8);if(re(e.node.mode))throw new y(31);if(!e.Ma.write)throw new y(28);e.seekable&&e.flags&1024&&wn(e,0,2);var h=typeof u<"u";if(!h)u=e.position;else if(!e.seekable)throw new y(70);return r=e.Ma.write(e,r,n,a,u,void 0),h||(e.position+=r),r}function ns(e){var r=r||0,n="binary";n!=="utf8"&&n!=="binary"&&Fe(`Invalid encoding type "${n}"`),r=Ve(e,r),e=Ze(e).size;var a=new Uint8Array(e);return En(r,a,0,e,0),n==="utf8"&&(a=Qe(a)),Er(r),a}function we(e,r,n){e=pr("/dev/"+e);var a=sn(!!r,!!n);we.yb??(we.yb=64);var u=we.yb++<<8|0;vr(u,{open(h){h.seekable=!1},close(){n?.buffer?.length&&n(10)},read(h,g,_,N){for(var k=0,q=0;q<N;q++){try{var X=r()}catch{throw new y(29)}if(X===void 0&&k===0)throw new y(6);if(X==null)break;k++,g[_+q]=X}return k&&(h.node.atime=Date.now()),k},write(h,g,_,N){for(var k=0;k<N;k++)try{n(g[_+k])}catch{throw new y(29)}return N&&(h.node.mtime=h.node.ctime=Date.now()),k}}),ht(e,a,u)}var F={};function Le(e,r,n){if(r.charAt(0)==="/")return r;if(e=e===-100?"/":Z(e).path,r.length==0){if(!n)throw new y(44);return e}return e+"/"+r}function mt(e,r){U[e>>2]=r.dev,U[e+4>>2]=r.mode,U[e+8>>2]=r.nlink,U[e+12>>2]=r.uid,U[e+16>>2]=r.gid,U[e+20>>2]=r.rdev,le[e+24>>3]=BigInt(r.size),j[e+32>>2]=4096,j[e+36>>2]=r.blocks;var n=r.atime.getTime(),a=r.mtime.getTime(),u=r.ctime.getTime();return le[e+40>>3]=BigInt(Math.floor(n/1e3)),U[e+48>>2]=n%1e3*1e6,le[e+56>>3]=BigInt(Math.floor(a/1e3)),U[e+64>>2]=a%1e3*1e6,le[e+72>>3]=BigInt(Math.floor(u/1e3)),U[e+80>>2]=u%1e3*1e6,le[e+88>>3]=BigInt(r.ino),0}var ft=void 0,yt=()=>{var e=j[+ft>>2];return ft+=4,e},xr=0,is=[0,31,60,91,121,152,182,213,244,274,305,335],ss=[0,31,59,90,120,151,181,212,243,273,304,334],et={},_n=e=>{Y=e,ct||0<xr||(o.onExit?.(e),O=!0),R(e,new dr(e))},os=e=>{if(!O)try{e()}catch(r){r instanceof dr||r=="unwind"||R(1,r)}finally{if(!(ct||0<xr))try{Y=e=Y,_n(e)}catch(r){r instanceof dr||r=="unwind"||R(1,r)}}},_r={},Tn=()=>{if(!Tr){var e={USER:"web_user",LOGNAME:"web_user",PATH:"/",PWD:"/",HOME:"/home/web_user",LANG:(globalThis.navigator?.language??"C").replace("-","_")+".UTF-8",_:S||"./this.program"},r;for(r in _r)_r[r]===void 0?delete e[r]:e[r]=_r[r];var n=[];for(r in e)n.push(`${r}=${e[r]}`);Tr=n}return Tr},Tr,as=(e,r,n,a)=>{var u={string:k=>{var q=0;if(k!=null&&k!==0){q=qe(k)+1;var X=De(q);pe(k,Q,X,q),q=X}return q},array:k=>{var q=De(k.length);return K.set(k,q),q}};e=o["_"+e];var h=[],g=0;if(a)for(var _=0;_<a.length;_++){var N=u[n[_]];N?(g===0&&(g=Et()),h[_]=N(a[_])):h[_]=a[_]}return n=e(...h),n=function(k){return g!==0&&wt(g),r==="string"?V(k):r==="boolean"?!!k:k}(n)},bt=e=>{var r=qe(e)+1,n=vt(r);return n&&pe(e,Q,n,r),n},Ne,Sr=[],Ee=e=>{Ne.delete(xe.get(e)),xe.set(e,null),Sr.push(e)},Sn=e=>{let r=e.length;return[r%128|128,r>>7,...e]},ls={i:127,p:127,j:126,f:125,d:124,e:111},kn=e=>Sn(Array.from(e,r=>ls[r])),tt=(e,r)=>{if(!Ne){Ne=new WeakMap;var n=xe.length;if(Ne)for(var a=0;a<0+n;a++){var u=xe.get(a);u&&Ne.set(u,a)}}if(n=Ne.get(e)||0)return n;n=Sr.length?Sr.pop():xe.grow(1);try{xe.set(n,e)}catch(h){if(!(h instanceof TypeError))throw h;r=Uint8Array.of(0,97,115,109,1,0,0,0,1,...Sn([1,96,...kn(r.slice(1)),...kn(r[0]==="v"?"":r[0])]),2,7,1,1,101,1,102,0,0,7,5,1,1,102,0,0),r=new WebAssembly.Module(r),r=new WebAssembly.Instance(r,{e:{f:e}}).exports.f,xe.set(n,r)}return Ne.set(e,n),n};if(ve=Array(4096),mn(T,"/"),he("/tmp"),he("/home"),he("/home/web_user"),function(){he("/dev"),vr(259,{read:()=>0,write:(a,u,h,g)=>g,Va:()=>0}),ht("/dev/null",259),nn(1280,zi),nn(1536,Yi),ht("/dev/tty",1280),ht("/dev/tty1",1536);var e=new Uint8Array(1024),r=0,n=()=>(r===0&&(tn(e),r=e.byteLength),e[--r]);we("random",n),we("urandom",n),he("/dev/shm"),he("/dev/shm/tmp")}(),function(){he("/proc");var e=he("/proc/self");he("/proc/self/fd"),mn({Xa(){var r=un(e,"fd",16895,73);return r.Ma={Va:T.Ma.Va},r.La={lookup(n,a){n=+a;var u=Z(n);return n={parent:null,Xa:{zb:"fake"},La:{readlink:()=>u.path},id:n+1},n.parent=n},readdir(){return Array.from(je.entries()).filter(([,n])=>n).map(([n])=>n.toString())}},r}},"/proc/self/fd")}(),o.noExitRuntime&&(ct=o.noExitRuntime),o.print&&(x=o.print),o.printErr&&(I=o.printErr),o.wasmBinary&&(L=o.wasmBinary),o.thisProgram&&(S=o.thisProgram),o.preInit)for(typeof o.preInit=="function"&&(o.preInit=[o.preInit]);0<o.preInit.length;)o.preInit.shift()();o.stackSave=()=>Et(),o.stackRestore=e=>wt(e),o.stackAlloc=e=>De(e),o.cwrap=(e,r,n,a)=>{var u=!n||n.every(h=>h==="number"||h==="boolean");return r!=="string"&&u&&!a?o["_"+e]:(...h)=>as(e,r,n,h)},o.addFunction=tt,o.removeFunction=Ee,o.UTF8ToString=V,o.stringToNewUTF8=bt,o.writeArrayToMemory=(e,r)=>{K.set(e,r)};var vt,rt,Rn,An,wt,De,Et,xt,xe,cs={a:(e,r,n,a)=>Fe(`Assertion failed: ${V(e)}, at: `+[r?V(r):"unknown filename",n,a?V(a):"unknown function"]),i:function(e,r){try{return e=V(e),gt(e,r),0}catch(n){if(typeof F>"u"||n.name!=="ErrnoError")throw n;return-n.Pa}},L:function(e,r,n){try{if(r=V(r),r=Le(e,r),n&-8)return-28;var a=se(r,{$a:!0}).node;return a?(e="",n&4&&(e+="r"),n&2&&(e+="w"),n&1&&(e+="x"),e&&Be(a,e)?-2:0):-44}catch(u){if(typeof F>"u"||u.name!=="ErrnoError")throw u;return-u.Pa}},j:function(e,r){try{var n=Z(e);return bn(n,n.node,r,!1),0}catch(a){if(typeof F>"u"||a.name!=="ErrnoError")throw a;return-a.Pa}},h:function(e){try{var r=Z(e);return br(r,r.node,{timestamp:Date.now(),Fb:!1}),0}catch(n){if(typeof F>"u"||n.name!=="ErrnoError")throw n;return-n.Pa}},b:function(e,r,n){ft=n;try{var a=Z(e);switch(r){case 0:var u=yt();if(0>u)break;for(;je[u];)u++;return es(a,u).fd;case 1:case 2:return 0;case 3:return a.flags;case 4:return u=yt(),a.flags|=u,0;case 12:return u=yt(),ze[u+0>>1]=2,0;case 13:case 14:return 0}return-28}catch(h){if(typeof F>"u"||h.name!=="ErrnoError")throw h;return-h.Pa}},g:function(e,r){try{var n=Z(e),a=n.node,u=n.Ma.Ta;e=u?n:a,u??=a.La.Ta,dt(u);var h=u(e);return mt(r,h)}catch(g){if(typeof F>"u"||g.name!=="ErrnoError")throw g;return-g.Pa}},H:function(e,r){r=-9007199254740992>r||9007199254740992<r?NaN:Number(r);try{if(isNaN(r))return-61;var n=Z(e);if(0>r||!(n.flags&2097155))throw new y(28);return vn(n,n.node,r),0}catch(a){if(typeof F>"u"||a.name!=="ErrnoError")throw a;return-a.Pa}},G:function(e,r){try{if(r===0)return-28;var n=qe("/")+1;return r<n?-68:(pe("/",Q,e,r),n)}catch(a){if(typeof F>"u"||a.name!=="ErrnoError")throw a;return-a.Pa}},K:function(e,r){try{return e=V(e),mt(r,Ze(e,!0))}catch(n){if(typeof F>"u"||n.name!=="ErrnoError")throw n;return-n.Pa}},C:function(e,r,n){try{return r=V(r),r=Le(e,r),he(r,n),0}catch(a){if(typeof F>"u"||a.name!=="ErrnoError")throw a;return-a.Pa}},J:function(e,r,n,a){try{r=V(r);var u=a&256;return r=Le(e,r,a&4096),mt(n,u?Ze(r,!0):Ze(r))}catch(h){if(typeof F>"u"||h.name!=="ErrnoError")throw h;return-h.Pa}},x:function(e,r,n,a){ft=a;try{r=V(r),r=Le(e,r);var u=a?yt():0;return Ve(r,n,u).fd}catch(h){if(typeof F>"u"||h.name!=="ErrnoError")throw h;return-h.Pa}},v:function(e,r,n,a){try{if(r=V(r),r=Le(e,r),0>=a)return-28;var u=se(r).node;if(!u)throw new y(44);if(!u.La.readlink)throw new y(28);var h=u.La.readlink(u),g=Math.min(a,qe(h)),_=K[n+g];return pe(h,Q,n,a+1),K[n+g]=_,g}catch(N){if(typeof F>"u"||N.name!=="ErrnoError")throw N;return-N.Pa}},u:function(e){try{return e=V(e),fn(e),0}catch(r){if(typeof F>"u"||r.name!=="ErrnoError")throw r;return-r.Pa}},f:function(e,r){try{return e=V(e),mt(r,Ze(e))}catch(n){if(typeof F>"u"||n.name!=="ErrnoError")throw n;return-n.Pa}},r:function(e,r,n){try{if(r=V(r),r=Le(e,r),n)if(n===512)fn(r);else return-28;else yn(r);return 0}catch(a){if(typeof F>"u"||a.name!=="ErrnoError")throw a;return-a.Pa}},q:function(e,r,n){try{r=V(r),r=Le(e,r,!0);var a=Date.now(),u,h;if(n){var g=U[n>>2]+4294967296*j[n+4>>2],_=j[n+8>>2];_==1073741823?u=a:_==1073741822?u=null:u=1e3*g+_/1e6,n+=16,g=U[n>>2]+4294967296*j[n+4>>2],_=j[n+8>>2],_==1073741823?h=a:_==1073741822?h=null:h=1e3*g+_/1e6}else h=u=a;if((h??u)!==null){e=u;var N=se(r,{$a:!0}).node;dt(N.La.Ua)(N,{atime:e,mtime:h})}return 0}catch(k){if(typeof F>"u"||k.name!=="ErrnoError")throw k;return-k.Pa}},m:()=>Fe(""),l:()=>{ct=!1,xr=0},A:function(e,r){e=-9007199254740992>e||9007199254740992<e?NaN:Number(e),e=new Date(1e3*e),j[r>>2]=e.getSeconds(),j[r+4>>2]=e.getMinutes(),j[r+8>>2]=e.getHours(),j[r+12>>2]=e.getDate(),j[r+16>>2]=e.getMonth(),j[r+20>>2]=e.getFullYear()-1900,j[r+24>>2]=e.getDay();var n=e.getFullYear();j[r+28>>2]=(n%4!==0||n%100===0&&n%400!==0?ss:is)[e.getMonth()]+e.getDate()-1|0,j[r+36>>2]=-(60*e.getTimezoneOffset()),n=new Date(e.getFullYear(),6,1).getTimezoneOffset();var a=new Date(e.getFullYear(),0,1).getTimezoneOffset();j[r+32>>2]=(n!=a&&e.getTimezoneOffset()==Math.min(a,n))|0},y:function(e,r,n,a,u,h,g){u=-9007199254740992>u||9007199254740992<u?NaN:Number(u);try{var _=Z(a);if(r&2&&!(n&2)&&(_.flags&2097155)!==2)throw new y(2);if((_.flags&2097155)===1)throw new y(2);if(!_.Ma.ib)throw new y(43);if(!e)throw new y(28);var N=_.Ma.ib(_,e,u,r,n),k=N.Kb;return j[h>>2]=N.Ab,U[g>>2]=k,0}catch(q){if(typeof F>"u"||q.name!=="ErrnoError")throw q;return-q.Pa}},z:function(e,r,n,a,u,h){h=-9007199254740992>h||9007199254740992<h?NaN:Number(h);try{var g=Z(u);if(n&2){if(n=h,(g.node.mode&61440)!==32768)throw new y(43);if(!(a&2)){var _=Q.slice(e,e+r);g.Ma.jb&&g.Ma.jb(g,_,n,r,a)}}}catch(N){if(typeof F>"u"||N.name!=="ErrnoError")throw N;return-N.Pa}},n:(e,r)=>{if(et[e]&&(clearTimeout(et[e].id),delete et[e]),!r)return 0;var n=setTimeout(()=>{delete et[e],os(()=>An(e,performance.now()))},r);return et[e]={id:n,Xb:r},0},B:(e,r,n,a)=>{var u=new Date().getFullYear(),h=new Date(u,0,1).getTimezoneOffset();u=new Date(u,6,1).getTimezoneOffset(),U[e>>2]=60*Math.max(h,u),j[r>>2]=+(h!=u),r=g=>{var _=Math.abs(g);return`UTC${0<=g?"-":"+"}${String(Math.floor(_/60)).padStart(2,"0")}${String(_%60).padStart(2,"0")}`},e=r(h),r=r(u),u<h?(pe(e,Q,n,17),pe(r,Q,a,17)):(pe(e,Q,a,17),pe(r,Q,n,17))},d:()=>Date.now(),s:()=>2147483648,c:()=>performance.now(),o:e=>{var r=Q.length;if(e>>>=0,2147483648<e)return!1;for(var n=1;4>=n;n*=2){var a=r*(1+.2/n);a=Math.min(a,e+100663296);e:{a=(Math.min(2147483648,65536*Math.ceil(Math.max(e,a)/65536))-xt.buffer.byteLength+65535)/65536|0;try{xt.grow(a),Xr();var u=1;break e}catch{}u=void 0}if(u)return!0}return!1},E:(e,r)=>{var n=0,a=0,u;for(u of Tn()){var h=r+n;U[e+a>>2]=h,n+=pe(u,Q,h,1/0)+1,a+=4}return 0},F:(e,r)=>{var n=Tn();U[e>>2]=n.length,e=0;for(var a of n)e+=qe(a)+1;return U[r>>2]=e,0},e:function(e){try{var r=Z(e);return Er(r),0}catch(n){if(typeof F>"u"||n.name!=="ErrnoError")throw n;return n.Pa}},p:function(e,r){try{var n=Z(e);return K[r]=n.tty?2:re(n.mode)?3:(n.mode&61440)===40960?7:4,ze[r+2>>1]=0,le[r+8>>3]=BigInt(0),le[r+16>>3]=BigInt(0),0}catch(a){if(typeof F>"u"||a.name!=="ErrnoError")throw a;return a.Pa}},w:function(e,r,n,a){try{e:{var u=Z(e);e=r;for(var h,g=r=0;g<n;g++){var _=U[e>>2],N=U[e+4>>2];e+=8;var k=En(u,K,_,N,h);if(0>k){var q=-1;break e}if(r+=k,k<N)break;typeof h<"u"&&(h+=k)}q=r}return U[a>>2]=q,0}catch(X){if(typeof F>"u"||X.name!=="ErrnoError")throw X;return X.Pa}},D:function(e,r,n,a){r=-9007199254740992>r||9007199254740992<r?NaN:Number(r);try{if(isNaN(r))return 61;var u=Z(e);return wn(u,r,n),le[a>>3]=BigInt(u.position),u.pb&&r===0&&n===0&&(u.pb=null),0}catch(h){if(typeof F>"u"||h.name!=="ErrnoError")throw h;return h.Pa}},I:function(e){try{var r=Z(e);return r.Ma?.fsync?.(r)}catch(n){if(typeof F>"u"||n.name!=="ErrnoError")throw n;return n.Pa}},t:function(e,r,n,a){try{e:{var u=Z(e);e=r;for(var h,g=r=0;g<n;g++){var _=U[e>>2],N=U[e+4>>2];e+=8;var k=xn(u,K,_,N,h);if(0>k){var q=-1;break e}if(r+=k,k<N)break;typeof h<"u"&&(h+=k)}q=r}return U[a>>2]=q,0}catch(X){if(typeof F>"u"||X.name!=="ErrnoError")throw X;return X.Pa}},k:_n};function kr(){function e(){if(o.calledRun=!0,!O){if(!o.noFSInit&&!an){var r,n;an=!0,r??=o.stdin,n??=o.stdout,a??=o.stderr,r?we("stdin",r):wr("/dev/tty","/dev/stdin"),n?we("stdout",null,n):wr("/dev/tty","/dev/stdout"),a?we("stderr",null,a):wr("/dev/tty1","/dev/stderr"),Ve("/dev/stdin",0),Ve("/dev/stdout",1),Ve("/dev/stderr",1)}if(Rr.N(),ln=!1,o.onRuntimeInitialized?.(),o.postRun)for(typeof o.postRun=="function"&&(o.postRun=[o.postRun]);o.postRun.length;){var a=o.postRun.shift();zr.push(a)}Wr(zr)}}if(0<Ie)Ye=kr;else{if(o.preRun)for(typeof o.preRun=="function"&&(o.preRun=[o.preRun]);o.preRun.length;)Ki();Wr(Yr),0<Ie?Ye=kr:o.setStatus?(o.setStatus("Running..."),setTimeout(()=>{setTimeout(()=>o.setStatus(""),1),e()},1)):e()}}var Rr;return async function(){function e(n){return n=Rr=n.exports,o._sqlite3_free=n.P,o._sqlite3_value_text=n.Q,o._sqlite3_prepare_v2=n.R,o._sqlite3_step=n.S,o._sqlite3_reset=n.T,o._sqlite3_exec=n.U,o._sqlite3_finalize=n.V,o._sqlite3_column_name=n.W,o._sqlite3_column_text=n.X,o._sqlite3_column_type=n.Y,o._sqlite3_errmsg=n.Z,o._sqlite3_clear_bindings=n._,o._sqlite3_value_blob=n.$,o._sqlite3_value_bytes=n.aa,o._sqlite3_value_double=n.ba,o._sqlite3_value_int=n.ca,o._sqlite3_value_type=n.da,o._sqlite3_result_blob=n.ea,o._sqlite3_result_double=n.fa,o._sqlite3_result_error=n.ga,o._sqlite3_result_int=n.ha,o._sqlite3_result_int64=n.ia,o._sqlite3_result_null=n.ja,o._sqlite3_result_text=n.ka,o._sqlite3_aggregate_context=n.la,o._sqlite3_column_count=n.ma,o._sqlite3_data_count=n.na,o._sqlite3_column_blob=n.oa,o._sqlite3_column_bytes=n.pa,o._sqlite3_column_double=n.qa,o._sqlite3_bind_blob=n.ra,o._sqlite3_bind_double=n.sa,o._sqlite3_bind_int=n.ta,o._sqlite3_bind_text=n.ua,o._sqlite3_bind_parameter_index=n.va,o._sqlite3_sql=n.wa,o._sqlite3_normalized_sql=n.xa,o._sqlite3_changes=n.ya,o._sqlite3_close_v2=n.za,o._sqlite3_create_function_v2=n.Aa,o._sqlite3_update_hook=n.Ba,o._sqlite3_open=n.Ca,vt=o._malloc=n.Da,rt=o._free=n.Ea,o._RegisterExtensionFunctions=n.Fa,Rn=n.Ga,An=n.Ha,wt=n.Ia,De=n.Ja,Et=n.Ka,xt=n.M,xe=n.O,Xr(),Ie--,o.monitorRunDependencies?.(Ie),Ie==0&&Ye&&(n=Ye,Ye=null,n()),Rr}Ie++,o.monitorRunDependencies?.(Ie);var r={a:cs};return o.instantiateWasm?new Promise(n=>{o.instantiateWasm(r,(a,u)=>{n(e(a,u))})}):(ur??=o.locateFile?o.locateFile("sql-wasm.wasm",P):P+"sql-wasm.wasm",e((await Hi(r)).instance))}(),kr(),s}),Dt)};typeof Mt=="object"&&typeof Me=="object"?(Me.exports=$t,Me.exports.default=$t):typeof define=="function"&&define.amd?define([],function(){return $t}):typeof Mt=="object"&&(Mt.Module=$t)});var Xn=te((Oa,Jn)=>{"use strict";var zs=require("events"),Dr=class extends zs{constructor(t){if(super(),typeof t!="function")throw"execution must be a function";this._execution=t}execute(t){let i;try{i=this._execution(t)}catch(s){return this.emit("task-failed",s)}return i instanceof Promise?i.then(()=>this.emit("task-finished")).catch(s=>this.emit("task-failed",s)):(this.emit("task-finished"),i)}};Jn.exports=Dr});var zn=te((Ua,Wn)=>{"use strict";Wn.exports=(()=>{let c=["january","february","march","april","may","june","july","august","september","october","november","december"],t=["jan","feb","mar","apr","may","jun","jul","aug","sep","oct","nov","dec"];function i(l,o){for(let p=0;p<o.length;p++)l=l.replace(new RegExp(o[p],"gi"),parseInt(p,10)+1);return l}function s(l){return l=i(l,c),l=i(l,t),l}return s})()});var Gn=te((Fa,Yn)=>{"use strict";Yn.exports=(()=>{let c=["sunday","monday","tuesday","wednesday","thursday","friday","saturday"],t=["sun","mon","tue","wed","thu","fri","sat"];function i(l,o){for(let p=0;p<o.length;p++)l=l.replace(new RegExp(o[p],"gi"),parseInt(p,10));return l}function s(l){return l=l.replace("7","0"),l=i(l,c),i(l,t)}return s})()});var Zn=te((qa,Qn)=>{"use strict";Qn.exports=(()=>{function c(i,s){return i.indexOf("*")!==-1?i.replace("*",s):i}function t(i){return i[0]=c(i[0],"0-59"),i[1]=c(i[1],"0-59"),i[2]=c(i[2],"0-23"),i[3]=c(i[3],"1-31"),i[4]=c(i[4],"1-12"),i[5]=c(i[5],"0-6"),i}return t})()});var ti=te((ja,ei)=>{"use strict";ei.exports=(()=>{function c(s,l,o,p){let f=[],b=parseInt(p),S=parseInt(o);S>b&&(b=parseInt(o),S=parseInt(p));for(let R=S;R<=b;R++)f.push(R);return s.replace(new RegExp(l,"i"),f.join())}function t(s){let l=/(\d+)-(\d+)/,o=l.exec(s);for(;o!==null&&o.length>0;)s=c(s,o[0],o[1],o[2]),o=l.exec(s);return s}function i(s){for(let l=0;l<s.length;l++)s[l]=t(s[l]);return s}return i})()});var ni=te((Ba,ri)=>{"use strict";ri.exports=(()=>{function c(t){for(var i=/^(.+)\/(\w+)$/,s=0;s<t.length;s++){var l=i.exec(t[s]),o=l!==null&&l.length>0;if(o){var p=l[2];if(isNaN(p))throw p+" is not a valid step value";for(var f=l[1].split(","),b=[],S=parseInt(p,10),R=0;R<=f.length;R++){var C=parseInt(f[R],10);C%S===0&&b.push(C)}t[s]=b.join(",")}}return t}return c})()});var $r=te((Va,ii)=>{"use strict";var Ys=zn(),Gs=Gn(),Qs=Zn(),Zs=ti(),eo=ni();ii.exports=(()=>{function c(l){return l.length===5?["0"].concat(l):l}function t(l){return l.replace(/\s{2,}/g," ").trim()}function i(l){for(let o=0;o<l.length;o++){let p=l[o].split(",");for(let f=0;f<p.length;f++)p[f]=parseInt(p[f]);l[o]=p}return l}function s(l){let o=t(l).split(" ");return o=c(o),o[4]=Ys(o[4]),o[5]=Gs(o[5]),o=Qs(o),o=Zs(o),o=eo(o),o=i(o),o.join(" ")}return s})()});var Mr=te((Ha,si)=>{"use strict";var to=$r(),ro=/^(?:\d+|\*|\*\/\d+)$/;function Je(c,t,i){let s=c.split(",");for(let l of s){let o=parseInt(l,10);if(!Number.isNaN(o)&&(o<t||o>i)||!ro.test(l))return!1}return!0}function no(c){return!Je(c,0,59)}function io(c){return!Je(c,0,59)}function so(c){return!Je(c,0,23)}function oo(c){return!Je(c,1,31)}function ao(c){return!Je(c,1,12)}function lo(c){return!Je(c,0,7)}function co(c,t){if(no(t[0]))throw new Error(`${c[0]} is a invalid expression for second`);if(io(t[1]))throw new Error(`${c[1]} is a invalid expression for minute`);if(so(t[2]))throw new Error(`${c[2]} is a invalid expression for hour`);if(oo(t[3]))throw new Error(`${c[3]} is a invalid expression for day of month`);if(ao(t[4]))throw new Error(`${c[4]} is a invalid expression for month`);if(lo(t[5]))throw new Error(`${c[5]} is a invalid expression for week day`)}function uo(c){if(typeof c!="string")throw new TypeError("pattern must be a string!");let t=c.split(" "),i=to(c).split(" ");t.length===5&&t.unshift("0"),co(t,i)}si.exports=uo});var ai=te((Ka,oi)=>{var po=Mr(),ho=$r();function Xe(c,t){return c.indexOf(",")!==-1?c.split(",").indexOf(t.toString())!==-1:c===t.toString()}var Cr=class{constructor(t,i){po(t),this.pattern=ho(t),this.timezone=i,this.expressions=this.pattern.split(" "),this.dtf=this.timezone?new Intl.DateTimeFormat("en-US",{year:"numeric",month:"2-digit",day:"2-digit",hour:"2-digit",minute:"2-digit",second:"2-digit",hourCycle:"h23",fractionalSecondDigits:3,timeZone:this.timezone}):null}match(t){t=this.apply(t);let i=Xe(this.expressions[0],t.getSeconds()),s=Xe(this.expressions[1],t.getMinutes()),l=Xe(this.expressions[2],t.getHours()),o=Xe(this.expressions[3],t.getDate()),p=Xe(this.expressions[4],t.getMonth()+1),f=Xe(this.expressions[5],t.getDay());return i&&s&&l&&o&&p&&f}apply(t){return this.dtf?new Date(this.dtf.format(t)):t}};oi.exports=Cr});var ci=te((Ja,li)=>{"use strict";var go=require("events"),mo=ai(),Or=class extends go{constructor(t,i,s){super(),this.timeMatcher=new mo(t,i),this.autorecover=s}start(){this.stop();let t=process.hrtime(),i=this.timeMatcher.apply(new Date),s=()=>{let o=process.hrtime(t),p=(o[0]*1e9+o[1])/1e6,f=Math.floor(p/1e3);for(let b=f;b>=0;b--){let S=new Date(new Date().getTime()-b*1e3),R=this.timeMatcher.apply(S);i.getTime()<R.getTime()&&(b===0||this.autorecover)&&this.timeMatcher.match(S)&&(this.emit("scheduled-time-matched",R),R.setMilliseconds(0),i=R)}t=process.hrtime(),this.timeout=setTimeout(s,1e3)};s()}stop(){this.timeout&&clearTimeout(this.timeout),this.timeout=null}};li.exports=Or});function it(){return Yt>Gt.length-16&&(ui.default.randomFillSync(Gt),Yt=0),Gt.slice(Yt,Yt+=16)}var ui,Gt,Yt,Ur=ee(()=>{ui=M(require("crypto")),Gt=new Uint8Array(256),Yt=Gt.length});var di,pi=ee(()=>{di=/^(?:[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}|00000000-0000-0000-0000-000000000000)$/i});function fo(c){return typeof c=="string"&&di.test(c)}var ke,st=ee(()=>{pi();ke=fo});function yo(c,t=0){let i=(z[c[t+0]]+z[c[t+1]]+z[c[t+2]]+z[c[t+3]]+"-"+z[c[t+4]]+z[c[t+5]]+"-"+z[c[t+6]]+z[c[t+7]]+"-"+z[c[t+8]]+z[c[t+9]]+"-"+z[c[t+10]]+z[c[t+11]]+z[c[t+12]]+z[c[t+13]]+z[c[t+14]]+z[c[t+15]]).toLowerCase();if(!ke(i))throw TypeError("Stringified UUID is invalid");return i}var z,Re,ot=ee(()=>{st();z=[];for(let c=0;c<256;++c)z.push((c+256).toString(16).substr(1));Re=yo});function bo(c,t,i){let s=t&&i||0,l=t||new Array(16);c=c||{};let o=c.node||hi,p=c.clockseq!==void 0?c.clockseq:Fr;if(o==null||p==null){let P=c.random||(c.rng||it)();o==null&&(o=hi=[P[0]|1,P[1],P[2],P[3],P[4],P[5]]),p==null&&(p=Fr=(P[6]<<8|P[7])&16383)}let f=c.msecs!==void 0?c.msecs:Date.now(),b=c.nsecs!==void 0?c.nsecs:jr+1,S=f-qr+(b-jr)/1e4;if(S<0&&c.clockseq===void 0&&(p=p+1&16383),(S<0||f>qr)&&c.nsecs===void 0&&(b=0),b>=1e4)throw new Error("uuid.v1(): Can't create more than 10M uuids/sec");qr=f,jr=b,Fr=p,f+=122192928e5;let R=((f&268435455)*1e4+b)%4294967296;l[s++]=R>>>24&255,l[s++]=R>>>16&255,l[s++]=R>>>8&255,l[s++]=R&255;let C=f/4294967296*1e4&268435455;l[s++]=C>>>8&255,l[s++]=C&255,l[s++]=C>>>24&15|16,l[s++]=C>>>16&255,l[s++]=p>>>8|128,l[s++]=p&255;for(let P=0;P<6;++P)l[s+P]=o[P];return t||Re(l)}var hi,Fr,qr,jr,gi,mi=ee(()=>{Ur();ot();qr=0,jr=0;gi=bo});function vo(c){if(!ke(c))throw TypeError("Invalid UUID");let t,i=new Uint8Array(16);return i[0]=(t=parseInt(c.slice(0,8),16))>>>24,i[1]=t>>>16&255,i[2]=t>>>8&255,i[3]=t&255,i[4]=(t=parseInt(c.slice(9,13),16))>>>8,i[5]=t&255,i[6]=(t=parseInt(c.slice(14,18),16))>>>8,i[7]=t&255,i[8]=(t=parseInt(c.slice(19,23),16))>>>8,i[9]=t&255,i[10]=(t=parseInt(c.slice(24,36),16))/1099511627776&255,i[11]=t/4294967296&255,i[12]=t>>>24&255,i[13]=t>>>16&255,i[14]=t>>>8&255,i[15]=t&255,i}var Qt,Br=ee(()=>{st();Qt=vo});function wo(c){c=unescape(encodeURIComponent(c));let t=[];for(let i=0;i<c.length;++i)t.push(c.charCodeAt(i));return t}function Zt(c,t,i){function s(l,o,p,f){if(typeof l=="string"&&(l=wo(l)),typeof o=="string"&&(o=Qt(o)),o.length!==16)throw TypeError("Namespace must be array-like (16 iterable integer values, 0-255)");let b=new Uint8Array(16+l.length);if(b.set(o),b.set(l,o.length),b=i(b),b[6]=b[6]&15|t,b[8]=b[8]&63|128,p){f=f||0;for(let S=0;S<16;++S)p[f+S]=b[S];return p}return Re(b)}try{s.name=c}catch{}return s.DNS=Eo,s.URL=xo,s}var Eo,xo,Vr=ee(()=>{ot();Br();Eo="6ba7b810-9dad-11d1-80b4-00c04fd430c8",xo="6ba7b811-9dad-11d1-80b4-00c04fd430c8"});function _o(c){return Array.isArray(c)?c=Buffer.from(c):typeof c=="string"&&(c=Buffer.from(c,"utf8")),fi.default.createHash("md5").update(c).digest()}var fi,yi,bi=ee(()=>{fi=M(require("crypto"));yi=_o});var To,vi,wi=ee(()=>{Vr();bi();To=Zt("v3",48,yi),vi=To});function So(c,t,i){c=c||{};let s=c.random||(c.rng||it)();if(s[6]=s[6]&15|64,s[8]=s[8]&63|128,t){i=i||0;for(let l=0;l<16;++l)t[i+l]=s[l];return t}return Re(s)}var Ei,xi=ee(()=>{Ur();ot();Ei=So});function ko(c){return Array.isArray(c)?c=Buffer.from(c):typeof c=="string"&&(c=Buffer.from(c,"utf8")),_i.default.createHash("sha1").update(c).digest()}var _i,Ti,Si=ee(()=>{_i=M(require("crypto"));Ti=ko});var Ro,ki,Ri=ee(()=>{Vr();Si();Ro=Zt("v5",80,Ti),ki=Ro});var Ai,Ii=ee(()=>{Ai="00000000-0000-0000-0000-000000000000"});function Ao(c){if(!ke(c))throw TypeError("Invalid UUID");return parseInt(c.substr(14,1),16)}var Pi,Li=ee(()=>{st();Pi=Ao});var er={};Un(er,{NIL:()=>Ai,parse:()=>Qt,stringify:()=>Re,v1:()=>gi,v3:()=>vi,v4:()=>Ei,v5:()=>ki,validate:()=>ke,version:()=>Pi});var tr=ee(()=>{mi();wi();xi();Ri();Ii();Li();st();ot();Br()});var Di=te((Pl,Ni)=>{"use strict";var Io=require("events"),Po=Xn(),Lo=ci(),No=(tr(),St(er)),Hr=class extends Io{constructor(t,i,s){super(),s||(s={scheduled:!0,recoverMissedExecutions:!1}),this.options=s,this.options.name=this.options.name||No.v4(),this._task=new Po(i),this._scheduler=new Lo(t,s.timezone,s.recoverMissedExecutions),this._scheduler.on("scheduled-time-matched",l=>{this.now(l)}),s.scheduled!==!1&&this._scheduler.start(),s.runOnInit===!0&&this.now("init")}now(t="manual"){let i=this._task.execute(t);this.emit("task-done",i)}start(){this._scheduler.start()}stop(){this._scheduler.stop()}};Ni.exports=Hr});var Mi=te((Ll,$i)=>{var Do=require("events"),$o=require("path"),{fork:Mo}=require("child_process"),Co=(tr(),St(er)),Oo=`${__dirname}/daemon.js`,Kr=class extends Do{constructor(t,i,s){super(),s||(s={scheduled:!0,recoverMissedExecutions:!1}),this.cronExpression=t,this.taskPath=i,this.options=s,this.options.name=this.options.name||Co.v4(),s.scheduled&&this.start()}start(){this.stop(),this.forkProcess=Mo(Oo),this.forkProcess.on("message",i=>{switch(i.type){case"task-done":this.emit("task-done",i.result);break}});let t=this.options;t.scheduled=!0,this.forkProcess.send({type:"register",path:$o.resolve(this.taskPath),cron:this.cronExpression,options:t})}stop(){this.forkProcess&&this.forkProcess.kill()}pid(){if(this.forkProcess)return this.forkProcess.pid}isRunning(){return!this.forkProcess.killed}};$i.exports=Kr});var Oi=te((Nl,Ci)=>{Ci.exports=(global.scheduledTasks||(global.scheduledTasks=new Map),{save:c=>{if(!c.options){let t=(tr(),St(er));c.options={},c.options.name=t.v4()}global.scheduledTasks.set(c.options.name,c)},getTasks:()=>global.scheduledTasks})});var qi=te((Dl,Fi)=>{"use strict";var Uo=Di(),Fo=Mi(),qo=Mr(),Ui=Oi();function jo(c,t,i){let s=Bo(c,t,i);return Ui.save(s),s}function Bo(c,t,i){return typeof t=="string"?new Fo(c,t,i):new Uo(c,t,i)}function Vo(c){try{return qo(c),!0}catch{return!1}}function Ho(){return Ui.getTasks()}Fi.exports={schedule:jo,validate:Vo,getTasks:Ho}});var Xo={};Un(Xo,{activate:()=>Ko,deactivate:()=>Jo});module.exports=St(Xo);var H=M(require("vscode"));var de=M(require("vscode")),kt=class{constructor(t){this.db=t}_onDidChangeTreeData=new de.EventEmitter;onDidChangeTreeData=this._onDidChangeTreeData.event;refresh(){this._onDidChangeTreeData.fire()}getTreeItem(t){return t}getChildren(t){if(t)return t.recordingId?this.db.getActions(t.recordingId).map((l,o)=>{let p=new nt(`${o+1}. ${l.action_type} \u2014 ${l.url||""}`,de.TreeItemCollapsibleState.None);return p.description=`${l.timestamp_ms}ms`,p.iconPath=new de.ThemeIcon("debug-step-over"),p}):[];let i=this.db.getAllRecordings();return i.length===0?[new nt("No recordings yet. Click + to start.",de.TreeItemCollapsibleState.None)]:i.map(s=>{let l=new nt(s.name,de.TreeItemCollapsibleState.Collapsed);return l.recordingId=s.id,l.contextValue="recording",l.description=`${s.action_count} actions \xB7 ${new Date(s.created_at).toLocaleDateString()}`,l.tooltip=`URL: ${s.url}
-Tags: ${s.tags||"none"}
-Duration: ${s.duration_ms}ms`,l.iconPath=new de.ThemeIcon("file-media"),l})}},nt=class extends de.TreeItem{recordingId};var fe=M(require("vscode")),Rt=class{constructor(t){this.db=t}_onDidChangeTreeData=new fe.EventEmitter;onDidChangeTreeData=this._onDidChangeTreeData.event;refresh(){this._onDidChangeTreeData.fire()}getTreeItem(t){return t}getChildren(){let t=this.db.getRecentExecutions(20);return t.length===0?[new fe.TreeItem("No executions yet.")]:t.map(i=>{let s=this.db.getRecording(i.recording_id),l=i.status==="pass"?"pass":i.status==="fail"?"error":"warning",o=new fe.TreeItem(s?.name||i.recording_id,fe.TreeItemCollapsibleState.None);return o.description=`${i.status} \xB7 ${i.trigger} \xB7 ${new Date(i.started_at).toLocaleString()}`,o.iconPath=new fe.ThemeIcon(`testing-${l}-icon`),o.tooltip=i.error_message?`Failed at step ${i.failure_step}: ${i.error_message}`:`Completed in ${i.finished_at?new Date(i.finished_at).getTime()-new Date(i.started_at).getTime():"?"}ms`,o})}};var ye=M(require("vscode")),At=class{constructor(t){this.db=t}_onDidChangeTreeData=new ye.EventEmitter;onDidChangeTreeData=this._onDidChangeTreeData.event;refresh(){this._onDidChangeTreeData.fire()}getTreeItem(t){return t}getChildren(){let t=this.db.getAllSchedules();return t.length===0?[new ye.TreeItem("No schedules configured.")]:t.map(i=>{let s=this.db.getRecording(i.recording_id),l=new ye.TreeItem(s?.name||i.recording_id,ye.TreeItemCollapsibleState.None);return l.description=`${i.cron_expression} \xB7 ${i.enabled?"Active":"Paused"}`,l.iconPath=new ye.ThemeIcon(i.enabled?"clock":"debug-pause"),l.tooltip=`Next run: ${i.next_run||"N/A"}
-Last run: ${i.last_run||"Never"}`,l})}};var _e=M(require("vscode")),It=class{constructor(t,i,s,l){this.context=t;this.recorder=i;this.onRecordingSaved=s;this.onRecordingStarted=l}panel;async show(){if(this.panel){this.panel.reveal(_e.ViewColumn.One);return}this.panel=_e.window.createWebviewPanel("playwrightVcr.recording","PlaywrightVCR \u2014 Record",_e.ViewColumn.One,{enableScripts:!0,retainContextWhenHidden:!0,localResourceRoots:[_e.Uri.joinPath(this.context.extensionUri,"out")]}),this.panel.webview.html=this.getHtml(this.panel.webview),this.panel.webview.onDidReceiveMessage(async t=>{switch(t.type){case"startRecording":{let{url:i,browser:s,saveAuth:l}=t.payload;await this.recorder.start(i,s,l),this.onRecordingStarted?.(),this.recorder.onAction(o=>{this.panel?.webview.postMessage({type:"recordedAction",payload:o})});break}case"stopRecording":{let i=await this.recorder.stop();this.panel?.webview.postMessage({type:"recordingStopped",payload:i}),this.onRecordingSaved?.();break}}}),this.panel.onDidDispose(()=>{this.panel=void 0})}getHtml(t){let i=t.asWebviewUri(_e.Uri.joinPath(this.context.extensionUri,"out","webview.js")),s=Bs();return`<!DOCTYPE html>
+"use strict";
+var __create = Object.create;
+var __defProp = Object.defineProperty;
+var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
+var __getOwnPropNames = Object.getOwnPropertyNames;
+var __getProtoOf = Object.getPrototypeOf;
+var __hasOwnProp = Object.prototype.hasOwnProperty;
+var __esm = (fn, res) => function __init() {
+  return fn && (res = (0, fn[__getOwnPropNames(fn)[0]])(fn = 0)), res;
+};
+var __commonJS = (cb, mod) => function __require() {
+  return mod || (0, cb[__getOwnPropNames(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
+};
+var __export = (target, all) => {
+  for (var name in all)
+    __defProp(target, name, { get: all[name], enumerable: true });
+};
+var __copyProps = (to, from, except, desc) => {
+  if (from && typeof from === "object" || typeof from === "function") {
+    for (let key of __getOwnPropNames(from))
+      if (!__hasOwnProp.call(to, key) && key !== except)
+        __defProp(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
+  }
+  return to;
+};
+var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__getProtoOf(mod)) : {}, __copyProps(
+  // If the importer is in node compatibility mode or this is not an ESM
+  // file that has been converted to a CommonJS file using a Babel-
+  // compatible transform (i.e. "__esModule" has not been set), then set
+  // "default" to the CommonJS "module.exports" for node compatibility.
+  isNodeMode || !mod || !mod.__esModule ? __defProp(target, "default", { value: mod, enumerable: true }) : target,
+  mod
+));
+var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
+
+// node_modules/sql.js/dist/sql-wasm.js
+var require_sql_wasm = __commonJS({
+  "node_modules/sql.js/dist/sql-wasm.js"(exports2, module2) {
+    var initSqlJsPromise = void 0;
+    var initSqlJs2 = function(moduleConfig) {
+      if (initSqlJsPromise) {
+        return initSqlJsPromise;
+      }
+      initSqlJsPromise = new Promise(function(resolveModule, reject) {
+        var Module = typeof moduleConfig !== "undefined" ? moduleConfig : {};
+        var originalOnAbortFunction = Module["onAbort"];
+        Module["onAbort"] = function(errorThatCausedAbort) {
+          reject(new Error(errorThatCausedAbort));
+          if (originalOnAbortFunction) {
+            originalOnAbortFunction(errorThatCausedAbort);
+          }
+        };
+        Module["postRun"] = Module["postRun"] || [];
+        Module["postRun"].push(function() {
+          resolveModule(Module);
+        });
+        module2 = void 0;
+        var k;
+        k ||= typeof Module != "undefined" ? Module : {};
+        var aa = !!globalThis.window, ba = !!globalThis.WorkerGlobalScope, ca = globalThis.process?.versions?.node && "renderer" != globalThis.process?.type;
+        k.onRuntimeInitialized = function() {
+          function a(f, l) {
+            switch (typeof l) {
+              case "boolean":
+                dc(f, l ? 1 : 0);
+                break;
+              case "number":
+                ec(f, l);
+                break;
+              case "string":
+                fc(f, l, -1, -1);
+                break;
+              case "object":
+                if (null === l)
+                  lb(f);
+                else if (null != l.length) {
+                  var n = da(l.length);
+                  m.set(l, n);
+                  gc(f, n, l.length, -1);
+                  ea(n);
+                } else
+                  sa(f, "Wrong API use : tried to return a value of an unknown type (" + l + ").", -1);
+                break;
+              default:
+                lb(f);
+            }
+          }
+          function b(f, l) {
+            for (var n = [], p = 0; p < f; p += 1) {
+              var u = r(l + 4 * p, "i32"), v = hc(u);
+              if (1 === v || 2 === v)
+                u = ic(u);
+              else if (3 === v)
+                u = jc(u);
+              else if (4 === v) {
+                v = u;
+                u = kc(v);
+                v = lc(v);
+                for (var K = new Uint8Array(u), I = 0; I < u; I += 1)
+                  K[I] = m[v + I];
+                u = K;
+              } else
+                u = null;
+              n.push(u);
+            }
+            return n;
+          }
+          function c(f, l) {
+            this.Qa = f;
+            this.db = l;
+            this.Oa = 1;
+            this.lb = [];
+          }
+          function d(f, l) {
+            this.db = l;
+            this.eb = fa(f);
+            if (null === this.eb)
+              throw Error("Unable to allocate memory for the SQL string");
+            this.kb = this.eb;
+            this.Za = this.qb = null;
+          }
+          function e(f) {
+            this.filename = "dbfile_" + (4294967295 * Math.random() >>> 0);
+            if (null != f) {
+              var l = this.filename, n = "/", p = l;
+              n && (n = "string" == typeof n ? n : ha(n), p = l ? ia(n + "/" + l) : n);
+              l = ja(true, true);
+              p = ka(
+                p,
+                l
+              );
+              if (f) {
+                if ("string" == typeof f) {
+                  n = Array(f.length);
+                  for (var u = 0, v = f.length; u < v; ++u)
+                    n[u] = f.charCodeAt(u);
+                  f = n;
+                }
+                la(p, l | 146);
+                n = ma(p, 577);
+                na(n, f, 0, f.length, 0);
+                oa(n);
+                la(p, l);
+              }
+            }
+            this.handleError(q(this.filename, g));
+            this.db = r(g, "i32");
+            ob(this.db);
+            this.fb = {};
+            this.Sa = {};
+          }
+          var g = y(4), h = k.cwrap, q = h("sqlite3_open", "number", ["string", "number"]), w = h("sqlite3_close_v2", "number", ["number"]), t = h("sqlite3_exec", "number", ["number", "string", "number", "number", "number"]), x = h("sqlite3_changes", "number", ["number"]), D = h(
+            "sqlite3_prepare_v2",
+            "number",
+            ["number", "string", "number", "number", "number"]
+          ), pb = h("sqlite3_sql", "string", ["number"]), nc = h("sqlite3_normalized_sql", "string", ["number"]), qb = h("sqlite3_prepare_v2", "number", ["number", "number", "number", "number", "number"]), oc = h("sqlite3_bind_text", "number", ["number", "number", "number", "number", "number"]), rb = h("sqlite3_bind_blob", "number", ["number", "number", "number", "number", "number"]), pc = h("sqlite3_bind_double", "number", ["number", "number", "number"]), qc = h("sqlite3_bind_int", "number", [
+            "number",
+            "number",
+            "number"
+          ]), rc = h("sqlite3_bind_parameter_index", "number", ["number", "string"]), sc = h("sqlite3_step", "number", ["number"]), tc = h("sqlite3_errmsg", "string", ["number"]), uc = h("sqlite3_column_count", "number", ["number"]), vc = h("sqlite3_data_count", "number", ["number"]), wc = h("sqlite3_column_double", "number", ["number", "number"]), sb = h("sqlite3_column_text", "string", ["number", "number"]), xc = h("sqlite3_column_blob", "number", ["number", "number"]), yc = h("sqlite3_column_bytes", "number", ["number", "number"]), zc = h(
+            "sqlite3_column_type",
+            "number",
+            ["number", "number"]
+          ), Ac = h("sqlite3_column_name", "string", ["number", "number"]), Bc = h("sqlite3_reset", "number", ["number"]), Cc = h("sqlite3_clear_bindings", "number", ["number"]), Dc = h("sqlite3_finalize", "number", ["number"]), tb = h("sqlite3_create_function_v2", "number", "number string number number number number number number number".split(" ")), hc = h("sqlite3_value_type", "number", ["number"]), kc = h("sqlite3_value_bytes", "number", ["number"]), jc = h("sqlite3_value_text", "string", ["number"]), lc = h(
+            "sqlite3_value_blob",
+            "number",
+            ["number"]
+          ), ic = h("sqlite3_value_double", "number", ["number"]), ec = h("sqlite3_result_double", "", ["number", "number"]), lb = h("sqlite3_result_null", "", ["number"]), fc = h("sqlite3_result_text", "", ["number", "string", "number", "number"]), gc = h("sqlite3_result_blob", "", ["number", "number", "number", "number"]), dc = h("sqlite3_result_int", "", ["number", "number"]), sa = h("sqlite3_result_error", "", ["number", "string", "number"]), ub = h("sqlite3_aggregate_context", "number", ["number", "number"]), ob = h(
+            "RegisterExtensionFunctions",
+            "number",
+            ["number"]
+          ), vb = h("sqlite3_update_hook", "number", ["number", "number", "number"]);
+          c.prototype.bind = function(f) {
+            if (!this.Qa)
+              throw "Statement closed";
+            this.reset();
+            return Array.isArray(f) ? this.Cb(f) : null != f && "object" === typeof f ? this.Db(f) : true;
+          };
+          c.prototype.step = function() {
+            if (!this.Qa)
+              throw "Statement closed";
+            this.Oa = 1;
+            var f = sc(this.Qa);
+            switch (f) {
+              case 100:
+                return true;
+              case 101:
+                return false;
+              default:
+                throw this.db.handleError(f);
+            }
+          };
+          c.prototype.wb = function(f) {
+            null == f && (f = this.Oa, this.Oa += 1);
+            return wc(this.Qa, f);
+          };
+          c.prototype.Gb = function(f) {
+            null == f && (f = this.Oa, this.Oa += 1);
+            f = sb(this.Qa, f);
+            if ("function" !== typeof BigInt)
+              throw Error("BigInt is not supported");
+            return BigInt(f);
+          };
+          c.prototype.Hb = function(f) {
+            null == f && (f = this.Oa, this.Oa += 1);
+            return sb(this.Qa, f);
+          };
+          c.prototype.getBlob = function(f) {
+            null == f && (f = this.Oa, this.Oa += 1);
+            var l = yc(this.Qa, f);
+            f = xc(this.Qa, f);
+            for (var n = new Uint8Array(l), p = 0; p < l; p += 1)
+              n[p] = m[f + p];
+            return n;
+          };
+          c.prototype.get = function(f, l) {
+            l = l || {};
+            null != f && this.bind(f) && this.step();
+            f = [];
+            for (var n = vc(this.Qa), p = 0; p < n; p += 1)
+              switch (zc(this.Qa, p)) {
+                case 1:
+                  var u = l.useBigInt ? this.Gb(p) : this.wb(p);
+                  f.push(u);
+                  break;
+                case 2:
+                  f.push(this.wb(p));
+                  break;
+                case 3:
+                  f.push(this.Hb(p));
+                  break;
+                case 4:
+                  f.push(this.getBlob(p));
+                  break;
+                default:
+                  f.push(null);
+              }
+            return f;
+          };
+          c.prototype.getColumnNames = function() {
+            for (var f = [], l = uc(this.Qa), n = 0; n < l; n += 1)
+              f.push(Ac(this.Qa, n));
+            return f;
+          };
+          c.prototype.getAsObject = function(f, l) {
+            f = this.get(f, l);
+            l = this.getColumnNames();
+            for (var n = {}, p = 0; p < l.length; p += 1)
+              n[l[p]] = f[p];
+            return n;
+          };
+          c.prototype.getSQL = function() {
+            return pb(this.Qa);
+          };
+          c.prototype.getNormalizedSQL = function() {
+            return nc(this.Qa);
+          };
+          c.prototype.run = function(f) {
+            null != f && this.bind(f);
+            this.step();
+            return this.reset();
+          };
+          c.prototype.tb = function(f, l) {
+            null == l && (l = this.Oa, this.Oa += 1);
+            f = fa(f);
+            this.lb.push(f);
+            this.db.handleError(oc(this.Qa, l, f, -1, 0));
+          };
+          c.prototype.Bb = function(f, l) {
+            null == l && (l = this.Oa, this.Oa += 1);
+            var n = da(f.length);
+            m.set(f, n);
+            this.lb.push(n);
+            this.db.handleError(rb(this.Qa, l, n, f.length, 0));
+          };
+          c.prototype.sb = function(f, l) {
+            null == l && (l = this.Oa, this.Oa += 1);
+            this.db.handleError((f === (f | 0) ? qc : pc)(this.Qa, l, f));
+          };
+          c.prototype.Eb = function(f) {
+            null == f && (f = this.Oa, this.Oa += 1);
+            rb(this.Qa, f, 0, 0, 0);
+          };
+          c.prototype.ub = function(f, l) {
+            null == l && (l = this.Oa, this.Oa += 1);
+            switch (typeof f) {
+              case "string":
+                this.tb(f, l);
+                return;
+              case "number":
+                this.sb(f, l);
+                return;
+              case "bigint":
+                this.tb(f.toString(), l);
+                return;
+              case "boolean":
+                this.sb(f + 0, l);
+                return;
+              case "object":
+                if (null === f) {
+                  this.Eb(l);
+                  return;
+                }
+                if (null != f.length) {
+                  this.Bb(f, l);
+                  return;
+                }
+            }
+            throw "Wrong API use : tried to bind a value of an unknown type (" + f + ").";
+          };
+          c.prototype.Db = function(f) {
+            var l = this;
+            Object.keys(f).forEach(function(n) {
+              var p = rc(l.Qa, n);
+              0 !== p && l.ub(f[n], p);
+            });
+            return true;
+          };
+          c.prototype.Cb = function(f) {
+            for (var l = 0; l < f.length; l += 1)
+              this.ub(f[l], l + 1);
+            return true;
+          };
+          c.prototype.reset = function() {
+            this.freemem();
+            return 0 === Cc(this.Qa) && 0 === Bc(this.Qa);
+          };
+          c.prototype.freemem = function() {
+            for (var f; void 0 !== (f = this.lb.pop()); )
+              ea(f);
+          };
+          c.prototype.free = function() {
+            this.freemem();
+            var f = 0 === Dc(this.Qa);
+            delete this.db.fb[this.Qa];
+            this.Qa = 0;
+            return f;
+          };
+          d.prototype.next = function() {
+            if (null === this.eb)
+              return { done: true };
+            null !== this.Za && (this.Za.free(), this.Za = null);
+            if (!this.db.db)
+              throw this.nb(), Error("Database closed");
+            var f = pa(), l = y(4);
+            qa(g);
+            qa(l);
+            try {
+              this.db.handleError(qb(this.db.db, this.kb, -1, g, l));
+              this.kb = r(l, "i32");
+              var n = r(g, "i32");
+              if (0 === n)
+                return this.nb(), { done: true };
+              this.Za = new c(n, this.db);
+              this.db.fb[n] = this.Za;
+              return { value: this.Za, done: false };
+            } catch (p) {
+              throw this.qb = z(this.kb), this.nb(), p;
+            } finally {
+              ra(f);
+            }
+          };
+          d.prototype.nb = function() {
+            ea(this.eb);
+            this.eb = null;
+          };
+          d.prototype.getRemainingSQL = function() {
+            return null !== this.qb ? this.qb : z(this.kb);
+          };
+          "function" === typeof Symbol && "symbol" === typeof Symbol.iterator && (d.prototype[Symbol.iterator] = function() {
+            return this;
+          });
+          e.prototype.run = function(f, l) {
+            if (!this.db)
+              throw "Database closed";
+            if (l) {
+              f = this.prepare(f, l);
+              try {
+                f.step();
+              } finally {
+                f.free();
+              }
+            } else
+              this.handleError(t(this.db, f, 0, 0, g));
+            return this;
+          };
+          e.prototype.exec = function(f, l, n) {
+            if (!this.db)
+              throw "Database closed";
+            var p = null, u = null, v = null;
+            try {
+              v = u = fa(f);
+              var K = y(4);
+              for (f = []; 0 !== r(v, "i8"); ) {
+                qa(g);
+                qa(K);
+                this.handleError(qb(this.db, v, -1, g, K));
+                var I = r(g, "i32");
+                v = r(K, "i32");
+                if (0 !== I) {
+                  var H = null;
+                  p = new c(I, this);
+                  for (null != l && p.bind(l); p.step(); )
+                    null === H && (H = { columns: p.getColumnNames(), values: [] }, f.push(H)), H.values.push(p.get(null, n));
+                  p.free();
+                }
+              }
+              return f;
+            } catch (L) {
+              throw p && p.free(), L;
+            } finally {
+              u && ea(u);
+            }
+          };
+          e.prototype.each = function(f, l, n, p, u) {
+            "function" === typeof l && (p = n, n = l, l = void 0);
+            f = this.prepare(f, l);
+            try {
+              for (; f.step(); )
+                n(f.getAsObject(null, u));
+            } finally {
+              f.free();
+            }
+            if ("function" === typeof p)
+              return p();
+          };
+          e.prototype.prepare = function(f, l) {
+            qa(g);
+            this.handleError(D(this.db, f, -1, g, 0));
+            f = r(g, "i32");
+            if (0 === f)
+              throw "Nothing to prepare";
+            var n = new c(f, this);
+            null != l && n.bind(l);
+            return this.fb[f] = n;
+          };
+          e.prototype.iterateStatements = function(f) {
+            return new d(f, this);
+          };
+          e.prototype["export"] = function() {
+            Object.values(this.fb).forEach(function(l) {
+              l.free();
+            });
+            Object.values(this.Sa).forEach(A);
+            this.Sa = {};
+            this.handleError(w(this.db));
+            var f = ta(this.filename);
+            this.handleError(q(this.filename, g));
+            this.db = r(g, "i32");
+            ob(this.db);
+            return f;
+          };
+          e.prototype.close = function() {
+            null !== this.db && (Object.values(this.fb).forEach(function(f) {
+              f.free();
+            }), Object.values(this.Sa).forEach(A), this.Sa = {}, this.Ya && (A(this.Ya), this.Ya = void 0), this.handleError(w(this.db)), ua("/" + this.filename), this.db = null);
+          };
+          e.prototype.handleError = function(f) {
+            if (0 === f)
+              return null;
+            f = tc(this.db);
+            throw Error(f);
+          };
+          e.prototype.getRowsModified = function() {
+            return x(this.db);
+          };
+          e.prototype.create_function = function(f, l) {
+            Object.prototype.hasOwnProperty.call(this.Sa, f) && (A(this.Sa[f]), delete this.Sa[f]);
+            var n = va(function(p, u, v) {
+              u = b(u, v);
+              try {
+                var K = l.apply(null, u);
+              } catch (I) {
+                sa(p, I, -1);
+                return;
+              }
+              a(p, K);
+            }, "viii");
+            this.Sa[f] = n;
+            this.handleError(tb(this.db, f, l.length, 1, 0, n, 0, 0, 0));
+            return this;
+          };
+          e.prototype.create_aggregate = function(f, l) {
+            var n = l.init || function() {
+              return null;
+            }, p = l.finalize || function(H) {
+              return H;
+            }, u = l.step;
+            if (!u)
+              throw "An aggregate function must have a step function in " + f;
+            var v = {};
+            Object.hasOwnProperty.call(this.Sa, f) && (A(this.Sa[f]), delete this.Sa[f]);
+            l = f + "__finalize";
+            Object.hasOwnProperty.call(
+              this.Sa,
+              l
+            ) && (A(this.Sa[l]), delete this.Sa[l]);
+            var K = va(function(H, L, Pa) {
+              var V = ub(H, 1);
+              Object.hasOwnProperty.call(v, V) || (v[V] = n());
+              L = b(L, Pa);
+              L = [v[V]].concat(L);
+              try {
+                v[V] = u.apply(null, L);
+              } catch (Fc) {
+                delete v[V], sa(H, Fc, -1);
+              }
+            }, "viii"), I = va(function(H) {
+              var L = ub(H, 1);
+              try {
+                var Pa = p(v[L]);
+              } catch (V) {
+                delete v[L];
+                sa(H, V, -1);
+                return;
+              }
+              a(H, Pa);
+              delete v[L];
+            }, "vi");
+            this.Sa[f] = K;
+            this.Sa[l] = I;
+            this.handleError(tb(this.db, f, u.length - 1, 1, 0, 0, K, I, 0));
+            return this;
+          };
+          e.prototype.updateHook = function(f) {
+            this.Ya && (vb(this.db, 0, 0), A(this.Ya), this.Ya = void 0);
+            if (!f)
+              return this;
+            this.Ya = va(function(l, n, p, u, v) {
+              switch (n) {
+                case 18:
+                  l = "insert";
+                  break;
+                case 23:
+                  l = "update";
+                  break;
+                case 9:
+                  l = "delete";
+                  break;
+                default:
+                  throw "unknown operationCode in updateHook callback: " + n;
+              }
+              p = z(p);
+              u = z(u);
+              if (v > Number.MAX_SAFE_INTEGER)
+                throw "rowId too big to fit inside a Number";
+              f(l, p, u, Number(v));
+            }, "viiiij");
+            vb(this.db, this.Ya, 0);
+            return this;
+          };
+          k.Database = e;
+        };
+        var wa = "./this.program", xa = (a, b) => {
+          throw b;
+        }, ya = globalThis.document?.currentScript?.src;
+        "undefined" != typeof __filename ? ya = __filename : ba && (ya = self.location.href);
+        var za = "", Aa, Ba;
+        if (ca) {
+          var fs4 = require("node:fs");
+          za = __dirname + "/";
+          Ba = (a) => {
+            a = Ca(a) ? new URL(a) : a;
+            return fs4.readFileSync(a);
+          };
+          Aa = async (a) => {
+            a = Ca(a) ? new URL(a) : a;
+            return fs4.readFileSync(a, void 0);
+          };
+          1 < process.argv.length && (wa = process.argv[1].replace(/\\/g, "/"));
+          process.argv.slice(2);
+          "undefined" != typeof module2 && (module2.exports = k);
+          xa = (a, b) => {
+            process.exitCode = a;
+            throw b;
+          };
+        } else if (aa || ba) {
+          try {
+            za = new URL(".", ya).href;
+          } catch {
+          }
+          ba && (Ba = (a) => {
+            var b = new XMLHttpRequest();
+            b.open("GET", a, false);
+            b.responseType = "arraybuffer";
+            b.send(null);
+            return new Uint8Array(b.response);
+          });
+          Aa = async (a) => {
+            if (Ca(a))
+              return new Promise((c, d) => {
+                var e = new XMLHttpRequest();
+                e.open("GET", a, true);
+                e.responseType = "arraybuffer";
+                e.onload = () => {
+                  200 == e.status || 0 == e.status && e.response ? c(e.response) : d(e.status);
+                };
+                e.onerror = d;
+                e.send(null);
+              });
+            var b = await fetch(a, { credentials: "same-origin" });
+            if (b.ok)
+              return b.arrayBuffer();
+            throw Error(b.status + " : " + b.url);
+          };
+        }
+        var Da = console.log.bind(console), B = console.error.bind(console), Ea, Fa = false, Ga, Ca = (a) => a.startsWith("file://"), m, C, Ha, E, F, Ia, Ja, G;
+        function Ka() {
+          var a = La.buffer;
+          m = new Int8Array(a);
+          Ha = new Int16Array(a);
+          C = new Uint8Array(a);
+          new Uint16Array(a);
+          E = new Int32Array(a);
+          F = new Uint32Array(a);
+          Ia = new Float32Array(a);
+          Ja = new Float64Array(a);
+          G = new BigInt64Array(a);
+          new BigUint64Array(a);
+        }
+        function Ma(a) {
+          k.onAbort?.(a);
+          a = "Aborted(" + a + ")";
+          B(a);
+          Fa = true;
+          throw new WebAssembly.RuntimeError(a + ". Build with -sASSERTIONS for more info.");
+        }
+        var Na;
+        async function Oa(a) {
+          if (!Ea)
+            try {
+              var b = await Aa(a);
+              return new Uint8Array(b);
+            } catch {
+            }
+          if (a == Na && Ea)
+            a = new Uint8Array(Ea);
+          else if (Ba)
+            a = Ba(a);
+          else
+            throw "both async and sync fetching of the wasm failed";
+          return a;
+        }
+        async function Qa(a, b) {
+          try {
+            var c = await Oa(a);
+            return await WebAssembly.instantiate(c, b);
+          } catch (d) {
+            B(`failed to asynchronously prepare wasm: ${d}`), Ma(d);
+          }
+        }
+        async function Ra(a) {
+          var b = Na;
+          if (!Ea && !Ca(b) && !ca)
+            try {
+              var c = fetch(b, { credentials: "same-origin" });
+              return await WebAssembly.instantiateStreaming(c, a);
+            } catch (d) {
+              B(`wasm streaming compile failed: ${d}`), B("falling back to ArrayBuffer instantiation");
+            }
+          return Qa(b, a);
+        }
+        class Sa {
+          name = "ExitStatus";
+          constructor(a) {
+            this.message = `Program terminated with exit(${a})`;
+            this.status = a;
+          }
+        }
+        var Ta = (a) => {
+          for (; 0 < a.length; )
+            a.shift()(k);
+        }, Ua = [], Va = [], Wa = () => {
+          var a = k.preRun.shift();
+          Va.push(a);
+        }, J = 0, Xa = null;
+        function r(a, b = "i8") {
+          b.endsWith("*") && (b = "*");
+          switch (b) {
+            case "i1":
+              return m[a];
+            case "i8":
+              return m[a];
+            case "i16":
+              return Ha[a >> 1];
+            case "i32":
+              return E[a >> 2];
+            case "i64":
+              return G[a >> 3];
+            case "float":
+              return Ia[a >> 2];
+            case "double":
+              return Ja[a >> 3];
+            case "*":
+              return F[a >> 2];
+            default:
+              Ma(`invalid type for getValue: ${b}`);
+          }
+        }
+        var Ya = true;
+        function qa(a) {
+          var b = "i32";
+          b.endsWith("*") && (b = "*");
+          switch (b) {
+            case "i1":
+              m[a] = 0;
+              break;
+            case "i8":
+              m[a] = 0;
+              break;
+            case "i16":
+              Ha[a >> 1] = 0;
+              break;
+            case "i32":
+              E[a >> 2] = 0;
+              break;
+            case "i64":
+              G[a >> 3] = BigInt(0);
+              break;
+            case "float":
+              Ia[a >> 2] = 0;
+              break;
+            case "double":
+              Ja[a >> 3] = 0;
+              break;
+            case "*":
+              F[a >> 2] = 0;
+              break;
+            default:
+              Ma(`invalid type for setValue: ${b}`);
+          }
+        }
+        var Za = new TextDecoder(), $a = (a, b, c, d) => {
+          c = b + c;
+          if (d)
+            return c;
+          for (; a[b] && !(b >= c); )
+            ++b;
+          return b;
+        }, z = (a, b, c) => a ? Za.decode(C.subarray(a, $a(C, a, b, c))) : "", ab = (a, b) => {
+          for (var c = 0, d = a.length - 1; 0 <= d; d--) {
+            var e = a[d];
+            "." === e ? a.splice(d, 1) : ".." === e ? (a.splice(d, 1), c++) : c && (a.splice(d, 1), c--);
+          }
+          if (b)
+            for (; c; c--)
+              a.unshift("..");
+          return a;
+        }, ia = (a) => {
+          var b = "/" === a.charAt(0), c = "/" === a.slice(-1);
+          (a = ab(a.split("/").filter((d) => !!d), !b).join("/")) || b || (a = ".");
+          a && c && (a += "/");
+          return (b ? "/" : "") + a;
+        }, bb = (a) => {
+          var b = /^(\/?|)([\s\S]*?)((?:\.{1,2}|[^\/]+?|)(\.[^.\/]*|))(?:[\/]*)$/.exec(a).slice(1);
+          a = b[0];
+          b = b[1];
+          if (!a && !b)
+            return ".";
+          b &&= b.slice(0, -1);
+          return a + b;
+        }, cb = (a) => a && a.match(/([^\/]+|\/)\/*$/)[1], db = () => {
+          if (ca) {
+            var a = require("node:crypto");
+            return (b) => a.randomFillSync(b);
+          }
+          return (b) => crypto.getRandomValues(b);
+        }, eb = (a) => {
+          (eb = db())(a);
+        }, fb = (...a) => {
+          for (var b = "", c = false, d = a.length - 1; -1 <= d && !c; d--) {
+            c = 0 <= d ? a[d] : "/";
+            if ("string" != typeof c)
+              throw new TypeError("Arguments to path.resolve must be strings");
+            if (!c)
+              return "";
+            b = c + "/" + b;
+            c = "/" === c.charAt(0);
+          }
+          b = ab(b.split("/").filter((e) => !!e), !c).join("/");
+          return (c ? "/" : "") + b || ".";
+        }, gb = (a) => {
+          var b = $a(a, 0);
+          return Za.decode(a.buffer ? a.subarray(0, b) : new Uint8Array(a.slice(0, b)));
+        }, hb = [], ib = (a) => {
+          for (var b = 0, c = 0; c < a.length; ++c) {
+            var d = a.charCodeAt(c);
+            127 >= d ? b++ : 2047 >= d ? b += 2 : 55296 <= d && 57343 >= d ? (b += 4, ++c) : b += 3;
+          }
+          return b;
+        }, M = (a, b, c, d) => {
+          if (!(0 < d))
+            return 0;
+          var e = c;
+          d = c + d - 1;
+          for (var g = 0; g < a.length; ++g) {
+            var h = a.codePointAt(g);
+            if (127 >= h) {
+              if (c >= d)
+                break;
+              b[c++] = h;
+            } else if (2047 >= h) {
+              if (c + 1 >= d)
+                break;
+              b[c++] = 192 | h >> 6;
+              b[c++] = 128 | h & 63;
+            } else if (65535 >= h) {
+              if (c + 2 >= d)
+                break;
+              b[c++] = 224 | h >> 12;
+              b[c++] = 128 | h >> 6 & 63;
+              b[c++] = 128 | h & 63;
+            } else {
+              if (c + 3 >= d)
+                break;
+              b[c++] = 240 | h >> 18;
+              b[c++] = 128 | h >> 12 & 63;
+              b[c++] = 128 | h >> 6 & 63;
+              b[c++] = 128 | h & 63;
+              g++;
+            }
+          }
+          b[c] = 0;
+          return c - e;
+        }, jb = [];
+        function kb(a, b) {
+          jb[a] = { input: [], output: [], cb: b };
+          mb(a, nb);
+        }
+        var nb = { open(a) {
+          var b = jb[a.node.rdev];
+          if (!b)
+            throw new N(43);
+          a.tty = b;
+          a.seekable = false;
+        }, close(a) {
+          a.tty.cb.fsync(a.tty);
+        }, fsync(a) {
+          a.tty.cb.fsync(a.tty);
+        }, read(a, b, c, d) {
+          if (!a.tty || !a.tty.cb.xb)
+            throw new N(60);
+          for (var e = 0, g = 0; g < d; g++) {
+            try {
+              var h = a.tty.cb.xb(a.tty);
+            } catch (q) {
+              throw new N(29);
+            }
+            if (void 0 === h && 0 === e)
+              throw new N(6);
+            if (null === h || void 0 === h)
+              break;
+            e++;
+            b[c + g] = h;
+          }
+          e && (a.node.atime = Date.now());
+          return e;
+        }, write(a, b, c, d) {
+          if (!a.tty || !a.tty.cb.rb)
+            throw new N(60);
+          try {
+            for (var e = 0; e < d; e++)
+              a.tty.cb.rb(a.tty, b[c + e]);
+          } catch (g) {
+            throw new N(29);
+          }
+          d && (a.node.mtime = a.node.ctime = Date.now());
+          return e;
+        } }, wb = { xb() {
+          a: {
+            if (!hb.length) {
+              var a = null;
+              if (ca) {
+                var b = Buffer.alloc(256), c = 0, d = process.stdin.fd;
+                try {
+                  c = fs4.readSync(d, b, 0, 256);
+                } catch (e) {
+                  if (e.toString().includes("EOF"))
+                    c = 0;
+                  else
+                    throw e;
+                }
+                0 < c && (a = b.slice(0, c).toString("utf-8"));
+              } else
+                globalThis.window?.prompt && (a = window.prompt("Input: "), null !== a && (a += "\n"));
+              if (!a) {
+                a = null;
+                break a;
+              }
+              b = Array(ib(a) + 1);
+              a = M(a, b, 0, b.length);
+              b.length = a;
+              hb = b;
+            }
+            a = hb.shift();
+          }
+          return a;
+        }, rb(a, b) {
+          null === b || 10 === b ? (Da(gb(a.output)), a.output = []) : 0 != b && a.output.push(b);
+        }, fsync(a) {
+          0 < a.output?.length && (Da(gb(a.output)), a.output = []);
+        }, Tb() {
+          return { Ob: 25856, Qb: 5, Nb: 191, Pb: 35387, Mb: [3, 28, 127, 21, 4, 0, 1, 0, 17, 19, 26, 0, 18, 15, 23, 22, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] };
+        }, Ub() {
+          return 0;
+        }, Vb() {
+          return [24, 80];
+        } }, xb = { rb(a, b) {
+          null === b || 10 === b ? (B(gb(a.output)), a.output = []) : 0 != b && a.output.push(b);
+        }, fsync(a) {
+          0 < a.output?.length && (B(gb(a.output)), a.output = []);
+        } }, O = { Wa: null, Xa() {
+          return O.createNode(null, "/", 16895, 0);
+        }, createNode(a, b, c, d) {
+          if (24576 === (c & 61440) || 4096 === (c & 61440))
+            throw new N(63);
+          O.Wa || (O.Wa = { dir: { node: { Ta: O.La.Ta, Ua: O.La.Ua, lookup: O.La.lookup, hb: O.La.hb, rename: O.La.rename, unlink: O.La.unlink, rmdir: O.La.rmdir, readdir: O.La.readdir, symlink: O.La.symlink }, stream: { Va: O.Ma.Va } }, file: { node: { Ta: O.La.Ta, Ua: O.La.Ua }, stream: { Va: O.Ma.Va, read: O.Ma.read, write: O.Ma.write, ib: O.Ma.ib, jb: O.Ma.jb } }, link: { node: { Ta: O.La.Ta, Ua: O.La.Ua, readlink: O.La.readlink }, stream: {} }, vb: { node: { Ta: O.La.Ta, Ua: O.La.Ua }, stream: yb } });
+          c = zb(a, b, c, d);
+          P(c.mode) ? (c.La = O.Wa.dir.node, c.Ma = O.Wa.dir.stream, c.Na = {}) : 32768 === (c.mode & 61440) ? (c.La = O.Wa.file.node, c.Ma = O.Wa.file.stream, c.Ra = 0, c.Na = null) : 40960 === (c.mode & 61440) ? (c.La = O.Wa.link.node, c.Ma = O.Wa.link.stream) : 8192 === (c.mode & 61440) && (c.La = O.Wa.vb.node, c.Ma = O.Wa.vb.stream);
+          c.atime = c.mtime = c.ctime = Date.now();
+          a && (a.Na[b] = c, a.atime = a.mtime = a.ctime = c.atime);
+          return c;
+        }, Sb(a) {
+          return a.Na ? a.Na.subarray ? a.Na.subarray(0, a.Ra) : new Uint8Array(a.Na) : new Uint8Array(0);
+        }, La: {
+          Ta(a) {
+            var b = {};
+            b.dev = 8192 === (a.mode & 61440) ? a.id : 1;
+            b.ino = a.id;
+            b.mode = a.mode;
+            b.nlink = 1;
+            b.uid = 0;
+            b.gid = 0;
+            b.rdev = a.rdev;
+            P(a.mode) ? b.size = 4096 : 32768 === (a.mode & 61440) ? b.size = a.Ra : 40960 === (a.mode & 61440) ? b.size = a.link.length : b.size = 0;
+            b.atime = new Date(a.atime);
+            b.mtime = new Date(a.mtime);
+            b.ctime = new Date(a.ctime);
+            b.blksize = 4096;
+            b.blocks = Math.ceil(b.size / b.blksize);
+            return b;
+          },
+          Ua(a, b) {
+            for (var c of ["mode", "atime", "mtime", "ctime"])
+              null != b[c] && (a[c] = b[c]);
+            void 0 !== b.size && (b = b.size, a.Ra != b && (0 == b ? (a.Na = null, a.Ra = 0) : (c = a.Na, a.Na = new Uint8Array(b), c && a.Na.set(c.subarray(0, Math.min(b, a.Ra))), a.Ra = b)));
+          },
+          lookup() {
+            O.mb || (O.mb = new N(44), O.mb.stack = "<generic error, no stack>");
+            throw O.mb;
+          },
+          hb(a, b, c, d) {
+            return O.createNode(a, b, c, d);
+          },
+          rename(a, b, c) {
+            try {
+              var d = Q(b, c);
+            } catch (g) {
+            }
+            if (d) {
+              if (P(a.mode))
+                for (var e in d.Na)
+                  throw new N(55);
+              Ab(d);
+            }
+            delete a.parent.Na[a.name];
+            b.Na[c] = a;
+            a.name = c;
+            b.ctime = b.mtime = a.parent.ctime = a.parent.mtime = Date.now();
+          },
+          unlink(a, b) {
+            delete a.Na[b];
+            a.ctime = a.mtime = Date.now();
+          },
+          rmdir(a, b) {
+            var c = Q(a, b), d;
+            for (d in c.Na)
+              throw new N(55);
+            delete a.Na[b];
+            a.ctime = a.mtime = Date.now();
+          },
+          readdir(a) {
+            return [".", "..", ...Object.keys(a.Na)];
+          },
+          symlink(a, b, c) {
+            a = O.createNode(a, b, 41471, 0);
+            a.link = c;
+            return a;
+          },
+          readlink(a) {
+            if (40960 !== (a.mode & 61440))
+              throw new N(28);
+            return a.link;
+          }
+        }, Ma: { read(a, b, c, d, e) {
+          var g = a.node.Na;
+          if (e >= a.node.Ra)
+            return 0;
+          a = Math.min(a.node.Ra - e, d);
+          if (8 < a && g.subarray)
+            b.set(g.subarray(e, e + a), c);
+          else
+            for (d = 0; d < a; d++)
+              b[c + d] = g[e + d];
+          return a;
+        }, write(a, b, c, d, e, g) {
+          b.buffer === m.buffer && (g = false);
+          if (!d)
+            return 0;
+          a = a.node;
+          a.mtime = a.ctime = Date.now();
+          if (b.subarray && (!a.Na || a.Na.subarray)) {
+            if (g)
+              return a.Na = b.subarray(c, c + d), a.Ra = d;
+            if (0 === a.Ra && 0 === e)
+              return a.Na = b.slice(c, c + d), a.Ra = d;
+            if (e + d <= a.Ra)
+              return a.Na.set(b.subarray(c, c + d), e), d;
+          }
+          g = e + d;
+          var h = a.Na ? a.Na.length : 0;
+          h >= g || (g = Math.max(g, h * (1048576 > h ? 2 : 1.125) >>> 0), 0 != h && (g = Math.max(g, 256)), h = a.Na, a.Na = new Uint8Array(g), 0 < a.Ra && a.Na.set(h.subarray(0, a.Ra), 0));
+          if (a.Na.subarray && b.subarray)
+            a.Na.set(b.subarray(c, c + d), e);
+          else
+            for (g = 0; g < d; g++)
+              a.Na[e + g] = b[c + g];
+          a.Ra = Math.max(a.Ra, e + d);
+          return d;
+        }, Va(a, b, c) {
+          1 === c ? b += a.position : 2 === c && 32768 === (a.node.mode & 61440) && (b += a.node.Ra);
+          if (0 > b)
+            throw new N(28);
+          return b;
+        }, ib(a, b, c, d, e) {
+          if (32768 !== (a.node.mode & 61440))
+            throw new N(43);
+          a = a.node.Na;
+          if (e & 2 || !a || a.buffer !== m.buffer) {
+            e = true;
+            d = 65536 * Math.ceil(b / 65536);
+            var g = Bb(65536, d);
+            g && C.fill(0, g, g + d);
+            d = g;
+            if (!d)
+              throw new N(48);
+            if (a) {
+              if (0 < c || c + b < a.length)
+                a.subarray ? a = a.subarray(c, c + b) : a = Array.prototype.slice.call(a, c, c + b);
+              m.set(a, d);
+            }
+          } else
+            e = false, d = a.byteOffset;
+          return { Kb: d, Ab: e };
+        }, jb(a, b, c, d) {
+          O.Ma.write(a, b, 0, d, c, false);
+          return 0;
+        } } }, ja = (a, b) => {
+          var c = 0;
+          a && (c |= 365);
+          b && (c |= 146);
+          return c;
+        }, Cb = null, Db = {}, Eb = [], Fb = 1, R = null, Gb = false, Hb = true, Ib = {}, N = class {
+          name = "ErrnoError";
+          constructor(a) {
+            this.Pa = a;
+          }
+        }, Jb = class {
+          gb = {};
+          node = null;
+          get flags() {
+            return this.gb.flags;
+          }
+          set flags(a) {
+            this.gb.flags = a;
+          }
+          get position() {
+            return this.gb.position;
+          }
+          set position(a) {
+            this.gb.position = a;
+          }
+        }, Kb = class {
+          La = {};
+          Ma = {};
+          ab = null;
+          constructor(a, b, c, d) {
+            a ||= this;
+            this.parent = a;
+            this.Xa = a.Xa;
+            this.id = Fb++;
+            this.name = b;
+            this.mode = c;
+            this.rdev = d;
+            this.atime = this.mtime = this.ctime = Date.now();
+          }
+          get read() {
+            return 365 === (this.mode & 365);
+          }
+          set read(a) {
+            a ? this.mode |= 365 : this.mode &= -366;
+          }
+          get write() {
+            return 146 === (this.mode & 146);
+          }
+          set write(a) {
+            a ? this.mode |= 146 : this.mode &= -147;
+          }
+        };
+        function S(a, b = {}) {
+          if (!a)
+            throw new N(44);
+          b.ob ?? (b.ob = true);
+          "/" === a.charAt(0) || (a = "//" + a);
+          var c = 0;
+          a:
+            for (; 40 > c; c++) {
+              a = a.split("/").filter((q) => !!q);
+              for (var d = Cb, e = "/", g = 0; g < a.length; g++) {
+                var h = g === a.length - 1;
+                if (h && b.parent)
+                  break;
+                if ("." !== a[g])
+                  if (".." === a[g])
+                    if (e = bb(e), d === d.parent) {
+                      a = e + "/" + a.slice(g + 1).join("/");
+                      c--;
+                      continue a;
+                    } else
+                      d = d.parent;
+                  else {
+                    e = ia(e + "/" + a[g]);
+                    try {
+                      d = Q(d, a[g]);
+                    } catch (q) {
+                      if (44 === q?.Pa && h && b.Jb)
+                        return { path: e };
+                      throw q;
+                    }
+                    !d.ab || h && !b.ob || (d = d.ab.root);
+                    if (40960 === (d.mode & 61440) && (!h || b.$a)) {
+                      if (!d.La.readlink)
+                        throw new N(52);
+                      d = d.La.readlink(d);
+                      "/" === d.charAt(0) || (d = bb(e) + "/" + d);
+                      a = d + "/" + a.slice(g + 1).join("/");
+                      continue a;
+                    }
+                  }
+              }
+              return { path: e, node: d };
+            }
+          throw new N(32);
+        }
+        function ha(a) {
+          for (var b; ; ) {
+            if (a === a.parent)
+              return a = a.Xa.zb, b ? "/" !== a[a.length - 1] ? `${a}/${b}` : a + b : a;
+            b = b ? `${a.name}/${b}` : a.name;
+            a = a.parent;
+          }
+        }
+        function Lb(a, b) {
+          for (var c = 0, d = 0; d < b.length; d++)
+            c = (c << 5) - c + b.charCodeAt(d) | 0;
+          return (a + c >>> 0) % R.length;
+        }
+        function Ab(a) {
+          var b = Lb(a.parent.id, a.name);
+          if (R[b] === a)
+            R[b] = a.bb;
+          else
+            for (b = R[b]; b; ) {
+              if (b.bb === a) {
+                b.bb = a.bb;
+                break;
+              }
+              b = b.bb;
+            }
+        }
+        function Q(a, b) {
+          var c = P(a.mode) ? (c = Mb(a, "x")) ? c : a.La.lookup ? 0 : 2 : 54;
+          if (c)
+            throw new N(c);
+          for (c = R[Lb(a.id, b)]; c; c = c.bb) {
+            var d = c.name;
+            if (c.parent.id === a.id && d === b)
+              return c;
+          }
+          return a.La.lookup(a, b);
+        }
+        function zb(a, b, c, d) {
+          a = new Kb(a, b, c, d);
+          b = Lb(a.parent.id, a.name);
+          a.bb = R[b];
+          return R[b] = a;
+        }
+        function P(a) {
+          return 16384 === (a & 61440);
+        }
+        function Nb(a) {
+          var b = ["r", "w", "rw"][a & 3];
+          a & 512 && (b += "w");
+          return b;
+        }
+        function Mb(a, b) {
+          if (Hb)
+            return 0;
+          if (!b.includes("r") || a.mode & 292) {
+            if (b.includes("w") && !(a.mode & 146) || b.includes("x") && !(a.mode & 73))
+              return 2;
+          } else
+            return 2;
+          return 0;
+        }
+        function Ob(a, b) {
+          if (!P(a.mode))
+            return 54;
+          try {
+            return Q(a, b), 20;
+          } catch (c) {
+          }
+          return Mb(a, "wx");
+        }
+        function Pb(a, b, c) {
+          try {
+            var d = Q(a, b);
+          } catch (e) {
+            return e.Pa;
+          }
+          if (a = Mb(a, "wx"))
+            return a;
+          if (c) {
+            if (!P(d.mode))
+              return 54;
+            if (d === d.parent || "/" === ha(d))
+              return 10;
+          } else if (P(d.mode))
+            return 31;
+          return 0;
+        }
+        function Qb(a) {
+          if (!a)
+            throw new N(63);
+          return a;
+        }
+        function T(a) {
+          a = Eb[a];
+          if (!a)
+            throw new N(8);
+          return a;
+        }
+        function Rb(a, b = -1) {
+          a = Object.assign(new Jb(), a);
+          if (-1 == b)
+            a: {
+              for (b = 0; 4096 >= b; b++)
+                if (!Eb[b])
+                  break a;
+              throw new N(33);
+            }
+          a.fd = b;
+          return Eb[b] = a;
+        }
+        function Sb(a, b = -1) {
+          a = Rb(a, b);
+          a.Ma?.Rb?.(a);
+          return a;
+        }
+        function Tb(a, b, c) {
+          var d = a?.Ma.Ua;
+          a = d ? a : b;
+          d ??= b.La.Ua;
+          Qb(d);
+          d(a, c);
+        }
+        var yb = { open(a) {
+          a.Ma = Db[a.node.rdev].Ma;
+          a.Ma.open?.(a);
+        }, Va() {
+          throw new N(70);
+        } };
+        function mb(a, b) {
+          Db[a] = { Ma: b };
+        }
+        function Ub(a, b) {
+          var c = "/" === b;
+          if (c && Cb)
+            throw new N(10);
+          if (!c && b) {
+            var d = S(b, { ob: false });
+            b = d.path;
+            d = d.node;
+            if (d.ab)
+              throw new N(10);
+            if (!P(d.mode))
+              throw new N(54);
+          }
+          b = { type: a, Wb: {}, zb: b, Ib: [] };
+          a = a.Xa(b);
+          a.Xa = b;
+          b.root = a;
+          c ? Cb = a : d && (d.ab = b, d.Xa && d.Xa.Ib.push(b));
+        }
+        function Vb(a, b, c) {
+          var d = S(a, { parent: true }).node;
+          a = cb(a);
+          if (!a)
+            throw new N(28);
+          if ("." === a || ".." === a)
+            throw new N(20);
+          var e = Ob(d, a);
+          if (e)
+            throw new N(e);
+          if (!d.La.hb)
+            throw new N(63);
+          return d.La.hb(d, a, b, c);
+        }
+        function ka(a, b = 438) {
+          return Vb(a, b & 4095 | 32768, 0);
+        }
+        function U(a, b = 511) {
+          return Vb(a, b & 1023 | 16384, 0);
+        }
+        function Wb(a, b, c) {
+          "undefined" == typeof c && (c = b, b = 438);
+          Vb(a, b | 8192, c);
+        }
+        function Xb(a, b) {
+          if (!fb(a))
+            throw new N(44);
+          var c = S(b, { parent: true }).node;
+          if (!c)
+            throw new N(44);
+          b = cb(b);
+          var d = Ob(c, b);
+          if (d)
+            throw new N(d);
+          if (!c.La.symlink)
+            throw new N(63);
+          c.La.symlink(c, b, a);
+        }
+        function Yb(a) {
+          var b = S(a, { parent: true }).node;
+          a = cb(a);
+          var c = Q(b, a), d = Pb(b, a, true);
+          if (d)
+            throw new N(d);
+          if (!b.La.rmdir)
+            throw new N(63);
+          if (c.ab)
+            throw new N(10);
+          b.La.rmdir(b, a);
+          Ab(c);
+        }
+        function ua(a) {
+          var b = S(a, { parent: true }).node;
+          if (!b)
+            throw new N(44);
+          a = cb(a);
+          var c = Q(b, a), d = Pb(b, a, false);
+          if (d)
+            throw new N(d);
+          if (!b.La.unlink)
+            throw new N(63);
+          if (c.ab)
+            throw new N(10);
+          b.La.unlink(b, a);
+          Ab(c);
+        }
+        function Zb(a, b) {
+          a = S(a, { $a: !b }).node;
+          return Qb(a.La.Ta)(a);
+        }
+        function $b(a, b, c, d) {
+          Tb(a, b, { mode: c & 4095 | b.mode & -4096, ctime: Date.now(), Fb: d });
+        }
+        function la(a, b) {
+          a = "string" == typeof a ? S(a, { $a: true }).node : a;
+          $b(null, a, b);
+        }
+        function ac(a, b, c) {
+          if (P(b.mode))
+            throw new N(31);
+          if (32768 !== (b.mode & 61440))
+            throw new N(28);
+          var d = Mb(b, "w");
+          if (d)
+            throw new N(d);
+          Tb(a, b, { size: c, timestamp: Date.now() });
+        }
+        function ma(a, b, c = 438) {
+          if ("" === a)
+            throw new N(44);
+          if ("string" == typeof b) {
+            var d = { r: 0, "r+": 2, w: 577, "w+": 578, a: 1089, "a+": 1090 }[b];
+            if ("undefined" == typeof d)
+              throw Error(`Unknown file open mode: ${b}`);
+            b = d;
+          }
+          c = b & 64 ? c & 4095 | 32768 : 0;
+          if ("object" == typeof a)
+            d = a;
+          else {
+            var e = a.endsWith("/");
+            a = S(a, { $a: !(b & 131072), Jb: true });
+            d = a.node;
+            a = a.path;
+          }
+          var g = false;
+          if (b & 64)
+            if (d) {
+              if (b & 128)
+                throw new N(20);
+            } else {
+              if (e)
+                throw new N(31);
+              d = Vb(a, c | 511, 0);
+              g = true;
+            }
+          if (!d)
+            throw new N(44);
+          8192 === (d.mode & 61440) && (b &= -513);
+          if (b & 65536 && !P(d.mode))
+            throw new N(54);
+          if (!g && (e = d ? 40960 === (d.mode & 61440) ? 32 : P(d.mode) && ("r" !== Nb(b) || b & 576) ? 31 : Mb(d, Nb(b)) : 44))
+            throw new N(e);
+          b & 512 && !g && (e = d, e = "string" == typeof e ? S(e, { $a: true }).node : e, ac(null, e, 0));
+          b &= -131713;
+          e = Rb({ node: d, path: ha(d), flags: b, seekable: true, position: 0, Ma: d.Ma, Lb: [], error: false });
+          e.Ma.open && e.Ma.open(e);
+          g && la(d, c & 511);
+          !k.logReadFiles || b & 1 || a in Ib || (Ib[a] = 1);
+          return e;
+        }
+        function oa(a) {
+          if (null === a.fd)
+            throw new N(8);
+          a.pb && (a.pb = null);
+          try {
+            a.Ma.close && a.Ma.close(a);
+          } catch (b) {
+            throw b;
+          } finally {
+            Eb[a.fd] = null;
+          }
+          a.fd = null;
+        }
+        function bc(a, b, c) {
+          if (null === a.fd)
+            throw new N(8);
+          if (!a.seekable || !a.Ma.Va)
+            throw new N(70);
+          if (0 != c && 1 != c && 2 != c)
+            throw new N(28);
+          a.position = a.Ma.Va(a, b, c);
+          a.Lb = [];
+        }
+        function cc(a, b, c, d, e) {
+          if (0 > d || 0 > e)
+            throw new N(28);
+          if (null === a.fd)
+            throw new N(8);
+          if (1 === (a.flags & 2097155))
+            throw new N(8);
+          if (P(a.node.mode))
+            throw new N(31);
+          if (!a.Ma.read)
+            throw new N(28);
+          var g = "undefined" != typeof e;
+          if (!g)
+            e = a.position;
+          else if (!a.seekable)
+            throw new N(70);
+          b = a.Ma.read(a, b, c, d, e);
+          g || (a.position += b);
+          return b;
+        }
+        function na(a, b, c, d, e) {
+          if (0 > d || 0 > e)
+            throw new N(28);
+          if (null === a.fd)
+            throw new N(8);
+          if (0 === (a.flags & 2097155))
+            throw new N(8);
+          if (P(a.node.mode))
+            throw new N(31);
+          if (!a.Ma.write)
+            throw new N(28);
+          a.seekable && a.flags & 1024 && bc(a, 0, 2);
+          var g = "undefined" != typeof e;
+          if (!g)
+            e = a.position;
+          else if (!a.seekable)
+            throw new N(70);
+          b = a.Ma.write(a, b, c, d, e, void 0);
+          g || (a.position += b);
+          return b;
+        }
+        function ta(a) {
+          var b = b || 0;
+          var c = "binary";
+          "utf8" !== c && "binary" !== c && Ma(`Invalid encoding type "${c}"`);
+          b = ma(a, b);
+          a = Zb(a).size;
+          var d = new Uint8Array(a);
+          cc(b, d, 0, a, 0);
+          "utf8" === c && (d = gb(d));
+          oa(b);
+          return d;
+        }
+        function W(a, b, c) {
+          a = ia("/dev/" + a);
+          var d = ja(!!b, !!c);
+          W.yb ?? (W.yb = 64);
+          var e = W.yb++ << 8 | 0;
+          mb(e, { open(g) {
+            g.seekable = false;
+          }, close() {
+            c?.buffer?.length && c(10);
+          }, read(g, h, q, w) {
+            for (var t = 0, x = 0; x < w; x++) {
+              try {
+                var D = b();
+              } catch (pb) {
+                throw new N(29);
+              }
+              if (void 0 === D && 0 === t)
+                throw new N(6);
+              if (null === D || void 0 === D)
+                break;
+              t++;
+              h[q + x] = D;
+            }
+            t && (g.node.atime = Date.now());
+            return t;
+          }, write(g, h, q, w) {
+            for (var t = 0; t < w; t++)
+              try {
+                c(h[q + t]);
+              } catch (x) {
+                throw new N(29);
+              }
+            w && (g.node.mtime = g.node.ctime = Date.now());
+            return t;
+          } });
+          Wb(a, d, e);
+        }
+        var X = {};
+        function Y(a, b, c) {
+          if ("/" === b.charAt(0))
+            return b;
+          a = -100 === a ? "/" : T(a).path;
+          if (0 == b.length) {
+            if (!c)
+              throw new N(44);
+            return a;
+          }
+          return a + "/" + b;
+        }
+        function mc(a, b) {
+          F[a >> 2] = b.dev;
+          F[a + 4 >> 2] = b.mode;
+          F[a + 8 >> 2] = b.nlink;
+          F[a + 12 >> 2] = b.uid;
+          F[a + 16 >> 2] = b.gid;
+          F[a + 20 >> 2] = b.rdev;
+          G[a + 24 >> 3] = BigInt(b.size);
+          E[a + 32 >> 2] = 4096;
+          E[a + 36 >> 2] = b.blocks;
+          var c = b.atime.getTime(), d = b.mtime.getTime(), e = b.ctime.getTime();
+          G[a + 40 >> 3] = BigInt(Math.floor(c / 1e3));
+          F[a + 48 >> 2] = c % 1e3 * 1e6;
+          G[a + 56 >> 3] = BigInt(Math.floor(d / 1e3));
+          F[a + 64 >> 2] = d % 1e3 * 1e6;
+          G[a + 72 >> 3] = BigInt(Math.floor(e / 1e3));
+          F[a + 80 >> 2] = e % 1e3 * 1e6;
+          G[a + 88 >> 3] = BigInt(b.ino);
+          return 0;
+        }
+        var Ec = void 0, Gc = () => {
+          var a = E[+Ec >> 2];
+          Ec += 4;
+          return a;
+        }, Hc = 0, Ic = [0, 31, 60, 91, 121, 152, 182, 213, 244, 274, 305, 335], Jc = [0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334], Kc = {}, Lc = (a) => {
+          Ga = a;
+          Ya || 0 < Hc || (k.onExit?.(a), Fa = true);
+          xa(a, new Sa(a));
+        }, Mc = (a) => {
+          if (!Fa)
+            try {
+              a();
+            } catch (b) {
+              b instanceof Sa || "unwind" == b || xa(1, b);
+            } finally {
+              if (!(Ya || 0 < Hc))
+                try {
+                  Ga = a = Ga, Lc(a);
+                } catch (b) {
+                  b instanceof Sa || "unwind" == b || xa(1, b);
+                }
+            }
+        }, Nc = {}, Pc = () => {
+          if (!Oc) {
+            var a = { USER: "web_user", LOGNAME: "web_user", PATH: "/", PWD: "/", HOME: "/home/web_user", LANG: (globalThis.navigator?.language ?? "C").replace("-", "_") + ".UTF-8", _: wa || "./this.program" }, b;
+            for (b in Nc)
+              void 0 === Nc[b] ? delete a[b] : a[b] = Nc[b];
+            var c = [];
+            for (b in a)
+              c.push(`${b}=${a[b]}`);
+            Oc = c;
+          }
+          return Oc;
+        }, Oc, Qc = (a, b, c, d) => {
+          var e = { string: (t) => {
+            var x = 0;
+            if (null !== t && void 0 !== t && 0 !== t) {
+              x = ib(t) + 1;
+              var D = y(x);
+              M(t, C, D, x);
+              x = D;
+            }
+            return x;
+          }, array: (t) => {
+            var x = y(t.length);
+            m.set(t, x);
+            return x;
+          } };
+          a = k["_" + a];
+          var g = [], h = 0;
+          if (d)
+            for (var q = 0; q < d.length; q++) {
+              var w = e[c[q]];
+              w ? (0 === h && (h = pa()), g[q] = w(d[q])) : g[q] = d[q];
+            }
+          c = a(...g);
+          return c = function(t) {
+            0 !== h && ra(h);
+            return "string" === b ? z(t) : "boolean" === b ? !!t : t;
+          }(c);
+        }, fa = (a) => {
+          var b = ib(a) + 1, c = da(b);
+          c && M(a, C, c, b);
+          return c;
+        }, Rc, Sc = [], A = (a) => {
+          Rc.delete(Z.get(a));
+          Z.set(a, null);
+          Sc.push(a);
+        }, Tc = (a) => {
+          const b = a.length;
+          return [b % 128 | 128, b >> 7, ...a];
+        }, Uc = { i: 127, p: 127, j: 126, f: 125, d: 124, e: 111 }, Vc = (a) => Tc(Array.from(a, (b) => Uc[b])), va = (a, b) => {
+          if (!Rc) {
+            Rc = /* @__PURE__ */ new WeakMap();
+            var c = Z.length;
+            if (Rc)
+              for (var d = 0; d < 0 + c; d++) {
+                var e = Z.get(d);
+                e && Rc.set(e, d);
+              }
+          }
+          if (c = Rc.get(a) || 0)
+            return c;
+          c = Sc.length ? Sc.pop() : Z.grow(1);
+          try {
+            Z.set(c, a);
+          } catch (g) {
+            if (!(g instanceof TypeError))
+              throw g;
+            b = Uint8Array.of(0, 97, 115, 109, 1, 0, 0, 0, 1, ...Tc([1, 96, ...Vc(b.slice(1)), ...Vc("v" === b[0] ? "" : b[0])]), 2, 7, 1, 1, 101, 1, 102, 0, 0, 7, 5, 1, 1, 102, 0, 0);
+            b = new WebAssembly.Module(b);
+            b = new WebAssembly.Instance(b, { e: { f: a } }).exports.f;
+            Z.set(c, b);
+          }
+          Rc.set(a, c);
+          return c;
+        };
+        R = Array(4096);
+        Ub(O, "/");
+        U("/tmp");
+        U("/home");
+        U("/home/web_user");
+        (function() {
+          U("/dev");
+          mb(259, { read: () => 0, write: (d, e, g, h) => h, Va: () => 0 });
+          Wb("/dev/null", 259);
+          kb(1280, wb);
+          kb(1536, xb);
+          Wb("/dev/tty", 1280);
+          Wb("/dev/tty1", 1536);
+          var a = new Uint8Array(1024), b = 0, c = () => {
+            0 === b && (eb(a), b = a.byteLength);
+            return a[--b];
+          };
+          W("random", c);
+          W("urandom", c);
+          U("/dev/shm");
+          U("/dev/shm/tmp");
+        })();
+        (function() {
+          U("/proc");
+          var a = U("/proc/self");
+          U("/proc/self/fd");
+          Ub({ Xa() {
+            var b = zb(a, "fd", 16895, 73);
+            b.Ma = { Va: O.Ma.Va };
+            b.La = { lookup(c, d) {
+              c = +d;
+              var e = T(c);
+              c = { parent: null, Xa: { zb: "fake" }, La: { readlink: () => e.path }, id: c + 1 };
+              return c.parent = c;
+            }, readdir() {
+              return Array.from(Eb.entries()).filter(([, c]) => c).map(([c]) => c.toString());
+            } };
+            return b;
+          } }, "/proc/self/fd");
+        })();
+        k.noExitRuntime && (Ya = k.noExitRuntime);
+        k.print && (Da = k.print);
+        k.printErr && (B = k.printErr);
+        k.wasmBinary && (Ea = k.wasmBinary);
+        k.thisProgram && (wa = k.thisProgram);
+        if (k.preInit)
+          for ("function" == typeof k.preInit && (k.preInit = [k.preInit]); 0 < k.preInit.length; )
+            k.preInit.shift()();
+        k.stackSave = () => pa();
+        k.stackRestore = (a) => ra(a);
+        k.stackAlloc = (a) => y(a);
+        k.cwrap = (a, b, c, d) => {
+          var e = !c || c.every((g) => "number" === g || "boolean" === g);
+          return "string" !== b && e && !d ? k["_" + a] : (...g) => Qc(a, b, c, g);
+        };
+        k.addFunction = va;
+        k.removeFunction = A;
+        k.UTF8ToString = z;
+        k.stringToNewUTF8 = fa;
+        k.writeArrayToMemory = (a, b) => {
+          m.set(a, b);
+        };
+        var da, ea, Bb, Wc, ra, y, pa, La, Z, Xc = {
+          a: (a, b, c, d) => Ma(`Assertion failed: ${z(a)}, at: ` + [b ? z(b) : "unknown filename", c, d ? z(d) : "unknown function"]),
+          i: function(a, b) {
+            try {
+              return a = z(a), la(a, b), 0;
+            } catch (c) {
+              if ("undefined" == typeof X || "ErrnoError" !== c.name)
+                throw c;
+              return -c.Pa;
+            }
+          },
+          L: function(a, b, c) {
+            try {
+              b = z(b);
+              b = Y(a, b);
+              if (c & -8)
+                return -28;
+              var d = S(b, { $a: true }).node;
+              if (!d)
+                return -44;
+              a = "";
+              c & 4 && (a += "r");
+              c & 2 && (a += "w");
+              c & 1 && (a += "x");
+              return a && Mb(d, a) ? -2 : 0;
+            } catch (e) {
+              if ("undefined" == typeof X || "ErrnoError" !== e.name)
+                throw e;
+              return -e.Pa;
+            }
+          },
+          j: function(a, b) {
+            try {
+              var c = T(a);
+              $b(c, c.node, b, false);
+              return 0;
+            } catch (d) {
+              if ("undefined" == typeof X || "ErrnoError" !== d.name)
+                throw d;
+              return -d.Pa;
+            }
+          },
+          h: function(a) {
+            try {
+              var b = T(a);
+              Tb(b, b.node, { timestamp: Date.now(), Fb: false });
+              return 0;
+            } catch (c) {
+              if ("undefined" == typeof X || "ErrnoError" !== c.name)
+                throw c;
+              return -c.Pa;
+            }
+          },
+          b: function(a, b, c) {
+            Ec = c;
+            try {
+              var d = T(a);
+              switch (b) {
+                case 0:
+                  var e = Gc();
+                  if (0 > e)
+                    break;
+                  for (; Eb[e]; )
+                    e++;
+                  return Sb(d, e).fd;
+                case 1:
+                case 2:
+                  return 0;
+                case 3:
+                  return d.flags;
+                case 4:
+                  return e = Gc(), d.flags |= e, 0;
+                case 12:
+                  return e = Gc(), Ha[e + 0 >> 1] = 2, 0;
+                case 13:
+                case 14:
+                  return 0;
+              }
+              return -28;
+            } catch (g) {
+              if ("undefined" == typeof X || "ErrnoError" !== g.name)
+                throw g;
+              return -g.Pa;
+            }
+          },
+          g: function(a, b) {
+            try {
+              var c = T(a), d = c.node, e = c.Ma.Ta;
+              a = e ? c : d;
+              e ??= d.La.Ta;
+              Qb(e);
+              var g = e(a);
+              return mc(b, g);
+            } catch (h) {
+              if ("undefined" == typeof X || "ErrnoError" !== h.name)
+                throw h;
+              return -h.Pa;
+            }
+          },
+          H: function(a, b) {
+            b = -9007199254740992 > b || 9007199254740992 < b ? NaN : Number(b);
+            try {
+              if (isNaN(b))
+                return -61;
+              var c = T(a);
+              if (0 > b || 0 === (c.flags & 2097155))
+                throw new N(28);
+              ac(c, c.node, b);
+              return 0;
+            } catch (d) {
+              if ("undefined" == typeof X || "ErrnoError" !== d.name)
+                throw d;
+              return -d.Pa;
+            }
+          },
+          G: function(a, b) {
+            try {
+              if (0 === b)
+                return -28;
+              var c = ib("/") + 1;
+              if (b < c)
+                return -68;
+              M("/", C, a, b);
+              return c;
+            } catch (d) {
+              if ("undefined" == typeof X || "ErrnoError" !== d.name)
+                throw d;
+              return -d.Pa;
+            }
+          },
+          K: function(a, b) {
+            try {
+              return a = z(a), mc(b, Zb(a, true));
+            } catch (c) {
+              if ("undefined" == typeof X || "ErrnoError" !== c.name)
+                throw c;
+              return -c.Pa;
+            }
+          },
+          C: function(a, b, c) {
+            try {
+              return b = z(b), b = Y(a, b), U(b, c), 0;
+            } catch (d) {
+              if ("undefined" == typeof X || "ErrnoError" !== d.name)
+                throw d;
+              return -d.Pa;
+            }
+          },
+          J: function(a, b, c, d) {
+            try {
+              b = z(b);
+              var e = d & 256;
+              b = Y(a, b, d & 4096);
+              return mc(c, e ? Zb(b, true) : Zb(b));
+            } catch (g) {
+              if ("undefined" == typeof X || "ErrnoError" !== g.name)
+                throw g;
+              return -g.Pa;
+            }
+          },
+          x: function(a, b, c, d) {
+            Ec = d;
+            try {
+              b = z(b);
+              b = Y(a, b);
+              var e = d ? Gc() : 0;
+              return ma(b, c, e).fd;
+            } catch (g) {
+              if ("undefined" == typeof X || "ErrnoError" !== g.name)
+                throw g;
+              return -g.Pa;
+            }
+          },
+          v: function(a, b, c, d) {
+            try {
+              b = z(b);
+              b = Y(a, b);
+              if (0 >= d)
+                return -28;
+              var e = S(b).node;
+              if (!e)
+                throw new N(44);
+              if (!e.La.readlink)
+                throw new N(28);
+              var g = e.La.readlink(e);
+              var h = Math.min(d, ib(g)), q = m[c + h];
+              M(
+                g,
+                C,
+                c,
+                d + 1
+              );
+              m[c + h] = q;
+              return h;
+            } catch (w) {
+              if ("undefined" == typeof X || "ErrnoError" !== w.name)
+                throw w;
+              return -w.Pa;
+            }
+          },
+          u: function(a) {
+            try {
+              return a = z(a), Yb(a), 0;
+            } catch (b) {
+              if ("undefined" == typeof X || "ErrnoError" !== b.name)
+                throw b;
+              return -b.Pa;
+            }
+          },
+          f: function(a, b) {
+            try {
+              return a = z(a), mc(b, Zb(a));
+            } catch (c) {
+              if ("undefined" == typeof X || "ErrnoError" !== c.name)
+                throw c;
+              return -c.Pa;
+            }
+          },
+          r: function(a, b, c) {
+            try {
+              b = z(b);
+              b = Y(a, b);
+              if (c)
+                if (512 === c)
+                  Yb(b);
+                else
+                  return -28;
+              else
+                ua(b);
+              return 0;
+            } catch (d) {
+              if ("undefined" == typeof X || "ErrnoError" !== d.name)
+                throw d;
+              return -d.Pa;
+            }
+          },
+          q: function(a, b, c) {
+            try {
+              b = z(b);
+              b = Y(a, b, true);
+              var d = Date.now(), e, g;
+              if (c) {
+                var h = F[c >> 2] + 4294967296 * E[c + 4 >> 2], q = E[c + 8 >> 2];
+                1073741823 == q ? e = d : 1073741822 == q ? e = null : e = 1e3 * h + q / 1e6;
+                c += 16;
+                h = F[c >> 2] + 4294967296 * E[c + 4 >> 2];
+                q = E[c + 8 >> 2];
+                1073741823 == q ? g = d : 1073741822 == q ? g = null : g = 1e3 * h + q / 1e6;
+              } else
+                g = e = d;
+              if (null !== (g ?? e)) {
+                a = e;
+                var w = S(b, { $a: true }).node;
+                Qb(w.La.Ua)(w, { atime: a, mtime: g });
+              }
+              return 0;
+            } catch (t) {
+              if ("undefined" == typeof X || "ErrnoError" !== t.name)
+                throw t;
+              return -t.Pa;
+            }
+          },
+          m: () => Ma(""),
+          l: () => {
+            Ya = false;
+            Hc = 0;
+          },
+          A: function(a, b) {
+            a = -9007199254740992 > a || 9007199254740992 < a ? NaN : Number(a);
+            a = new Date(1e3 * a);
+            E[b >> 2] = a.getSeconds();
+            E[b + 4 >> 2] = a.getMinutes();
+            E[b + 8 >> 2] = a.getHours();
+            E[b + 12 >> 2] = a.getDate();
+            E[b + 16 >> 2] = a.getMonth();
+            E[b + 20 >> 2] = a.getFullYear() - 1900;
+            E[b + 24 >> 2] = a.getDay();
+            var c = a.getFullYear();
+            E[b + 28 >> 2] = (0 !== c % 4 || 0 === c % 100 && 0 !== c % 400 ? Jc : Ic)[a.getMonth()] + a.getDate() - 1 | 0;
+            E[b + 36 >> 2] = -(60 * a.getTimezoneOffset());
+            c = new Date(a.getFullYear(), 6, 1).getTimezoneOffset();
+            var d = new Date(a.getFullYear(), 0, 1).getTimezoneOffset();
+            E[b + 32 >> 2] = (c != d && a.getTimezoneOffset() == Math.min(d, c)) | 0;
+          },
+          y: function(a, b, c, d, e, g, h) {
+            e = -9007199254740992 > e || 9007199254740992 < e ? NaN : Number(e);
+            try {
+              var q = T(d);
+              if (0 !== (b & 2) && 0 === (c & 2) && 2 !== (q.flags & 2097155))
+                throw new N(2);
+              if (1 === (q.flags & 2097155))
+                throw new N(2);
+              if (!q.Ma.ib)
+                throw new N(43);
+              if (!a)
+                throw new N(28);
+              var w = q.Ma.ib(q, a, e, b, c);
+              var t = w.Kb;
+              E[g >> 2] = w.Ab;
+              F[h >> 2] = t;
+              return 0;
+            } catch (x) {
+              if ("undefined" == typeof X || "ErrnoError" !== x.name)
+                throw x;
+              return -x.Pa;
+            }
+          },
+          z: function(a, b, c, d, e, g) {
+            g = -9007199254740992 > g || 9007199254740992 < g ? NaN : Number(g);
+            try {
+              var h = T(e);
+              if (c & 2) {
+                c = g;
+                if (32768 !== (h.node.mode & 61440))
+                  throw new N(43);
+                if (!(d & 2)) {
+                  var q = C.slice(a, a + b);
+                  h.Ma.jb && h.Ma.jb(h, q, c, b, d);
+                }
+              }
+            } catch (w) {
+              if ("undefined" == typeof X || "ErrnoError" !== w.name)
+                throw w;
+              return -w.Pa;
+            }
+          },
+          n: (a, b) => {
+            Kc[a] && (clearTimeout(Kc[a].id), delete Kc[a]);
+            if (!b)
+              return 0;
+            var c = setTimeout(() => {
+              delete Kc[a];
+              Mc(() => Wc(a, performance.now()));
+            }, b);
+            Kc[a] = { id: c, Xb: b };
+            return 0;
+          },
+          B: (a, b, c, d) => {
+            var e = (/* @__PURE__ */ new Date()).getFullYear(), g = new Date(e, 0, 1).getTimezoneOffset();
+            e = new Date(e, 6, 1).getTimezoneOffset();
+            F[a >> 2] = 60 * Math.max(g, e);
+            E[b >> 2] = Number(g != e);
+            b = (h) => {
+              var q = Math.abs(h);
+              return `UTC${0 <= h ? "-" : "+"}${String(Math.floor(q / 60)).padStart(2, "0")}${String(q % 60).padStart(2, "0")}`;
+            };
+            a = b(g);
+            b = b(e);
+            e < g ? (M(a, C, c, 17), M(b, C, d, 17)) : (M(a, C, d, 17), M(b, C, c, 17));
+          },
+          d: () => Date.now(),
+          s: () => 2147483648,
+          c: () => performance.now(),
+          o: (a) => {
+            var b = C.length;
+            a >>>= 0;
+            if (2147483648 < a)
+              return false;
+            for (var c = 1; 4 >= c; c *= 2) {
+              var d = b * (1 + 0.2 / c);
+              d = Math.min(d, a + 100663296);
+              a: {
+                d = (Math.min(2147483648, 65536 * Math.ceil(Math.max(
+                  a,
+                  d
+                ) / 65536)) - La.buffer.byteLength + 65535) / 65536 | 0;
+                try {
+                  La.grow(d);
+                  Ka();
+                  var e = 1;
+                  break a;
+                } catch (g) {
+                }
+                e = void 0;
+              }
+              if (e)
+                return true;
+            }
+            return false;
+          },
+          E: (a, b) => {
+            var c = 0, d = 0, e;
+            for (e of Pc()) {
+              var g = b + c;
+              F[a + d >> 2] = g;
+              c += M(e, C, g, Infinity) + 1;
+              d += 4;
+            }
+            return 0;
+          },
+          F: (a, b) => {
+            var c = Pc();
+            F[a >> 2] = c.length;
+            a = 0;
+            for (var d of c)
+              a += ib(d) + 1;
+            F[b >> 2] = a;
+            return 0;
+          },
+          e: function(a) {
+            try {
+              var b = T(a);
+              oa(b);
+              return 0;
+            } catch (c) {
+              if ("undefined" == typeof X || "ErrnoError" !== c.name)
+                throw c;
+              return c.Pa;
+            }
+          },
+          p: function(a, b) {
+            try {
+              var c = T(a);
+              m[b] = c.tty ? 2 : P(c.mode) ? 3 : 40960 === (c.mode & 61440) ? 7 : 4;
+              Ha[b + 2 >> 1] = 0;
+              G[b + 8 >> 3] = BigInt(0);
+              G[b + 16 >> 3] = BigInt(0);
+              return 0;
+            } catch (d) {
+              if ("undefined" == typeof X || "ErrnoError" !== d.name)
+                throw d;
+              return d.Pa;
+            }
+          },
+          w: function(a, b, c, d) {
+            try {
+              a: {
+                var e = T(a);
+                a = b;
+                for (var g, h = b = 0; h < c; h++) {
+                  var q = F[a >> 2], w = F[a + 4 >> 2];
+                  a += 8;
+                  var t = cc(e, m, q, w, g);
+                  if (0 > t) {
+                    var x = -1;
+                    break a;
+                  }
+                  b += t;
+                  if (t < w)
+                    break;
+                  "undefined" != typeof g && (g += t);
+                }
+                x = b;
+              }
+              F[d >> 2] = x;
+              return 0;
+            } catch (D) {
+              if ("undefined" == typeof X || "ErrnoError" !== D.name)
+                throw D;
+              return D.Pa;
+            }
+          },
+          D: function(a, b, c, d) {
+            b = -9007199254740992 > b || 9007199254740992 < b ? NaN : Number(b);
+            try {
+              if (isNaN(b))
+                return 61;
+              var e = T(a);
+              bc(e, b, c);
+              G[d >> 3] = BigInt(e.position);
+              e.pb && 0 === b && 0 === c && (e.pb = null);
+              return 0;
+            } catch (g) {
+              if ("undefined" == typeof X || "ErrnoError" !== g.name)
+                throw g;
+              return g.Pa;
+            }
+          },
+          I: function(a) {
+            try {
+              var b = T(a);
+              return b.Ma?.fsync?.(b);
+            } catch (c) {
+              if ("undefined" == typeof X || "ErrnoError" !== c.name)
+                throw c;
+              return c.Pa;
+            }
+          },
+          t: function(a, b, c, d) {
+            try {
+              a: {
+                var e = T(a);
+                a = b;
+                for (var g, h = b = 0; h < c; h++) {
+                  var q = F[a >> 2], w = F[a + 4 >> 2];
+                  a += 8;
+                  var t = na(e, m, q, w, g);
+                  if (0 > t) {
+                    var x = -1;
+                    break a;
+                  }
+                  b += t;
+                  if (t < w)
+                    break;
+                  "undefined" != typeof g && (g += t);
+                }
+                x = b;
+              }
+              F[d >> 2] = x;
+              return 0;
+            } catch (D) {
+              if ("undefined" == typeof X || "ErrnoError" !== D.name)
+                throw D;
+              return D.Pa;
+            }
+          },
+          k: Lc
+        };
+        function Yc() {
+          function a() {
+            k.calledRun = true;
+            if (!Fa) {
+              if (!k.noFSInit && !Gb) {
+                var b, c;
+                Gb = true;
+                b ??= k.stdin;
+                c ??= k.stdout;
+                d ??= k.stderr;
+                b ? W("stdin", b) : Xb("/dev/tty", "/dev/stdin");
+                c ? W("stdout", null, c) : Xb("/dev/tty", "/dev/stdout");
+                d ? W("stderr", null, d) : Xb("/dev/tty1", "/dev/stderr");
+                ma("/dev/stdin", 0);
+                ma("/dev/stdout", 1);
+                ma("/dev/stderr", 1);
+              }
+              Zc.N();
+              Hb = false;
+              k.onRuntimeInitialized?.();
+              if (k.postRun)
+                for ("function" == typeof k.postRun && (k.postRun = [k.postRun]); k.postRun.length; ) {
+                  var d = k.postRun.shift();
+                  Ua.push(d);
+                }
+              Ta(Ua);
+            }
+          }
+          if (0 < J)
+            Xa = Yc;
+          else {
+            if (k.preRun)
+              for ("function" == typeof k.preRun && (k.preRun = [k.preRun]); k.preRun.length; )
+                Wa();
+            Ta(Va);
+            0 < J ? Xa = Yc : k.setStatus ? (k.setStatus("Running..."), setTimeout(() => {
+              setTimeout(() => k.setStatus(""), 1);
+              a();
+            }, 1)) : a();
+          }
+        }
+        var Zc;
+        (async function() {
+          function a(c) {
+            c = Zc = c.exports;
+            k._sqlite3_free = c.P;
+            k._sqlite3_value_text = c.Q;
+            k._sqlite3_prepare_v2 = c.R;
+            k._sqlite3_step = c.S;
+            k._sqlite3_reset = c.T;
+            k._sqlite3_exec = c.U;
+            k._sqlite3_finalize = c.V;
+            k._sqlite3_column_name = c.W;
+            k._sqlite3_column_text = c.X;
+            k._sqlite3_column_type = c.Y;
+            k._sqlite3_errmsg = c.Z;
+            k._sqlite3_clear_bindings = c._;
+            k._sqlite3_value_blob = c.$;
+            k._sqlite3_value_bytes = c.aa;
+            k._sqlite3_value_double = c.ba;
+            k._sqlite3_value_int = c.ca;
+            k._sqlite3_value_type = c.da;
+            k._sqlite3_result_blob = c.ea;
+            k._sqlite3_result_double = c.fa;
+            k._sqlite3_result_error = c.ga;
+            k._sqlite3_result_int = c.ha;
+            k._sqlite3_result_int64 = c.ia;
+            k._sqlite3_result_null = c.ja;
+            k._sqlite3_result_text = c.ka;
+            k._sqlite3_aggregate_context = c.la;
+            k._sqlite3_column_count = c.ma;
+            k._sqlite3_data_count = c.na;
+            k._sqlite3_column_blob = c.oa;
+            k._sqlite3_column_bytes = c.pa;
+            k._sqlite3_column_double = c.qa;
+            k._sqlite3_bind_blob = c.ra;
+            k._sqlite3_bind_double = c.sa;
+            k._sqlite3_bind_int = c.ta;
+            k._sqlite3_bind_text = c.ua;
+            k._sqlite3_bind_parameter_index = c.va;
+            k._sqlite3_sql = c.wa;
+            k._sqlite3_normalized_sql = c.xa;
+            k._sqlite3_changes = c.ya;
+            k._sqlite3_close_v2 = c.za;
+            k._sqlite3_create_function_v2 = c.Aa;
+            k._sqlite3_update_hook = c.Ba;
+            k._sqlite3_open = c.Ca;
+            da = k._malloc = c.Da;
+            ea = k._free = c.Ea;
+            k._RegisterExtensionFunctions = c.Fa;
+            Bb = c.Ga;
+            Wc = c.Ha;
+            ra = c.Ia;
+            y = c.Ja;
+            pa = c.Ka;
+            La = c.M;
+            Z = c.O;
+            Ka();
+            J--;
+            k.monitorRunDependencies?.(J);
+            0 == J && Xa && (c = Xa, Xa = null, c());
+            return Zc;
+          }
+          J++;
+          k.monitorRunDependencies?.(J);
+          var b = { a: Xc };
+          if (k.instantiateWasm)
+            return new Promise((c) => {
+              k.instantiateWasm(b, (d, e) => {
+                c(a(d, e));
+              });
+            });
+          Na ??= k.locateFile ? k.locateFile("sql-wasm.wasm", za) : za + "sql-wasm.wasm";
+          return a((await Ra(b)).instance);
+        })();
+        Yc();
+        return Module;
+      });
+      return initSqlJsPromise;
+    };
+    if (typeof exports2 === "object" && typeof module2 === "object") {
+      module2.exports = initSqlJs2;
+      module2.exports.default = initSqlJs2;
+    } else if (typeof define === "function" && define["amd"]) {
+      define([], function() {
+        return initSqlJs2;
+      });
+    } else if (typeof exports2 === "object") {
+      exports2["Module"] = initSqlJs2;
+    }
+  }
+});
+
+// node_modules/node-cron/src/task.js
+var require_task = __commonJS({
+  "node_modules/node-cron/src/task.js"(exports2, module2) {
+    "use strict";
+    var EventEmitter4 = require("events");
+    var Task = class extends EventEmitter4 {
+      constructor(execution) {
+        super();
+        if (typeof execution !== "function") {
+          throw "execution must be a function";
+        }
+        this._execution = execution;
+      }
+      execute(now) {
+        let exec;
+        try {
+          exec = this._execution(now);
+        } catch (error) {
+          return this.emit("task-failed", error);
+        }
+        if (exec instanceof Promise) {
+          return exec.then(() => this.emit("task-finished")).catch((error) => this.emit("task-failed", error));
+        } else {
+          this.emit("task-finished");
+          return exec;
+        }
+      }
+    };
+    module2.exports = Task;
+  }
+});
+
+// node_modules/node-cron/src/convert-expression/month-names-conversion.js
+var require_month_names_conversion = __commonJS({
+  "node_modules/node-cron/src/convert-expression/month-names-conversion.js"(exports2, module2) {
+    "use strict";
+    module2.exports = /* @__PURE__ */ (() => {
+      const months = [
+        "january",
+        "february",
+        "march",
+        "april",
+        "may",
+        "june",
+        "july",
+        "august",
+        "september",
+        "october",
+        "november",
+        "december"
+      ];
+      const shortMonths = [
+        "jan",
+        "feb",
+        "mar",
+        "apr",
+        "may",
+        "jun",
+        "jul",
+        "aug",
+        "sep",
+        "oct",
+        "nov",
+        "dec"
+      ];
+      function convertMonthName(expression, items) {
+        for (let i = 0; i < items.length; i++) {
+          expression = expression.replace(new RegExp(items[i], "gi"), parseInt(i, 10) + 1);
+        }
+        return expression;
+      }
+      function interprete(monthExpression) {
+        monthExpression = convertMonthName(monthExpression, months);
+        monthExpression = convertMonthName(monthExpression, shortMonths);
+        return monthExpression;
+      }
+      return interprete;
+    })();
+  }
+});
+
+// node_modules/node-cron/src/convert-expression/week-day-names-conversion.js
+var require_week_day_names_conversion = __commonJS({
+  "node_modules/node-cron/src/convert-expression/week-day-names-conversion.js"(exports2, module2) {
+    "use strict";
+    module2.exports = /* @__PURE__ */ (() => {
+      const weekDays = [
+        "sunday",
+        "monday",
+        "tuesday",
+        "wednesday",
+        "thursday",
+        "friday",
+        "saturday"
+      ];
+      const shortWeekDays = ["sun", "mon", "tue", "wed", "thu", "fri", "sat"];
+      function convertWeekDayName(expression, items) {
+        for (let i = 0; i < items.length; i++) {
+          expression = expression.replace(new RegExp(items[i], "gi"), parseInt(i, 10));
+        }
+        return expression;
+      }
+      function convertWeekDays(expression) {
+        expression = expression.replace("7", "0");
+        expression = convertWeekDayName(expression, weekDays);
+        return convertWeekDayName(expression, shortWeekDays);
+      }
+      return convertWeekDays;
+    })();
+  }
+});
+
+// node_modules/node-cron/src/convert-expression/asterisk-to-range-conversion.js
+var require_asterisk_to_range_conversion = __commonJS({
+  "node_modules/node-cron/src/convert-expression/asterisk-to-range-conversion.js"(exports2, module2) {
+    "use strict";
+    module2.exports = /* @__PURE__ */ (() => {
+      function convertAsterisk(expression, replecement) {
+        if (expression.indexOf("*") !== -1) {
+          return expression.replace("*", replecement);
+        }
+        return expression;
+      }
+      function convertAsterisksToRanges(expressions) {
+        expressions[0] = convertAsterisk(expressions[0], "0-59");
+        expressions[1] = convertAsterisk(expressions[1], "0-59");
+        expressions[2] = convertAsterisk(expressions[2], "0-23");
+        expressions[3] = convertAsterisk(expressions[3], "1-31");
+        expressions[4] = convertAsterisk(expressions[4], "1-12");
+        expressions[5] = convertAsterisk(expressions[5], "0-6");
+        return expressions;
+      }
+      return convertAsterisksToRanges;
+    })();
+  }
+});
+
+// node_modules/node-cron/src/convert-expression/range-conversion.js
+var require_range_conversion = __commonJS({
+  "node_modules/node-cron/src/convert-expression/range-conversion.js"(exports2, module2) {
+    "use strict";
+    module2.exports = /* @__PURE__ */ (() => {
+      function replaceWithRange(expression, text, init, end) {
+        const numbers = [];
+        let last = parseInt(end);
+        let first = parseInt(init);
+        if (first > last) {
+          last = parseInt(init);
+          first = parseInt(end);
+        }
+        for (let i = first; i <= last; i++) {
+          numbers.push(i);
+        }
+        return expression.replace(new RegExp(text, "i"), numbers.join());
+      }
+      function convertRange(expression) {
+        const rangeRegEx = /(\d+)-(\d+)/;
+        let match = rangeRegEx.exec(expression);
+        while (match !== null && match.length > 0) {
+          expression = replaceWithRange(expression, match[0], match[1], match[2]);
+          match = rangeRegEx.exec(expression);
+        }
+        return expression;
+      }
+      function convertAllRanges(expressions) {
+        for (let i = 0; i < expressions.length; i++) {
+          expressions[i] = convertRange(expressions[i]);
+        }
+        return expressions;
+      }
+      return convertAllRanges;
+    })();
+  }
+});
+
+// node_modules/node-cron/src/convert-expression/step-values-conversion.js
+var require_step_values_conversion = __commonJS({
+  "node_modules/node-cron/src/convert-expression/step-values-conversion.js"(exports2, module2) {
+    "use strict";
+    module2.exports = /* @__PURE__ */ (() => {
+      function convertSteps(expressions) {
+        var stepValuePattern = /^(.+)\/(\w+)$/;
+        for (var i = 0; i < expressions.length; i++) {
+          var match = stepValuePattern.exec(expressions[i]);
+          var isStepValue = match !== null && match.length > 0;
+          if (isStepValue) {
+            var baseDivider = match[2];
+            if (isNaN(baseDivider)) {
+              throw baseDivider + " is not a valid step value";
+            }
+            var values = match[1].split(",");
+            var stepValues = [];
+            var divider = parseInt(baseDivider, 10);
+            for (var j = 0; j <= values.length; j++) {
+              var value = parseInt(values[j], 10);
+              if (value % divider === 0) {
+                stepValues.push(value);
+              }
+            }
+            expressions[i] = stepValues.join(",");
+          }
+        }
+        return expressions;
+      }
+      return convertSteps;
+    })();
+  }
+});
+
+// node_modules/node-cron/src/convert-expression/index.js
+var require_convert_expression = __commonJS({
+  "node_modules/node-cron/src/convert-expression/index.js"(exports2, module2) {
+    "use strict";
+    var monthNamesConversion = require_month_names_conversion();
+    var weekDayNamesConversion = require_week_day_names_conversion();
+    var convertAsterisksToRanges = require_asterisk_to_range_conversion();
+    var convertRanges = require_range_conversion();
+    var convertSteps = require_step_values_conversion();
+    module2.exports = /* @__PURE__ */ (() => {
+      function appendSeccondExpression(expressions) {
+        if (expressions.length === 5) {
+          return ["0"].concat(expressions);
+        }
+        return expressions;
+      }
+      function removeSpaces(str) {
+        return str.replace(/\s{2,}/g, " ").trim();
+      }
+      function normalizeIntegers(expressions) {
+        for (let i = 0; i < expressions.length; i++) {
+          const numbers = expressions[i].split(",");
+          for (let j = 0; j < numbers.length; j++) {
+            numbers[j] = parseInt(numbers[j]);
+          }
+          expressions[i] = numbers;
+        }
+        return expressions;
+      }
+      function interprete(expression) {
+        let expressions = removeSpaces(expression).split(" ");
+        expressions = appendSeccondExpression(expressions);
+        expressions[4] = monthNamesConversion(expressions[4]);
+        expressions[5] = weekDayNamesConversion(expressions[5]);
+        expressions = convertAsterisksToRanges(expressions);
+        expressions = convertRanges(expressions);
+        expressions = convertSteps(expressions);
+        expressions = normalizeIntegers(expressions);
+        return expressions.join(" ");
+      }
+      return interprete;
+    })();
+  }
+});
+
+// node_modules/node-cron/src/pattern-validation.js
+var require_pattern_validation = __commonJS({
+  "node_modules/node-cron/src/pattern-validation.js"(exports2, module2) {
+    "use strict";
+    var convertExpression = require_convert_expression();
+    var validationRegex = /^(?:\d+|\*|\*\/\d+)$/;
+    function isValidExpression(expression, min, max) {
+      const options = expression.split(",");
+      for (const option of options) {
+        const optionAsInt = parseInt(option, 10);
+        if (!Number.isNaN(optionAsInt) && (optionAsInt < min || optionAsInt > max) || !validationRegex.test(option))
+          return false;
+      }
+      return true;
+    }
+    function isInvalidSecond(expression) {
+      return !isValidExpression(expression, 0, 59);
+    }
+    function isInvalidMinute(expression) {
+      return !isValidExpression(expression, 0, 59);
+    }
+    function isInvalidHour(expression) {
+      return !isValidExpression(expression, 0, 23);
+    }
+    function isInvalidDayOfMonth(expression) {
+      return !isValidExpression(expression, 1, 31);
+    }
+    function isInvalidMonth(expression) {
+      return !isValidExpression(expression, 1, 12);
+    }
+    function isInvalidWeekDay(expression) {
+      return !isValidExpression(expression, 0, 7);
+    }
+    function validateFields(patterns, executablePatterns) {
+      if (isInvalidSecond(executablePatterns[0]))
+        throw new Error(`${patterns[0]} is a invalid expression for second`);
+      if (isInvalidMinute(executablePatterns[1]))
+        throw new Error(`${patterns[1]} is a invalid expression for minute`);
+      if (isInvalidHour(executablePatterns[2]))
+        throw new Error(`${patterns[2]} is a invalid expression for hour`);
+      if (isInvalidDayOfMonth(executablePatterns[3]))
+        throw new Error(
+          `${patterns[3]} is a invalid expression for day of month`
+        );
+      if (isInvalidMonth(executablePatterns[4]))
+        throw new Error(`${patterns[4]} is a invalid expression for month`);
+      if (isInvalidWeekDay(executablePatterns[5]))
+        throw new Error(`${patterns[5]} is a invalid expression for week day`);
+    }
+    function validate3(pattern) {
+      if (typeof pattern !== "string")
+        throw new TypeError("pattern must be a string!");
+      const patterns = pattern.split(" ");
+      const executablePatterns = convertExpression(pattern).split(" ");
+      if (patterns.length === 5)
+        patterns.unshift("0");
+      validateFields(patterns, executablePatterns);
+    }
+    module2.exports = validate3;
+  }
+});
+
+// node_modules/node-cron/src/time-matcher.js
+var require_time_matcher = __commonJS({
+  "node_modules/node-cron/src/time-matcher.js"(exports2, module2) {
+    var validatePattern = require_pattern_validation();
+    var convertExpression = require_convert_expression();
+    function matchPattern(pattern, value) {
+      if (pattern.indexOf(",") !== -1) {
+        const patterns = pattern.split(",");
+        return patterns.indexOf(value.toString()) !== -1;
+      }
+      return pattern === value.toString();
+    }
+    var TimeMatcher = class {
+      constructor(pattern, timezone) {
+        validatePattern(pattern);
+        this.pattern = convertExpression(pattern);
+        this.timezone = timezone;
+        this.expressions = this.pattern.split(" ");
+        this.dtf = this.timezone ? new Intl.DateTimeFormat("en-US", {
+          year: "numeric",
+          month: "2-digit",
+          day: "2-digit",
+          hour: "2-digit",
+          minute: "2-digit",
+          second: "2-digit",
+          hourCycle: "h23",
+          fractionalSecondDigits: 3,
+          timeZone: this.timezone
+        }) : null;
+      }
+      match(date) {
+        date = this.apply(date);
+        const runOnSecond = matchPattern(this.expressions[0], date.getSeconds());
+        const runOnMinute = matchPattern(this.expressions[1], date.getMinutes());
+        const runOnHour = matchPattern(this.expressions[2], date.getHours());
+        const runOnDay = matchPattern(this.expressions[3], date.getDate());
+        const runOnMonth = matchPattern(this.expressions[4], date.getMonth() + 1);
+        const runOnWeekDay = matchPattern(this.expressions[5], date.getDay());
+        return runOnSecond && runOnMinute && runOnHour && runOnDay && runOnMonth && runOnWeekDay;
+      }
+      apply(date) {
+        if (this.dtf) {
+          return new Date(this.dtf.format(date));
+        }
+        return date;
+      }
+    };
+    module2.exports = TimeMatcher;
+  }
+});
+
+// node_modules/node-cron/src/scheduler.js
+var require_scheduler = __commonJS({
+  "node_modules/node-cron/src/scheduler.js"(exports2, module2) {
+    "use strict";
+    var EventEmitter4 = require("events");
+    var TimeMatcher = require_time_matcher();
+    var Scheduler2 = class extends EventEmitter4 {
+      constructor(pattern, timezone, autorecover) {
+        super();
+        this.timeMatcher = new TimeMatcher(pattern, timezone);
+        this.autorecover = autorecover;
+      }
+      start() {
+        this.stop();
+        let lastCheck = process.hrtime();
+        let lastExecution = this.timeMatcher.apply(/* @__PURE__ */ new Date());
+        const matchTime = () => {
+          const delay = 1e3;
+          const elapsedTime = process.hrtime(lastCheck);
+          const elapsedMs = (elapsedTime[0] * 1e9 + elapsedTime[1]) / 1e6;
+          const missedExecutions = Math.floor(elapsedMs / 1e3);
+          for (let i = missedExecutions; i >= 0; i--) {
+            const date = new Date((/* @__PURE__ */ new Date()).getTime() - i * 1e3);
+            let date_tmp = this.timeMatcher.apply(date);
+            if (lastExecution.getTime() < date_tmp.getTime() && (i === 0 || this.autorecover) && this.timeMatcher.match(date)) {
+              this.emit("scheduled-time-matched", date_tmp);
+              date_tmp.setMilliseconds(0);
+              lastExecution = date_tmp;
+            }
+          }
+          lastCheck = process.hrtime();
+          this.timeout = setTimeout(matchTime, delay);
+        };
+        matchTime();
+      }
+      stop() {
+        if (this.timeout) {
+          clearTimeout(this.timeout);
+        }
+        this.timeout = null;
+      }
+    };
+    module2.exports = Scheduler2;
+  }
+});
+
+// node_modules/node-cron/node_modules/uuid/dist/esm-node/rng.js
+function rng2() {
+  if (poolPtr2 > rnds8Pool2.length - 16) {
+    import_crypto3.default.randomFillSync(rnds8Pool2);
+    poolPtr2 = 0;
+  }
+  return rnds8Pool2.slice(poolPtr2, poolPtr2 += 16);
+}
+var import_crypto3, rnds8Pool2, poolPtr2;
+var init_rng = __esm({
+  "node_modules/node-cron/node_modules/uuid/dist/esm-node/rng.js"() {
+    import_crypto3 = __toESM(require("crypto"));
+    rnds8Pool2 = new Uint8Array(256);
+    poolPtr2 = rnds8Pool2.length;
+  }
+});
+
+// node_modules/node-cron/node_modules/uuid/dist/esm-node/regex.js
+var regex_default;
+var init_regex = __esm({
+  "node_modules/node-cron/node_modules/uuid/dist/esm-node/regex.js"() {
+    regex_default = /^(?:[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}|00000000-0000-0000-0000-000000000000)$/i;
+  }
+});
+
+// node_modules/node-cron/node_modules/uuid/dist/esm-node/validate.js
+function validate(uuid) {
+  return typeof uuid === "string" && regex_default.test(uuid);
+}
+var validate_default;
+var init_validate = __esm({
+  "node_modules/node-cron/node_modules/uuid/dist/esm-node/validate.js"() {
+    init_regex();
+    validate_default = validate;
+  }
+});
+
+// node_modules/node-cron/node_modules/uuid/dist/esm-node/stringify.js
+function stringify(arr, offset = 0) {
+  const uuid = (byteToHex2[arr[offset + 0]] + byteToHex2[arr[offset + 1]] + byteToHex2[arr[offset + 2]] + byteToHex2[arr[offset + 3]] + "-" + byteToHex2[arr[offset + 4]] + byteToHex2[arr[offset + 5]] + "-" + byteToHex2[arr[offset + 6]] + byteToHex2[arr[offset + 7]] + "-" + byteToHex2[arr[offset + 8]] + byteToHex2[arr[offset + 9]] + "-" + byteToHex2[arr[offset + 10]] + byteToHex2[arr[offset + 11]] + byteToHex2[arr[offset + 12]] + byteToHex2[arr[offset + 13]] + byteToHex2[arr[offset + 14]] + byteToHex2[arr[offset + 15]]).toLowerCase();
+  if (!validate_default(uuid)) {
+    throw TypeError("Stringified UUID is invalid");
+  }
+  return uuid;
+}
+var byteToHex2, stringify_default;
+var init_stringify = __esm({
+  "node_modules/node-cron/node_modules/uuid/dist/esm-node/stringify.js"() {
+    init_validate();
+    byteToHex2 = [];
+    for (let i = 0; i < 256; ++i) {
+      byteToHex2.push((i + 256).toString(16).substr(1));
+    }
+    stringify_default = stringify;
+  }
+});
+
+// node_modules/node-cron/node_modules/uuid/dist/esm-node/v1.js
+function v1(options, buf, offset) {
+  let i = buf && offset || 0;
+  const b = buf || new Array(16);
+  options = options || {};
+  let node = options.node || _nodeId;
+  let clockseq = options.clockseq !== void 0 ? options.clockseq : _clockseq;
+  if (node == null || clockseq == null) {
+    const seedBytes = options.random || (options.rng || rng2)();
+    if (node == null) {
+      node = _nodeId = [seedBytes[0] | 1, seedBytes[1], seedBytes[2], seedBytes[3], seedBytes[4], seedBytes[5]];
+    }
+    if (clockseq == null) {
+      clockseq = _clockseq = (seedBytes[6] << 8 | seedBytes[7]) & 16383;
+    }
+  }
+  let msecs = options.msecs !== void 0 ? options.msecs : Date.now();
+  let nsecs = options.nsecs !== void 0 ? options.nsecs : _lastNSecs + 1;
+  const dt = msecs - _lastMSecs + (nsecs - _lastNSecs) / 1e4;
+  if (dt < 0 && options.clockseq === void 0) {
+    clockseq = clockseq + 1 & 16383;
+  }
+  if ((dt < 0 || msecs > _lastMSecs) && options.nsecs === void 0) {
+    nsecs = 0;
+  }
+  if (nsecs >= 1e4) {
+    throw new Error("uuid.v1(): Can't create more than 10M uuids/sec");
+  }
+  _lastMSecs = msecs;
+  _lastNSecs = nsecs;
+  _clockseq = clockseq;
+  msecs += 122192928e5;
+  const tl = ((msecs & 268435455) * 1e4 + nsecs) % 4294967296;
+  b[i++] = tl >>> 24 & 255;
+  b[i++] = tl >>> 16 & 255;
+  b[i++] = tl >>> 8 & 255;
+  b[i++] = tl & 255;
+  const tmh = msecs / 4294967296 * 1e4 & 268435455;
+  b[i++] = tmh >>> 8 & 255;
+  b[i++] = tmh & 255;
+  b[i++] = tmh >>> 24 & 15 | 16;
+  b[i++] = tmh >>> 16 & 255;
+  b[i++] = clockseq >>> 8 | 128;
+  b[i++] = clockseq & 255;
+  for (let n = 0; n < 6; ++n) {
+    b[i + n] = node[n];
+  }
+  return buf || stringify_default(b);
+}
+var _nodeId, _clockseq, _lastMSecs, _lastNSecs, v1_default;
+var init_v1 = __esm({
+  "node_modules/node-cron/node_modules/uuid/dist/esm-node/v1.js"() {
+    init_rng();
+    init_stringify();
+    _lastMSecs = 0;
+    _lastNSecs = 0;
+    v1_default = v1;
+  }
+});
+
+// node_modules/node-cron/node_modules/uuid/dist/esm-node/parse.js
+function parse(uuid) {
+  if (!validate_default(uuid)) {
+    throw TypeError("Invalid UUID");
+  }
+  let v;
+  const arr = new Uint8Array(16);
+  arr[0] = (v = parseInt(uuid.slice(0, 8), 16)) >>> 24;
+  arr[1] = v >>> 16 & 255;
+  arr[2] = v >>> 8 & 255;
+  arr[3] = v & 255;
+  arr[4] = (v = parseInt(uuid.slice(9, 13), 16)) >>> 8;
+  arr[5] = v & 255;
+  arr[6] = (v = parseInt(uuid.slice(14, 18), 16)) >>> 8;
+  arr[7] = v & 255;
+  arr[8] = (v = parseInt(uuid.slice(19, 23), 16)) >>> 8;
+  arr[9] = v & 255;
+  arr[10] = (v = parseInt(uuid.slice(24, 36), 16)) / 1099511627776 & 255;
+  arr[11] = v / 4294967296 & 255;
+  arr[12] = v >>> 24 & 255;
+  arr[13] = v >>> 16 & 255;
+  arr[14] = v >>> 8 & 255;
+  arr[15] = v & 255;
+  return arr;
+}
+var parse_default;
+var init_parse = __esm({
+  "node_modules/node-cron/node_modules/uuid/dist/esm-node/parse.js"() {
+    init_validate();
+    parse_default = parse;
+  }
+});
+
+// node_modules/node-cron/node_modules/uuid/dist/esm-node/v35.js
+function stringToBytes(str) {
+  str = unescape(encodeURIComponent(str));
+  const bytes = [];
+  for (let i = 0; i < str.length; ++i) {
+    bytes.push(str.charCodeAt(i));
+  }
+  return bytes;
+}
+function v35_default(name, version2, hashfunc) {
+  function generateUUID(value, namespace, buf, offset) {
+    if (typeof value === "string") {
+      value = stringToBytes(value);
+    }
+    if (typeof namespace === "string") {
+      namespace = parse_default(namespace);
+    }
+    if (namespace.length !== 16) {
+      throw TypeError("Namespace must be array-like (16 iterable integer values, 0-255)");
+    }
+    let bytes = new Uint8Array(16 + value.length);
+    bytes.set(namespace);
+    bytes.set(value, namespace.length);
+    bytes = hashfunc(bytes);
+    bytes[6] = bytes[6] & 15 | version2;
+    bytes[8] = bytes[8] & 63 | 128;
+    if (buf) {
+      offset = offset || 0;
+      for (let i = 0; i < 16; ++i) {
+        buf[offset + i] = bytes[i];
+      }
+      return buf;
+    }
+    return stringify_default(bytes);
+  }
+  try {
+    generateUUID.name = name;
+  } catch (err) {
+  }
+  generateUUID.DNS = DNS;
+  generateUUID.URL = URL2;
+  return generateUUID;
+}
+var DNS, URL2;
+var init_v35 = __esm({
+  "node_modules/node-cron/node_modules/uuid/dist/esm-node/v35.js"() {
+    init_stringify();
+    init_parse();
+    DNS = "6ba7b810-9dad-11d1-80b4-00c04fd430c8";
+    URL2 = "6ba7b811-9dad-11d1-80b4-00c04fd430c8";
+  }
+});
+
+// node_modules/node-cron/node_modules/uuid/dist/esm-node/md5.js
+function md5(bytes) {
+  if (Array.isArray(bytes)) {
+    bytes = Buffer.from(bytes);
+  } else if (typeof bytes === "string") {
+    bytes = Buffer.from(bytes, "utf8");
+  }
+  return import_crypto4.default.createHash("md5").update(bytes).digest();
+}
+var import_crypto4, md5_default;
+var init_md5 = __esm({
+  "node_modules/node-cron/node_modules/uuid/dist/esm-node/md5.js"() {
+    import_crypto4 = __toESM(require("crypto"));
+    md5_default = md5;
+  }
+});
+
+// node_modules/node-cron/node_modules/uuid/dist/esm-node/v3.js
+var v3, v3_default;
+var init_v3 = __esm({
+  "node_modules/node-cron/node_modules/uuid/dist/esm-node/v3.js"() {
+    init_v35();
+    init_md5();
+    v3 = v35_default("v3", 48, md5_default);
+    v3_default = v3;
+  }
+});
+
+// node_modules/node-cron/node_modules/uuid/dist/esm-node/v4.js
+function v42(options, buf, offset) {
+  options = options || {};
+  const rnds = options.random || (options.rng || rng2)();
+  rnds[6] = rnds[6] & 15 | 64;
+  rnds[8] = rnds[8] & 63 | 128;
+  if (buf) {
+    offset = offset || 0;
+    for (let i = 0; i < 16; ++i) {
+      buf[offset + i] = rnds[i];
+    }
+    return buf;
+  }
+  return stringify_default(rnds);
+}
+var v4_default2;
+var init_v4 = __esm({
+  "node_modules/node-cron/node_modules/uuid/dist/esm-node/v4.js"() {
+    init_rng();
+    init_stringify();
+    v4_default2 = v42;
+  }
+});
+
+// node_modules/node-cron/node_modules/uuid/dist/esm-node/sha1.js
+function sha1(bytes) {
+  if (Array.isArray(bytes)) {
+    bytes = Buffer.from(bytes);
+  } else if (typeof bytes === "string") {
+    bytes = Buffer.from(bytes, "utf8");
+  }
+  return import_crypto5.default.createHash("sha1").update(bytes).digest();
+}
+var import_crypto5, sha1_default;
+var init_sha1 = __esm({
+  "node_modules/node-cron/node_modules/uuid/dist/esm-node/sha1.js"() {
+    import_crypto5 = __toESM(require("crypto"));
+    sha1_default = sha1;
+  }
+});
+
+// node_modules/node-cron/node_modules/uuid/dist/esm-node/v5.js
+var v5, v5_default;
+var init_v5 = __esm({
+  "node_modules/node-cron/node_modules/uuid/dist/esm-node/v5.js"() {
+    init_v35();
+    init_sha1();
+    v5 = v35_default("v5", 80, sha1_default);
+    v5_default = v5;
+  }
+});
+
+// node_modules/node-cron/node_modules/uuid/dist/esm-node/nil.js
+var nil_default;
+var init_nil = __esm({
+  "node_modules/node-cron/node_modules/uuid/dist/esm-node/nil.js"() {
+    nil_default = "00000000-0000-0000-0000-000000000000";
+  }
+});
+
+// node_modules/node-cron/node_modules/uuid/dist/esm-node/version.js
+function version(uuid) {
+  if (!validate_default(uuid)) {
+    throw TypeError("Invalid UUID");
+  }
+  return parseInt(uuid.substr(14, 1), 16);
+}
+var version_default;
+var init_version = __esm({
+  "node_modules/node-cron/node_modules/uuid/dist/esm-node/version.js"() {
+    init_validate();
+    version_default = version;
+  }
+});
+
+// node_modules/node-cron/node_modules/uuid/dist/esm-node/index.js
+var esm_node_exports = {};
+__export(esm_node_exports, {
+  NIL: () => nil_default,
+  parse: () => parse_default,
+  stringify: () => stringify_default,
+  v1: () => v1_default,
+  v3: () => v3_default,
+  v4: () => v4_default2,
+  v5: () => v5_default,
+  validate: () => validate_default,
+  version: () => version_default
+});
+var init_esm_node = __esm({
+  "node_modules/node-cron/node_modules/uuid/dist/esm-node/index.js"() {
+    init_v1();
+    init_v3();
+    init_v4();
+    init_v5();
+    init_nil();
+    init_version();
+    init_validate();
+    init_stringify();
+    init_parse();
+  }
+});
+
+// node_modules/node-cron/src/scheduled-task.js
+var require_scheduled_task = __commonJS({
+  "node_modules/node-cron/src/scheduled-task.js"(exports2, module2) {
+    "use strict";
+    var EventEmitter4 = require("events");
+    var Task = require_task();
+    var Scheduler2 = require_scheduler();
+    var uuid = (init_esm_node(), __toCommonJS(esm_node_exports));
+    var ScheduledTask = class extends EventEmitter4 {
+      constructor(cronExpression, func, options) {
+        super();
+        if (!options) {
+          options = {
+            scheduled: true,
+            recoverMissedExecutions: false
+          };
+        }
+        this.options = options;
+        this.options.name = this.options.name || uuid.v4();
+        this._task = new Task(func);
+        this._scheduler = new Scheduler2(cronExpression, options.timezone, options.recoverMissedExecutions);
+        this._scheduler.on("scheduled-time-matched", (now) => {
+          this.now(now);
+        });
+        if (options.scheduled !== false) {
+          this._scheduler.start();
+        }
+        if (options.runOnInit === true) {
+          this.now("init");
+        }
+      }
+      now(now = "manual") {
+        let result = this._task.execute(now);
+        this.emit("task-done", result);
+      }
+      start() {
+        this._scheduler.start();
+      }
+      stop() {
+        this._scheduler.stop();
+      }
+    };
+    module2.exports = ScheduledTask;
+  }
+});
+
+// node_modules/node-cron/src/background-scheduled-task/index.js
+var require_background_scheduled_task = __commonJS({
+  "node_modules/node-cron/src/background-scheduled-task/index.js"(exports2, module2) {
+    var EventEmitter4 = require("events");
+    var path3 = require("path");
+    var { fork } = require("child_process");
+    var uuid = (init_esm_node(), __toCommonJS(esm_node_exports));
+    var daemonPath = `${__dirname}/daemon.js`;
+    var BackgroundScheduledTask = class extends EventEmitter4 {
+      constructor(cronExpression, taskPath, options) {
+        super();
+        if (!options) {
+          options = {
+            scheduled: true,
+            recoverMissedExecutions: false
+          };
+        }
+        this.cronExpression = cronExpression;
+        this.taskPath = taskPath;
+        this.options = options;
+        this.options.name = this.options.name || uuid.v4();
+        if (options.scheduled) {
+          this.start();
+        }
+      }
+      start() {
+        this.stop();
+        this.forkProcess = fork(daemonPath);
+        this.forkProcess.on("message", (message) => {
+          switch (message.type) {
+            case "task-done":
+              this.emit("task-done", message.result);
+              break;
+          }
+        });
+        let options = this.options;
+        options.scheduled = true;
+        this.forkProcess.send({
+          type: "register",
+          path: path3.resolve(this.taskPath),
+          cron: this.cronExpression,
+          options
+        });
+      }
+      stop() {
+        if (this.forkProcess) {
+          this.forkProcess.kill();
+        }
+      }
+      pid() {
+        if (this.forkProcess) {
+          return this.forkProcess.pid;
+        }
+      }
+      isRunning() {
+        return !this.forkProcess.killed;
+      }
+    };
+    module2.exports = BackgroundScheduledTask;
+  }
+});
+
+// node_modules/node-cron/src/storage.js
+var require_storage = __commonJS({
+  "node_modules/node-cron/src/storage.js"(exports2, module2) {
+    module2.exports = (() => {
+      if (!global.scheduledTasks) {
+        global.scheduledTasks = /* @__PURE__ */ new Map();
+      }
+      return {
+        save: (task) => {
+          if (!task.options) {
+            const uuid = (init_esm_node(), __toCommonJS(esm_node_exports));
+            task.options = {};
+            task.options.name = uuid.v4();
+          }
+          global.scheduledTasks.set(task.options.name, task);
+        },
+        getTasks: () => {
+          return global.scheduledTasks;
+        }
+      };
+    })();
+  }
+});
+
+// node_modules/node-cron/src/node-cron.js
+var require_node_cron = __commonJS({
+  "node_modules/node-cron/src/node-cron.js"(exports2, module2) {
+    "use strict";
+    var ScheduledTask = require_scheduled_task();
+    var BackgroundScheduledTask = require_background_scheduled_task();
+    var validation = require_pattern_validation();
+    var storage = require_storage();
+    function schedule2(expression, func, options) {
+      const task = createTask(expression, func, options);
+      storage.save(task);
+      return task;
+    }
+    function createTask(expression, func, options) {
+      if (typeof func === "string")
+        return new BackgroundScheduledTask(expression, func, options);
+      return new ScheduledTask(expression, func, options);
+    }
+    function validate3(expression) {
+      try {
+        validation(expression);
+        return true;
+      } catch (_) {
+        return false;
+      }
+    }
+    function getTasks() {
+      return storage.getTasks();
+    }
+    module2.exports = { schedule: schedule2, validate: validate3, getTasks };
+  }
+});
+
+// src/extension.ts
+var extension_exports = {};
+__export(extension_exports, {
+  activate: () => activate,
+  deactivate: () => deactivate
+});
+module.exports = __toCommonJS(extension_exports);
+var vscode13 = __toESM(require("vscode"));
+
+// src/views/sidebarProvider.ts
+var vscode = __toESM(require("vscode"));
+var RecordingLibraryProvider = class {
+  constructor(db) {
+    this.db = db;
+  }
+  _onDidChangeTreeData = new vscode.EventEmitter();
+  onDidChangeTreeData = this._onDidChangeTreeData.event;
+  refresh() {
+    this._onDidChangeTreeData.fire();
+  }
+  getTreeItem(element) {
+    return element;
+  }
+  getChildren(element) {
+    if (element) {
+      if (element.recordingId) {
+        const actions = this.db.getActions(element.recordingId);
+        return actions.map((action, i) => {
+          const item = new RecordingTreeItem(
+            `${i + 1}. ${action.action_type} \u2014 ${action.url || ""}`,
+            vscode.TreeItemCollapsibleState.None
+          );
+          item.description = `${action.timestamp_ms}ms`;
+          item.iconPath = new vscode.ThemeIcon("debug-step-over");
+          return item;
+        });
+      }
+      return [];
+    }
+    const recordings = this.db.getAllRecordings();
+    if (recordings.length === 0) {
+      return [new RecordingTreeItem("No recordings yet. Click + to start.", vscode.TreeItemCollapsibleState.None)];
+    }
+    return recordings.map((rec) => {
+      const item = new RecordingTreeItem(
+        rec.name,
+        vscode.TreeItemCollapsibleState.Collapsed
+      );
+      item.recordingId = rec.id;
+      item.contextValue = "recording";
+      item.description = `${rec.action_count} actions \xB7 ${new Date(rec.created_at).toLocaleDateString()}`;
+      item.tooltip = `URL: ${rec.url}
+Tags: ${rec.tags || "none"}
+Duration: ${rec.duration_ms}ms`;
+      item.iconPath = new vscode.ThemeIcon("file-media");
+      return item;
+    });
+  }
+};
+var RecordingTreeItem = class extends vscode.TreeItem {
+  recordingId;
+};
+
+// src/views/executionsProvider.ts
+var vscode2 = __toESM(require("vscode"));
+var ExecutionsProvider = class {
+  constructor(db) {
+    this.db = db;
+  }
+  _onDidChangeTreeData = new vscode2.EventEmitter();
+  onDidChangeTreeData = this._onDidChangeTreeData.event;
+  refresh() {
+    this._onDidChangeTreeData.fire();
+  }
+  getTreeItem(element) {
+    return element;
+  }
+  getChildren() {
+    const executions = this.db.getRecentExecutions(20);
+    if (executions.length === 0) {
+      return [new vscode2.TreeItem("No executions yet.")];
+    }
+    return executions.map((exec) => {
+      const recording = this.db.getRecording(exec.recording_id);
+      const statusIcon = exec.status === "pass" ? "pass" : exec.status === "fail" ? "error" : "warning";
+      const item = new vscode2.TreeItem(
+        recording?.name || exec.recording_id,
+        vscode2.TreeItemCollapsibleState.None
+      );
+      item.description = `${exec.status} \xB7 ${exec.trigger} \xB7 ${new Date(exec.started_at).toLocaleString()}`;
+      item.iconPath = new vscode2.ThemeIcon(`testing-${statusIcon}-icon`);
+      item.tooltip = exec.error_message ? `Failed at step ${exec.failure_step}: ${exec.error_message}` : `Completed in ${exec.finished_at ? new Date(exec.finished_at).getTime() - new Date(exec.started_at).getTime() : "?"}ms`;
+      return item;
+    });
+  }
+};
+
+// src/views/schedulesProvider.ts
+var vscode3 = __toESM(require("vscode"));
+var SchedulesProvider = class {
+  constructor(db) {
+    this.db = db;
+  }
+  _onDidChangeTreeData = new vscode3.EventEmitter();
+  onDidChangeTreeData = this._onDidChangeTreeData.event;
+  refresh() {
+    this._onDidChangeTreeData.fire();
+  }
+  getTreeItem(element) {
+    return element;
+  }
+  getChildren() {
+    const schedules = this.db.getAllSchedules();
+    if (schedules.length === 0) {
+      return [new vscode3.TreeItem("No schedules configured.")];
+    }
+    return schedules.map((sched) => {
+      const recording = this.db.getRecording(sched.recording_id);
+      const item = new vscode3.TreeItem(
+        recording?.name || sched.recording_id,
+        vscode3.TreeItemCollapsibleState.None
+      );
+      item.description = `${sched.cron_expression} \xB7 ${sched.enabled ? "Active" : "Paused"}`;
+      item.iconPath = new vscode3.ThemeIcon(sched.enabled ? "clock" : "debug-pause");
+      item.tooltip = `Next run: ${sched.next_run || "N/A"}
+Last run: ${sched.last_run || "Never"}`;
+      return item;
+    });
+  }
+};
+
+// src/views/recordingPanel.ts
+var vscode4 = __toESM(require("vscode"));
+var RecordingPanelManager = class {
+  constructor(context, recorder2, onRecordingSaved, onRecordingStarted) {
+    this.context = context;
+    this.recorder = recorder2;
+    this.onRecordingSaved = onRecordingSaved;
+    this.onRecordingStarted = onRecordingStarted;
+  }
+  panel;
+  async show() {
+    if (this.panel) {
+      this.panel.reveal(vscode4.ViewColumn.One);
+      return;
+    }
+    this.panel = vscode4.window.createWebviewPanel(
+      "playwrightVcr.recording",
+      "PlaywrightVCR \u2014 Record",
+      vscode4.ViewColumn.One,
+      {
+        enableScripts: true,
+        retainContextWhenHidden: true,
+        localResourceRoots: [
+          vscode4.Uri.joinPath(this.context.extensionUri, "out")
+        ]
+      }
+    );
+    this.panel.webview.html = this.getHtml(this.panel.webview);
+    this.panel.webview.onDidReceiveMessage(async (message) => {
+      switch (message.type) {
+        case "startRecording": {
+          const { url, browser, saveAuth } = message.payload;
+          await this.recorder.start(url, browser, saveAuth);
+          this.onRecordingStarted?.();
+          this.recorder.onAction((action) => {
+            this.panel?.webview.postMessage({
+              type: "recordedAction",
+              payload: action
+            });
+          });
+          break;
+        }
+        case "stopRecording": {
+          const recording = await this.recorder.stop();
+          this.panel?.webview.postMessage({
+            type: "recordingStopped",
+            payload: recording
+          });
+          this.onRecordingSaved?.();
+          break;
+        }
+      }
+    });
+    this.panel.onDidDispose(() => {
+      this.panel = void 0;
+    });
+  }
+  getHtml(webview) {
+    const scriptUri = webview.asWebviewUri(
+      vscode4.Uri.joinPath(this.context.extensionUri, "out", "webview.js")
+    );
+    const nonce = getNonce();
+    return (
+      /* html */
+      `<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'nonce-${s}'; style-src ${t.cspSource} 'unsafe-inline';">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'nonce-${nonce}'; style-src ${webview.cspSource} 'unsafe-inline';">
   <title>PlaywrightVCR \u2014 Record</title>
 </head>
 <body>
   <div id="root" data-panel="recording"></div>
-  <script nonce="${s}" src="${i}"></script>
+  <script nonce="${nonce}" src="${scriptUri}"></script>
 </body>
-</html>`}};function Bs(){let c="",t="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";for(let i=0;i<32;i++)c+=t.charAt(Math.floor(Math.random()*t.length));return c}var Te=M(require("vscode")),Pt=class{constructor(t,i){this.context=t;this.player=i}panel;async show(t){if(this.panel){this.panel.reveal(Te.ViewColumn.One),t&&this.panel.webview.postMessage({type:"loadRecording",payload:{recordingId:t}});return}this.panel=Te.window.createWebviewPanel("playwrightVcr.playback","PlaywrightVCR \u2014 Playback",Te.ViewColumn.One,{enableScripts:!0,retainContextWhenHidden:!0,localResourceRoots:[Te.Uri.joinPath(this.context.extensionUri,"out")]}),this.panel.webview.html=this.getHtml(this.panel.webview),t&&setTimeout(()=>{this.panel?.webview.postMessage({type:"loadRecording",payload:{recordingId:t}})},500),this.panel.webview.onDidReceiveMessage(async i=>{switch(i.type){case"startPlayback":{let{recordingId:s,options:l}=i.payload;try{await this.player.play(s,l,o=>{this.panel?.webview.postMessage({type:"stepCompleted",payload:o})}),this.panel?.webview.postMessage({type:"playbackCompleted"})}catch(o){this.panel?.webview.postMessage({type:"playbackError",payload:{error:o.message}})}break}case"stopPlayback":{await this.player.stop();break}}}),this.panel.onDidDispose(()=>{this.panel=void 0})}getHtml(t){let i=t.asWebviewUri(Te.Uri.joinPath(this.context.extensionUri,"out","webview.js")),s=Vs();return`<!DOCTYPE html>
+</html>`
+    );
+  }
+};
+function getNonce() {
+  let text = "";
+  const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+  for (let i = 0; i < 32; i++) {
+    text += chars.charAt(Math.floor(Math.random() * chars.length));
+  }
+  return text;
+}
+
+// src/views/playbackPanel.ts
+var vscode5 = __toESM(require("vscode"));
+var PlaybackPanelManager = class {
+  constructor(context, player2) {
+    this.context = context;
+    this.player = player2;
+  }
+  panel;
+  async show(recordingId) {
+    if (this.panel) {
+      this.panel.reveal(vscode5.ViewColumn.One);
+      if (recordingId) {
+        this.panel.webview.postMessage({
+          type: "loadRecording",
+          payload: { recordingId }
+        });
+      }
+      return;
+    }
+    this.panel = vscode5.window.createWebviewPanel(
+      "playwrightVcr.playback",
+      "PlaywrightVCR \u2014 Playback",
+      vscode5.ViewColumn.One,
+      {
+        enableScripts: true,
+        retainContextWhenHidden: true,
+        localResourceRoots: [
+          vscode5.Uri.joinPath(this.context.extensionUri, "out")
+        ]
+      }
+    );
+    this.panel.webview.html = this.getHtml(this.panel.webview);
+    if (recordingId) {
+      setTimeout(() => {
+        this.panel?.webview.postMessage({
+          type: "loadRecording",
+          payload: { recordingId }
+        });
+      }, 500);
+    }
+    this.panel.webview.onDidReceiveMessage(async (message) => {
+      switch (message.type) {
+        case "startPlayback": {
+          const { recordingId: id, options } = message.payload;
+          try {
+            await this.player.play(id, options, (stepResult) => {
+              this.panel?.webview.postMessage({
+                type: "stepCompleted",
+                payload: stepResult
+              });
+            });
+            this.panel?.webview.postMessage({ type: "playbackCompleted" });
+          } catch (err) {
+            this.panel?.webview.postMessage({
+              type: "playbackError",
+              payload: { error: err.message }
+            });
+          }
+          break;
+        }
+        case "stopPlayback": {
+          await this.player.stop();
+          break;
+        }
+      }
+    });
+    this.panel.onDidDispose(() => {
+      this.panel = void 0;
+    });
+  }
+  getHtml(webview) {
+    const scriptUri = webview.asWebviewUri(
+      vscode5.Uri.joinPath(this.context.extensionUri, "out", "webview.js")
+    );
+    const nonce = getNonce2();
+    return (
+      /* html */
+      `<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'nonce-${s}'; style-src ${t.cspSource} 'unsafe-inline';">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'nonce-${nonce}'; style-src ${webview.cspSource} 'unsafe-inline';">
   <title>PlaywrightVCR \u2014 Playback</title>
 </head>
 <body>
   <div id="root" data-panel="playback"></div>
-  <script nonce="${s}" src="${i}"></script>
+  <script nonce="${nonce}" src="${scriptUri}"></script>
 </body>
-</html>`}};function Vs(){let c="",t="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";for(let i=0;i<32;i++)c+=t.charAt(Math.floor(Math.random()*t.length));return c}var Se=M(require("vscode")),Lt=class{constructor(t,i){this.context=t;this.db=i}panel;async show(){if(this.panel){this.panel.reveal(Se.ViewColumn.One);return}this.panel=Se.window.createWebviewPanel("playwrightVcr.monitoring","PlaywrightVCR \u2014 Monitoring",Se.ViewColumn.One,{enableScripts:!0,retainContextWhenHidden:!0,localResourceRoots:[Se.Uri.joinPath(this.context.extensionUri,"out")]}),this.panel.webview.html=this.getHtml(this.panel.webview),this.panel.webview.onDidReceiveMessage(async t=>{switch(t.type){case"getExecutions":{let i=this.db.getRecentExecutions(50);this.panel?.webview.postMessage({type:"executionsData",payload:i});break}case"getSchedules":{let i=this.db.getAllSchedules();this.panel?.webview.postMessage({type:"schedulesData",payload:i});break}case"addSchedule":{let{recordingId:i,cronExpression:s}=t.payload;this.db.createSchedule(i,s);let l=this.db.getAllSchedules();this.panel?.webview.postMessage({type:"schedulesData",payload:l});break}case"toggleSchedule":{let{scheduleId:i,enabled:s}=t.payload;this.db.updateSchedule(i,{enabled:s});break}case"deleteSchedule":{this.db.deleteSchedule(t.payload.scheduleId);break}}}),this.panel.onDidDispose(()=>{this.panel=void 0})}getHtml(t){let i=t.asWebviewUri(Se.Uri.joinPath(this.context.extensionUri,"out","webview.js")),s=Hs();return`<!DOCTYPE html>
+</html>`
+    );
+  }
+};
+function getNonce2() {
+  let text = "";
+  const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+  for (let i = 0; i < 32; i++) {
+    text += chars.charAt(Math.floor(Math.random() * chars.length));
+  }
+  return text;
+}
+
+// src/views/monitoringPanel.ts
+var vscode6 = __toESM(require("vscode"));
+var MonitoringPanelManager = class {
+  constructor(context, db) {
+    this.context = context;
+    this.db = db;
+  }
+  panel;
+  async show() {
+    if (this.panel) {
+      this.panel.reveal(vscode6.ViewColumn.One);
+      return;
+    }
+    this.panel = vscode6.window.createWebviewPanel(
+      "playwrightVcr.monitoring",
+      "PlaywrightVCR \u2014 Monitoring",
+      vscode6.ViewColumn.One,
+      {
+        enableScripts: true,
+        retainContextWhenHidden: true,
+        localResourceRoots: [
+          vscode6.Uri.joinPath(this.context.extensionUri, "out")
+        ]
+      }
+    );
+    this.panel.webview.html = this.getHtml(this.panel.webview);
+    this.panel.webview.onDidReceiveMessage(async (message) => {
+      switch (message.type) {
+        case "getExecutions": {
+          const executions = this.db.getRecentExecutions(50);
+          this.panel?.webview.postMessage({
+            type: "executionsData",
+            payload: executions
+          });
+          break;
+        }
+        case "getSchedules": {
+          const schedules = this.db.getAllSchedules();
+          this.panel?.webview.postMessage({
+            type: "schedulesData",
+            payload: schedules
+          });
+          break;
+        }
+        case "addSchedule": {
+          const { recordingId, cronExpression } = message.payload;
+          this.db.createSchedule(recordingId, cronExpression);
+          const schedules = this.db.getAllSchedules();
+          this.panel?.webview.postMessage({
+            type: "schedulesData",
+            payload: schedules
+          });
+          break;
+        }
+        case "toggleSchedule": {
+          const { scheduleId, enabled } = message.payload;
+          this.db.updateSchedule(scheduleId, { enabled });
+          break;
+        }
+        case "deleteSchedule": {
+          this.db.deleteSchedule(message.payload.scheduleId);
+          break;
+        }
+      }
+    });
+    this.panel.onDidDispose(() => {
+      this.panel = void 0;
+    });
+  }
+  getHtml(webview) {
+    const scriptUri = webview.asWebviewUri(
+      vscode6.Uri.joinPath(this.context.extensionUri, "out", "webview.js")
+    );
+    const nonce = getNonce3();
+    return (
+      /* html */
+      `<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'nonce-${s}'; style-src ${t.cspSource} 'unsafe-inline';">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'nonce-${nonce}'; style-src ${webview.cspSource} 'unsafe-inline';">
   <title>PlaywrightVCR \u2014 Monitoring</title>
 </head>
 <body>
   <div id="root" data-panel="monitoring"></div>
-  <script nonce="${s}" src="${i}"></script>
+  <script nonce="${nonce}" src="${scriptUri}"></script>
 </body>
-</html>`}};function Hs(){let c="",t="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";for(let i=0;i<32;i++)c+=t.charAt(Math.floor(Math.random()*t.length));return c}var B=M(require("vscode")),Nt=class{constructor(t){this.context=t}panel;async show(){if(this.panel){this.panel.reveal(B.ViewColumn.One),await this.sendCurrentSettings();return}this.panel=B.window.createWebviewPanel("playwrightVcr.settings","PlaywrightVCR \u2014 AI Settings",B.ViewColumn.One,{enableScripts:!0,retainContextWhenHidden:!0,localResourceRoots:[B.Uri.joinPath(this.context.extensionUri,"assets")]});let t=this.panel.webview.asWebviewUri(B.Uri.joinPath(this.context.extensionUri,"assets","logo","Logo128.png")),i=this.context.extension.packageJSON;this.panel.webview.html=this.getHtml(t,i.version??"0.0.0",i.description??""),this.panel.webview.onDidReceiveMessage(async s=>{await this.handleMessage(s)}),this.panel.onDidDispose(()=>{this.panel=void 0}),setTimeout(()=>this.sendCurrentSettings(),200)}async sendCurrentSettings(){let t=B.workspace.getConfiguration("playwrightVcr"),i=t.get("ai.provider","openai"),s=!!await this.context.secrets.get("playwrightVcr.apiKey.openai"),l=!!await this.context.secrets.get("playwrightVcr.apiKey.anthropic");this.panel?.webview.postMessage({type:"settingsLoaded",payload:{selfHealingEnabled:t.get("selfHealing.enabled",!0),embeddingThreshold:t.get("selfHealing.embeddingThreshold",.85),llmEnabled:t.get("selfHealing.llmEnabled",!1),provider:i,model:t.get("ai.model","gpt-4o-mini"),ollamaUrl:t.get("ai.ollamaUrl","http://localhost:11434"),hasOpenAIKey:s,hasAnthropicKey:l}})}async handleMessage(t){switch(t.type){case"getSettings":await this.sendCurrentSettings();break;case"updateSetting":{let{key:i,value:s}=t.payload;await B.workspace.getConfiguration("playwrightVcr").update(i,s,B.ConfigurationTarget.Global),this.panel?.webview.postMessage({type:"settingSaved",payload:{key:i}});break}case"setApiKey":{let{provider:i,apiKey:s}=t.payload;s?(await this.context.secrets.store(`playwrightVcr.apiKey.${i}`,s),B.window.showInformationMessage(`${i} API key saved securely.`)):(await this.context.secrets.delete(`playwrightVcr.apiKey.${i}`),B.window.showInformationMessage(`${i} API key removed.`)),await this.sendCurrentSettings();break}case"testConnection":{let{provider:i}=t.payload,s=await this.testProviderConnection(i);this.panel?.webview.postMessage({type:"connectionTestResult",payload:s});break}case"openRepo":{let i=B.Uri.parse("https://github.com/djtrustgod/Playwright-GUI-Recorder-Playback");await B.env.openExternal(i);break}case"openAnthropicConsole":{let i=B.Uri.parse("https://console.anthropic.com/settings/keys");await B.env.openExternal(i),setTimeout(()=>{this.panel?.webview.postMessage({type:"focusAnthropicKey"})},500);break}}}async testProviderConnection(t){let i=B.workspace.getConfiguration("playwrightVcr"),s=i.get("ai.model","gpt-4o-mini");if(t==="ollama"){let o=i.get("ai.ollamaUrl","http://localhost:11434");try{let p=await fetch(`${o}/api/tags`);return p.ok?{ok:!0,message:`Connected. Available models: ${((await p.json()).models??[]).map(S=>S.name).join(", ")||"(none)"}`}:{ok:!1,message:`Ollama returned status ${p.status}`}}catch{return{ok:!1,message:`Cannot reach Ollama at ${o}`}}}let l=await this.context.secrets.get(`playwrightVcr.apiKey.${t}`);if(!l)return{ok:!1,message:`No API key stored for ${t}. Enter one above.`};try{if(t==="openai"){let o=await fetch("https://api.openai.com/v1/models",{headers:{Authorization:`Bearer ${l}`}});return o.ok?{ok:!0,message:`Connected to OpenAI. Model: ${s}`}:o.status===401?{ok:!1,message:"Invalid OpenAI API key."}:{ok:!1,message:`OpenAI returned status ${o.status}`}}if(t==="anthropic"){let o=await fetch("https://api.anthropic.com/v1/messages",{method:"POST",headers:{"Content-Type":"application/json","x-api-key":l,"anthropic-version":"2023-06-01"},body:JSON.stringify({model:s||"claude-3-haiku-20240307",max_tokens:1,messages:[{role:"user",content:"Hi"}]})});if(o.ok)return{ok:!0,message:`Connected to Anthropic. Model: ${s}`};if(o.status===401)return{ok:!1,message:"Invalid Anthropic API key. Check that the key is correct and active."};if(o.status===403)return{ok:!1,message:"Anthropic API key lacks permissions. Check your account settings."};if(o.status===429)return{ok:!0,message:`Connected to Anthropic (rate limited). Model: ${s}`};if(o.status===400||o.status===404){let f=(await o.json().catch(()=>({})))?.error?.message||`Anthropic returned status ${o.status}`;return f.toLowerCase().includes("model")?{ok:!0,message:`Anthropic key is valid, but model "${s}" may not be available. ${f}`}:{ok:!1,message:f}}return{ok:!1,message:`Anthropic returned status ${o.status}`}}return{ok:!1,message:`Unknown provider: ${t}`}}catch(o){return{ok:!1,message:`Connection failed: ${o.message}`}}}getHtml(t,i,s){let l=Ks();return`<!DOCTYPE html>
+</html>`
+    );
+  }
+};
+function getNonce3() {
+  let text = "";
+  const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+  for (let i = 0; i < 32; i++) {
+    text += chars.charAt(Math.floor(Math.random() * chars.length));
+  }
+  return text;
+}
+
+// src/views/settingsPanel.ts
+var vscode7 = __toESM(require("vscode"));
+var SettingsPanelManager = class {
+  constructor(context) {
+    this.context = context;
+  }
+  panel;
+  async show() {
+    if (this.panel) {
+      this.panel.reveal(vscode7.ViewColumn.One);
+      await this.sendCurrentSettings();
+      return;
+    }
+    this.panel = vscode7.window.createWebviewPanel(
+      "playwrightVcr.settings",
+      "PlaywrightVCR \u2014 AI Settings",
+      vscode7.ViewColumn.One,
+      {
+        enableScripts: true,
+        retainContextWhenHidden: true,
+        localResourceRoots: [
+          vscode7.Uri.joinPath(this.context.extensionUri, "assets")
+        ]
+      }
+    );
+    const logoUri = this.panel.webview.asWebviewUri(
+      vscode7.Uri.joinPath(this.context.extensionUri, "assets", "logo", "Logo128.png")
+    );
+    const pkg = this.context.extension.packageJSON;
+    this.panel.webview.html = this.getHtml(logoUri, pkg.version ?? "0.0.0", pkg.description ?? "");
+    this.panel.webview.onDidReceiveMessage(async (message) => {
+      await this.handleMessage(message);
+    });
+    this.panel.onDidDispose(() => {
+      this.panel = void 0;
+    });
+    setTimeout(() => this.sendCurrentSettings(), 200);
+  }
+  /** Gather current config + key status and push to webview */
+  async sendCurrentSettings() {
+    const config = vscode7.workspace.getConfiguration("playwrightVcr");
+    const provider = config.get("ai.provider", "openai");
+    const hasOpenAIKey = !!await this.context.secrets.get("playwrightVcr.apiKey.openai");
+    const hasAnthropicKey = !!await this.context.secrets.get("playwrightVcr.apiKey.anthropic");
+    this.panel?.webview.postMessage({
+      type: "settingsLoaded",
+      payload: {
+        selfHealingEnabled: config.get("selfHealing.enabled", true),
+        embeddingThreshold: config.get("selfHealing.embeddingThreshold", 0.85),
+        llmEnabled: config.get("selfHealing.llmEnabled", false),
+        provider,
+        model: config.get("ai.model", "gpt-4o-mini"),
+        ollamaUrl: config.get("ai.ollamaUrl", "http://localhost:11434"),
+        hasOpenAIKey,
+        hasAnthropicKey
+      }
+    });
+  }
+  /** Handle messages sent from the webview */
+  async handleMessage(message) {
+    switch (message.type) {
+      case "getSettings":
+        await this.sendCurrentSettings();
+        break;
+      case "updateSetting": {
+        const { key, value } = message.payload;
+        const config = vscode7.workspace.getConfiguration("playwrightVcr");
+        await config.update(key, value, vscode7.ConfigurationTarget.Global);
+        this.panel?.webview.postMessage({ type: "settingSaved", payload: { key } });
+        break;
+      }
+      case "setApiKey": {
+        const { provider, apiKey } = message.payload;
+        if (!apiKey) {
+          await this.context.secrets.delete(`playwrightVcr.apiKey.${provider}`);
+          vscode7.window.showInformationMessage(`${provider} API key removed.`);
+        } else {
+          await this.context.secrets.store(`playwrightVcr.apiKey.${provider}`, apiKey);
+          vscode7.window.showInformationMessage(`${provider} API key saved securely.`);
+        }
+        await this.sendCurrentSettings();
+        break;
+      }
+      case "testConnection": {
+        const { provider } = message.payload;
+        const result = await this.testProviderConnection(provider);
+        this.panel?.webview.postMessage({ type: "connectionTestResult", payload: result });
+        break;
+      }
+      case "openRepo": {
+        const repoUrl = vscode7.Uri.parse("https://github.com/djtrustgod/Playwright-GUI-Recorder-Playback");
+        await vscode7.env.openExternal(repoUrl);
+        break;
+      }
+      case "openAnthropicConsole": {
+        const url = vscode7.Uri.parse("https://console.anthropic.com/settings/keys");
+        await vscode7.env.openExternal(url);
+        setTimeout(() => {
+          this.panel?.webview.postMessage({ type: "focusAnthropicKey" });
+        }, 500);
+        break;
+      }
+    }
+  }
+  /** Quick connectivity test for the selected provider */
+  async testProviderConnection(provider) {
+    const config = vscode7.workspace.getConfiguration("playwrightVcr");
+    const model = config.get("ai.model", "gpt-4o-mini");
+    if (provider === "ollama") {
+      const ollamaUrl = config.get("ai.ollamaUrl", "http://localhost:11434");
+      try {
+        const res = await fetch(`${ollamaUrl}/api/tags`);
+        if (res.ok) {
+          const data = await res.json();
+          const names = (data.models ?? []).map((m) => m.name).join(", ");
+          return { ok: true, message: `Connected. Available models: ${names || "(none)"}` };
+        }
+        return { ok: false, message: `Ollama returned status ${res.status}` };
+      } catch {
+        return { ok: false, message: `Cannot reach Ollama at ${ollamaUrl}` };
+      }
+    }
+    const apiKey = await this.context.secrets.get(`playwrightVcr.apiKey.${provider}`);
+    if (!apiKey) {
+      return { ok: false, message: `No API key stored for ${provider}. Enter one above.` };
+    }
+    try {
+      if (provider === "openai") {
+        const res = await fetch("https://api.openai.com/v1/models", {
+          headers: { "Authorization": `Bearer ${apiKey}` }
+        });
+        if (res.ok)
+          return { ok: true, message: `Connected to OpenAI. Model: ${model}` };
+        if (res.status === 401)
+          return { ok: false, message: "Invalid OpenAI API key." };
+        return { ok: false, message: `OpenAI returned status ${res.status}` };
+      }
+      if (provider === "anthropic") {
+        const res = await fetch("https://api.anthropic.com/v1/messages", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "x-api-key": apiKey,
+            "anthropic-version": "2023-06-01"
+          },
+          body: JSON.stringify({
+            model: model || "claude-3-haiku-20240307",
+            max_tokens: 1,
+            messages: [{ role: "user", content: "Hi" }]
+          })
+        });
+        if (res.ok) {
+          return { ok: true, message: `Connected to Anthropic. Model: ${model}` };
+        }
+        if (res.status === 401) {
+          return { ok: false, message: "Invalid Anthropic API key. Check that the key is correct and active." };
+        }
+        if (res.status === 403) {
+          return { ok: false, message: "Anthropic API key lacks permissions. Check your account settings." };
+        }
+        if (res.status === 429) {
+          return { ok: true, message: `Connected to Anthropic (rate limited). Model: ${model}` };
+        }
+        if (res.status === 400 || res.status === 404) {
+          const body = await res.json().catch(() => ({}));
+          const errMsg = body?.error?.message || `Anthropic returned status ${res.status}`;
+          if (errMsg.toLowerCase().includes("model")) {
+            return { ok: true, message: `Anthropic key is valid, but model "${model}" may not be available. ${errMsg}` };
+          }
+          return { ok: false, message: errMsg };
+        }
+        return { ok: false, message: `Anthropic returned status ${res.status}` };
+      }
+      return { ok: false, message: `Unknown provider: ${provider}` };
+    } catch (err) {
+      return { ok: false, message: `Connection failed: ${err.message}` };
+    }
+  }
+  getHtml(logoUri, version2, description) {
+    const nonce = getNonce4();
+    return (
+      /* html */
+      `<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -219,17 +4075,17 @@ Last run: ${i.last_run||"Never"}`,l})}};var _e=M(require("vscode")),It=class{con
 
   <!-- About Section -->
   <div class="section about">
-    <img src="${t}" alt="PlaywrightVCR Logo" />
+    <img src="${logoUri}" alt="PlaywrightVCR Logo" />
     <div class="name">PlaywrightVCR</div>
-    <div class="version">v${i}</div>
-    <div class="desc">${s}</div>
+    <div class="version">v${version2}</div>
+    <div class="desc">${description}</div>
     <div class="links">
       <a id="openRepo">GitHub Repository</a>
     </div>
     <div class="license">MIT License</div>
   </div>
 
-  <script nonce="${l}">
+  <script nonce="${nonce}">
     const vscode = acquireVsCodeApi();
 
     // Elements
@@ -400,7 +4256,115 @@ Last run: ${i.last_run||"Never"}`,l})}};var _e=M(require("vscode")),It=class{con
     vscode.postMessage({ type: 'getSettings' });
   </script>
 </body>
-</html>`}};function Ks(){let c="",t="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";for(let i=0;i<32;i++)c+=t.charAt(Math.floor(Math.random()*t.length));return c}var jn=M(qn()),Ke=M(require("path")),ge=M(require("fs"));function Js(c,t){let i={};for(let s=0;s<c.length;s++)i[c[s]]=t[s];return i}function He(c,t,i){let s=c.prepare(t);i&&s.bind(i);let l=[];for(;s.step();)l.push(Js(s.getColumnNames(),s.get()));return s.free(),l}function Ct(c,t,i){let s=He(c,t,i);return s.length>0?s[0]:null}var Ot=class c{db;dbPath;ready;persistTimer=null;dirty=!1;static PERSIST_DEBOUNCE_MS=500;constructor(t){ge.existsSync(t)||ge.mkdirSync(t,{recursive:!0}),this.dbPath=Ke.join(t,"playwright-vcr.db"),this.ready=this.initialize()}async initialize(){let t=await(0,jn.default)({locateFile:i=>{let s=Ke.join(__dirname,i);if(ge.existsSync(s))return s;try{let l=Ke.dirname(require.resolve("sql.js/dist/sql-wasm.js"));return Ke.join(l,i)}catch{return s}}});if(ge.existsSync(this.dbPath)){let i=ge.readFileSync(this.dbPath);this.db=new t.Database(i)}else this.db=new t.Database;this.createTables(),this.persistNow()}async waitReady(){await this.ready}persistNow(){this.persistTimer&&(clearTimeout(this.persistTimer),this.persistTimer=null);let t=this.db.export();ge.writeFileSync(this.dbPath,Buffer.from(t)),this.dirty=!1}persist(){this.dirty=!0,!this.persistTimer&&(this.persistTimer=setTimeout(()=>{this.persistTimer=null,this.dirty&&this.persistNow()},c.PERSIST_DEBOUNCE_MS))}createTables(){this.db.run(`
+</html>`
+    );
+  }
+};
+function getNonce4() {
+  let text = "";
+  const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+  for (let i = 0; i < 32; i++) {
+    text += chars.charAt(Math.floor(Math.random() * chars.length));
+  }
+  return text;
+}
+
+// src/storage/database.ts
+var import_sql = __toESM(require_sql_wasm());
+var path = __toESM(require("path"));
+var fs = __toESM(require("fs"));
+function rowToObject(columns, values) {
+  const obj = {};
+  for (let i = 0; i < columns.length; i++) {
+    obj[columns[i]] = values[i];
+  }
+  return obj;
+}
+function queryAll(db, sql, params) {
+  const stmt = db.prepare(sql);
+  if (params)
+    stmt.bind(params);
+  const results = [];
+  while (stmt.step()) {
+    results.push(rowToObject(stmt.getColumnNames(), stmt.get()));
+  }
+  stmt.free();
+  return results;
+}
+function queryOne(db, sql, params) {
+  const rows = queryAll(db, sql, params);
+  return rows.length > 0 ? rows[0] : null;
+}
+var Database = class _Database {
+  db;
+  dbPath;
+  ready;
+  persistTimer = null;
+  dirty = false;
+  /** Debounce interval for batching rapid writes (ms) */
+  static PERSIST_DEBOUNCE_MS = 500;
+  constructor(storagePath) {
+    if (!fs.existsSync(storagePath)) {
+      fs.mkdirSync(storagePath, { recursive: true });
+    }
+    this.dbPath = path.join(storagePath, "playwright-vcr.db");
+    this.ready = this.initialize();
+  }
+  async initialize() {
+    const SQL = await (0, import_sql.default)({
+      locateFile: (file) => {
+        const local = path.join(__dirname, file);
+        if (fs.existsSync(local)) {
+          return local;
+        }
+        try {
+          const sqlJsDir = path.dirname(require.resolve("sql.js/dist/sql-wasm.js"));
+          return path.join(sqlJsDir, file);
+        } catch {
+          return local;
+        }
+      }
+    });
+    if (fs.existsSync(this.dbPath)) {
+      const buffer = fs.readFileSync(this.dbPath);
+      this.db = new SQL.Database(buffer);
+    } else {
+      this.db = new SQL.Database();
+    }
+    this.createTables();
+    this.persistNow();
+  }
+  /** Wait for async init to complete — call before first DB access */
+  async waitReady() {
+    await this.ready;
+  }
+  /** Flush the database to disk immediately */
+  persistNow() {
+    if (this.persistTimer) {
+      clearTimeout(this.persistTimer);
+      this.persistTimer = null;
+    }
+    const data = this.db.export();
+    fs.writeFileSync(this.dbPath, Buffer.from(data));
+    this.dirty = false;
+  }
+  /**
+   * Schedule a debounced persist. Rapid calls within PERSIST_DEBOUNCE_MS
+   * are batched into a single disk write. Use persistNow() for critical writes.
+   */
+  persist() {
+    this.dirty = true;
+    if (this.persistTimer)
+      return;
+    this.persistTimer = setTimeout(() => {
+      this.persistTimer = null;
+      if (this.dirty) {
+        this.persistNow();
+      }
+    }, _Database.PERSIST_DEBOUNCE_MS);
+  }
+  createTables() {
+    this.db.run(`
       CREATE TABLE IF NOT EXISTS recordings (
         id TEXT PRIMARY KEY,
         name TEXT NOT NULL,
@@ -478,24 +4442,561 @@ Last run: ${i.last_run||"Never"}`,l})}};var _e=M(require("vscode")),It=class{con
       CREATE INDEX IF NOT EXISTS idx_healed_recording_step ON healed_selectors(recording_id, step_index);
       CREATE INDEX IF NOT EXISTS idx_jobs_status ON jobs(status, created_at);
       CREATE INDEX IF NOT EXISTS idx_schedules_enabled ON schedules(enabled);
-    `)}createRecording(t){this.db.run(`INSERT INTO recordings (id, name, url, created_at, updated_at, tags, description, action_count, duration_ms, auth_state_path)
-       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,[t.id,t.name,t.url,t.created_at,t.updated_at,t.tags,t.description,t.action_count,t.duration_ms,t.auth_state_path]),this.persist()}getRecording(t){return Ct(this.db,"SELECT * FROM recordings WHERE id = ?",[t])}getAllRecordings(){return He(this.db,"SELECT * FROM recordings ORDER BY created_at DESC")}updateRecording(t,i){let s=Object.keys(i).filter(p=>p!=="id");if(s.length===0)return;let l=s.map(p=>`${p} = ?`).join(", "),o=s.map(p=>i[p]);this.db.run(`UPDATE recordings SET ${l} WHERE id = ?`,[...o,t]),this.persist()}deleteRecording(t){this.db.run("DELETE FROM actions WHERE recording_id = ?",[t]),this.db.run("DELETE FROM executions WHERE recording_id = ?",[t]),this.db.run("DELETE FROM healed_selectors WHERE recording_id = ?",[t]),this.db.run("DELETE FROM schedules WHERE recording_id = ?",[t]),this.db.run("DELETE FROM jobs WHERE recording_id = ?",[t]),this.db.run("DELETE FROM recordings WHERE id = ?",[t]),this.persist()}createAction(t){this.db.run(`INSERT INTO actions (id, recording_id, step_index, action_type, url, locators, screenshot_path, timestamp_ms)
-       VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,[t.id,t.recording_id,t.step_index,t.action_type,t.url,t.locators,t.screenshot_path,t.timestamp_ms]),this.persist()}getActions(t){return He(this.db,"SELECT * FROM actions WHERE recording_id = ? ORDER BY step_index",[t])}createExecution(t){let i=crypto.randomUUID();return this.db.run(`INSERT INTO executions (id, recording_id, started_at, status, trigger_type)
-       VALUES (?, ?, ?, ?, ?)`,[i,t.recording_id,t.started_at,t.status,t.trigger]),this.persist(),i}updateExecution(t,i){let s=Object.keys(i).filter(p=>p!=="id");if(s.length===0)return;let l=s.map(p=>`${p} = ?`).join(", "),o=s.map(p=>i[p]);this.db.run(`UPDATE executions SET ${l} WHERE id = ?`,[...o,t]),this.persist()}getRecentExecutions(t){return He(this.db,"SELECT * FROM executions ORDER BY started_at DESC LIMIT ?",[t])}getHealedSelector(t,i){return Ct(this.db,"SELECT * FROM healed_selectors WHERE recording_id = ? AND step_index = ? ORDER BY success_count DESC LIMIT 1",[t,i])}createHealedSelector(t){let i=crypto.randomUUID();this.db.run(`INSERT INTO healed_selectors (id, recording_id, step_index, original_locator, healed_locator, strategy_used, healed_at, success_count)
-       VALUES (?, ?, ?, ?, ?, ?, ?, 0)`,[i,t.recording_id,t.step_index,t.original_locator,t.healed_locator,t.strategy_used,new Date().toISOString()]),this.persist()}incrementHealedSelectorSuccess(t){this.db.run("UPDATE healed_selectors SET success_count = success_count + 1 WHERE id = ?",[t]),this.persist()}getAllSchedules(){return He(this.db,"SELECT * FROM schedules ORDER BY recording_id").map(t=>({...t,enabled:!!t.enabled}))}getEnabledSchedules(){return He(this.db,"SELECT * FROM schedules WHERE enabled = 1").map(t=>({...t,enabled:!0}))}createSchedule(t,i){let s=crypto.randomUUID();return this.db.run("INSERT INTO schedules (id, recording_id, cron_expression, enabled) VALUES (?, ?, ?, 1)",[s,t,i]),this.persist(),s}updateSchedule(t,i){let s=Object.keys(i).filter(p=>p!=="id");if(s.length===0)return;let l=s.map(p=>p==="enabled"?"enabled = ?":`${p} = ?`).join(", "),o=s.map(p=>p==="enabled"?i.enabled?1:0:i[p]);this.db.run(`UPDATE schedules SET ${l} WHERE id = ?`,[...o,t]),this.persist()}deleteSchedule(t){this.db.run("DELETE FROM schedules WHERE id = ?",[t]),this.persist()}createJob(t,i=3){let s=crypto.randomUUID();return this.db.run("INSERT INTO jobs (id, recording_id, status, created_at, attempts, max_attempts) VALUES (?, ?, 'queued', ?, 0, ?)",[s,t,new Date().toISOString(),i]),this.persist(),s}getNextQueuedJob(){return Ct(this.db,"SELECT * FROM jobs WHERE status = 'queued' ORDER BY created_at ASC LIMIT 1")}updateJob(t,i){let s=Object.keys(i).filter(p=>p!=="id");if(s.length===0)return;let l=s.map(p=>`${p} = ?`).join(", "),o=s.map(p=>i[p]);this.db.run(`UPDATE jobs SET ${l} WHERE id = ?`,[...o,t]),this.persist()}getRunningJobCount(){let t=Ct(this.db,"SELECT COUNT(*) FROM jobs WHERE status = 'running'");return t?t["COUNT(*)"]:0}close(){this.persistNow(),this.db.close()}};var G=M(require("fs/promises")),ae=M(require("path")),Ut=class{constructor(t){this.storagePath=t;this.recordingsDir=ae.join(t,"recordings"),this.modelsDir=ae.join(t,"models")}recordingsDir;modelsDir;async ensureDirectories(){await G.mkdir(this.recordingsDir,{recursive:!0}),await G.mkdir(this.modelsDir,{recursive:!0})}getRecordingDir(t){return ae.join(this.recordingsDir,t)}async ensureRecordingDir(t){let i=this.getRecordingDir(t);return await G.mkdir(i,{recursive:!0}),i}getTracePath(t){return ae.join(this.getRecordingDir(t),"trace.zip")}getPlaybackTracePath(t,i){return ae.join(this.getRecordingDir(t),`playback-${i}.zip`)}getStepScreenshotPath(t,i){return ae.join(this.getRecordingDir(t),`step-${i}.png`)}async saveAuthState(t,i){let s=await this.ensureRecordingDir(t),l=ae.join(s,"auth-state.json");return await G.writeFile(l,JSON.stringify(i,null,2),"utf-8"),l}async loadAuthState(t){let i=ae.join(this.getRecordingDir(t),"auth-state.json");try{let s=await G.readFile(i,"utf-8");return JSON.parse(s)}catch{return null}}async saveActionsJson(t,i){let s=await this.ensureRecordingDir(t),l=ae.join(s,"actions.json");await G.writeFile(l,JSON.stringify(i,null,2),"utf-8")}async loadActionsJson(t){let i=ae.join(this.getRecordingDir(t),"actions.json");try{let s=await G.readFile(i,"utf-8");return JSON.parse(s)}catch{return null}}async deleteRecordingFiles(t){let i=this.getRecordingDir(t);try{await G.rm(i,{recursive:!0,force:!0})}catch{}}getModelsDir(){return this.modelsDir}async fileExists(t){try{return await G.access(t),!0}catch{return!1}}async getScreenshots(t){let i=this.getRecordingDir(t);try{return(await G.readdir(i)).filter(l=>l.startsWith("step-")&&l.endsWith(".png")).sort((l,o)=>{let p=parseInt(l.replace("step-","").replace(".png","")),f=parseInt(o.replace("step-","").replace(".png",""));return p-f}).map(l=>ae.join(i,l))}catch{return[]}}};var Ce=require("playwright");var Bn=M(require("crypto")),qt=new Uint8Array(256),Ft=qt.length;function Ir(){return Ft>qt.length-16&&(Bn.default.randomFillSync(qt),Ft=0),qt.slice(Ft,Ft+=16)}var W=[];for(let c=0;c<256;++c)W.push((c+256).toString(16).slice(1));function Vn(c,t=0){return W[c[t+0]]+W[c[t+1]]+W[c[t+2]]+W[c[t+3]]+"-"+W[c[t+4]]+W[c[t+5]]+"-"+W[c[t+6]]+W[c[t+7]]+"-"+W[c[t+8]]+W[c[t+9]]+"-"+W[c[t+10]]+W[c[t+11]]+W[c[t+12]]+W[c[t+13]]+W[c[t+14]]+W[c[t+15]]}var Hn=M(require("crypto")),Pr={randomUUID:Hn.default.randomUUID};function Xs(c,t,i){if(Pr.randomUUID&&!t&&!c)return Pr.randomUUID();c=c||{};let s=c.random||(c.rng||Ir)();if(s[6]=s[6]&15|64,s[8]=s[8]&63|128,t){i=i||0;for(let l=0;l<16;++l)t[i+l]=s[l];return t}return Vn(s)}var jt=Xs;var Lr=M(require("vscode"));var Bt=class{MAX_DEPTH=8;MAX_ELEMENTS=200;MAX_TEXT_LENGTH=80;MAX_ATTR_LENGTH=60;async simplify(t){let i=await t.evaluate(({maxDepth:s,maxElements:l,maxTextLen:o,maxAttrLen:p})=>{let f=new Set(["script","style","noscript","svg","path","circle","rect","line","polygon","polyline","ellipse","g","defs","clippath","lineargradient","radialgradient","stop","symbol","use","mask","iframe","object","embed","applet","meta","link","base"]),b=new Set(["id","class","role","aria-label","aria-labelledby","aria-describedby","aria-expanded","aria-selected","aria-checked","data-testid","data-test","name","type","href","placeholder","value","title","alt","for","action","method"]),S=0;function R(C,P){if(S>=l)return"";if(P>s)return"...";if(C.nodeType===Node.TEXT_NODE){let O=(C.textContent||"").trim();return O?O.substring(0,o):""}if(C.nodeType!==Node.ELEMENT_NODE)return"";let J=C,$=J.tagName.toLowerCase();if(f.has($))return"";let E=window.getComputedStyle(J);if(E.display==="none"||E.visibility==="hidden")return"";S++;let x="";for(let O of b){let Y=J.getAttribute(O);if(Y!==null&&Y!==""){let Ue=Y.substring(0,p);x+=` ${O}="${Ue}"`}}if(["br","hr","img","input"].includes($))return`<${$}${x}/>`;let I=[];for(let O of Array.from(J.childNodes)){let Y=R(O,P+1);Y&&I.push(Y)}let L=I.join("");return!L&&!x?"":`<${$}${x}>${L}</${$}>`}return R(document.body,0)},{maxDepth:this.MAX_DEPTH,maxElements:this.MAX_ELEMENTS,maxTextLen:this.MAX_TEXT_LENGTH,maxAttrLen:this.MAX_ATTR_LENGTH});return i.length>16e3?i.substring(0,16e3)+`
-<!-- truncated -->`:i}};var Vt=class{constructor(t){this.secrets=t}domSimplifier=new Bt;async repairSelector(t,i){let s=Lr.workspace.getConfiguration("playwrightVcr"),l=s.get("ai.provider","openai"),o=s.get("ai.model","gpt-4o-mini"),p=await this.secrets?.get(`playwrightVcr.apiKey.${l}`)??"";if(!p&&l!=="ollama")return console.warn('LLM repair: No API key configured. Use "PlaywrightVCR: Set AI Provider API Key" command.'),null;let f=await this.domSimplifier.simplify(t),b=this.buildPrompt(i,f),S=null;switch(l){case"openai":S=await this.callOpenAI(p,o,b);break;case"anthropic":S=await this.callAnthropic(p,o,b);break;case"ollama":S=await this.callOllama(o,b);break;default:return console.warn(`Unknown LLM provider: ${l}`),null}return S?this.extractSelector(S):null}buildPrompt(t,i){let s=[];if(t.fingerprint){let o=t.fingerprint;s.push(`Tag: ${o.tag}`),o.id&&s.push(`ID: ${o.id}`),o.testId&&s.push(`Test ID: ${o.testId}`),o.ariaRole&&s.push(`ARIA Role: ${o.ariaRole}`),o.ariaLabel&&s.push(`ARIA Label: ${o.ariaLabel}`),o.text&&s.push(`Text: ${o.text.substring(0,100)}`),o.placeholder&&s.push(`Placeholder: ${o.placeholder}`),o.classes.length&&s.push(`Classes: ${o.classes.join(", ")}`),s.push(`Position: (${Math.round(o.boundingRect.x)}, ${Math.round(o.boundingRect.y)})`)}let l=[];return t.testId&&l.push(`data-testid="${t.testId}"`),t.role&&l.push(`role="${t.role.role}" name="${t.role.name}"`),t.label&&l.push(`label="${t.label}"`),t.text&&l.push(`text="${t.text}"`),t.css&&l.push(`css="${t.css}"`),t.xpath&&l.push(`xpath="${t.xpath}"`),`You are a Playwright selector repair tool. An automated test cannot find an element on a web page.
+    `);
+  }
+  // --- Recordings ---
+  createRecording(recording) {
+    this.db.run(
+      `INSERT INTO recordings (id, name, url, created_at, updated_at, tags, description, action_count, duration_ms, auth_state_path)
+       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+      [
+        recording.id,
+        recording.name,
+        recording.url,
+        recording.created_at,
+        recording.updated_at,
+        recording.tags,
+        recording.description,
+        recording.action_count,
+        recording.duration_ms,
+        recording.auth_state_path
+      ]
+    );
+    this.persist();
+  }
+  getRecording(id) {
+    return queryOne(this.db, "SELECT * FROM recordings WHERE id = ?", [id]);
+  }
+  getAllRecordings() {
+    return queryAll(this.db, "SELECT * FROM recordings ORDER BY created_at DESC");
+  }
+  updateRecording(id, updates) {
+    const keys = Object.keys(updates).filter((k) => k !== "id");
+    if (keys.length === 0)
+      return;
+    const setClause = keys.map((k) => `${k} = ?`).join(", ");
+    const values = keys.map((k) => updates[k]);
+    this.db.run(`UPDATE recordings SET ${setClause} WHERE id = ?`, [...values, id]);
+    this.persist();
+  }
+  deleteRecording(id) {
+    this.db.run("DELETE FROM actions WHERE recording_id = ?", [id]);
+    this.db.run("DELETE FROM executions WHERE recording_id = ?", [id]);
+    this.db.run("DELETE FROM healed_selectors WHERE recording_id = ?", [id]);
+    this.db.run("DELETE FROM schedules WHERE recording_id = ?", [id]);
+    this.db.run("DELETE FROM jobs WHERE recording_id = ?", [id]);
+    this.db.run("DELETE FROM recordings WHERE id = ?", [id]);
+    this.persist();
+  }
+  // --- Actions ---
+  createAction(action) {
+    this.db.run(
+      `INSERT INTO actions (id, recording_id, step_index, action_type, url, locators, screenshot_path, timestamp_ms)
+       VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
+      [
+        action.id,
+        action.recording_id,
+        action.step_index,
+        action.action_type,
+        action.url,
+        action.locators,
+        action.screenshot_path,
+        action.timestamp_ms
+      ]
+    );
+    this.persist();
+  }
+  getActions(recordingId) {
+    return queryAll(this.db, "SELECT * FROM actions WHERE recording_id = ? ORDER BY step_index", [recordingId]);
+  }
+  // --- Executions ---
+  createExecution(execution) {
+    const id = crypto.randomUUID();
+    this.db.run(
+      `INSERT INTO executions (id, recording_id, started_at, status, trigger_type)
+       VALUES (?, ?, ?, ?, ?)`,
+      [id, execution.recording_id, execution.started_at, execution.status, execution.trigger]
+    );
+    this.persist();
+    return id;
+  }
+  updateExecution(id, updates) {
+    const keys = Object.keys(updates).filter((k) => k !== "id");
+    if (keys.length === 0)
+      return;
+    const setClause = keys.map((k) => `${k} = ?`).join(", ");
+    const values = keys.map((k) => updates[k]);
+    this.db.run(`UPDATE executions SET ${setClause} WHERE id = ?`, [...values, id]);
+    this.persist();
+  }
+  getRecentExecutions(limit) {
+    return queryAll(this.db, "SELECT * FROM executions ORDER BY started_at DESC LIMIT ?", [limit]);
+  }
+  // --- Healed Selectors ---
+  getHealedSelector(recordingId, stepIndex) {
+    return queryOne(
+      this.db,
+      "SELECT * FROM healed_selectors WHERE recording_id = ? AND step_index = ? ORDER BY success_count DESC LIMIT 1",
+      [recordingId, stepIndex]
+    );
+  }
+  createHealedSelector(data) {
+    const id = crypto.randomUUID();
+    this.db.run(
+      `INSERT INTO healed_selectors (id, recording_id, step_index, original_locator, healed_locator, strategy_used, healed_at, success_count)
+       VALUES (?, ?, ?, ?, ?, ?, ?, 0)`,
+      [id, data.recording_id, data.step_index, data.original_locator, data.healed_locator, data.strategy_used, (/* @__PURE__ */ new Date()).toISOString()]
+    );
+    this.persist();
+  }
+  incrementHealedSelectorSuccess(id) {
+    this.db.run("UPDATE healed_selectors SET success_count = success_count + 1 WHERE id = ?", [id]);
+    this.persist();
+  }
+  // --- Schedules ---
+  getAllSchedules() {
+    return queryAll(this.db, "SELECT * FROM schedules ORDER BY recording_id").map((row) => ({
+      ...row,
+      enabled: !!row.enabled
+    }));
+  }
+  getEnabledSchedules() {
+    return queryAll(this.db, "SELECT * FROM schedules WHERE enabled = 1").map((row) => ({
+      ...row,
+      enabled: true
+    }));
+  }
+  createSchedule(recordingId, cronExpression) {
+    const id = crypto.randomUUID();
+    this.db.run(
+      `INSERT INTO schedules (id, recording_id, cron_expression, enabled) VALUES (?, ?, ?, 1)`,
+      [id, recordingId, cronExpression]
+    );
+    this.persist();
+    return id;
+  }
+  updateSchedule(id, updates) {
+    const keys = Object.keys(updates).filter((k) => k !== "id");
+    if (keys.length === 0)
+      return;
+    const setClause = keys.map((k) => {
+      if (k === "enabled")
+        return "enabled = ?";
+      return `${k} = ?`;
+    }).join(", ");
+    const values = keys.map((k) => {
+      if (k === "enabled")
+        return updates.enabled ? 1 : 0;
+      return updates[k];
+    });
+    this.db.run(`UPDATE schedules SET ${setClause} WHERE id = ?`, [...values, id]);
+    this.persist();
+  }
+  deleteSchedule(id) {
+    this.db.run("DELETE FROM schedules WHERE id = ?", [id]);
+    this.persist();
+  }
+  // --- Jobs ---
+  createJob(recordingId, maxAttempts = 3) {
+    const id = crypto.randomUUID();
+    this.db.run(
+      `INSERT INTO jobs (id, recording_id, status, created_at, attempts, max_attempts) VALUES (?, ?, 'queued', ?, 0, ?)`,
+      [id, recordingId, (/* @__PURE__ */ new Date()).toISOString(), maxAttempts]
+    );
+    this.persist();
+    return id;
+  }
+  getNextQueuedJob() {
+    return queryOne(this.db, "SELECT * FROM jobs WHERE status = 'queued' ORDER BY created_at ASC LIMIT 1");
+  }
+  updateJob(id, updates) {
+    const keys = Object.keys(updates).filter((k) => k !== "id");
+    if (keys.length === 0)
+      return;
+    const setClause = keys.map((k) => `${k} = ?`).join(", ");
+    const values = keys.map((k) => updates[k]);
+    this.db.run(`UPDATE jobs SET ${setClause} WHERE id = ?`, [...values, id]);
+    this.persist();
+  }
+  getRunningJobCount() {
+    const row = queryOne(this.db, "SELECT COUNT(*) FROM jobs WHERE status = 'running'");
+    return row ? row["COUNT(*)"] : 0;
+  }
+  // --- Lifecycle ---
+  close() {
+    this.persistNow();
+    this.db.close();
+  }
+};
+
+// src/storage/fileManager.ts
+var fs2 = __toESM(require("fs/promises"));
+var path2 = __toESM(require("path"));
+var FileManager = class {
+  constructor(storagePath) {
+    this.storagePath = storagePath;
+    this.recordingsDir = path2.join(storagePath, "recordings");
+    this.modelsDir = path2.join(storagePath, "models");
+  }
+  recordingsDir;
+  modelsDir;
+  /** Create required directories if they don't exist */
+  async ensureDirectories() {
+    await fs2.mkdir(this.recordingsDir, { recursive: true });
+    await fs2.mkdir(this.modelsDir, { recursive: true });
+  }
+  /** Get the base directory for a recording's files */
+  getRecordingDir(recordingId) {
+    return path2.join(this.recordingsDir, recordingId);
+  }
+  /** Ensure a recording's directory exists */
+  async ensureRecordingDir(recordingId) {
+    const dir = this.getRecordingDir(recordingId);
+    await fs2.mkdir(dir, { recursive: true });
+    return dir;
+  }
+  /** Get the path where a recording's trace ZIP should be stored */
+  getTracePath(recordingId) {
+    return path2.join(this.getRecordingDir(recordingId), "trace.zip");
+  }
+  /** Get the path for a playback's trace ZIP */
+  getPlaybackTracePath(recordingId, executionId) {
+    return path2.join(this.getRecordingDir(recordingId), `playback-${executionId}.zip`);
+  }
+  /** Get the path for a step's screenshot */
+  getStepScreenshotPath(recordingId, stepIndex) {
+    return path2.join(this.getRecordingDir(recordingId), `step-${stepIndex}.png`);
+  }
+  /** Save authentication state to disk */
+  async saveAuthState(recordingId, storageState) {
+    const dir = await this.ensureRecordingDir(recordingId);
+    const filePath = path2.join(dir, "auth-state.json");
+    await fs2.writeFile(filePath, JSON.stringify(storageState, null, 2), "utf-8");
+    return filePath;
+  }
+  /** Load authentication state from disk */
+  async loadAuthState(recordingId) {
+    const filePath = path2.join(this.getRecordingDir(recordingId), "auth-state.json");
+    try {
+      const content = await fs2.readFile(filePath, "utf-8");
+      return JSON.parse(content);
+    } catch {
+      return null;
+    }
+  }
+  /** Save the raw actions JSON for a recording */
+  async saveActionsJson(recordingId, actions) {
+    const dir = await this.ensureRecordingDir(recordingId);
+    const filePath = path2.join(dir, "actions.json");
+    await fs2.writeFile(filePath, JSON.stringify(actions, null, 2), "utf-8");
+  }
+  /** Load the raw actions JSON for a recording */
+  async loadActionsJson(recordingId) {
+    const filePath = path2.join(this.getRecordingDir(recordingId), "actions.json");
+    try {
+      const content = await fs2.readFile(filePath, "utf-8");
+      return JSON.parse(content);
+    } catch {
+      return null;
+    }
+  }
+  /** Delete all files for a recording */
+  async deleteRecordingFiles(recordingId) {
+    const dir = this.getRecordingDir(recordingId);
+    try {
+      await fs2.rm(dir, { recursive: true, force: true });
+    } catch {
+    }
+  }
+  /** Get the models directory for embedding model storage */
+  getModelsDir() {
+    return this.modelsDir;
+  }
+  /** Check if a file exists */
+  async fileExists(filePath) {
+    try {
+      await fs2.access(filePath);
+      return true;
+    } catch {
+      return false;
+    }
+  }
+  /** List all screenshot files for a recording */
+  async getScreenshots(recordingId) {
+    const dir = this.getRecordingDir(recordingId);
+    try {
+      const files = await fs2.readdir(dir);
+      return files.filter((f) => f.startsWith("step-") && f.endsWith(".png")).sort((a, b) => {
+        const aNum = parseInt(a.replace("step-", "").replace(".png", ""));
+        const bNum = parseInt(b.replace("step-", "").replace(".png", ""));
+        return aNum - bNum;
+      }).map((f) => path2.join(dir, f));
+    } catch {
+      return [];
+    }
+  }
+};
+
+// node_modules/uuid/dist/esm-node/rng.js
+var import_crypto = __toESM(require("crypto"));
+var rnds8Pool = new Uint8Array(256);
+var poolPtr = rnds8Pool.length;
+function rng() {
+  if (poolPtr > rnds8Pool.length - 16) {
+    import_crypto.default.randomFillSync(rnds8Pool);
+    poolPtr = 0;
+  }
+  return rnds8Pool.slice(poolPtr, poolPtr += 16);
+}
+
+// node_modules/uuid/dist/esm-node/stringify.js
+var byteToHex = [];
+for (let i = 0; i < 256; ++i) {
+  byteToHex.push((i + 256).toString(16).slice(1));
+}
+function unsafeStringify(arr, offset = 0) {
+  return byteToHex[arr[offset + 0]] + byteToHex[arr[offset + 1]] + byteToHex[arr[offset + 2]] + byteToHex[arr[offset + 3]] + "-" + byteToHex[arr[offset + 4]] + byteToHex[arr[offset + 5]] + "-" + byteToHex[arr[offset + 6]] + byteToHex[arr[offset + 7]] + "-" + byteToHex[arr[offset + 8]] + byteToHex[arr[offset + 9]] + "-" + byteToHex[arr[offset + 10]] + byteToHex[arr[offset + 11]] + byteToHex[arr[offset + 12]] + byteToHex[arr[offset + 13]] + byteToHex[arr[offset + 14]] + byteToHex[arr[offset + 15]];
+}
+
+// node_modules/uuid/dist/esm-node/native.js
+var import_crypto2 = __toESM(require("crypto"));
+var native_default = {
+  randomUUID: import_crypto2.default.randomUUID
+};
+
+// node_modules/uuid/dist/esm-node/v4.js
+function v4(options, buf, offset) {
+  if (native_default.randomUUID && !buf && !options) {
+    return native_default.randomUUID();
+  }
+  options = options || {};
+  const rnds = options.random || (options.rng || rng)();
+  rnds[6] = rnds[6] & 15 | 64;
+  rnds[8] = rnds[8] & 63 | 128;
+  if (buf) {
+    offset = offset || 0;
+    for (let i = 0; i < 16; ++i) {
+      buf[offset + i] = rnds[i];
+    }
+    return buf;
+  }
+  return unsafeStringify(rnds);
+}
+var v4_default = v4;
+
+// src/ai/llmRepair.ts
+var vscode8 = __toESM(require("vscode"));
+
+// src/ai/domSimplifier.ts
+var DomSimplifier = class {
+  MAX_DEPTH = 8;
+  MAX_ELEMENTS = 200;
+  MAX_TEXT_LENGTH = 80;
+  MAX_ATTR_LENGTH = 60;
+  /**
+   * Get a simplified HTML representation of the current page.
+   * Focuses on interactive elements and visible content.
+   */
+  async simplify(page) {
+    const simplified = await page.evaluate(
+      ({ maxDepth, maxElements, maxTextLen, maxAttrLen }) => {
+        const SKIP_TAGS = /* @__PURE__ */ new Set([
+          "script",
+          "style",
+          "noscript",
+          "svg",
+          "path",
+          "circle",
+          "rect",
+          "line",
+          "polygon",
+          "polyline",
+          "ellipse",
+          "g",
+          "defs",
+          "clippath",
+          "lineargradient",
+          "radialgradient",
+          "stop",
+          "symbol",
+          "use",
+          "mask",
+          "iframe",
+          "object",
+          "embed",
+          "applet",
+          "meta",
+          "link",
+          "base"
+        ]);
+        const KEEP_ATTRS = /* @__PURE__ */ new Set([
+          "id",
+          "class",
+          "role",
+          "aria-label",
+          "aria-labelledby",
+          "aria-describedby",
+          "aria-expanded",
+          "aria-selected",
+          "aria-checked",
+          "data-testid",
+          "data-test",
+          "name",
+          "type",
+          "href",
+          "placeholder",
+          "value",
+          "title",
+          "alt",
+          "for",
+          "action",
+          "method"
+        ]);
+        let elementCount = 0;
+        function simplifyNode(node, depth) {
+          if (elementCount >= maxElements)
+            return "";
+          if (depth > maxDepth)
+            return "...";
+          if (node.nodeType === Node.TEXT_NODE) {
+            const text = (node.textContent || "").trim();
+            if (!text)
+              return "";
+            return text.substring(0, maxTextLen);
+          }
+          if (node.nodeType !== Node.ELEMENT_NODE)
+            return "";
+          const el = node;
+          const tag = el.tagName.toLowerCase();
+          if (SKIP_TAGS.has(tag))
+            return "";
+          const style = window.getComputedStyle(el);
+          if (style.display === "none" || style.visibility === "hidden")
+            return "";
+          elementCount++;
+          let attrs = "";
+          for (const attrName of KEEP_ATTRS) {
+            const value = el.getAttribute(attrName);
+            if (value !== null && value !== "") {
+              const truncated = value.substring(0, maxAttrLen);
+              attrs += ` ${attrName}="${truncated}"`;
+            }
+          }
+          if (["br", "hr", "img", "input"].includes(tag)) {
+            return `<${tag}${attrs}/>`;
+          }
+          const children = [];
+          for (const child of Array.from(el.childNodes)) {
+            const result = simplifyNode(child, depth + 1);
+            if (result)
+              children.push(result);
+          }
+          const inner = children.join("");
+          if (!inner && !attrs)
+            return "";
+          return `<${tag}${attrs}>${inner}</${tag}>`;
+        }
+        return simplifyNode(document.body, 0);
+      },
+      {
+        maxDepth: this.MAX_DEPTH,
+        maxElements: this.MAX_ELEMENTS,
+        maxTextLen: this.MAX_TEXT_LENGTH,
+        maxAttrLen: this.MAX_ATTR_LENGTH
+      }
+    );
+    if (simplified.length > 16e3) {
+      return simplified.substring(0, 16e3) + "\n<!-- truncated -->";
+    }
+    return simplified;
+  }
+};
+
+// src/ai/llmRepair.ts
+var LlmRepair = class {
+  constructor(secrets) {
+    this.secrets = secrets;
+  }
+  domSimplifier = new DomSimplifier();
+  /**
+   * Ask the LLM to repair a broken selector.
+   * Returns a Playwright-compatible locator string, or null if repair fails.
+   */
+  async repairSelector(page, locators) {
+    const config = vscode8.workspace.getConfiguration("playwrightVcr");
+    const provider = config.get("ai.provider", "openai");
+    const model = config.get("ai.model", "gpt-4o-mini");
+    const apiKey = await this.secrets?.get(`playwrightVcr.apiKey.${provider}`) ?? "";
+    if (!apiKey && provider !== "ollama") {
+      console.warn('LLM repair: No API key configured. Use "PlaywrightVCR: Set AI Provider API Key" command.');
+      return null;
+    }
+    const simplifiedDom = await this.domSimplifier.simplify(page);
+    const prompt = this.buildPrompt(locators, simplifiedDom);
+    let response = null;
+    switch (provider) {
+      case "openai":
+        response = await this.callOpenAI(apiKey, model, prompt);
+        break;
+      case "anthropic":
+        response = await this.callAnthropic(apiKey, model, prompt);
+        break;
+      case "ollama":
+        response = await this.callOllama(model, prompt);
+        break;
+      default:
+        console.warn(`Unknown LLM provider: ${provider}`);
+        return null;
+    }
+    if (!response)
+      return null;
+    return this.extractSelector(response);
+  }
+  buildPrompt(locators, dom) {
+    const elementDesc = [];
+    if (locators.fingerprint) {
+      const fp = locators.fingerprint;
+      elementDesc.push(`Tag: ${fp.tag}`);
+      if (fp.id)
+        elementDesc.push(`ID: ${fp.id}`);
+      if (fp.testId)
+        elementDesc.push(`Test ID: ${fp.testId}`);
+      if (fp.ariaRole)
+        elementDesc.push(`ARIA Role: ${fp.ariaRole}`);
+      if (fp.ariaLabel)
+        elementDesc.push(`ARIA Label: ${fp.ariaLabel}`);
+      if (fp.text)
+        elementDesc.push(`Text: ${fp.text.substring(0, 100)}`);
+      if (fp.placeholder)
+        elementDesc.push(`Placeholder: ${fp.placeholder}`);
+      if (fp.classes.length)
+        elementDesc.push(`Classes: ${fp.classes.join(", ")}`);
+      elementDesc.push(`Position: (${Math.round(fp.boundingRect.x)}, ${Math.round(fp.boundingRect.y)})`);
+    }
+    const originalSelectors = [];
+    if (locators.testId)
+      originalSelectors.push(`data-testid="${locators.testId}"`);
+    if (locators.role)
+      originalSelectors.push(`role="${locators.role.role}" name="${locators.role.name}"`);
+    if (locators.label)
+      originalSelectors.push(`label="${locators.label}"`);
+    if (locators.text)
+      originalSelectors.push(`text="${locators.text}"`);
+    if (locators.css)
+      originalSelectors.push(`css="${locators.css}"`);
+    if (locators.xpath)
+      originalSelectors.push(`xpath="${locators.xpath}"`);
+    return `You are a Playwright selector repair tool. An automated test cannot find an element on a web page.
 
 ## Original Element Description
-${s.join(`
-`)}
+${elementDesc.join("\n")}
 
 ## Original Selectors (all failed)
-${l.join(`
-`)}
+${originalSelectors.join("\n")}
 
 ## Current Page DOM (simplified)
 \`\`\`html
-${i}
+${dom}
 \`\`\`
 
 ## Task
@@ -503,7 +5004,440 @@ Find the element that best matches the original element description in the curre
 Return ONLY a single Playwright-compatible CSS selector string that uniquely identifies the element.
 Do not include any explanation, code blocks, or extra text \u2014 just the raw selector string.
 
-If you cannot find a matching element, respond with: NONE`}async callOpenAI(t,i,s){try{let l=await fetch("https://api.openai.com/v1/chat/completions",{method:"POST",headers:{"Content-Type":"application/json",Authorization:`Bearer ${t}`},body:JSON.stringify({model:i,messages:[{role:"system",content:"You are a Playwright selector repair assistant. Return only the selector string."},{role:"user",content:s}],max_tokens:200,temperature:0})});return l.ok?(await l.json()).choices?.[0]?.message?.content?.trim()||null:(console.error(`OpenAI API error: ${l.status}`),null)}catch(l){return console.error("OpenAI API call failed:",l),null}}async callAnthropic(t,i,s){try{let l=await fetch("https://api.anthropic.com/v1/messages",{method:"POST",headers:{"Content-Type":"application/json","x-api-key":t,"anthropic-version":"2023-06-01"},body:JSON.stringify({model:i,max_tokens:200,messages:[{role:"user",content:s}]})});return l.ok?(await l.json()).content?.[0]?.text?.trim()||null:(console.error(`Anthropic API error: ${l.status}`),null)}catch(l){return console.error("Anthropic API call failed:",l),null}}async callOllama(t,i){let l=Lr.workspace.getConfiguration("playwrightVcr").get("ai.ollamaUrl","http://localhost:11434");try{let o=await fetch(`${l}/api/generate`,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({model:t,prompt:i,stream:!1,options:{temperature:0}})});return o.ok?(await o.json()).response?.trim()||null:(console.error(`Ollama API error: ${o.status}`),null)}catch(o){return console.error("Ollama API call failed:",o),null}}extractSelector(t){let i=t.trim();if(i==="NONE"||i.toLowerCase().includes("cannot find"))return null;let s=i.replace(/^```[a-z]*\n?/i,"").replace(/\n?```$/i,"").trim();return(s.startsWith('"')&&s.endsWith('"')||s.startsWith("'")&&s.endsWith("'"))&&(s=s.slice(1,-1)),s.length===0||s.length>500?null:s}};var Ht=class{pipeline=null;initialized=!1;async initialize(){if(!this.initialized)try{let{pipeline:t}=await import("@huggingface/transformers");this.pipeline=await t("feature-extraction","Xenova/all-MiniLM-L6-v2",{cache_dir:void 0}),this.initialized=!0}catch(t){throw console.error("Failed to initialize embedding model:",t),new Error("Embedding model initialization failed. Install @huggingface/transformers or disable embedding-based self-healing.")}}async findMostSimilar(t,i,s){if(!this.pipeline)throw new Error("Embedding model not initialized. Call initialize() first.");let l=this.fingerprintToText(i),o=await this.embed(l),p=await t.evaluate(()=>{let R=["a","button","input","select","textarea","label","summary","details"],C=["button","link","textbox","checkbox","radio","combobox","tab","menuitem"],P=[],J=document.querySelectorAll("*"),$=0;return J.forEach(E=>{if(!(E instanceof HTMLElement))return;let x=E.getBoundingClientRect();if(x.width===0||x.height===0||window.getComputedStyle(E).visibility==="hidden")return;let I=E.tagName.toLowerCase(),L=E.getAttribute("role");!(R.includes(I)||L&&C.includes(L)||E.onclick!==null||E.getAttribute("tabindex")!==null)&&!E.id&&!E.getAttribute("data-testid")||P.push({index:$++,tag:I,id:E.id||null,classes:Array.from(E.classList).slice(0,5),text:(E.textContent||"").trim().substring(0,100),ariaLabel:E.getAttribute("aria-label"),ariaRole:L,testId:E.getAttribute("data-testid"),placeholder:E.placeholder||null,name:E.getAttribute("name"),type:E.getAttribute("type")})}),P});if(p.length===0)return null;let f=null,b=-1,S=32;for(let R=0;R<p.length;R+=S){let C=p.slice(R,R+S),P=C.map($=>this.candidateToText($)),J=await Promise.all(P.map($=>this.embed($)));for(let $=0;$<C.length;$++){let E=this.cosineSimilarity(o,J[$]);if(E>b&&E>=s){b=E;let x=C[$],I;x.testId?I=t.getByTestId(x.testId):x.id?I=t.locator(`#${x.id}`):x.ariaRole&&x.text?I=t.getByRole(x.ariaRole,{name:x.text.substring(0,50)}):x.text?I=t.getByText(x.text.substring(0,50)):I=t.locator(`${x.tag}`).nth(x.index),f={locator:I,similarity:E}}}}return f}fingerprintToText(t){return[`tag:${t.tag}`,t.id?`id:${t.id}`:"",t.testId?`testid:${t.testId}`:"",t.ariaRole?`role:${t.ariaRole}`:"",t.ariaLabel?`label:${t.ariaLabel}`:"",t.text?`text:${t.text.substring(0,100)}`:"",t.placeholder?`placeholder:${t.placeholder}`:"",t.name?`name:${t.name}`:"",t.type?`type:${t.type}`:"",t.classes.length?`class:${t.classes.join(" ")}`:""].filter(Boolean).join(" ")}candidateToText(t){return[`tag:${t.tag}`,t.id?`id:${t.id}`:"",t.testId?`testid:${t.testId}`:"",t.ariaRole?`role:${t.ariaRole}`:"",t.ariaLabel?`label:${t.ariaLabel}`:"",t.text?`text:${t.text}`:"",t.placeholder?`placeholder:${t.placeholder}`:"",t.name?`name:${t.name}`:"",t.type?`type:${t.type}`:"",t.classes.length?`class:${t.classes.join(" ")}`:""].filter(Boolean).join(" ")}async embed(t){let i=await this.pipeline(t,{pooling:"mean",normalize:!0});return Array.from(i.data)}cosineSimilarity(t,i){let s=0,l=0,o=0;for(let p=0;p<t.length;p++)s+=t[p]*i[p],l+=t[p]*t[p],o+=i[p]*i[p];return s/(Math.sqrt(l)*Math.sqrt(o))}};function Kn(c){let t=c.fingerprint;return t?{testId:t.testId,role:t.ariaRole?{role:t.ariaRole,name:t.ariaLabel||t.innerText?.substring(0,50)||""}:null,label:t.labels?.[0]||null,text:t.innerText?.substring(0,100)||null,placeholder:t.placeholder,css:c.cssSelector||null,xpath:c.xpath||null,fingerprint:t}:{testId:null,role:null,label:null,text:null,placeholder:null,css:c.cssSelector||null,xpath:c.xpath||null,fingerprint:null}}var Kt=class{constructor(t,i,s){this.db=t;this.config=i;this.secrets=s}embeddings=null;llmRepair=null;async resolve(t,i,s,l){let o=this.db.getHealedSelector(s,l);if(o)try{let f=t.locator(o.healed_locator);if(await f.count()===1)return this.db.incrementHealedSelectorSuccess(o.id),{locator:f,strategy:`cached:${o.strategy_used}`,healed:!0}}catch{}let p=await this.tryDirectLocators(t,i);if(p)return p;if(!this.config.enabled)throw new Error(`No element found for step ${l}. Self-healing is disabled.`);if(i.fingerprint){let f=await this.tryEmbeddingSimilarity(t,i.fingerprint);if(f)return this.cacheHealedSelector(s,l,i,f),f}if(this.config.llmEnabled&&i.fingerprint){let f=await this.tryLlmRepair(t,i);if(f)return this.cacheHealedSelector(s,l,i,f),f}throw new Error(`Self-healing failed: no element found for step ${l} after all tiers.`)}async tryDirectLocators(t,i){let s=[{name:"testId",getLocator:()=>i.testId?t.getByTestId(i.testId):null},{name:"role",getLocator:()=>i.role?t.getByRole(i.role.role,{name:i.role.name}):null},{name:"label",getLocator:()=>i.label?t.getByLabel(i.label):null},{name:"text",getLocator:()=>i.text?t.getByText(i.text,{exact:!1}):null},{name:"placeholder",getLocator:()=>i.placeholder?t.getByPlaceholder(i.placeholder):null},{name:"css",getLocator:()=>i.css?t.locator(i.css):null},{name:"xpath",getLocator:()=>i.xpath?t.locator(`xpath=${i.xpath}`):null}];for(let{name:l,getLocator:o}of s)try{let p=o();if(!p)continue;let f=await p.count();if(f===1)return{locator:p,strategy:l,healed:!1};if(f>1&&i.fingerprint)return{locator:p.first(),strategy:`${l}:first`,healed:!1}}catch{continue}return null}async tryEmbeddingSimilarity(t,i){try{this.embeddings||(this.embeddings=new Ht,await this.embeddings.initialize());let s=await this.embeddings.findMostSimilar(t,i,this.config.embeddingThreshold);if(s)return{locator:s.locator,strategy:`embedding:${s.similarity.toFixed(3)}`,healed:!0}}catch{}return null}async tryLlmRepair(t,i){try{this.llmRepair||(this.llmRepair=new Vt(this.secrets));let s=await this.llmRepair.repairSelector(t,i);if(s){let l=t.locator(s);if(await l.count()>=1)return{locator:l.first(),strategy:"llm",healed:!0}}}catch{}return null}cacheHealedSelector(t,i,s,l){let o=s.testId||s.css||s.xpath||"unknown";this.db.createHealedSelector({recording_id:t,step_index:i,original_locator:o,healed_locator:`[healed:${l.strategy}]`,strategy_used:l.strategy})}};var Ws=`
+If you cannot find a matching element, respond with: NONE`;
+  }
+  /** Call OpenAI Chat Completions API */
+  async callOpenAI(apiKey, model, prompt) {
+    try {
+      const response = await fetch("https://api.openai.com/v1/chat/completions", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${apiKey}`
+        },
+        body: JSON.stringify({
+          model,
+          messages: [
+            { role: "system", content: "You are a Playwright selector repair assistant. Return only the selector string." },
+            { role: "user", content: prompt }
+          ],
+          max_tokens: 200,
+          temperature: 0
+        })
+      });
+      if (!response.ok) {
+        console.error(`OpenAI API error: ${response.status}`);
+        return null;
+      }
+      const data = await response.json();
+      return data.choices?.[0]?.message?.content?.trim() || null;
+    } catch (err) {
+      console.error("OpenAI API call failed:", err);
+      return null;
+    }
+  }
+  /** Call Anthropic Messages API */
+  async callAnthropic(apiKey, model, prompt) {
+    try {
+      const response = await fetch("https://api.anthropic.com/v1/messages", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "x-api-key": apiKey,
+          "anthropic-version": "2023-06-01"
+        },
+        body: JSON.stringify({
+          model,
+          max_tokens: 200,
+          messages: [
+            { role: "user", content: prompt }
+          ]
+        })
+      });
+      if (!response.ok) {
+        console.error(`Anthropic API error: ${response.status}`);
+        return null;
+      }
+      const data = await response.json();
+      return data.content?.[0]?.text?.trim() || null;
+    } catch (err) {
+      console.error("Anthropic API call failed:", err);
+      return null;
+    }
+  }
+  /** Call local Ollama API */
+  async callOllama(model, prompt) {
+    const config = vscode8.workspace.getConfiguration("playwrightVcr");
+    const ollamaUrl = config.get("ai.ollamaUrl", "http://localhost:11434");
+    try {
+      const response = await fetch(`${ollamaUrl}/api/generate`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          model,
+          prompt,
+          stream: false,
+          options: { temperature: 0 }
+        })
+      });
+      if (!response.ok) {
+        console.error(`Ollama API error: ${response.status}`);
+        return null;
+      }
+      const data = await response.json();
+      return data.response?.trim() || null;
+    } catch (err) {
+      console.error("Ollama API call failed:", err);
+      return null;
+    }
+  }
+  /** Extract a clean selector from the LLM response */
+  extractSelector(response) {
+    const trimmed = response.trim();
+    if (trimmed === "NONE" || trimmed.toLowerCase().includes("cannot find")) {
+      return null;
+    }
+    let selector = trimmed.replace(/^```[a-z]*\n?/i, "").replace(/\n?```$/i, "").trim();
+    if (selector.startsWith('"') && selector.endsWith('"') || selector.startsWith("'") && selector.endsWith("'")) {
+      selector = selector.slice(1, -1);
+    }
+    if (selector.length === 0 || selector.length > 500) {
+      return null;
+    }
+    return selector;
+  }
+};
+
+// src/ai/locatorEmbeddings.ts
+var LocatorEmbeddings = class {
+  pipeline = null;
+  initialized = false;
+  async initialize() {
+    if (this.initialized)
+      return;
+    try {
+      const { pipeline } = await import("@huggingface/transformers");
+      this.pipeline = await pipeline("feature-extraction", "Xenova/all-MiniLM-L6-v2", {
+        // Cache models in extension storage
+        cache_dir: void 0
+        // Will use default cache
+      });
+      this.initialized = true;
+    } catch (err) {
+      console.error("Failed to initialize embedding model:", err);
+      throw new Error(
+        "Embedding model initialization failed. Install @huggingface/transformers or disable embedding-based self-healing."
+      );
+    }
+  }
+  /**
+   * Find the visible element on the page most similar to the recorded fingerprint.
+   * Returns null if no element exceeds the similarity threshold.
+   */
+  async findMostSimilar(page, targetFingerprint, threshold) {
+    if (!this.pipeline) {
+      throw new Error("Embedding model not initialized. Call initialize() first.");
+    }
+    const targetText = this.fingerprintToText(targetFingerprint);
+    const targetEmbedding = await this.embed(targetText);
+    const candidates = await page.evaluate(() => {
+      const interactiveTags = ["a", "button", "input", "select", "textarea", "label", "summary", "details"];
+      const interactiveRoles = ["button", "link", "textbox", "checkbox", "radio", "combobox", "tab", "menuitem"];
+      const elements = [];
+      const allElements = document.querySelectorAll("*");
+      let index = 0;
+      allElements.forEach((el) => {
+        if (!(el instanceof HTMLElement))
+          return;
+        const rect = el.getBoundingClientRect();
+        if (rect.width === 0 || rect.height === 0)
+          return;
+        if (window.getComputedStyle(el).visibility === "hidden")
+          return;
+        const tag = el.tagName.toLowerCase();
+        const role = el.getAttribute("role");
+        const isInteractive = interactiveTags.includes(tag) || role && interactiveRoles.includes(role) || el.onclick !== null || el.getAttribute("tabindex") !== null;
+        if (!isInteractive && !el.id && !el.getAttribute("data-testid"))
+          return;
+        elements.push({
+          index: index++,
+          tag,
+          id: el.id || null,
+          classes: Array.from(el.classList).slice(0, 5),
+          text: (el.textContent || "").trim().substring(0, 100),
+          ariaLabel: el.getAttribute("aria-label"),
+          ariaRole: role,
+          testId: el.getAttribute("data-testid"),
+          placeholder: el.placeholder || null,
+          name: el.getAttribute("name"),
+          type: el.getAttribute("type")
+        });
+      });
+      return elements;
+    });
+    if (candidates.length === 0)
+      return null;
+    let bestMatch = null;
+    let bestSimilarity = -1;
+    const batchSize = 32;
+    for (let i = 0; i < candidates.length; i += batchSize) {
+      const batch = candidates.slice(i, i + batchSize);
+      const texts = batch.map((c) => this.candidateToText(c));
+      const embeddings = await Promise.all(texts.map((t) => this.embed(t)));
+      for (let j = 0; j < batch.length; j++) {
+        const similarity = this.cosineSimilarity(targetEmbedding, embeddings[j]);
+        if (similarity > bestSimilarity && similarity >= threshold) {
+          bestSimilarity = similarity;
+          const candidate = batch[j];
+          let locator;
+          if (candidate.testId) {
+            locator = page.getByTestId(candidate.testId);
+          } else if (candidate.id) {
+            locator = page.locator(`#${candidate.id}`);
+          } else if (candidate.ariaRole && candidate.text) {
+            locator = page.getByRole(candidate.ariaRole, { name: candidate.text.substring(0, 50) });
+          } else if (candidate.text) {
+            locator = page.getByText(candidate.text.substring(0, 50));
+          } else {
+            locator = page.locator(`${candidate.tag}`).nth(candidate.index);
+          }
+          bestMatch = { locator, similarity };
+        }
+      }
+    }
+    return bestMatch;
+  }
+  /** Convert a fingerprint to a text representation for embedding */
+  fingerprintToText(fp) {
+    const parts = [
+      `tag:${fp.tag}`,
+      fp.id ? `id:${fp.id}` : "",
+      fp.testId ? `testid:${fp.testId}` : "",
+      fp.ariaRole ? `role:${fp.ariaRole}` : "",
+      fp.ariaLabel ? `label:${fp.ariaLabel}` : "",
+      fp.text ? `text:${fp.text.substring(0, 100)}` : "",
+      fp.placeholder ? `placeholder:${fp.placeholder}` : "",
+      fp.name ? `name:${fp.name}` : "",
+      fp.type ? `type:${fp.type}` : "",
+      fp.classes.length ? `class:${fp.classes.join(" ")}` : ""
+    ];
+    return parts.filter(Boolean).join(" ");
+  }
+  /** Convert a candidate element to text for embedding */
+  candidateToText(candidate) {
+    const parts = [
+      `tag:${candidate.tag}`,
+      candidate.id ? `id:${candidate.id}` : "",
+      candidate.testId ? `testid:${candidate.testId}` : "",
+      candidate.ariaRole ? `role:${candidate.ariaRole}` : "",
+      candidate.ariaLabel ? `label:${candidate.ariaLabel}` : "",
+      candidate.text ? `text:${candidate.text}` : "",
+      candidate.placeholder ? `placeholder:${candidate.placeholder}` : "",
+      candidate.name ? `name:${candidate.name}` : "",
+      candidate.type ? `type:${candidate.type}` : "",
+      candidate.classes.length ? `class:${candidate.classes.join(" ")}` : ""
+    ];
+    return parts.filter(Boolean).join(" ");
+  }
+  /** Generate an embedding vector from text */
+  async embed(text) {
+    const result = await this.pipeline(text, { pooling: "mean", normalize: true });
+    return Array.from(result.data);
+  }
+  /** Compute cosine similarity between two vectors */
+  cosineSimilarity(a, b) {
+    let dot = 0;
+    let normA = 0;
+    let normB = 0;
+    for (let i = 0; i < a.length; i++) {
+      dot += a[i] * b[i];
+      normA += a[i] * a[i];
+      normB += b[i] * b[i];
+    }
+    return dot / (Math.sqrt(normA) * Math.sqrt(normB));
+  }
+};
+
+// src/playwright/selfHealing.ts
+function generateLocators(action) {
+  const fp = action.fingerprint;
+  if (!fp) {
+    return {
+      testId: null,
+      role: null,
+      label: null,
+      text: null,
+      placeholder: null,
+      css: action.cssSelector || null,
+      xpath: action.xpath || null,
+      fingerprint: null
+    };
+  }
+  return {
+    testId: fp.testId,
+    role: fp.ariaRole ? { role: fp.ariaRole, name: fp.ariaLabel || fp.innerText?.substring(0, 50) || "" } : null,
+    label: fp.labels?.[0] || null,
+    text: fp.innerText?.substring(0, 100) || null,
+    placeholder: fp.placeholder,
+    css: action.cssSelector || null,
+    xpath: action.xpath || null,
+    fingerprint: fp
+  };
+}
+var SelfHealingResolver = class {
+  constructor(db, config, secrets) {
+    this.db = db;
+    this.config = config;
+    this.secrets = secrets;
+  }
+  embeddings = null;
+  llmRepair = null;
+  async resolve(page, locators, recordingId, stepIndex) {
+    const cached = this.db.getHealedSelector(recordingId, stepIndex);
+    if (cached) {
+      try {
+        const locator = page.locator(cached.healed_locator);
+        if (await locator.count() === 1) {
+          this.db.incrementHealedSelectorSuccess(cached.id);
+          return { locator, strategy: `cached:${cached.strategy_used}`, healed: true };
+        }
+      } catch {
+      }
+    }
+    const tier1Result = await this.tryDirectLocators(page, locators);
+    if (tier1Result) {
+      return tier1Result;
+    }
+    if (!this.config.enabled) {
+      throw new Error(
+        `No element found for step ${stepIndex}. Self-healing is disabled.`
+      );
+    }
+    if (locators.fingerprint) {
+      const tier2Result = await this.tryEmbeddingSimilarity(page, locators.fingerprint);
+      if (tier2Result) {
+        this.cacheHealedSelector(recordingId, stepIndex, locators, tier2Result);
+        return tier2Result;
+      }
+    }
+    if (this.config.llmEnabled && locators.fingerprint) {
+      const tier3Result = await this.tryLlmRepair(page, locators);
+      if (tier3Result) {
+        this.cacheHealedSelector(recordingId, stepIndex, locators, tier3Result);
+        return tier3Result;
+      }
+    }
+    throw new Error(
+      `Self-healing failed: no element found for step ${stepIndex} after all tiers.`
+    );
+  }
+  /** Tier 1: Try each locator strategy in priority order */
+  async tryDirectLocators(page, locators) {
+    const strategies = [
+      {
+        name: "testId",
+        getLocator: () => locators.testId ? page.getByTestId(locators.testId) : null
+      },
+      {
+        name: "role",
+        getLocator: () => locators.role ? page.getByRole(locators.role.role, { name: locators.role.name }) : null
+      },
+      {
+        name: "label",
+        getLocator: () => locators.label ? page.getByLabel(locators.label) : null
+      },
+      {
+        name: "text",
+        getLocator: () => locators.text ? page.getByText(locators.text, { exact: false }) : null
+      },
+      {
+        name: "placeholder",
+        getLocator: () => locators.placeholder ? page.getByPlaceholder(locators.placeholder) : null
+      },
+      {
+        name: "css",
+        getLocator: () => locators.css ? page.locator(locators.css) : null
+      },
+      {
+        name: "xpath",
+        getLocator: () => locators.xpath ? page.locator(`xpath=${locators.xpath}`) : null
+      }
+    ];
+    for (const { name, getLocator } of strategies) {
+      try {
+        const locator = getLocator();
+        if (!locator)
+          continue;
+        const count = await locator.count();
+        if (count === 1) {
+          return { locator, strategy: name, healed: false };
+        }
+        if (count > 1 && locators.fingerprint) {
+          const first = locator.first();
+          return { locator: first, strategy: `${name}:first`, healed: false };
+        }
+      } catch {
+        continue;
+      }
+    }
+    return null;
+  }
+  /** Tier 2: Find element by embedding similarity */
+  async tryEmbeddingSimilarity(page, fingerprint) {
+    try {
+      if (!this.embeddings) {
+        this.embeddings = new LocatorEmbeddings();
+        await this.embeddings.initialize();
+      }
+      const bestMatch = await this.embeddings.findMostSimilar(page, fingerprint, this.config.embeddingThreshold);
+      if (bestMatch) {
+        return {
+          locator: bestMatch.locator,
+          strategy: `embedding:${bestMatch.similarity.toFixed(3)}`,
+          healed: true
+        };
+      }
+    } catch {
+    }
+    return null;
+  }
+  /** Tier 3: Ask LLM to repair the selector */
+  async tryLlmRepair(page, locators) {
+    try {
+      if (!this.llmRepair) {
+        this.llmRepair = new LlmRepair(this.secrets);
+      }
+      const repairedSelector = await this.llmRepair.repairSelector(page, locators);
+      if (repairedSelector) {
+        const locator = page.locator(repairedSelector);
+        if (await locator.count() >= 1) {
+          return {
+            locator: locator.first(),
+            strategy: "llm",
+            healed: true
+          };
+        }
+      }
+    } catch {
+    }
+    return null;
+  }
+  /** Cache a healed selector for future runs */
+  cacheHealedSelector(recordingId, stepIndex, originalLocators, resolution) {
+    const originalLocator = originalLocators.testId || originalLocators.css || originalLocators.xpath || "unknown";
+    this.db.createHealedSelector({
+      recording_id: recordingId,
+      step_index: stepIndex,
+      original_locator: originalLocator,
+      healed_locator: `[healed:${resolution.strategy}]`,
+      // Placeholder — real impl would extract selector
+      strategy_used: resolution.strategy
+    });
+  }
+};
+
+// src/playwright/recorder.ts
+var CAPTURE_SCRIPT = `
 (() => {
   const RPA_EVENTS = ['click', 'dblclick', 'input', 'change', 'submit', 'keydown', 'select', 'scroll'];
 
@@ -627,12 +5561,559 @@ If you cannot find a matching element, respond with: NONE`}async callOpenAI(t,i,
     }));
   };
 })();
-`,Jt=class{constructor(t,i){this.db=t;this.fileManager=i}browser=null;context=null;page=null;actions=[];currentRecordingId=null;actionCallbacks=[];startTime=0;isRecording=!1;onAction(t){this.actionCallbacks.push(t)}emitAction(t){for(let i of this.actionCallbacks)i(t)}async start(t,i="chromium",s=!1){if(this.isRecording)throw new Error("Already recording. Stop the current recording first.");let l=jt();this.currentRecordingId=l,this.actions=[],this.startTime=Date.now(),this.isRecording=!0;let p={chromium:Ce.chromium,firefox:Ce.firefox,webkit:Ce.webkit}[i]||Ce.chromium;return this.browser=await p.launch({headless:!1,slowMo:0}),this.context=await this.browser.newContext({viewport:{width:1280,height:720},recordVideo:void 0}),await this.context.tracing.start({screenshots:!0,snapshots:!0}),this.page=await this.context.newPage(),await this.page.exposeFunction("__rpaEvent",f=>{try{let b=JSON.parse(f);this.actions.push(b),this.emitAction(b)}catch{}}),await this.context.addInitScript(Ws),await this.page.goto(t,{waitUntil:"domcontentloaded"}),this.db.createRecording({id:l,name:`Recording ${new Date().toLocaleString()}`,url:t,created_at:new Date().toISOString(),updated_at:new Date().toISOString(),tags:"",description:"",action_count:0,duration_ms:0,auth_state_path:null}),l}async stop(){if(!this.isRecording||!this.currentRecordingId)return null;let t=this.currentRecordingId,i=Date.now()-this.startTime,s=null;if(this.context)try{let o=await this.context.storageState();s=await this.fileManager.saveAuthState(t,o)}catch{}if(this.context){let o=this.fileManager.getTracePath(t);await this.context.tracing.stop({path:o})}for(let o=0;o<this.actions.length;o++){let p=this.actions[o],f=Kn(p);this.db.createAction({id:jt(),recording_id:t,step_index:o,action_type:p.type,url:p.url,locators:JSON.stringify(f),screenshot_path:null,timestamp_ms:p.timestamp-this.startTime})}await this.fileManager.saveActionsJson(t,this.actions),this.db.updateRecording(t,{action_count:this.actions.length,duration_ms:i,auth_state_path:s,updated_at:new Date().toISOString()}),await this.page?.close().catch(()=>{}),await this.context?.close().catch(()=>{}),await this.browser?.close().catch(()=>{}),this.browser=null,this.context=null,this.page=null,this.isRecording=!1,this.actionCallbacks=[];let l=this.db.getRecording(t);return this.currentRecordingId=null,l}dispose(){this.page?.close().catch(()=>{}),this.context?.close().catch(()=>{}),this.browser?.close().catch(()=>{}),this.isRecording=!1}};var Oe=require("playwright"),Nr=M(require("vscode"));var Xt=class{constructor(t,i,s={}){this.db=t;this.fileManager=i;this.deps=s}browser=null;context=null;page=null;isPlaying=!1;shouldStop=!1;async play(t,i={},s){if(this.isPlaying)throw new Error("Already playing. Stop the current playback first.");let l=this.db.getRecording(t);if(!l)throw new Error(`Recording ${t} not found.`);let o=this.db.getActions(t);if(o.length===0)throw new Error("Recording has no actions.");this.isPlaying=!0,this.shouldStop=!1;let p=Nr.workspace.getConfiguration("playwrightVcr"),f=i.headless??p.get("headless",!1),b=i.slowMo??p.get("slowMo",0),S=i.browser??p.get("defaultBrowser","chromium"),R=new Kt(this.db,{enabled:p.get("selfHealing.enabled",!0),embeddingThreshold:p.get("selfHealing.embeddingThreshold",.85),llmEnabled:p.get("selfHealing.llmEnabled",!1)},this.deps.secrets),P={chromium:Oe.chromium,firefox:Oe.firefox,webkit:Oe.webkit}[S]||Oe.chromium;if(this.browser=await P.launch({headless:f,slowMo:b}),this.context=await this.browser.newContext({viewport:{width:1280,height:720}}),l.auth_state_path)try{let E=await this.fileManager.loadAuthState(t);E&&(this.context=await this.browser.newContext({viewport:{width:1280,height:720},storageState:E}))}catch{}this.page=await this.context.newPage(),await this.registerOverlayHandlers(this.page),await this.context.tracing.start({screenshots:!0,snapshots:!0});let J=this.db.createExecution({recording_id:t,started_at:new Date().toISOString(),status:"running",trigger:"manual"}),$=[];try{await this.page.goto(l.url,{waitUntil:"domcontentloaded"});for(let E=0;E<o.length&&!this.shouldStop;E++){let x=o[E],I=Date.now();try{let L=await this.executeAction(this.page,x,R,t),O={stepIndex:E,actionType:x.action_type,status:L.healed?"healed":"success",strategy:L.strategy,durationMs:Date.now()-I};try{let Y=this.fileManager.getStepScreenshotPath(t,E);await this.page.screenshot({path:Y}),O.screenshotPath=Y}catch{}$.push(O),s?.(O)}catch(L){let O={stepIndex:E,actionType:x.action_type,status:"failed",strategy:"none",durationMs:Date.now()-I,error:L.message};try{let Y=this.fileManager.getStepScreenshotPath(t,E);await this.page.screenshot({path:Y}),O.screenshotPath=Y}catch{}throw $.push(O),s?.(O),this.db.updateExecution(J,{finished_at:new Date().toISOString(),status:"fail",failure_step:E,error_message:L.message}),L}b>0&&E<o.length-1&&await new Promise(L=>setTimeout(L,b))}this.db.updateExecution(J,{finished_at:new Date().toISOString(),status:"pass"})}finally{try{let E=this.fileManager.getPlaybackTracePath(t,J);await this.context.tracing.stop({path:E})}catch{}await this.cleanup()}return $}async executeAction(t,i,s,l){let o=JSON.parse(i.locators);switch(i.action_type){case"navigation":return await t.goto(i.url,{waitUntil:"domcontentloaded"}),{healed:!1,strategy:"navigation"};case"scroll":return await t.evaluate(({x:p,y:f})=>window.scrollTo(p,f),{x:0,y:0}),{healed:!1,strategy:"scroll"};case"click":case"dblclick":{let p=await s.resolve(t,o,l,i.step_index);return i.action_type==="dblclick"?await p.locator.dblclick({timeout:1e4}):await p.locator.click({timeout:1e4}),{healed:p.healed,strategy:p.strategy}}case"input":case"change":{let p=await s.resolve(t,o,l,i.step_index),f=o.fingerprint?.value||"";return await p.locator.fill(f,{timeout:1e4}),{healed:p.healed,strategy:p.strategy}}case"keydown":{let p=o.fingerprint?.value||"Enter";return await t.keyboard.press(p),{healed:!1,strategy:"keyboard"}}case"select":{let p=await s.resolve(t,o,l,i.step_index),f=o.fingerprint?.value||"";return await p.locator.selectOption(f,{timeout:1e4}),{healed:p.healed,strategy:p.strategy}}case"submit":{let p=await s.resolve(t,o,l,i.step_index);return await p.locator.press("Enter",{timeout:1e4}),{healed:p.healed,strategy:p.strategy}}default:return{healed:!1,strategy:"skipped"}}}async registerOverlayHandlers(t){let s=Nr.workspace.getConfiguration("playwrightVcr").get("overlayDismissals",[]);for(let l of s)try{await t.addLocatorHandler(t.locator(l.detector),async()=>{try{await t.locator(l.action).click({timeout:5e3})}catch{}})}catch{}}async stop(){this.shouldStop=!0}async cleanup(){await this.page?.close().catch(()=>{}),await this.context?.close().catch(()=>{}),await this.browser?.close().catch(()=>{}),this.page=null,this.context=null,this.browser=null,this.isPlaying=!1,this.shouldStop=!1}dispose(){this.shouldStop=!0,this.cleanup()}};var be=M(require("vscode")),zt=M(require("fs/promises")),Wt=class{constructor(t,i){this.db=t;this.fileManager=i}async export(t,i){let s=this.db.getRecording(t);if(!s)throw new Error(`Recording ${t} not found.`);let l=this.db.getActions(t),o=i,p=this.getDefaultFileName(s.name,o),f=await be.window.showSaveDialog({defaultUri:be.Uri.file(p),filters:this.getFileFilters(o)});if(!f)return;let b;switch(o){case"TypeScript":b=this.generateTypeScript(s,l);break;case"JavaScript":b=this.generateJavaScript(s,l);break;case"Python":b=this.generatePython(s,l);break;case"Java":b=this.generateJava(s,l);break;case"C#":b=this.generateCSharp(s,l);break;case"JSON":b=this.generateJson(s,l);break;case"GitHub Actions YAML":b=this.generateGitHubActions(s);break;case"HAR":await this.exportTraceZip(t,f.fsPath),be.window.showInformationMessage(`Trace exported to ${f.fsPath}`);return;default:throw new Error(`Unsupported export format: ${i}`)}await zt.writeFile(f.fsPath,b,"utf-8"),be.window.showInformationMessage(`Exported to ${f.fsPath}`);let S=await be.workspace.openTextDocument(f);await be.window.showTextDocument(S)}generateTypeScript(t,i){let s=["import { test, expect } from '@playwright/test';","",`test('${this.escapeString(t.name)}', async ({ page }) => {`,`  // Recorded on ${t.created_at} from ${t.url}`,`  await page.goto('${this.escapeString(t.url)}');`,""];for(let l of i){let o=this.generatePlaywrightAction(l,"  ");o&&s.push(o)}return s.push("});",""),s.join(`
-`)}generateJavaScript(t,i){let s=["const { test, expect } = require('@playwright/test');","",`test('${this.escapeString(t.name)}', async ({ page }) => {`,`  // Recorded on ${t.created_at} from ${t.url}`,`  await page.goto('${this.escapeString(t.url)}');`,""];for(let l of i){let o=this.generatePlaywrightAction(l,"  ");o&&s.push(o)}return s.push("});",""),s.join(`
-`)}generatePython(t,i){let s=["import pytest","from playwright.sync_api import Page, expect","","",`def test_${this.toSnakeCase(t.name)}(page: Page):`,`    """Recorded on ${t.created_at} from ${t.url}"""`,`    page.goto("${this.escapeString(t.url)}")`,""];for(let l of i){let o=this.generatePythonAction(l,"    ");o&&s.push(o)}return s.push(""),s.join(`
-`)}generateJava(t,i){let s=this.toPascalCase(t.name),l=["import com.microsoft.playwright.*;","import org.junit.jupiter.api.*;","",`public class ${s}Test {`,"    @Test",`    void test${s}() {`,"        try (Playwright playwright = Playwright.create()) {","            Browser browser = playwright.chromium().launch();","            Page page = browser.newPage();",`            // Recorded on ${t.created_at} from ${t.url}`,`            page.navigate("${this.escapeString(t.url)}");`,""];for(let o of i){let p=this.generateJavaAction(o,"            ");p&&l.push(p)}return l.push("        }","    }","}",""),l.join(`
-`)}generateCSharp(t,i){let s=this.toPascalCase(t.name),l=["using Microsoft.Playwright;","using NUnit.Framework;","","[TestFixture]",`public class ${s}Tests`,"{","    [Test]",`    public async Task Test${s}()`,"    {","        using var playwright = await Playwright.CreateAsync();","        await using var browser = await playwright.Chromium.LaunchAsync();","        var page = await browser.NewPageAsync();",`        // Recorded on ${t.created_at} from ${t.url}`,`        await page.GotoAsync("${this.escapeString(t.url)}");`,""];for(let o of i){let p=this.generateCSharpAction(o,"        ");p&&l.push(p)}return l.push("    }","}",""),l.join(`
-`)}generateJson(t,i){return JSON.stringify({version:"1.0.0",recording:{id:t.id,name:t.name,url:t.url,createdAt:t.created_at,actionCount:t.action_count,durationMs:t.duration_ms},actions:i.map(s=>({stepIndex:s.step_index,actionType:s.action_type,url:s.url,locators:JSON.parse(s.locators),timestampMs:s.timestamp_ms}))},null,2)}generateGitHubActions(t){return`name: PlaywrightVCR - ${this.escapeString(t.name)}
+`;
+var Recorder = class {
+  constructor(db, fileManager2) {
+    this.db = db;
+    this.fileManager = fileManager2;
+  }
+  browser = null;
+  context = null;
+  page = null;
+  actions = [];
+  currentRecordingId = null;
+  actionCallbacks = [];
+  startTime = 0;
+  isRecording = false;
+  onAction(callback) {
+    this.actionCallbacks.push(callback);
+  }
+  emitAction(action) {
+    for (const cb of this.actionCallbacks) {
+      cb(action);
+    }
+  }
+  async start(url, browserType = "chromium", saveAuth = false) {
+    if (this.isRecording) {
+      throw new Error("Already recording. Stop the current recording first.");
+    }
+    const recordingId = v4_default();
+    this.currentRecordingId = recordingId;
+    this.actions = [];
+    this.startTime = Date.now();
+    this.isRecording = true;
+    const pw = await import("playwright");
+    const engines = { chromium: pw.chromium, firefox: pw.firefox, webkit: pw.webkit };
+    const engine = engines[browserType] || pw.chromium;
+    this.browser = await engine.launch({
+      headless: false,
+      slowMo: 0
+    });
+    this.context = await this.browser.newContext({
+      viewport: { width: 1280, height: 720 },
+      recordVideo: void 0
+      // Could enable video recording
+    });
+    await this.context.tracing.start({
+      screenshots: true,
+      snapshots: true
+    });
+    this.page = await this.context.newPage();
+    await this.page.exposeFunction("__rpaEvent", (eventJson) => {
+      try {
+        const action = JSON.parse(eventJson);
+        this.actions.push(action);
+        this.emitAction(action);
+      } catch {
+      }
+    });
+    await this.context.addInitScript(CAPTURE_SCRIPT);
+    await this.page.goto(url, { waitUntil: "domcontentloaded" });
+    this.db.createRecording({
+      id: recordingId,
+      name: `Recording ${(/* @__PURE__ */ new Date()).toLocaleString()}`,
+      url,
+      created_at: (/* @__PURE__ */ new Date()).toISOString(),
+      updated_at: (/* @__PURE__ */ new Date()).toISOString(),
+      tags: "",
+      description: "",
+      action_count: 0,
+      duration_ms: 0,
+      auth_state_path: null
+    });
+    return recordingId;
+  }
+  async stop() {
+    if (!this.isRecording || !this.currentRecordingId) {
+      return null;
+    }
+    const recordingId = this.currentRecordingId;
+    const duration = Date.now() - this.startTime;
+    let authStatePath = null;
+    if (this.context) {
+      try {
+        const storageState = await this.context.storageState();
+        authStatePath = await this.fileManager.saveAuthState(recordingId, storageState);
+      } catch {
+      }
+    }
+    if (this.context) {
+      const tracePath = this.fileManager.getTracePath(recordingId);
+      await this.context.tracing.stop({ path: tracePath });
+    }
+    for (let i = 0; i < this.actions.length; i++) {
+      const action = this.actions[i];
+      const locators = generateLocators(action);
+      this.db.createAction({
+        id: v4_default(),
+        recording_id: recordingId,
+        step_index: i,
+        action_type: action.type,
+        url: action.url,
+        locators: JSON.stringify(locators),
+        screenshot_path: null,
+        timestamp_ms: action.timestamp - this.startTime
+      });
+    }
+    await this.fileManager.saveActionsJson(recordingId, this.actions);
+    this.db.updateRecording(recordingId, {
+      action_count: this.actions.length,
+      duration_ms: duration,
+      auth_state_path: authStatePath,
+      updated_at: (/* @__PURE__ */ new Date()).toISOString()
+    });
+    await this.page?.close().catch(() => {
+    });
+    await this.context?.close().catch(() => {
+    });
+    await this.browser?.close().catch(() => {
+    });
+    this.browser = null;
+    this.context = null;
+    this.page = null;
+    this.isRecording = false;
+    this.actionCallbacks = [];
+    const recording = this.db.getRecording(recordingId);
+    this.currentRecordingId = null;
+    return recording;
+  }
+  dispose() {
+    this.page?.close().catch(() => {
+    });
+    this.context?.close().catch(() => {
+    });
+    this.browser?.close().catch(() => {
+    });
+    this.isRecording = false;
+  }
+};
+
+// src/playwright/player.ts
+var vscode9 = __toESM(require("vscode"));
+var Player = class {
+  constructor(db, fileManager2, deps = {}) {
+    this.db = db;
+    this.fileManager = fileManager2;
+    this.deps = deps;
+  }
+  browser = null;
+  context = null;
+  page = null;
+  isPlaying = false;
+  shouldStop = false;
+  async play(recordingId, options = {}, onStep) {
+    if (this.isPlaying) {
+      throw new Error("Already playing. Stop the current playback first.");
+    }
+    const recording = this.db.getRecording(recordingId);
+    if (!recording) {
+      throw new Error(`Recording ${recordingId} not found.`);
+    }
+    const actions = this.db.getActions(recordingId);
+    if (actions.length === 0) {
+      throw new Error("Recording has no actions.");
+    }
+    this.isPlaying = true;
+    this.shouldStop = false;
+    const config = vscode9.workspace.getConfiguration("playwrightVcr");
+    const headless = options.headless ?? config.get("headless", false);
+    const slowMo = options.slowMo ?? config.get("slowMo", 0);
+    const browserType = options.browser ?? config.get("defaultBrowser", "chromium");
+    const resolver = new SelfHealingResolver(this.db, {
+      enabled: config.get("selfHealing.enabled", true),
+      embeddingThreshold: config.get("selfHealing.embeddingThreshold", 0.85),
+      llmEnabled: config.get("selfHealing.llmEnabled", false)
+    }, this.deps.secrets);
+    const pw = await import("playwright");
+    const engines = { chromium: pw.chromium, firefox: pw.firefox, webkit: pw.webkit };
+    const engine = engines[browserType] || pw.chromium;
+    this.browser = await engine.launch({ headless, slowMo });
+    this.context = await this.browser.newContext({
+      viewport: { width: 1280, height: 720 }
+    });
+    if (recording.auth_state_path) {
+      try {
+        const authState = await this.fileManager.loadAuthState(recordingId);
+        if (authState) {
+          this.context = await this.browser.newContext({
+            viewport: { width: 1280, height: 720 },
+            storageState: authState
+          });
+        }
+      } catch {
+      }
+    }
+    this.page = await this.context.newPage();
+    await this.registerOverlayHandlers(this.page);
+    await this.context.tracing.start({ screenshots: true, snapshots: true });
+    const executionId = this.db.createExecution({
+      recording_id: recordingId,
+      started_at: (/* @__PURE__ */ new Date()).toISOString(),
+      status: "running",
+      trigger: "manual"
+    });
+    const results = [];
+    try {
+      await this.page.goto(recording.url, { waitUntil: "domcontentloaded" });
+      for (let i = 0; i < actions.length; i++) {
+        if (this.shouldStop) {
+          break;
+        }
+        const action = actions[i];
+        const stepStart = Date.now();
+        try {
+          const result = await this.executeAction(this.page, action, resolver, recordingId);
+          const stepResult = {
+            stepIndex: i,
+            actionType: action.action_type,
+            status: result.healed ? "healed" : "success",
+            strategy: result.strategy,
+            durationMs: Date.now() - stepStart
+          };
+          try {
+            const screenshotPath = this.fileManager.getStepScreenshotPath(recordingId, i);
+            await this.page.screenshot({ path: screenshotPath });
+            stepResult.screenshotPath = screenshotPath;
+          } catch {
+          }
+          results.push(stepResult);
+          onStep?.(stepResult);
+        } catch (err) {
+          const stepResult = {
+            stepIndex: i,
+            actionType: action.action_type,
+            status: "failed",
+            strategy: "none",
+            durationMs: Date.now() - stepStart,
+            error: err.message
+          };
+          try {
+            const screenshotPath = this.fileManager.getStepScreenshotPath(recordingId, i);
+            await this.page.screenshot({ path: screenshotPath });
+            stepResult.screenshotPath = screenshotPath;
+          } catch {
+          }
+          results.push(stepResult);
+          onStep?.(stepResult);
+          this.db.updateExecution(executionId, {
+            finished_at: (/* @__PURE__ */ new Date()).toISOString(),
+            status: "fail",
+            failure_step: i,
+            error_message: err.message
+          });
+          throw err;
+        }
+        if (slowMo > 0 && i < actions.length - 1) {
+          await new Promise((resolve) => setTimeout(resolve, slowMo));
+        }
+      }
+      this.db.updateExecution(executionId, {
+        finished_at: (/* @__PURE__ */ new Date()).toISOString(),
+        status: "pass"
+      });
+    } finally {
+      try {
+        const tracePath = this.fileManager.getPlaybackTracePath(recordingId, executionId);
+        await this.context.tracing.stop({ path: tracePath });
+      } catch {
+      }
+      await this.cleanup();
+    }
+    return results;
+  }
+  /** Execute a single recorded action on the page */
+  async executeAction(page, action, resolver, recordingId) {
+    const locators = JSON.parse(action.locators);
+    switch (action.action_type) {
+      case "navigation": {
+        await page.goto(action.url, { waitUntil: "domcontentloaded" });
+        return { healed: false, strategy: "navigation" };
+      }
+      case "scroll": {
+        await page.evaluate(
+          ({ x, y }) => window.scrollTo(x, y),
+          { x: 0, y: 0 }
+          // Would use stored scroll position
+        );
+        return { healed: false, strategy: "scroll" };
+      }
+      case "click":
+      case "dblclick": {
+        const resolution = await resolver.resolve(page, locators, recordingId, action.step_index);
+        if (action.action_type === "dblclick") {
+          await resolution.locator.dblclick({ timeout: 1e4 });
+        } else {
+          await resolution.locator.click({ timeout: 1e4 });
+        }
+        return { healed: resolution.healed, strategy: resolution.strategy };
+      }
+      case "input":
+      case "change": {
+        const resolution = await resolver.resolve(page, locators, recordingId, action.step_index);
+        const value = locators.fingerprint?.value || "";
+        await resolution.locator.fill(value, { timeout: 1e4 });
+        return { healed: resolution.healed, strategy: resolution.strategy };
+      }
+      case "keydown": {
+        const key = locators.fingerprint?.value || "Enter";
+        await page.keyboard.press(key);
+        return { healed: false, strategy: "keyboard" };
+      }
+      case "select": {
+        const resolution = await resolver.resolve(page, locators, recordingId, action.step_index);
+        const value = locators.fingerprint?.value || "";
+        await resolution.locator.selectOption(value, { timeout: 1e4 });
+        return { healed: resolution.healed, strategy: resolution.strategy };
+      }
+      case "submit": {
+        const resolution = await resolver.resolve(page, locators, recordingId, action.step_index);
+        await resolution.locator.press("Enter", { timeout: 1e4 });
+        return { healed: resolution.healed, strategy: resolution.strategy };
+      }
+      default: {
+        return { healed: false, strategy: "skipped" };
+      }
+    }
+  }
+  /** Register overlay dismissal handlers from extension settings */
+  async registerOverlayHandlers(page) {
+    const config = vscode9.workspace.getConfiguration("playwrightVcr");
+    const dismissals = config.get("overlayDismissals", []);
+    for (const rule of dismissals) {
+      try {
+        await page.addLocatorHandler(
+          page.locator(rule.detector),
+          async () => {
+            try {
+              await page.locator(rule.action).click({ timeout: 5e3 });
+            } catch {
+            }
+          }
+        );
+      } catch {
+      }
+    }
+  }
+  async stop() {
+    this.shouldStop = true;
+  }
+  async cleanup() {
+    await this.page?.close().catch(() => {
+    });
+    await this.context?.close().catch(() => {
+    });
+    await this.browser?.close().catch(() => {
+    });
+    this.page = null;
+    this.context = null;
+    this.browser = null;
+    this.isPlaying = false;
+    this.shouldStop = false;
+  }
+  dispose() {
+    this.shouldStop = true;
+    this.cleanup();
+  }
+};
+
+// src/playwright/exporter.ts
+var vscode10 = __toESM(require("vscode"));
+var fs3 = __toESM(require("fs/promises"));
+var Exporter = class {
+  constructor(db, fileManager2) {
+    this.db = db;
+    this.fileManager = fileManager2;
+  }
+  async export(recordingId, format) {
+    const recording = this.db.getRecording(recordingId);
+    if (!recording) {
+      throw new Error(`Recording ${recordingId} not found.`);
+    }
+    const actions = this.db.getActions(recordingId);
+    const exportFormat = format;
+    const defaultName = this.getDefaultFileName(recording.name, exportFormat);
+    const uri = await vscode10.window.showSaveDialog({
+      defaultUri: vscode10.Uri.file(defaultName),
+      filters: this.getFileFilters(exportFormat)
+    });
+    if (!uri) {
+      return;
+    }
+    let content;
+    switch (exportFormat) {
+      case "TypeScript":
+        content = this.generateTypeScript(recording, actions);
+        break;
+      case "JavaScript":
+        content = this.generateJavaScript(recording, actions);
+        break;
+      case "Python":
+        content = this.generatePython(recording, actions);
+        break;
+      case "Java":
+        content = this.generateJava(recording, actions);
+        break;
+      case "C#":
+        content = this.generateCSharp(recording, actions);
+        break;
+      case "JSON":
+        content = this.generateJson(recording, actions);
+        break;
+      case "GitHub Actions YAML":
+        content = this.generateGitHubActions(recording);
+        break;
+      case "HAR":
+        await this.exportTraceZip(recordingId, uri.fsPath);
+        vscode10.window.showInformationMessage(`Trace exported to ${uri.fsPath}`);
+        return;
+      default:
+        throw new Error(`Unsupported export format: ${format}`);
+    }
+    await fs3.writeFile(uri.fsPath, content, "utf-8");
+    vscode10.window.showInformationMessage(`Exported to ${uri.fsPath}`);
+    const doc = await vscode10.workspace.openTextDocument(uri);
+    await vscode10.window.showTextDocument(doc);
+  }
+  generateTypeScript(recording, actions) {
+    const lines = [
+      `import { test, expect } from '@playwright/test';`,
+      ``,
+      `test('${this.escapeString(recording.name)}', async ({ page }) => {`,
+      `  // Recorded on ${recording.created_at} from ${recording.url}`,
+      `  await page.goto('${this.escapeString(recording.url)}');`,
+      ``
+    ];
+    for (const action of actions) {
+      const line = this.generatePlaywrightAction(action, "  ");
+      if (line)
+        lines.push(line);
+    }
+    lines.push(`});`, ``);
+    return lines.join("\n");
+  }
+  generateJavaScript(recording, actions) {
+    const lines = [
+      `const { test, expect } = require('@playwright/test');`,
+      ``,
+      `test('${this.escapeString(recording.name)}', async ({ page }) => {`,
+      `  // Recorded on ${recording.created_at} from ${recording.url}`,
+      `  await page.goto('${this.escapeString(recording.url)}');`,
+      ``
+    ];
+    for (const action of actions) {
+      const line = this.generatePlaywrightAction(action, "  ");
+      if (line)
+        lines.push(line);
+    }
+    lines.push(`});`, ``);
+    return lines.join("\n");
+  }
+  generatePython(recording, actions) {
+    const lines = [
+      `import pytest`,
+      `from playwright.sync_api import Page, expect`,
+      ``,
+      ``,
+      `def test_${this.toSnakeCase(recording.name)}(page: Page):`,
+      `    """Recorded on ${recording.created_at} from ${recording.url}"""`,
+      `    page.goto("${this.escapeString(recording.url)}")`,
+      ``
+    ];
+    for (const action of actions) {
+      const line = this.generatePythonAction(action, "    ");
+      if (line)
+        lines.push(line);
+    }
+    lines.push(``);
+    return lines.join("\n");
+  }
+  generateJava(recording, actions) {
+    const className = this.toPascalCase(recording.name);
+    const lines = [
+      `import com.microsoft.playwright.*;`,
+      `import org.junit.jupiter.api.*;`,
+      ``,
+      `public class ${className}Test {`,
+      `    @Test`,
+      `    void test${className}() {`,
+      `        try (Playwright playwright = Playwright.create()) {`,
+      `            Browser browser = playwright.chromium().launch();`,
+      `            Page page = browser.newPage();`,
+      `            // Recorded on ${recording.created_at} from ${recording.url}`,
+      `            page.navigate("${this.escapeString(recording.url)}");`,
+      ``
+    ];
+    for (const action of actions) {
+      const line = this.generateJavaAction(action, "            ");
+      if (line)
+        lines.push(line);
+    }
+    lines.push(`        }`, `    }`, `}`, ``);
+    return lines.join("\n");
+  }
+  generateCSharp(recording, actions) {
+    const className = this.toPascalCase(recording.name);
+    const lines = [
+      `using Microsoft.Playwright;`,
+      `using NUnit.Framework;`,
+      ``,
+      `[TestFixture]`,
+      `public class ${className}Tests`,
+      `{`,
+      `    [Test]`,
+      `    public async Task Test${className}()`,
+      `    {`,
+      `        using var playwright = await Playwright.CreateAsync();`,
+      `        await using var browser = await playwright.Chromium.LaunchAsync();`,
+      `        var page = await browser.NewPageAsync();`,
+      `        // Recorded on ${recording.created_at} from ${recording.url}`,
+      `        await page.GotoAsync("${this.escapeString(recording.url)}");`,
+      ``
+    ];
+    for (const action of actions) {
+      const line = this.generateCSharpAction(action, "        ");
+      if (line)
+        lines.push(line);
+    }
+    lines.push(`    }`, `}`, ``);
+    return lines.join("\n");
+  }
+  generateJson(recording, actions) {
+    return JSON.stringify(
+      {
+        version: "1.0.0",
+        recording: {
+          id: recording.id,
+          name: recording.name,
+          url: recording.url,
+          createdAt: recording.created_at,
+          actionCount: recording.action_count,
+          durationMs: recording.duration_ms
+        },
+        actions: actions.map((a) => ({
+          stepIndex: a.step_index,
+          actionType: a.action_type,
+          url: a.url,
+          locators: JSON.parse(a.locators),
+          timestampMs: a.timestamp_ms
+        }))
+      },
+      null,
+      2
+    );
+  }
+  generateGitHubActions(recording) {
+    return `name: PlaywrightVCR - ${this.escapeString(recording.name)}
 
 on:
   schedule:
@@ -652,11 +6133,568 @@ jobs:
       - name: Install Playwright browsers
         run: npx playwright install --with-deps
       - name: Run recording playback
-        run: npx playwright test ${this.toKebabCase(t.name)}.spec.ts
+        run: npx playwright test ${this.toKebabCase(recording.name)}.spec.ts
       - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: playwright-report
           path: playwright-report/
           retention-days: 30
-`}generatePlaywrightAction(t,i){let s=JSON.parse(t.locators),l=this.getBestLocatorCode(s);switch(t.action_type){case"navigation":return`${i}await page.goto('${this.escapeString(t.url)}');`;case"click":return l?`${i}await ${l}.click();`:null;case"dblclick":return l?`${i}await ${l}.dblclick();`:null;case"input":case"change":return l?`${i}await ${l}.fill('${this.escapeString(s.fingerprint?.value||"")}');`:null;case"keydown":return`${i}await page.keyboard.press('${this.escapeString(s.fingerprint?.value||"Enter")}');`;case"select":return l?`${i}await ${l}.selectOption('${this.escapeString(s.fingerprint?.value||"")}');`:null;case"scroll":return`${i}await page.mouse.wheel(0, 300);`;default:return`${i}// Unknown action: ${t.action_type}`}}generatePythonAction(t,i){let s=JSON.parse(t.locators),l=this.getBestPythonLocator(s);switch(t.action_type){case"navigation":return`${i}page.goto("${this.escapeString(t.url)}")`;case"click":return l?`${i}${l}.click()`:null;case"dblclick":return l?`${i}${l}.dblclick()`:null;case"input":case"change":return l?`${i}${l}.fill("${this.escapeString(s.fingerprint?.value||"")}")`:null;case"keydown":return`${i}page.keyboard.press("${this.escapeString(s.fingerprint?.value||"Enter")}")`;default:return`${i}# Unknown action: ${t.action_type}`}}generateJavaAction(t,i){let s=JSON.parse(t.locators);switch(t.action_type){case"navigation":return`${i}page.navigate("${this.escapeString(t.url)}");`;case"click":return s.role?`${i}page.getByRole(AriaRole.${s.role.role.toUpperCase()}, new Page.GetByRoleOptions().setName("${this.escapeString(s.role.name)}")).click();`:s.css?`${i}page.locator("${this.escapeString(s.css)}").click();`:null;default:return`${i}// Unknown action: ${t.action_type}`}}generateCSharpAction(t,i){let s=JSON.parse(t.locators);switch(t.action_type){case"navigation":return`${i}await page.GotoAsync("${this.escapeString(t.url)}");`;case"click":return s.role?`${i}await page.GetByRole(AriaRole.${this.toPascalCase(s.role.role)}, new() { Name = "${this.escapeString(s.role.name)}" }).ClickAsync();`:s.css?`${i}await page.Locator("${this.escapeString(s.css)}").ClickAsync();`:null;default:return`${i}// Unknown action: ${t.action_type}`}}getBestLocatorCode(t){return t.testId?`page.getByTestId('${this.escapeString(t.testId)}')`:t.role?`page.getByRole('${t.role.role}', { name: '${this.escapeString(t.role.name)}' })`:t.label?`page.getByLabel('${this.escapeString(t.label)}')`:t.text?`page.getByText('${this.escapeString(t.text)}')`:t.placeholder?`page.getByPlaceholder('${this.escapeString(t.placeholder)}')`:t.css?`page.locator('${this.escapeString(t.css)}')`:t.xpath?`page.locator('xpath=${this.escapeString(t.xpath)}')`:null}getBestPythonLocator(t){return t.testId?`page.get_by_test_id("${this.escapeString(t.testId)}")`:t.role?`page.get_by_role("${t.role.role}", name="${this.escapeString(t.role.name)}")`:t.label?`page.get_by_label("${this.escapeString(t.label)}")`:t.text?`page.get_by_text("${this.escapeString(t.text)}")`:t.placeholder?`page.get_by_placeholder("${this.escapeString(t.placeholder)}")`:t.css?`page.locator("${this.escapeString(t.css)}")`:null}async exportTraceZip(t,i){let s=this.fileManager.getTracePath(t);await zt.copyFile(s,i)}escapeString(t){return t.replace(/\\/g,"\\\\").replace(/'/g,"\\'").replace(/"/g,'\\"').replace(/\n/g,"\\n")}toSnakeCase(t){return t.replace(/[^a-zA-Z0-9]+/g,"_").replace(/([A-Z])/g,"_$1").toLowerCase().replace(/^_/,"").replace(/_+/g,"_")}toPascalCase(t){return t.replace(/[^a-zA-Z0-9]+/g," ").split(" ").map(i=>i.charAt(0).toUpperCase()+i.slice(1).toLowerCase()).join("")}toKebabCase(t){return t.replace(/[^a-zA-Z0-9]+/g,"-").toLowerCase().replace(/^-|-$/g,"")}getDefaultFileName(t,i){return this.toKebabCase(t)+({TypeScript:".spec.ts",JavaScript:".spec.js",Python:"_test.py",Java:"Test.java","C#":"Tests.cs",JSON:".json",HAR:".zip","GitHub Actions YAML":".yml"}[i]||".txt")}getFileFilters(t){return{TypeScript:{TypeScript:["ts"]},JavaScript:{JavaScript:["js"]},Python:{Python:["py"]},Java:{Java:["java"]},"C#":{"C#":["cs"]},JSON:{JSON:["json"]},HAR:{ZIP:["zip"]},"GitHub Actions YAML":{YAML:["yml","yaml"]}}[t]||{All:["*"]}}};var nr=M(qi()),rr=class{constructor(t,i){this.db=t;this.queue=i}tasks=new Map;running=!1;start(){this.running||(this.running=!0,this.loadSchedules())}stop(){this.running=!1;for(let[t,i]of this.tasks)i.stop();this.tasks.clear()}reload(){this.stop(),this.running=!0,this.loadSchedules()}loadSchedules(){let t=this.db.getEnabledSchedules();for(let i of t){if(!nr.validate(i.cron_expression)){console.warn(`Invalid cron expression for schedule ${i.id}: ${i.cron_expression}`);continue}let s=nr.schedule(i.cron_expression,()=>{this.onScheduleTrigger(i)});this.tasks.set(i.id,s)}}onScheduleTrigger(t){console.log(`Schedule ${t.id} triggered for recording ${t.recording_id}`),this.queue.enqueue(t.recording_id),this.db.updateSchedule(t.id,{last_run:new Date().toISOString()})}};var ji=M(require("vscode")),ir=class{constructor(t){this.db=t}enqueue(t,i){let s=ji.workspace.getConfiguration("playwrightVcr"),l=i??s.get("orchestration.maxRetries",3);return this.db.createJob(t,l)}dequeue(){return this.db.getNextQueuedJob()}markRunning(t){this.db.updateJob(t,{status:"running",started_at:new Date().toISOString(),attempts:void 0})}markCompleted(t,i){this.db.updateJob(t,{status:"completed",finished_at:new Date().toISOString(),result_json:i?JSON.stringify(i):null})}markFailed(t,i,s,l){return s<l?(this.db.updateJob(t,{status:"queued",finished_at:null,result_json:JSON.stringify({lastError:i})}),!0):(this.db.updateJob(t,{status:"failed",finished_at:new Date().toISOString(),result_json:JSON.stringify({error:i})}),!1)}runningCount(){return this.db.getRunningJobCount()}};var Ae=M(require("vscode")),sr=class{constructor(t,i){this.queue=t;this.player=i}interval=null;running=!1;POLL_INTERVAL_MS=5e3;start(){this.running||(this.running=!0,this.interval=setInterval(()=>{this.tick().catch(t=>{console.error("Executor tick error:",t)})},this.POLL_INTERVAL_MS))}stop(){this.running=!1,this.interval&&(clearInterval(this.interval),this.interval=null)}async tick(){let i=Ae.workspace.getConfiguration("playwrightVcr").get("orchestration.concurrency",1);if(this.queue.runningCount()>=i)return;let s=this.queue.dequeue();s&&await this.executeJob(s)}async executeJob(t){let i=t.attempts+1;this.queue.markRunning(t.id);try{if(i>1){let l=Math.min(1e3*Math.pow(2,i-1),3e4);await new Promise(o=>setTimeout(o,l))}let s=await this.player.play(t.recording_id,{},l=>{console.log(`Job ${t.id} step ${l.stepIndex}: ${l.status}`)});this.queue.markCompleted(t.id,{steps:s.length,passed:s.filter(l=>l.status==="success").length,healed:s.filter(l=>l.status==="healed").length,failed:s.filter(l=>l.status==="failed").length}),Ae.window.showInformationMessage(`PlaywrightVCR: Job completed for recording "${t.recording_id}".`)}catch(s){let l=s.message;this.queue.markFailed(t.id,l,i,t.max_attempts)?console.log(`Job ${t.id} failed (attempt ${i}/${t.max_attempts}), will retry.`):(await Ae.window.showErrorMessage(`PlaywrightVCR: Job failed after ${i} attempts \u2014 ${l}`,"View Details")==="View Details"&&Ae.commands.executeCommand("playwrightVcr.openMonitoringPanel"),await this.sendWebhookNotification(t,l))}}async sendWebhookNotification(t,i){let l=Ae.workspace.getConfiguration("playwrightVcr").get("webhookUrl","");if(l)try{let o=await fetch(l,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({text:"\u{1F534} PlaywrightVCR job failed",recording_id:t.recording_id,job_id:t.id,attempts:t.attempts+1,error:i,timestamp:new Date().toISOString()})});o.ok||console.error(`Webhook notification failed: ${o.status}`)}catch(o){console.error("Webhook notification error:",o)}}};var ne,We,at,lt,or,Jr,ar;async function Ko(c){console.log("PlaywrightVCR extension activating..."),ne=new Ot(c.globalStoragePath),await ne.waitReady(),We=new Ut(c.globalStoragePath),await We.ensureDirectories(),at=new Jt(ne,We),lt=new Xt(ne,We,{secrets:c.secrets});let t=new Wt(ne,We);Jr=new ir(ne),ar=new sr(Jr,lt),or=new rr(ne,Jr);let i=new kt(ne),s=new Rt(ne),l=new At(ne),o=H.window.createTreeView("playwrightVcr.library",{treeDataProvider:i,showCollapseAll:!0}),p=H.window.createTreeView("playwrightVcr.executions",{treeDataProvider:s}),f=H.window.createTreeView("playwrightVcr.schedules",{treeDataProvider:l}),b=H.window.createStatusBarItem(H.StatusBarAlignment.Left,100);b.text="$(debug-stop) Stop Recording",b.tooltip="Click to stop and save the current recording",b.command="playwrightVcr.stopRecording",b.backgroundColor=new H.ThemeColor("statusBarItem.errorBackground"),c.subscriptions.push(b);let S=()=>b.show(),R=()=>b.hide(),C=new It(c,at,()=>{i.refresh(),R()},()=>{S()}),P=new Pt(c,lt),J=new Lt(c,ne),$=new Nt(c),E=[["playwrightVcr.startRecording",async()=>{await C.show()}],["playwrightVcr.stopRecording",async()=>{await at.stop(),i.refresh(),R()}],["playwrightVcr.playRecording",async(...x)=>{let L=x[0]?.recordingId;if(!L){H.window.showWarningMessage("No recording selected.");return}await P.show(L)}],["playwrightVcr.openRecordingPanel",async()=>{await C.show()}],["playwrightVcr.openPlaybackPanel",async()=>{await P.show()}],["playwrightVcr.openMonitoringPanel",async()=>{await J.show()}],["playwrightVcr.deleteRecording",async(...x)=>{let L=x[0]?.recordingId;if(!L)return;await H.window.showWarningMessage("Delete this recording and all its data?",{modal:!0},"Delete")==="Delete"&&(ne.deleteRecording(L),await We.deleteRecordingFiles(L),i.refresh(),H.window.showInformationMessage("Recording deleted."))}],["playwrightVcr.exportRecording",async(...x)=>{let L=x[0]?.recordingId;if(!L)return;let O=await H.window.showQuickPick(["TypeScript","JavaScript","Python","Java","C#","JSON","HAR","GitHub Actions YAML"],{placeHolder:"Select export format"});O&&await t.export(L,O)}],["playwrightVcr.refreshLibrary",()=>{i.refresh(),s.refresh(),l.refresh()}],["playwrightVcr.installBrowsers",async()=>{let x=H.window.createTerminal("Playwright Install");x.show(),x.sendText("npx playwright install")}],["playwrightVcr.openSettings",async()=>{await $.show()}],["playwrightVcr.setApiKey",async()=>{let x=await H.window.showQuickPick(["openai","anthropic"],{placeHolder:"Select the AI provider to set the API key for"});if(!x)return;let I=await H.window.showInputBox({prompt:`Enter your ${x} API key`,password:!0,placeHolder:"sk-..."});I!==void 0&&(I===""?(await c.secrets.delete(`playwrightVcr.apiKey.${x}`),H.window.showInformationMessage(`${x} API key removed.`)):(await c.secrets.store(`playwrightVcr.apiKey.${x}`,I),H.window.showInformationMessage(`${x} API key saved securely.`)))}]];for(let[x,I]of E)c.subscriptions.push(H.commands.registerCommand(x,I));or.start(),ar.start(),c.subscriptions.push(o,p,f,{dispose:()=>at.dispose()},{dispose:()=>lt.dispose()},{dispose:()=>or.stop()},{dispose:()=>ar.stop()},{dispose:()=>ne.close()}),console.log("PlaywrightVCR extension activated.")}function Jo(){or?.stop(),ar?.stop(),at?.dispose(),lt?.dispose(),ne?.close()}0&&(module.exports={activate,deactivate});
+`;
+  }
+  /** Generate a Playwright TS/JS action line from a recorded action */
+  generatePlaywrightAction(action, indent) {
+    const locators = JSON.parse(action.locators);
+    const selector = this.getBestLocatorCode(locators);
+    switch (action.action_type) {
+      case "navigation":
+        return `${indent}await page.goto('${this.escapeString(action.url)}');`;
+      case "click":
+        return selector ? `${indent}await ${selector}.click();` : null;
+      case "dblclick":
+        return selector ? `${indent}await ${selector}.dblclick();` : null;
+      case "input":
+      case "change":
+        return selector ? `${indent}await ${selector}.fill('${this.escapeString(locators.fingerprint?.value || "")}');` : null;
+      case "keydown":
+        return `${indent}await page.keyboard.press('${this.escapeString(locators.fingerprint?.value || "Enter")}');`;
+      case "select":
+        return selector ? `${indent}await ${selector}.selectOption('${this.escapeString(locators.fingerprint?.value || "")}');` : null;
+      case "scroll":
+        return `${indent}await page.mouse.wheel(0, 300);`;
+      default:
+        return `${indent}// Unknown action: ${action.action_type}`;
+    }
+  }
+  generatePythonAction(action, indent) {
+    const locators = JSON.parse(action.locators);
+    const selector = this.getBestPythonLocator(locators);
+    switch (action.action_type) {
+      case "navigation":
+        return `${indent}page.goto("${this.escapeString(action.url)}")`;
+      case "click":
+        return selector ? `${indent}${selector}.click()` : null;
+      case "dblclick":
+        return selector ? `${indent}${selector}.dblclick()` : null;
+      case "input":
+      case "change":
+        return selector ? `${indent}${selector}.fill("${this.escapeString(locators.fingerprint?.value || "")}")` : null;
+      case "keydown":
+        return `${indent}page.keyboard.press("${this.escapeString(locators.fingerprint?.value || "Enter")}")`;
+      default:
+        return `${indent}# Unknown action: ${action.action_type}`;
+    }
+  }
+  generateJavaAction(action, indent) {
+    const locators = JSON.parse(action.locators);
+    switch (action.action_type) {
+      case "navigation":
+        return `${indent}page.navigate("${this.escapeString(action.url)}");`;
+      case "click":
+        if (locators.role) {
+          return `${indent}page.getByRole(AriaRole.${locators.role.role.toUpperCase()}, new Page.GetByRoleOptions().setName("${this.escapeString(locators.role.name)}")).click();`;
+        }
+        if (locators.css) {
+          return `${indent}page.locator("${this.escapeString(locators.css)}").click();`;
+        }
+        return null;
+      default:
+        return `${indent}// Unknown action: ${action.action_type}`;
+    }
+  }
+  generateCSharpAction(action, indent) {
+    const locators = JSON.parse(action.locators);
+    switch (action.action_type) {
+      case "navigation":
+        return `${indent}await page.GotoAsync("${this.escapeString(action.url)}");`;
+      case "click":
+        if (locators.role) {
+          return `${indent}await page.GetByRole(AriaRole.${this.toPascalCase(locators.role.role)}, new() { Name = "${this.escapeString(locators.role.name)}" }).ClickAsync();`;
+        }
+        if (locators.css) {
+          return `${indent}await page.Locator("${this.escapeString(locators.css)}").ClickAsync();`;
+        }
+        return null;
+      default:
+        return `${indent}// Unknown action: ${action.action_type}`;
+    }
+  }
+  /** Get best locator code for TS/JS export — prefers semantic locators */
+  getBestLocatorCode(locators) {
+    if (locators.testId)
+      return `page.getByTestId('${this.escapeString(locators.testId)}')`;
+    if (locators.role)
+      return `page.getByRole('${locators.role.role}', { name: '${this.escapeString(locators.role.name)}' })`;
+    if (locators.label)
+      return `page.getByLabel('${this.escapeString(locators.label)}')`;
+    if (locators.text)
+      return `page.getByText('${this.escapeString(locators.text)}')`;
+    if (locators.placeholder)
+      return `page.getByPlaceholder('${this.escapeString(locators.placeholder)}')`;
+    if (locators.css)
+      return `page.locator('${this.escapeString(locators.css)}')`;
+    if (locators.xpath)
+      return `page.locator('xpath=${this.escapeString(locators.xpath)}')`;
+    return null;
+  }
+  getBestPythonLocator(locators) {
+    if (locators.testId)
+      return `page.get_by_test_id("${this.escapeString(locators.testId)}")`;
+    if (locators.role)
+      return `page.get_by_role("${locators.role.role}", name="${this.escapeString(locators.role.name)}")`;
+    if (locators.label)
+      return `page.get_by_label("${this.escapeString(locators.label)}")`;
+    if (locators.text)
+      return `page.get_by_text("${this.escapeString(locators.text)}")`;
+    if (locators.placeholder)
+      return `page.get_by_placeholder("${this.escapeString(locators.placeholder)}")`;
+    if (locators.css)
+      return `page.locator("${this.escapeString(locators.css)}")`;
+    return null;
+  }
+  async exportTraceZip(recordingId, destPath) {
+    const tracePath = this.fileManager.getTracePath(recordingId);
+    await fs3.copyFile(tracePath, destPath);
+  }
+  // --- String utilities ---
+  escapeString(str) {
+    return str.replace(/\\/g, "\\\\").replace(/'/g, "\\'").replace(/"/g, '\\"').replace(/\n/g, "\\n");
+  }
+  toSnakeCase(str) {
+    return str.replace(/[^a-zA-Z0-9]+/g, "_").replace(/([A-Z])/g, "_$1").toLowerCase().replace(/^_/, "").replace(/_+/g, "_");
+  }
+  toPascalCase(str) {
+    return str.replace(/[^a-zA-Z0-9]+/g, " ").split(" ").map((w) => w.charAt(0).toUpperCase() + w.slice(1).toLowerCase()).join("");
+  }
+  toKebabCase(str) {
+    return str.replace(/[^a-zA-Z0-9]+/g, "-").toLowerCase().replace(/^-|-$/g, "");
+  }
+  getDefaultFileName(name, format) {
+    const base = this.toKebabCase(name);
+    const ext = {
+      TypeScript: ".spec.ts",
+      JavaScript: ".spec.js",
+      Python: "_test.py",
+      Java: "Test.java",
+      "C#": "Tests.cs",
+      JSON: ".json",
+      HAR: ".zip",
+      "GitHub Actions YAML": ".yml"
+    };
+    return base + (ext[format] || ".txt");
+  }
+  getFileFilters(format) {
+    const filters = {
+      TypeScript: { "TypeScript": ["ts"] },
+      JavaScript: { "JavaScript": ["js"] },
+      Python: { "Python": ["py"] },
+      Java: { "Java": ["java"] },
+      "C#": { "C#": ["cs"] },
+      JSON: { "JSON": ["json"] },
+      HAR: { "ZIP": ["zip"] },
+      "GitHub Actions YAML": { "YAML": ["yml", "yaml"] }
+    };
+    return filters[format] || { "All": ["*"] };
+  }
+};
+
+// src/orchestration/scheduler.ts
+var cron = __toESM(require_node_cron());
+var Scheduler = class {
+  constructor(db, queue) {
+    this.db = db;
+    this.queue = queue;
+  }
+  tasks = /* @__PURE__ */ new Map();
+  running = false;
+  /** Start all enabled schedules */
+  start() {
+    if (this.running)
+      return;
+    this.running = true;
+    this.loadSchedules();
+  }
+  /** Stop all cron tasks */
+  stop() {
+    this.running = false;
+    for (const [id, task] of this.tasks) {
+      task.stop();
+    }
+    this.tasks.clear();
+  }
+  /** Reload schedules from the database (call after add/update/delete) */
+  reload() {
+    this.stop();
+    this.running = true;
+    this.loadSchedules();
+  }
+  loadSchedules() {
+    const schedules = this.db.getEnabledSchedules();
+    for (const schedule2 of schedules) {
+      if (!cron.validate(schedule2.cron_expression)) {
+        console.warn(`Invalid cron expression for schedule ${schedule2.id}: ${schedule2.cron_expression}`);
+        continue;
+      }
+      const task = cron.schedule(schedule2.cron_expression, () => {
+        this.onScheduleTrigger(schedule2);
+      });
+      this.tasks.set(schedule2.id, task);
+    }
+  }
+  onScheduleTrigger(schedule2) {
+    console.log(`Schedule ${schedule2.id} triggered for recording ${schedule2.recording_id}`);
+    this.queue.enqueue(schedule2.recording_id);
+    this.db.updateSchedule(schedule2.id, {
+      last_run: (/* @__PURE__ */ new Date()).toISOString()
+    });
+  }
+};
+
+// src/orchestration/queue.ts
+var vscode11 = __toESM(require("vscode"));
+var JobQueue = class {
+  constructor(db) {
+    this.db = db;
+  }
+  /** Add a recording playback to the queue */
+  enqueue(recordingId, maxAttempts) {
+    const config = vscode11.workspace.getConfiguration("playwrightVcr");
+    const retries = maxAttempts ?? config.get("orchestration.maxRetries", 3);
+    return this.db.createJob(recordingId, retries);
+  }
+  /** Get the next queued job (FIFO) */
+  dequeue() {
+    return this.db.getNextQueuedJob();
+  }
+  /** Mark a job as running */
+  markRunning(jobId) {
+    this.db.updateJob(jobId, {
+      status: "running",
+      started_at: (/* @__PURE__ */ new Date()).toISOString(),
+      attempts: void 0
+      // Will be incremented by executor
+    });
+  }
+  /** Mark a job as completed */
+  markCompleted(jobId, result) {
+    this.db.updateJob(jobId, {
+      status: "completed",
+      finished_at: (/* @__PURE__ */ new Date()).toISOString(),
+      result_json: result ? JSON.stringify(result) : null
+    });
+  }
+  /** Mark a job as failed. Returns true if the job can be retried. */
+  markFailed(jobId, error, currentAttempts, maxAttempts) {
+    if (currentAttempts < maxAttempts) {
+      this.db.updateJob(jobId, {
+        status: "queued",
+        finished_at: null,
+        result_json: JSON.stringify({ lastError: error })
+      });
+      return true;
+    }
+    this.db.updateJob(jobId, {
+      status: "failed",
+      finished_at: (/* @__PURE__ */ new Date()).toISOString(),
+      result_json: JSON.stringify({ error })
+    });
+    return false;
+  }
+  /** Get the number of currently running jobs */
+  runningCount() {
+    return this.db.getRunningJobCount();
+  }
+};
+
+// src/orchestration/executor.ts
+var vscode12 = __toESM(require("vscode"));
+var Executor = class {
+  // Check for new jobs every 5 seconds
+  constructor(queue, player2) {
+    this.queue = queue;
+    this.player = player2;
+  }
+  interval = null;
+  running = false;
+  POLL_INTERVAL_MS = 5e3;
+  /** Start polling the queue for jobs */
+  start() {
+    if (this.running)
+      return;
+    this.running = true;
+    this.interval = setInterval(() => {
+      this.tick().catch((err) => {
+        console.error("Executor tick error:", err);
+      });
+    }, this.POLL_INTERVAL_MS);
+  }
+  /** Stop polling */
+  stop() {
+    this.running = false;
+    if (this.interval) {
+      clearInterval(this.interval);
+      this.interval = null;
+    }
+  }
+  /** Process the next job in the queue */
+  async tick() {
+    const config = vscode12.workspace.getConfiguration("playwrightVcr");
+    const maxConcurrency = config.get("orchestration.concurrency", 1);
+    if (this.queue.runningCount() >= maxConcurrency) {
+      return;
+    }
+    const job = this.queue.dequeue();
+    if (!job)
+      return;
+    await this.executeJob(job);
+  }
+  /** Execute a single job */
+  async executeJob(job) {
+    const attempts = job.attempts + 1;
+    this.queue.markRunning(job.id);
+    try {
+      if (attempts > 1) {
+        const delayMs = Math.min(1e3 * Math.pow(2, attempts - 1), 3e4);
+        await new Promise((resolve) => setTimeout(resolve, delayMs));
+      }
+      const results = await this.player.play(job.recording_id, {}, (stepResult) => {
+        console.log(`Job ${job.id} step ${stepResult.stepIndex}: ${stepResult.status}`);
+      });
+      this.queue.markCompleted(job.id, {
+        steps: results.length,
+        passed: results.filter((r) => r.status === "success").length,
+        healed: results.filter((r) => r.status === "healed").length,
+        failed: results.filter((r) => r.status === "failed").length
+      });
+      vscode12.window.showInformationMessage(
+        `PlaywrightVCR: Job completed for recording "${job.recording_id}".`
+      );
+    } catch (err) {
+      const errorMsg = err.message;
+      const canRetry = this.queue.markFailed(job.id, errorMsg, attempts, job.max_attempts);
+      if (canRetry) {
+        console.log(`Job ${job.id} failed (attempt ${attempts}/${job.max_attempts}), will retry.`);
+      } else {
+        const action = await vscode12.window.showErrorMessage(
+          `PlaywrightVCR: Job failed after ${attempts} attempts \u2014 ${errorMsg}`,
+          "View Details"
+        );
+        if (action === "View Details") {
+          vscode12.commands.executeCommand("playwrightVcr.openMonitoringPanel");
+        }
+        await this.sendWebhookNotification(job, errorMsg);
+      }
+    }
+  }
+  /** Send a failure notification to the configured webhook */
+  async sendWebhookNotification(job, error) {
+    const config = vscode12.workspace.getConfiguration("playwrightVcr");
+    const webhookUrl = config.get("webhookUrl", "");
+    if (!webhookUrl)
+      return;
+    try {
+      const response = await fetch(webhookUrl, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          text: `\u{1F534} PlaywrightVCR job failed`,
+          recording_id: job.recording_id,
+          job_id: job.id,
+          attempts: job.attempts + 1,
+          error,
+          timestamp: (/* @__PURE__ */ new Date()).toISOString()
+        })
+      });
+      if (!response.ok) {
+        console.error(`Webhook notification failed: ${response.status}`);
+      }
+    } catch (err) {
+      console.error("Webhook notification error:", err);
+    }
+  }
+};
+
+// src/extension.ts
+var database;
+var fileManager;
+var recorder;
+var player;
+var scheduler;
+var jobQueue;
+var executor;
+async function activate(context) {
+  console.log("PlaywrightVCR extension activating...");
+  database = new Database(context.globalStoragePath);
+  await database.waitReady();
+  fileManager = new FileManager(context.globalStoragePath);
+  await fileManager.ensureDirectories();
+  recorder = new Recorder(database, fileManager);
+  player = new Player(database, fileManager, { secrets: context.secrets });
+  const exporter = new Exporter(database, fileManager);
+  jobQueue = new JobQueue(database);
+  executor = new Executor(jobQueue, player);
+  scheduler = new Scheduler(database, jobQueue);
+  const libraryProvider = new RecordingLibraryProvider(database);
+  const executionsProvider = new ExecutionsProvider(database);
+  const schedulesProvider = new SchedulesProvider(database);
+  const libraryView = vscode13.window.createTreeView("playwrightVcr.library", {
+    treeDataProvider: libraryProvider,
+    showCollapseAll: true
+  });
+  const executionsView = vscode13.window.createTreeView("playwrightVcr.executions", {
+    treeDataProvider: executionsProvider
+  });
+  const schedulesView = vscode13.window.createTreeView("playwrightVcr.schedules", {
+    treeDataProvider: schedulesProvider
+  });
+  const recordingStatusBar = vscode13.window.createStatusBarItem(vscode13.StatusBarAlignment.Left, 100);
+  recordingStatusBar.text = "$(debug-stop) Stop Recording";
+  recordingStatusBar.tooltip = "Click to stop and save the current recording";
+  recordingStatusBar.command = "playwrightVcr.stopRecording";
+  recordingStatusBar.backgroundColor = new vscode13.ThemeColor("statusBarItem.errorBackground");
+  context.subscriptions.push(recordingStatusBar);
+  const showRecordingStatus = () => recordingStatusBar.show();
+  const hideRecordingStatus = () => recordingStatusBar.hide();
+  const recordingPanelManager = new RecordingPanelManager(
+    context,
+    recorder,
+    () => {
+      libraryProvider.refresh();
+      hideRecordingStatus();
+    },
+    () => {
+      showRecordingStatus();
+    }
+  );
+  const playbackPanelManager = new PlaybackPanelManager(context, player);
+  const monitoringPanelManager = new MonitoringPanelManager(context, database);
+  const settingsPanelManager = new SettingsPanelManager(context);
+  const commands3 = [
+    ["playwrightVcr.startRecording", async () => {
+      await recordingPanelManager.show();
+    }],
+    ["playwrightVcr.stopRecording", async () => {
+      await recorder.stop();
+      libraryProvider.refresh();
+      hideRecordingStatus();
+    }],
+    ["playwrightVcr.playRecording", async (...args) => {
+      const item = args[0];
+      const recordingId = item?.recordingId;
+      if (!recordingId) {
+        vscode13.window.showWarningMessage("No recording selected.");
+        return;
+      }
+      await playbackPanelManager.show(recordingId);
+    }],
+    ["playwrightVcr.openRecordingPanel", async () => {
+      await recordingPanelManager.show();
+    }],
+    ["playwrightVcr.openPlaybackPanel", async () => {
+      await playbackPanelManager.show();
+    }],
+    ["playwrightVcr.openMonitoringPanel", async () => {
+      await monitoringPanelManager.show();
+    }],
+    ["playwrightVcr.deleteRecording", async (...args) => {
+      const item = args[0];
+      const recordingId = item?.recordingId;
+      if (!recordingId) {
+        return;
+      }
+      const confirm = await vscode13.window.showWarningMessage(
+        "Delete this recording and all its data?",
+        { modal: true },
+        "Delete"
+      );
+      if (confirm === "Delete") {
+        database.deleteRecording(recordingId);
+        await fileManager.deleteRecordingFiles(recordingId);
+        libraryProvider.refresh();
+        vscode13.window.showInformationMessage("Recording deleted.");
+      }
+    }],
+    ["playwrightVcr.exportRecording", async (...args) => {
+      const item = args[0];
+      const recordingId = item?.recordingId;
+      if (!recordingId) {
+        return;
+      }
+      const format = await vscode13.window.showQuickPick(
+        ["TypeScript", "JavaScript", "Python", "Java", "C#", "JSON", "HAR", "GitHub Actions YAML"],
+        { placeHolder: "Select export format" }
+      );
+      if (format) {
+        await exporter.export(recordingId, format);
+      }
+    }],
+    ["playwrightVcr.refreshLibrary", () => {
+      libraryProvider.refresh();
+      executionsProvider.refresh();
+      schedulesProvider.refresh();
+    }],
+    ["playwrightVcr.installBrowsers", async () => {
+      const terminal = vscode13.window.createTerminal("Playwright Install");
+      terminal.show();
+      terminal.sendText("npx playwright install");
+    }],
+    ["playwrightVcr.openSettings", async () => {
+      await settingsPanelManager.show();
+    }],
+    ["playwrightVcr.setApiKey", async () => {
+      const provider = await vscode13.window.showQuickPick(
+        ["openai", "anthropic"],
+        { placeHolder: "Select the AI provider to set the API key for" }
+      );
+      if (!provider) {
+        return;
+      }
+      const apiKey = await vscode13.window.showInputBox({
+        prompt: `Enter your ${provider} API key`,
+        password: true,
+        placeHolder: "sk-..."
+      });
+      if (apiKey === void 0) {
+        return;
+      }
+      if (apiKey === "") {
+        await context.secrets.delete(`playwrightVcr.apiKey.${provider}`);
+        vscode13.window.showInformationMessage(`${provider} API key removed.`);
+      } else {
+        await context.secrets.store(`playwrightVcr.apiKey.${provider}`, apiKey);
+        vscode13.window.showInformationMessage(`${provider} API key saved securely.`);
+      }
+    }]
+  ];
+  for (const [id, handler] of commands3) {
+    context.subscriptions.push(
+      vscode13.commands.registerCommand(id, handler)
+    );
+  }
+  scheduler.start();
+  executor.start();
+  context.subscriptions.push(
+    libraryView,
+    executionsView,
+    schedulesView,
+    { dispose: () => recorder.dispose() },
+    { dispose: () => player.dispose() },
+    { dispose: () => scheduler.stop() },
+    { dispose: () => executor.stop() },
+    { dispose: () => database.close() }
+  );
+  console.log("PlaywrightVCR extension activated.");
+}
+function deactivate() {
+  scheduler?.stop();
+  executor?.stop();
+  recorder?.dispose();
+  player?.dispose();
+  database?.close();
+}
+// Annotate the CommonJS export names for ESM import in node:
+0 && (module.exports = {
+  activate,
+  deactivate
+});
+//# sourceMappingURL=extension.js.map

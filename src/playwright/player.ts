@@ -1,4 +1,4 @@
-import { chromium, firefox, webkit, Browser, BrowserContext, Page } from 'playwright';
+import type { Browser, BrowserContext, Page } from 'playwright';
 import * as vscode from 'vscode';
 import { Database, ActionRecord } from '../storage/database';
 import { FileManager } from '../storage/fileManager';
@@ -75,9 +75,10 @@ export class Player {
       llmEnabled: config.get<boolean>('selfHealing.llmEnabled', false),
     }, this.deps.secrets);
 
-    // Launch browser
-    const engines = { chromium, firefox, webkit };
-    const engine = engines[browserType as keyof typeof engines] || chromium;
+    // Lazy-load playwright to avoid top-level require (breaks sideloaded VSIX)
+    const pw = await import('playwright');
+    const engines = { chromium: pw.chromium, firefox: pw.firefox, webkit: pw.webkit };
+    const engine = engines[browserType as keyof typeof engines] || pw.chromium;
 
     this.browser = await engine.launch({ headless, slowMo });
     this.context = await this.browser.newContext({

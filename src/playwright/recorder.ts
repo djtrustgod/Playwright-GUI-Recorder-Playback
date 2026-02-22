@@ -1,4 +1,4 @@
-import { chromium, firefox, webkit, Browser, BrowserContext, Page } from 'playwright';
+import type { Browser, BrowserContext, Page } from 'playwright';
 import { v4 as uuidv4 } from 'uuid';
 import { Database, Recording, ActionRecord } from '../storage/database';
 import { FileManager } from '../storage/fileManager';
@@ -182,9 +182,10 @@ export class Recorder {
     this.startTime = Date.now();
     this.isRecording = true;
 
-    // Select browser engine
-    const engines = { chromium, firefox, webkit };
-    const engine = engines[browserType as keyof typeof engines] || chromium;
+    // Lazy-load playwright to avoid top-level require (breaks sideloaded VSIX)
+    const pw = await import('playwright');
+    const engines = { chromium: pw.chromium, firefox: pw.firefox, webkit: pw.webkit };
+    const engine = engines[browserType as keyof typeof engines] || pw.chromium;
 
     this.browser = await engine.launch({
       headless: false,

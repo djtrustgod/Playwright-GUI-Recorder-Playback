@@ -113,7 +113,7 @@ The project uses a single `esbuild.js` script that produces two bundles:
 
 | Bundle | Entry | Target | Format | Externals |
 |---|---|---|---|---|
-| Extension host | `src/extension.ts` | Node 18 | CommonJS | `vscode`, `playwright`, `@xenova/transformers` |
+| Extension host | `src/extension.ts` | Node 18 | CommonJS | `vscode`, `playwright`, `@huggingface/transformers` |
 | Webview | `src/webview/index.tsx` | ES2020 browser | IIFE | (none — fully bundled) |
 
 Commands:
@@ -393,8 +393,10 @@ All settings are under the `playwrightVcr` namespace in VS Code settings.
 ### Inline styles over Tailwind CSS
 Webview panels use inline styles with VS Code CSS custom properties rather than Tailwind. This ensures the extension UI matches the user's VS Code theme without requiring a CSS build pipeline or risking style conflicts.
 
-### Externalized Playwright and @xenova/transformers
+### Externalized Playwright and @huggingface/transformers
 Both libraries are too large to bundle and have complex native/WASM dependencies. They're listed as `external` in the esbuild config and resolved at runtime from `node_modules`.
+
+**Important**: All imports from externalized packages use **lazy dynamic `import()`** inside the methods that need them (e.g., `const pw = await import('playwright')` inside `Recorder.start()` and `Player.play()`). Type-only imports use `import type` so esbuild strips them entirely. This prevents top-level `require()` calls that would crash the extension on activation when `node_modules` is not present (e.g., sideloaded VSIX installs).
 
 ### Async Database initialization
 `sql.js` requires an async `initSqlJs()` call to load the WASM binary. The `Database` constructor starts this asynchronously and exposes `waitReady()` for consumers. The extension entry point awaits this before proceeding.

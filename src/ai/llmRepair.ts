@@ -1,5 +1,5 @@
 import * as vscode from 'vscode';
-import { Page } from 'playwright';
+import type { Page } from 'playwright';
 import { LocatorStrategies } from '../playwright/selfHealing';
 import { DomSimplifier } from './domSimplifier';
 
