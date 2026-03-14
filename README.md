@@ -85,11 +85,23 @@ Open the Command Palette (`Ctrl+Shift+P`) and type **"PlaywrightVCR"**:
 
 ## How Self-Healing Works
 
-1. **Tier 1 — Direct**: Try all stored locator strategies (CSS, XPath, text, role, testid) in order.
-2. **Tier 2 — Embedding**: Find the closest matching element using local MiniLM embeddings (cosine similarity).
-3. **Tier 3 — LLM Repair**: Send simplified DOM + element fingerprint to an LLM for a new selector. Supports OpenAI, Anthropic, and local Ollama.
+1. **Tier 1 — Direct** *(always on)*: Tries all stored locator strategies in priority order: `testId` → `role` → `label` → `text` → `placeholder` → `css` → `xpath`.
+2. **Tier 2 — Embedding** *(on by default)*: Finds the closest matching element using local MiniLM embeddings (cosine similarity ≥ `selfHealing.embeddingThreshold`).
+3. **Tier 3 — LLM Repair** *(off by default)*: Sends a simplified DOM snapshot + element fingerprint to an LLM to generate a repaired CSS selector. Supports OpenAI, Anthropic, and local Ollama.
 
-Healed selectors are cached and reused on subsequent runs.
+Healed selectors are cached in SQLite and reused on subsequent runs.
+
+### Enabling LLM Self-Healing
+
+Tier 3 LLM repair is **disabled by default**. To turn it on:
+
+1. Set `playwrightVcr.selfHealing.llmEnabled` to `true` in VS Code settings.
+2. Configure your AI provider and store an API key:
+   - Run `Ctrl+Shift+P` → **"PlaywrightVCR: Open Settings"** to open the AI Settings panel.
+   - Select a provider (OpenAI, Anthropic, or Ollama) and save your API key.
+   - Ollama runs locally and does not require an API key.
+
+See [AI Settings & API Key Setup](#ai-settings--api-key-setup) below for detailed provider instructions.
 
 ## AI Settings & API Key Setup
 
