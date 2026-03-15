@@ -69,6 +69,9 @@ export class LocatorEmbeddings {
         placeholder: string | null;
         name: string | null;
         type: string | null;
+        parentTag: string | null;
+        parentId: string | null;
+        parentClasses: string[];
       }> = [];
 
       const allElements = document.querySelectorAll('*');
@@ -105,6 +108,9 @@ export class LocatorEmbeddings {
           placeholder: (el as HTMLInputElement).placeholder || null,
           name: el.getAttribute('name'),
           type: el.getAttribute('type'),
+          parentTag: el.parentElement?.tagName.toLowerCase() || null,
+          parentId: el.parentElement?.id || null,
+          parentClasses: el.parentElement ? Array.from(el.parentElement.classList).slice(0, 5) as string[] : [],
         });
       });
 
@@ -166,6 +172,9 @@ export class LocatorEmbeddings {
       fp.name ? `name:${fp.name}` : '',
       fp.type ? `type:${fp.type}` : '',
       fp.classes.length ? `class:${fp.classes.join(' ')}` : '',
+      fp.parentTag ? `parent:${fp.parentTag}` : '',
+      fp.parentId ? `parentId:${fp.parentId}` : '',
+      fp.parentClasses?.length ? `parentClass:${fp.parentClasses.join(' ')}` : '',
     ];
     return parts.filter(Boolean).join(' ');
   }
@@ -182,6 +191,9 @@ export class LocatorEmbeddings {
     placeholder: string | null;
     name: string | null;
     type: string | null;
+    parentTag: string | null;
+    parentId: string | null;
+    parentClasses: string[];
   }): string {
     const parts = [
       `tag:${candidate.tag}`,
@@ -194,6 +206,9 @@ export class LocatorEmbeddings {
       candidate.name ? `name:${candidate.name}` : '',
       candidate.type ? `type:${candidate.type}` : '',
       candidate.classes.length ? `class:${candidate.classes.join(' ')}` : '',
+      candidate.parentTag ? `parent:${candidate.parentTag}` : '',
+      candidate.parentId ? `parentId:${candidate.parentId}` : '',
+      candidate.parentClasses.length ? `parentClass:${candidate.parentClasses.join(' ')}` : '',
     ];
     return parts.filter(Boolean).join(' ');
   }

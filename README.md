@@ -12,7 +12,7 @@
 |---|---|
 | **Recording** | Opens a headed browser, captures every user action with full element fingerprints. |
 | **Playback** | Replays recordings step-by-step with live progress and screenshot capture. |
-| **Self-Healing** | Three-tier selector repair: direct locator fallback → local embedding similarity → LLM-powered repair. |
+| **Self-Healing** | Three-tier selector repair: direct locator fallback (incl. altText & title strategies) → local embedding similarity (with parent context) → LLM-powered repair. |
 | **Scheduling** | Cron-based scheduling with a job queue, retries, and webhook notifications. |
 | **Export** | Generate test scripts in TypeScript, JavaScript, Python, Java, C#, JSON, and GitHub Actions YAML. |
 | **Monitoring** | Execution history dashboard with per-step pass/heal/fail indicators. |
@@ -85,8 +85,8 @@ Open the Command Palette (`Ctrl+Shift+P`) and type **"PlaywrightVCR"**:
 
 ## How Self-Healing Works
 
-1. **Tier 1 — Direct** *(always on)*: Tries all stored locator strategies in priority order: `testId` → `role` → `label` → `text` → `placeholder` → `css` → `xpath`.
-2. **Tier 2 — Embedding** *(on by default)*: Finds the closest matching element using local MiniLM embeddings (cosine similarity ≥ `selfHealing.embeddingThreshold`).
+1. **Tier 1 — Direct** *(always on)*: Tries all stored locator strategies in priority order: `testId` → `role` → `label` → `text` → `placeholder` → `altText` → `title` → `css` → `xpath`.
+2. **Tier 2 — Embedding** *(on by default)*: Finds the closest matching element using local MiniLM embeddings (cosine similarity ≥ `selfHealing.embeddingThreshold`). Embeddings include parent element context (tag, id, classes) for better disambiguation.
 3. **Tier 3 — LLM Repair** *(off by default)*: Sends a simplified DOM snapshot + element fingerprint to an LLM to generate a repaired CSS selector. Supports OpenAI, Anthropic, and local Ollama.
 
 Healed selectors are cached in SQLite and reused on subsequent runs.
@@ -152,12 +152,12 @@ See [Implementation.md](Implementation.md) for the full settings reference and t
 |---|---|
 | Project scaffold & build | ✅ Complete — esbuild dual-target, `.vsix` packaged |
 | Recording engine | 🔧 In progress — fully implemented, needs reliability fixes |
-| Playback + self-healing | 🔧 In progress — all 3 tiers built, needs debugging |
+| Playback + self-healing | 🔧 In progress — scroll playback fixed, healed selector caching fixed, altText/title strategies added |
 | Storage (SQLite via sql.js) | ✅ Complete — full CRUD, 7 tables, 19 tests passing |
 | Webview UI (React) | ⚠️ Scaffolded — all panels wired up, needs visual polish |
-| Export (multi-language) | 🔧 In progress — 7/8 formats complete, HAR export pending |
+| Export (multi-language) | ✅ Complete — all 7 formats fully implemented (Python/Java/C# now handle all action types), HAR export pending |
 | Orchestration (scheduling) | ⚠️ Scaffolded — cron + queue + executor work, needs load testing |
-| AI layer (embeddings + LLM) | ⚠️ Scaffolded — all integrations built, needs end-to-end testing |
+| AI layer (embeddings + LLM) | 🔧 In progress — embedding similarity improved with parent context, needs end-to-end testing |
 | Test suite | 🔧 In progress — 87 tests passing, missing AI & orchestration coverage |
 | Documentation | 🔧 In progress — comprehensive, kept in sync with code |
 | VS Code Marketplace | ⚠️ Pre-release — v0.5.0 `.vsix` on [GitHub Releases](https://github.com/djtrustgod/Playwright-GUI-Recorder-Playback/releases), not yet on marketplace |

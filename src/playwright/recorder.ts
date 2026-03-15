@@ -26,6 +26,8 @@ const CAPTURE_SCRIPT = `
       type: el.getAttribute('type') || null,
       href: el.getAttribute('href') || null,
       value: el.value || null,
+      altText: el.getAttribute('alt') || null,
+      titleAttr: el.getAttribute('title') || null,
       boundingRect: { x: rect.x, y: rect.y, width: rect.width, height: rect.height },
       parentTag: el.parentElement?.tagName.toLowerCase() || null,
       parentId: el.parentElement?.id || null,

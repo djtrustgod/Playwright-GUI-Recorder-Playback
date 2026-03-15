@@ -2,7 +2,7 @@
   "name": "playwright-vcr",
   "displayName": "PlaywrightVCR",
   "description": "Lightweight Playwright browser record, playback, and recording file export within VSCode. Use AI self healing for resilient test automation.",
-  "version": "0.5.1",
+  "version": "0.6.0",
   "publisher": "djtrustgod",
   "license": "MIT",
   "icon": "assets/logo/Logo128.png",

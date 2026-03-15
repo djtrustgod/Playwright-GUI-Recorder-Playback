@@ -26,6 +26,10 @@ export interface ElementFingerprint {
   parentClasses: string[];
   labels: string[];
   childIndex: number;
+  scrollX?: number;
+  scrollY?: number;
+  altText?: string | null;
+  titleAttr?: string | null;
 }
 
 /** All locator strategies for an element, generated at record time */
@@ -35,6 +39,8 @@ export interface LocatorStrategies {
   label: string | null;
   text: string | null;
   placeholder: string | null;
+  altText: string | null;
+  title: string | null;
   css: string | null;
   xpath: string | null;
   fingerprint: ElementFingerprint | null;
@@ -58,11 +64,17 @@ export function generateLocators(action: RecordedAction): LocatorStrategies {
       label: null,
       text: null,
       placeholder: null,
+      altText: null,
+      title: null,
       css: action.cssSelector || null,
       xpath: action.xpath || null,
       fingerprint: null,
     };
   }
+
+  // Copy scroll coordinates into fingerprint so they survive JSON serialization
+  if (action.scrollX !== undefined) fp.scrollX = action.scrollX;
+  if (action.scrollY !== undefined) fp.scrollY = action.scrollY;
 
   return {
     testId: fp.testId,
@@ -72,6 +84,8 @@ export function generateLocators(action: RecordedAction): LocatorStrategies {
     label: fp.labels?.[0] || null,
     text: fp.innerText?.substring(0, 100) || null,
     placeholder: fp.placeholder,
+    altText: fp.altText || null,
+    title: fp.titleAttr || null,
     css: action.cssSelector || null,
     xpath: action.xpath || null,
     fingerprint: fp,
@@ -186,6 +200,14 @@ export class SelfHealingResolver {
           locators.placeholder ? page.getByPlaceholder(locators.placeholder) : null,
       },
       {
+        name: 'altText',
+        getLocator: () => locators.altText ? page.getByAltText(locators.altText) : null,
+      },
+      {
+        name: 'title',
+        getLocator: () => locators.title ? page.getByTitle(locators.title) : null,
+      },
+      {
         name: 'css',
         getLocator: () => locators.css ? page.locator(locators.css) : null,
       },
@@ -282,14 +304,48 @@ export class SelfHealingResolver {
       originalLocators.xpath ||
       'unknown';
 
-    // We need to extract the selector string from the resolved locator
-    // This is a simplification — in practice we'd need the actual selector string
+    // Reconstruct a usable selector string from the strategy that resolved
+    const healedLocator = this.extractSelectorFromStrategy(resolution.strategy, originalLocators);
+
     this.db.createHealedSelector({
       recording_id: recordingId,
       step_index: stepIndex,
       original_locator: originalLocator,
-      healed_locator: `[healed:${resolution.strategy}]`, // Placeholder — real impl would extract selector
+      healed_locator: healedLocator,
       strategy_used: resolution.strategy,
     });
+  }
+
+  /** Extract a real CSS/locator selector string from the strategy that resolved */
+  private extractSelectorFromStrategy(strategy: string, locators: LocatorStrategies): string {
+    // For embedding/LLM strategies, fall back to css/xpath since we can't reconstruct getBy* as a string
+    if (strategy.startsWith('embedding:') || strategy === 'llm') {
+      return locators.css || locators.xpath ? `xpath=${locators.xpath}` : `[healed:${strategy}]`;
+    }
+
+    // Map strategy names to Playwright selector strings
+    const baseName = strategy.replace(':first', '');
+    switch (baseName) {
+      case 'testId':
+        return locators.testId ? `[data-testid="${locators.testId}"]` : `[healed:${strategy}]`;
+      case 'role':
+        return locators.role ? `role=${locators.role.role}[name="${locators.role.name}"]` : `[healed:${strategy}]`;
+      case 'label':
+        return locators.label ? `internal:label="${locators.label}"` : `[healed:${strategy}]`;
+      case 'text':
+        return locators.text ? `text=${locators.text}` : `[healed:${strategy}]`;
+      case 'placeholder':
+        return locators.placeholder ? `[placeholder="${locators.placeholder}"]` : `[healed:${strategy}]`;
+      case 'altText':
+        return locators.altText ? `[alt="${locators.altText}"]` : `[healed:${strategy}]`;
+      case 'title':
+        return locators.title ? `[title="${locators.title}"]` : `[healed:${strategy}]`;
+      case 'css':
+        return locators.css || `[healed:${strategy}]`;
+      case 'xpath':
+        return locators.xpath ? `xpath=${locators.xpath}` : `[healed:${strategy}]`;
+      default:
+        return `[healed:${strategy}]`;
+    }
   }
 }

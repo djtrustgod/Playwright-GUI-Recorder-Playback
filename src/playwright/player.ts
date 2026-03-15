@@ -227,9 +227,11 @@ export class Player {
       }
 
       case 'scroll': {
+        const scrollX = locators.fingerprint?.scrollX ?? 0;
+        const scrollY = locators.fingerprint?.scrollY ?? 0;
         await page.evaluate(
           ({ x, y }) => window.scrollTo(x, y),
-          { x: 0, y: 0 } // Would use stored scroll position
+          { x: scrollX, y: scrollY }
         );
         return { healed: false, strategy: 'scroll' };
       }

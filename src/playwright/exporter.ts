@@ -266,8 +266,11 @@ jobs:
         return selector
           ? `${indent}await ${selector}.selectOption('${this.escapeString(locators.fingerprint?.value || '')}');`
           : null;
-      case 'scroll':
-        return `${indent}await page.mouse.wheel(0, 300);`;
+      case 'scroll': {
+        const sx = locators.fingerprint?.scrollX ?? 0;
+        const sy = locators.fingerprint?.scrollY ?? 0;
+        return `${indent}await page.evaluate(() => window.scrollTo(${sx}, ${sy}));`;
+      }
       default:
         return `${indent}// Unknown action: ${action.action_type}`;
     }
@@ -291,6 +294,19 @@ jobs:
           : null;
       case 'keydown':
         return `${indent}page.keyboard.press("${this.escapeString(locators.fingerprint?.value || 'Enter')}")`;
+      case 'select':
+        return selector
+          ? `${indent}${selector}.select_option("${this.escapeString(locators.fingerprint?.value || '')}")`
+          : null;
+      case 'submit':
+        return selector
+          ? `${indent}${selector}.press("Enter")`
+          : null;
+      case 'scroll': {
+        const sx = locators.fingerprint?.scrollX ?? 0;
+        const sy = locators.fingerprint?.scrollY ?? 0;
+        return `${indent}page.evaluate("window.scrollTo(${sx}, ${sy})")`;
+      }
       default:
         return `${indent}# Unknown action: ${action.action_type}`;
     }
@@ -298,18 +314,35 @@ jobs:
 
   private generateJavaAction(action: ActionRecord, indent: string): string | null {
     const locators: LocatorStrategies = JSON.parse(action.locators);
+    const javaLocator = this.getBestJavaLocator(locators, indent);
 
     switch (action.action_type) {
       case 'navigation':
         return `${indent}page.navigate("${this.escapeString(action.url)}");`;
       case 'click':
-        if (locators.role) {
-          return `${indent}page.getByRole(AriaRole.${locators.role.role.toUpperCase()}, new Page.GetByRoleOptions().setName("${this.escapeString(locators.role.name)}")).click();`;
-        }
-        if (locators.css) {
-          return `${indent}page.locator("${this.escapeString(locators.css)}").click();`;
-        }
-        return null;
+        return javaLocator ? `${indent}${javaLocator}.click();` : null;
+      case 'dblclick':
+        return javaLocator ? `${indent}${javaLocator}.dblclick();` : null;
+      case 'input':
+      case 'change':
+        return javaLocator
+          ? `${indent}${javaLocator}.fill("${this.escapeString(locators.fingerprint?.value || '')}");`
+          : null;
+      case 'keydown':
+        return `${indent}page.keyboard().press("${this.escapeString(locators.fingerprint?.value || 'Enter')}");`;
+      case 'select':
+        return javaLocator
+          ? `${indent}${javaLocator}.selectOption("${this.escapeString(locators.fingerprint?.value || '')}");`
+          : null;
+      case 'submit':
+        return javaLocator
+          ? `${indent}${javaLocator}.press("Enter");`
+          : null;
+      case 'scroll': {
+        const sx = locators.fingerprint?.scrollX ?? 0;
+        const sy = locators.fingerprint?.scrollY ?? 0;
+        return `${indent}page.evaluate("window.scrollTo(${sx}, ${sy})");`;
+      }
       default:
         return `${indent}// Unknown action: ${action.action_type}`;
     }
@@ -317,18 +350,35 @@ jobs:
 
   private generateCSharpAction(action: ActionRecord, indent: string): string | null {
     const locators: LocatorStrategies = JSON.parse(action.locators);
+    const csLocator = this.getBestCSharpLocator(locators);
 
     switch (action.action_type) {
       case 'navigation':
         return `${indent}await page.GotoAsync("${this.escapeString(action.url)}");`;
       case 'click':
-        if (locators.role) {
-          return `${indent}await page.GetByRole(AriaRole.${this.toPascalCase(locators.role.role)}, new() { Name = "${this.escapeString(locators.role.name)}" }).ClickAsync();`;
-        }
-        if (locators.css) {
-          return `${indent}await page.Locator("${this.escapeString(locators.css)}").ClickAsync();`;
-        }
-        return null;
+        return csLocator ? `${indent}await ${csLocator}.ClickAsync();` : null;
+      case 'dblclick':
+        return csLocator ? `${indent}await ${csLocator}.DblClickAsync();` : null;
+      case 'input':
+      case 'change':
+        return csLocator
+          ? `${indent}await ${csLocator}.FillAsync("${this.escapeString(locators.fingerprint?.value || '')}");`
+          : null;
+      case 'keydown':
+        return `${indent}await page.Keyboard.PressAsync("${this.escapeString(locators.fingerprint?.value || 'Enter')}");`;
+      case 'select':
+        return csLocator
+          ? `${indent}await ${csLocator}.SelectOptionAsync("${this.escapeString(locators.fingerprint?.value || '')}");`
+          : null;
+      case 'submit':
+        return csLocator
+          ? `${indent}await ${csLocator}.PressAsync("Enter");`
+          : null;
+      case 'scroll': {
+        const sx = locators.fingerprint?.scrollX ?? 0;
+        const sy = locators.fingerprint?.scrollY ?? 0;
+        return `${indent}await page.EvaluateAsync("window.scrollTo(${sx}, ${sy})");`;
+      }
       default:
         return `${indent}// Unknown action: ${action.action_type}`;
     }
@@ -341,6 +391,8 @@ jobs:
     if (locators.label) return `page.getByLabel('${this.escapeString(locators.label)}')`;
     if (locators.text) return `page.getByText('${this.escapeString(locators.text)}')`;
     if (locators.placeholder) return `page.getByPlaceholder('${this.escapeString(locators.placeholder)}')`;
+    if (locators.altText) return `page.getByAltText('${this.escapeString(locators.altText)}')`;
+    if (locators.title) return `page.getByTitle('${this.escapeString(locators.title)}')`;
     if (locators.css) return `page.locator('${this.escapeString(locators.css)}')`;
     if (locators.xpath) return `page.locator('xpath=${this.escapeString(locators.xpath)}')`;
     return null;
@@ -352,7 +404,33 @@ jobs:
     if (locators.label) return `page.get_by_label("${this.escapeString(locators.label)}")`;
     if (locators.text) return `page.get_by_text("${this.escapeString(locators.text)}")`;
     if (locators.placeholder) return `page.get_by_placeholder("${this.escapeString(locators.placeholder)}")`;
+    if (locators.altText) return `page.get_by_alt_text("${this.escapeString(locators.altText)}")`;
+    if (locators.title) return `page.get_by_title("${this.escapeString(locators.title)}")`;
     if (locators.css) return `page.locator("${this.escapeString(locators.css)}")`;
+    return null;
+  }
+
+  private getBestJavaLocator(locators: LocatorStrategies, indent: string): string | null {
+    if (locators.testId) return `page.getByTestId("${this.escapeString(locators.testId)}")`;
+    if (locators.role) return `page.getByRole(AriaRole.${locators.role.role.toUpperCase()}, new Page.GetByRoleOptions().setName("${this.escapeString(locators.role.name)}"))`;
+    if (locators.label) return `page.getByLabel("${this.escapeString(locators.label)}")`;
+    if (locators.text) return `page.getByText("${this.escapeString(locators.text)}")`;
+    if (locators.placeholder) return `page.getByPlaceholder("${this.escapeString(locators.placeholder)}")`;
+    if (locators.altText) return `page.getByAltText("${this.escapeString(locators.altText)}")`;
+    if (locators.title) return `page.getByTitle("${this.escapeString(locators.title)}")`;
+    if (locators.css) return `page.locator("${this.escapeString(locators.css)}")`;
+    return null;
+  }
+
+  private getBestCSharpLocator(locators: LocatorStrategies): string | null {
+    if (locators.testId) return `page.GetByTestId("${this.escapeString(locators.testId)}")`;
+    if (locators.role) return `page.GetByRole(AriaRole.${this.toPascalCase(locators.role.role)}, new() { Name = "${this.escapeString(locators.role.name)}" })`;
+    if (locators.label) return `page.GetByLabel("${this.escapeString(locators.label)}")`;
+    if (locators.text) return `page.GetByText("${this.escapeString(locators.text)}")`;
+    if (locators.placeholder) return `page.GetByPlaceholder("${this.escapeString(locators.placeholder)}")`;
+    if (locators.altText) return `page.GetByAltText("${this.escapeString(locators.altText)}")`;
+    if (locators.title) return `page.GetByTitle("${this.escapeString(locators.title)}")`;
+    if (locators.css) return `page.Locator("${this.escapeString(locators.css)}")`;
     return null;
   }
 

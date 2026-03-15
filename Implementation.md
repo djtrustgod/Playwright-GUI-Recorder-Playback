@@ -187,7 +187,7 @@ The `deactivate()` function stops the scheduler, executor, and closes the databa
 | `input` / `change` | `locator.fill()` |
 | `keydown` | `locator.press()` |
 | `select` | `locator.selectOption()` |
-| `scroll` | `page.evaluate(window.scrollTo)` |
+| `scroll` | `page.evaluate(window.scrollTo(scrollX, scrollY))` using recorded scroll coordinates |
 | `submit` | `locator.evaluate(form.submit)` |
 
 ## Self-Healing System
@@ -197,13 +197,14 @@ The `deactivate()` function stops the scheduler, executor, and closes the databa
 ### Three-Tier Resolution
 
 **Tier 1 — Direct Match** (~50ms)
-- Checks for a previously cached healed selector first
-- Tries locator strategies in priority order: `data-testid` → ARIA role → text → CSS → XPath
+- Checks for a previously cached healed selector first (cached selectors are real CSS/attribute selectors, not placeholders)
+- Tries locator strategies in priority order: `data-testid` → ARIA role → text → `altText` (img alt) → `title` → CSS → XPath
 - Uses `locator.count()` to verify exactly one match
 
 **Tier 2 — Embedding Similarity** (~100ms)
 - Uses `@xenova/transformers` with `all-MiniLM-L6-v2` (loaded lazily, ~50MB download on first use)
-- Generates embeddings from element attribute strings (tag + id + classes + text + aria)
+- Generates embeddings from element attribute strings (tag + id + classes + text + aria + parentTag + parentId + parentClasses)
+- Parent context improves disambiguation for elements with similar attributes but different DOM positions
 - Computes cosine similarity between recorded fingerprint and all visible page elements
 - Accepts matches above configurable threshold (default: 0.7)
 
@@ -213,7 +214,7 @@ The `deactivate()` function stops the scheduler, executor, and closes the databa
 - Parses returned CSS selector, validates against live page
 - Supports: OpenAI API, Anthropic API, local Ollama
 
-**Caching**: All healed selectors are stored in `healed_selectors` table with success counts. Higher success count selectors are preferred on subsequent runs.
+**Caching**: All healed selectors are stored in `healed_selectors` table with success counts as real CSS/attribute selectors (not placeholder strings). Higher success count selectors are preferred on subsequent runs.
 
 ### Interfaces
 
@@ -359,9 +360,9 @@ Generates test scripts from recorded actions using semantic locators in preferen
 |---|---|
 | TypeScript | Playwright test with `@playwright/test` imports |
 | JavaScript | CommonJS Playwright script |
-| Python | `pytest-playwright` test file |
-| Java | JUnit + Playwright Java test class |
-| C# | NUnit + Playwright .NET test class |
+| Python | `pytest-playwright` test file — handles all action types (click, dblclick, input, select, submit, scroll) |
+| Java | JUnit + Playwright Java test class — handles all action types with Java conventions |
+| C# | NUnit + Playwright .NET test class — handles all action types with .NET conventions |
 | JSON | Portable recording format (importable) |
 | GitHub Actions | CI workflow YAML with Playwright setup |
 
